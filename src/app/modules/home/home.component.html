@@ -1,3 +1,17 @@
 <p>home works!</p>
 
-<a routerLink="/profile" routerLinkActive="active">Vers le profile</a>
+<a routerLink="/profile" routerLinkActive="active" class="text-red-700">Vers le profile</a>
+
+<div class="flex flex-col items-center justify-center m-4">
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Search for movies" (input)="searchMovies()" class="p-4 text-xl border rounded bg-red-700 text-gray-900 focus:outline-none focus:border-gray-900 transition-all">
+</div>
+
+<div *ngIf="movies && movies.length > 0" class="flex flex-col items-center justify-center m-4">
+  <h2 class="text-xl font-bold mb-2 text-gray-900">Movies:</h2>
+  <ul class="list-none">
+    <li *ngFor="let movie of movies" class="mb-1 text-gray-900">{{ movie.title }}</li>
+  </ul>
+</div>
+
+
+
