@@ -1,8 +1,8 @@
 <div class="relative">
-  <app-backdrop [backdropPath]=""/>
-  <section class='hero-header-text absolute inset-x-0 top-[20%] p-6'>
-    <h1 class="text-white text-3xl font-bold">Ellen Macpherson</h1>
-    <h2 class="text-white text-lg">Just another tech blog.</h2>
-    <button class="mt-2 px-4 py-2 bg-white text-black rounded-md">Read more</button>
+  <app-backdrop [backdropPath]="movie.backdrop_path"/>
+  <section class='hero-header-text absolute inset-x-0 top-[20%] p-6 w-6/12'>
+    <h1 class="text-white text-3xl font-bold">{{movie.title}}</h1>
+    <h2 class="text-white text-lg">{{movie.overview}}</h2>
+    <button class="mt-2 px-4 py-2 bg-[#C8291E] shadow-xl border border-[#E62C1D] text-white rounded-lg hover:bg-[#E62C1D] transition">Voir plus</button>
   </section>
 </div>
