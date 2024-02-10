@@ -1,8 +1,18 @@
 <div class="relative">
-  <app-backdrop [backdropPath]="movie.backdrop_path"/>
+  <!-- App-backdrop with gradient -->
+  <div class="opacity-80">
+    <app-backdrop [backdropPath]="movie.backdrop_path"/>
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-70%"></div>
+    <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-40%"></div>
+  </div>
+
+  <!-- Presentation -->
   <section class='hero-header-text absolute inset-x-0 top-[20%] p-6 w-6/12'>
     <h1 class="text-white text-3xl font-bold">{{movie.title}}</h1>
     <h2 class="text-white text-lg">{{movie.overview}}</h2>
     <button class="mt-2 px-4 py-2 bg-[#C8291E] shadow-xl border border-[#E62C1D] text-white rounded-lg hover:bg-[#E62C1D] transition">Voir plus</button>
   </section>
+
+  <!-- Gradient bottom to site background color -->
+  <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#100F10]"></div>
 </div>

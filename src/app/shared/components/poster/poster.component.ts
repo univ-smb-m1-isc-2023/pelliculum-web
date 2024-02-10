@@ -10,6 +10,7 @@ import {Component, Input} from '@angular/core';
 export class PosterComponent {
 
   @Input() posterPath: string | undefined;
+  @Input() size: number | undefined;
 
   constructor() { }
 

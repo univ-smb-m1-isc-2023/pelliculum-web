@@ -1,10 +1,12 @@
-<div class="flex flex-row">
+<div class="flex flex-row overflow-x-hidden">
 
     <div>
-      @if(currentMovie){
-        <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
-        <app-poster [posterPath]="currentMovie.poster_path"></app-poster>
-      }
+      <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
+      <div class="flex flex-row overflow-x-hidden space-x-4 absolute bottom-4">
+        @for (movie of topMovies; track movie.id) {
+          <app-poster [size]="movie === currentMovie ? 24 : 14 " [posterPath]="movie.poster_path"></app-poster>
+        }
+      </div>
     </div>
 
 </div>
