@@ -1,11 +1,16 @@
-<div class="">
-  <h2>Paramètres</h2>
-  <div class="tabs">
-    <ul class="tabs-titles">
-      <li (click)="selectTab('security')">Sécurité</li>
-      <li (click)="selectTab('customization')">Personnalisation</li>
-    </ul>
+<div>
+  <h2 class="text-5xl pb-10">Paramètres</h2>
+
+  <!-- Tabs -->
+  <div class="tabs-container flex space-x-16 pb-1.5">
+    <p (click)="selectTab('customization')"
+       [class]="activeTab === 'customization' ? 'tab active' : 'tab'">Informations personnelles</p>
+    <p (click)="selectTab('security')"
+       [class]="activeTab === 'security' ? 'tab active' : 'tab'">Connexion et sécurité</p>
+  </div>
+
+  <!-- Active Tab Content -->
+  <div class="pt-10">
     <ng-content></ng-content>
   </div>
 </div>
-
