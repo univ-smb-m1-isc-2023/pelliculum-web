@@ -3,6 +3,7 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {TmdbService} from "../../core/services/tmdb.service";
 import {BackdropComponent} from "../../shared/components/backdrop/backdrop.component";
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
+import {PosterComponent} from "../../shared/components/poster/poster.component";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-d
     RouterLink,
     RouterLinkActive,
     BackdropComponent,
-    BackdropDetailsComponent
+    BackdropDetailsComponent,
+    PosterComponent
   ],
   templateUrl: './home.component.html',
   styles: ``

@@ -3,6 +3,7 @@
     <div>
       @if(currentMovie){
         <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
+        <app-poster [posterPath]="currentMovie.poster_path"></app-poster>
       }
     </div>
 

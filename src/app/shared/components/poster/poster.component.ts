@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-poster',
@@ -8,5 +8,14 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class PosterComponent {
+
+  @Input() posterPath: string | undefined;
+
+  constructor() { }
+
+  getPosterUrl(): string {
+    return `https://image.tmdb.org/t/p/w220_and_h330_face${this.posterPath}`;
+  }
+
 
 }
