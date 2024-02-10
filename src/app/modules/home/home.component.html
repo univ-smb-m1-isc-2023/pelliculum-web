@@ -1,4 +1,4 @@
-<p>home works!</p>
+<div class="flex flex-row">
 
 <a routerLink="/profile" routerLinkActive="active" class="text-red-700">Vers le profile</a>
 
@@ -15,3 +15,10 @@
 
 
 
+    <div>
+      @if(currentMovie){
+        <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
+      }
+    </div>
+
+</div>
