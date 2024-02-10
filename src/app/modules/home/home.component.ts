@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   topMovies: any[] = []
   currentMovie: any = undefined;
+  carousel: any[] = [];
 
   constructor(private tmdbService: TmdbService) {
   }
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit {
 
   private startCarousel() {
     this.currentMovie = this.topMovies[0];
+    this.carousel = this.topMovies.slice(0, 9);
     setInterval(() => {
       const currentIndex = this.topMovies.indexOf(this.currentMovie);
       const nextIndex = currentIndex === this.topMovies.length - 1 ? 0 : currentIndex + 1;

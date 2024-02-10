@@ -1,12 +1,55 @@
-<div class="flex flex-row overflow-x-hidden">
-
-    <div>
+<div class="flex flex-col -space-y-24 relative">
+  <div>
       <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
-      <div class="flex flex-row overflow-x-hidden space-x-4 absolute bottom-4">
-        @for (movie of topMovies; track movie.id) {
-          <app-poster [size]="movie === currentMovie ? 24 : 14 " [posterPath]="movie.poster_path"></app-poster>
+      <div class="relative bottom-32 flex flex-row justify-center items-center space-x-12">
+        @for (movie of carousel; track movie.id) {
+          <app-poster [style]="'rounded-lg transition-all ' + (movie === currentMovie ? 'w-32 shadow-md rounded-xl' : 'w-28 brightness-50 hover:brightness-90 cursor-pointer')" [posterPath]="movie.poster_path"></app-poster>
         }
       </div>
+  </div>
+
+  <div class="grid grid-cols-4 gap-x-12 gap-y-8 px-12">
+    <div class="h-20 rounded-lg shadow-md bg-[#161616]">
+
     </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+    <div class="h-20 rounded-lg shadow bg-[#161616]">
+
+    </div>
+  </div>
 
 </div>
+
+<style>
+
+  .poster {
+    @apply rounded-lg transition;
+  }
+
+  .poster-disable {
+    @apply w-28 brightness-50 hover:brightness-90 cursor-pointer;
+  }
+
+  .poster-active {
+    @apply w-32 shadow-md rounded-xl;
+  }
+
+
+</style>
