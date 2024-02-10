@@ -1,12 +1,9 @@
 
-import {Component, OnDestroy} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {MovieService} from "../../core/services/movie.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {debounceTime, distinctUntilChanged, Subject, takeUntil} from "rxjs";
-import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
 import {TmdbService} from "../../core/services/tmdb.service";
 import {BackdropComponent} from "../../shared/components/backdrop/backdrop.component";
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
@@ -19,23 +16,25 @@ import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-d
     RouterLinkActive,
     FormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
     BackdropComponent,
     BackdropDetailsComponent
   ],
   templateUrl: './home.component.html',
   styles: ``
 })
-export class HomeComponent implements OnDestroy {
-  searchQuery: string = '';
-  movies: any;
-  private destroy$: Subject<void> = new Subject();
-export class HomeComponent implements OnInit {
+
+export class HomeComponent implements OnInit, OnDestroy {
 
   topMovies: any[] = []
   currentMovie: any = undefined;
+  searchQuery: string = '';
+  movies: any;
 
-  constructor(private tmdbService: TmdbService) {
+  private destroy$: Subject<void> = new Subject();
+
+
+  constructor(private router: Router,private tmdbService: TmdbService) {
   }
 
   ngOnInit(): void {
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
     }, 5000);
   }
 
-  constructor(private movieService: MovieService) {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -63,7 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchMovies(): void {
-    this.movieService.searchMovies(this.searchQuery)
+    this.tmdbService.searchMovies(this.searchQuery)
       .pipe(
         takeUntil(this.destroy$),
         debounceTime(300),
@@ -78,5 +76,9 @@ export class HomeComponent implements OnInit {
           console.error('Error:', error);
         }
       );
+  }
+
+  redirectToMovieDetails(movieId: number): void {
+    this.router.navigate(['/movie-details', movieId]);
   }
 }
