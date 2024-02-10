@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './profile-customization-tab.component.html'
 })
 export class ProfileCustomizationTabComponent {
+  constructor() {}
+
+  name = 'Paul'
+  lastname = 'Smith'
+  email = 'paul.smith@gmail.com'
+
 
 }

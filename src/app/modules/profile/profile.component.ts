@@ -17,7 +17,7 @@ import {NgIf} from "@angular/common";
   styles: ``
 })
 export class ProfileComponent {
-  activeTab: string = 'security';
+  activeTab: string = 'customization';
 
   constructor() {
   }
