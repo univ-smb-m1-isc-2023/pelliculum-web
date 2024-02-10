@@ -23,7 +23,7 @@ import {CategoriesComponent} from "./components/categories/categories.component"
 export class HomeComponent implements OnInit {
 
   topMovies: any[] = []
-  currentMovie: any = undefined;
+  currentMovie: any = null;
   carousel: any[] = [];
 
   constructor(private tmdbService: TmdbService) {

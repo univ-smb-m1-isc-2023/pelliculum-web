@@ -1,7 +1,9 @@
-<div class="flex flex-col -space-y-24 relative">
-  <div>
-      <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
-      <div class="relative bottom-32 flex flex-row justify-center items-center space-x-12">
+<div class="flex flex-col space-y-24">
+  <div class="relative flex flex-col justify-center items-center">
+      @if (currentMovie) {
+        <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
+      }
+      <div class="absolute h-40 -bottom-12 flex flex-row justify-center items-center space-x-12 px-12">
         @for (movie of carousel; track movie.id) {
           <app-poster [style]="'rounded-lg transition-all ' + (movie === currentMovie ? 'w-32 shadow-md rounded-xl' : 'w-28 brightness-50 hover:brightness-90 cursor-pointer')" [posterPath]="movie.poster_path"></app-poster>
         }

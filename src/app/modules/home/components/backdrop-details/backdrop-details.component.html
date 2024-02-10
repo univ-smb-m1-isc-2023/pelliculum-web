@@ -7,9 +7,16 @@
   </div>
 
   <!-- Presentation -->
-  <section class='flex flex-col absolute inset-x-0 space-y-4 top-[20%] p-14 w-6/12'>
-    <h1 class="text-white text-3xl font-bold">{{movie.title}}</h1>
-    <h2 class="text-white text-lg line-clamp-3">{{movie.overview}}</h2>
+  <section class='flex flex-col absolute inset-x-0 space-y-4 top-[20%] p-14 xl:w-6/12 md:w-8/12 sm:w-11/12'>
+    <div class="flex flex-col space-y-2">
+      <h1 class="text-white text-3xl font-bold">{{movie.title}}</h1>
+      <div>
+        @for (genre of genres; track genre.id; let i = $index) {
+          <span [class]="'text-white text-sm ' + (i === 0 ? 'pr-4' : 'px-4') + ' ' + (i === genres.length-1 ? '' : 'border-r border-gray-700')">{{genre.name}}</span>
+        }
+      </div>
+    </div>
+    <h2 class="text-white text-lg xl:line-clamp-3 md:line-clamp-2 sm:line-clamp-1">{{movie.overview}}</h2>
     <button class="mt-2 px-4 py-2 bg-[#C8291E] shadow-xl border w-fit border-[#E62C1D] text-white rounded-lg hover:bg-[#E62C1D] transition">Voir plus</button>
   </section>
 
