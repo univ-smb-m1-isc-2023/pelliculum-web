@@ -13,4 +13,6 @@ export class InputCustomComponent {
   @Input() value: string | undefined;
 
   @Input() size : string | undefined;
+
+  @Input() type : string = '';
 }
