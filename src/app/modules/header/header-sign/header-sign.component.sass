@@ -15,3 +15,33 @@
   display: flex
   align-items: center
   justify-content: center
+
+// Variables pour les couleurs du gradient (ajustez selon vos préférences)
+$gradient-start: #FDFDFD
+$gradient-end: #C8291E
+
+
+// Mixin pour le border-radius (réutilisable)
+@mixin border-radius($radius)
+  border-radius: $radius
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+
+.avatar-wrapper
+  display: inline-block
+  background: linear-gradient(to right, $gradient-start, $gradient-end) // Utilisation des variables
+  @include border-radius(50%) // Utilisation du mixin pour border-radius
+  padding: 1px // Épaisseur de la 'bordure' gradient
+
+  a
+    display: block
+    @include border-radius(50%) // Utilisation du mixin pour border-radius
+    line-height: 0 // Pour enlever l'espace supplémentaire sous l'image
+
+  .avatar
+    display: block
+    width: 48px // Ajustez selon vos besoins
+    height: 48px // Ajustez selon vos besoins
+    @include border-radius(50%) // Utilisation du mixin pour border-radius
+    border: 2px solid transparent // Garde la dimension de l'image si nécessaire
+
