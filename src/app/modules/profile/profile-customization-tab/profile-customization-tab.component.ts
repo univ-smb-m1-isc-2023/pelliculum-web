@@ -7,7 +7,8 @@ import {InputCustomComponent} from "../../../shared/components/input-custom/inpu
   imports: [
     InputCustomComponent
   ],
-  templateUrl: './profile-customization-tab.component.html'
+  templateUrl: './profile-customization-tab.component.html',
+  styleUrls : ['./profile-customization-tab.component.sass']
 })
 export class ProfileCustomizationTabComponent {
   constructor() {}
