@@ -1,12 +1,14 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {BackdropComponent} from "../../../../shared/components/backdrop/backdrop.component";
 import {TmdbService} from "../../../../core/services/tmdb.service";
+import {StarsComponent} from "../../../../shared/components/stars/stars.component";
 
 @Component({
   selector: 'app-backdrop-details',
   standalone: true,
   imports: [
-    BackdropComponent
+    BackdropComponent,
+    StarsComponent
   ],
   templateUrl: './backdrop-details.component.html',
   styles: ``

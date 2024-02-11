@@ -1,4 +1,5 @@
 <div class="relative">
+
   <!-- App-backdrop with gradient -->
   <div class="opacity-75">
     <app-backdrop [backdropPath]="movie.backdrop_path"/>
@@ -7,17 +8,23 @@
   </div>
 
   <!-- Presentation -->
-  <section class='flex flex-col absolute inset-x-0 space-y-4 top-[20%] p-14 xl:w-6/12 md:w-8/12 sm:w-11/12'>
-    <div class="flex flex-col space-y-2">
-      <h1 class="text-white text-3xl font-bold">{{movie.title}}</h1>
+  <section class='flex flex-col absolute inset-x-0 space-y-3 xl:top-[15%] lg:top-[12%] md:top-[8%] sm:top-0 p-14 xl:w-6/12 md:w-8/12 sm:w-11/12'>
+
+    <!-- Title and genres -->
+    <div class="flex flex-col xl:space-y-2 lg:space-y-2 md:space-y-1 sm:space-y-0">
+      <h1 class="text-white xl:text-3xl lg:text-2xl md:text-xl sm:text-md font-bold">{{ movie.title }}</h1>
       <div>
-        @for (genre of genres; track genre.id; let i = $index) {
-          <span [class]="'text-white text-sm ' + (i === 0 ? 'pr-4' : 'px-4') + ' ' + (i === genres.length-1 ? '' : 'border-r border-gray-700')">{{genre.name}}</span>
+        @for (genre of genres; track genre.id; let first = $first; let last = $last) {
+          <span [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')">{{ genre.name }}</span>
         }
       </div>
     </div>
-    <h2 class="text-white text-lg xl:line-clamp-3 md:line-clamp-2 sm:line-clamp-1">{{movie.overview}}</h2>
-    <button class="mt-2 px-4 py-2 bg-[#C8291E] shadow-xl border w-fit border-[#E62C1D] text-white rounded-lg hover:bg-[#E62C1D] transition">Voir plus</button>
+
+    <!-- Rating and view button -->
+    <h2 class="text-white xl:text-lg lg:text-base md:text-sm sm:text-xs xl:line-clamp-3 md:line-clamp-2 sm:line-clamp-1">{{ movie.overview }}</h2>
+    <button class="xl:px-4 xl:py-2 lg:px-3 lg:py-1.5 md:px-2 md:py-1 sm:px-2 sm:py-1 xl:text-base lg:text-sm md:text-xs sm:text-xs bg-[#C8291E] shadow-xl border w-fit border-[#E62C1D] text-white rounded-lg hover:bg-[#E62C1D] transition">
+      Voir plus
+    </button>
   </section>
 
   <!-- Gradient bottom to site background color -->

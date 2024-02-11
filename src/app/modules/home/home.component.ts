@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
       const currentIndex = this.topMovies.indexOf(this.currentMovie);
       const nextIndex = currentIndex === this.topMovies.length - 1 ? 0 : currentIndex + 1;
       this.currentMovie = this.topMovies[nextIndex];
+      this.carousel = this.topMovies.slice(nextIndex, nextIndex + 9);
     }, 5000);
   }
 
