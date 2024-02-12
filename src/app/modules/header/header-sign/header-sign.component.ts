@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
-import {BadgeModule} from "primeng/badge";
-import {ButtonModule} from "primeng/button";
-import {DialogModule} from "primeng/dialog";
 
 @Component({
   selector: 'app-header-sign',
@@ -11,9 +8,6 @@ import {DialogModule} from "primeng/dialog";
   imports: [
     NgIf,
     RouterLink,
-    BadgeModule,
-    ButtonModule,
-    DialogModule,
     NgForOf
   ],
   templateUrl: './header-sign.component.html',

@@ -5,7 +5,6 @@ import {BackdropComponent} from "../../shared/components/backdrop/backdrop.compo
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
 import {PosterComponent} from "../../shared/components/poster/poster.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
-import {CarouselModule} from "primeng/carousel";
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,6 @@ import {CarouselModule} from "primeng/carousel";
     BackdropDetailsComponent,
     PosterComponent,
     CategoriesComponent,
-    CarouselModule
   ],
   templateUrl: './home.component.html',
   styles: ``
