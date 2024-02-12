@@ -14,8 +14,9 @@
 
   @for (item of items; track item.name; let last = $last) {
     <a class="dropdown-item text-sm rounded-none {{!last ? 'border-b border-custom-light-border' : ''}}">
-      <div class="flex items-center">
+      <div class="items-center">
         <p>Votre ami <span class="font-bold">{{item.user}}</span> a {{item.name}} le film <span class="font-bold">{{item.film}}</span>.</p>
+        <p class="text-xs leading-5 text-gray-500">Il y a 30 secondes</p>
       </div>
     </a>
   } @empty {

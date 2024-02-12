@@ -12,4 +12,6 @@ export class HeaderNotificationComponent {
     { name: 'comment', user : 'John Doe', film : 'The Dark Knight', icon: 'fa fa-comment' },
   ];
 
+  item : any[] = []
+
 }
