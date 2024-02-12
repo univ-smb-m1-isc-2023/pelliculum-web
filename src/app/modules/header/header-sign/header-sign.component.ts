@@ -1,19 +1,50 @@
 import { Component } from '@angular/core';
-import {NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {BadgeModule} from "primeng/badge";
+import {ButtonModule} from "primeng/button";
+import {DialogModule} from "primeng/dialog";
 
 @Component({
   selector: 'app-header-sign',
   standalone: true,
   imports: [
     NgIf,
-    RouterLink
+    RouterLink,
+    BadgeModule,
+    ButtonModule,
+    DialogModule,
+    NgForOf
   ],
   templateUrl: './header-sign.component.html',
   styleUrls: ['./header-sign.component.sass']
 })
 export class HeaderSignComponent {
   connected = true;
-  notif = 3;
+  notif : string = '3';
+  items: any[] = []; // Replace `any` with your item type
+  dropdownVisible: boolean = false;
 
+
+  constructor() {
+    this.items = [
+      {label: 'Item 1', value: 1},
+      {label: 'Item 2', value: 2},
+      // Add more items as needed
+    ];
+  }
+
+  toggleDropdown(event: Event) {
+    this.dropdownVisible = !this.dropdownVisible;
+    event.stopPropagation(); // Prevent event from closing the dropdown immediately
+  }
+
+  onItemSelect(item: any) {
+    console.log("Selected item:", item);
+    this.dropdownVisible = false; // Close the dropdown
+  }
+
+  closeDropdown() {
+    this.dropdownVisible = false; // Method to close dropdown, can be called from elsewhere
+  }
 }

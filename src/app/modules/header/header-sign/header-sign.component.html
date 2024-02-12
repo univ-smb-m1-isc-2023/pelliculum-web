@@ -14,17 +14,26 @@
 
     <!-- Notification icon -->
     <div class="notification-icon">
+      <span class="notification-number">{{notif}}</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6M9 17v1a3 3 0 0 0 6 0v-1"></path>
       </svg>
-      <span class="notification-number">{{notif}}</span>
     </div>
 
     <!-- Profile photo -->
     <div class="avatar-wrapper">
       <a [routerLink]="['/profile']">
-        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="avatar">
       </a>
+      <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="avatar" (click)="toggleDropdown($event)">
+
+      <!-- Dropdown Menu -->
+      <div *ngIf="dropdownVisible" class="dropdown-menu">
+        <ul>
+          <li *ngFor="let item of items" (click)="onItemSelect(item)">
+            {{ item.label }}
+          </li>
+        </ul>
+      </div>
     </div>
 
 </div>
@@ -32,6 +41,7 @@
 <!-- Disconnected signup part-->
 <div *ngIf="!connected" class="h-full flex items-center pr-2">
   <button class="bg-primary rounded-md p-1.5">Se connecter</button>
+</div>
 </div>
 
 
