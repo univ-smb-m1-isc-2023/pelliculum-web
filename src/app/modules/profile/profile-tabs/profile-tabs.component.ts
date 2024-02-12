@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -8,14 +8,33 @@ import { NgClass } from '@angular/common';
     imports: [NgClass],
     styleUrls: ['./profile-tabs.component.scss']
 })
-export class ProfileTabsComponent {
+export class ProfileTabsComponent implements OnInit{
+
     @Output() tabSelected = new EventEmitter<string>();
     activeTab: string = 'customization';
     borderClass = 'border-b-gray-50'; // Classe de bordure par défaut
+
+    marker: HTMLDivElement | undefined;
+
+    constructor() {}
+
+    ngOnInit(): void {
+      this.marker = document.getElementById('marker') as HTMLDivElement;
+      const privateTab: HTMLDialogElement | null = document.getElementById('profile-private-info') as HTMLDialogElement;
+      privateTab.click()
+    }
 
     selectTab(tabName: string) {
         this.activeTab = tabName;
         this.tabSelected.emit(this.activeTab);
         this.borderClass = this.activeTab === 'customization' ? 'border-b-primary' : 'border-b-gray-50';
     }
+
+    indicator(e: any): void{
+      console.log(e);
+      if(!this.marker || !e) return;
+      this.marker.style.left = e.target.offsetLeft + 'px';
+      this.marker.style.width = e.target.offsetWidth + 'px';
+    }
+
 }
