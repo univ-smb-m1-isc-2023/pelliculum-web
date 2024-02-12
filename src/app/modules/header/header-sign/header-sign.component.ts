@@ -13,7 +13,7 @@ import {HeaderPictureComponent} from "../header-picture/header-picture.component
     HeaderPictureComponent
   ],
   templateUrl: './header-sign.component.html',
-  styleUrls: ['./header-sign.component.sass']
+  styles : []
 })
 export class HeaderSignComponent {
   connected = true;
