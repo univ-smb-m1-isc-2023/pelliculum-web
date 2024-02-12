@@ -23,30 +23,26 @@
     </div>
 
     <!-- Profile photo -->
-    <div class="avatar-wrapper">
-      <a [routerLink]="['/']">
-        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="avatar"
-             (click)="toggleDropdown($event)">
 
-      </a>
-    </div>
 
-    <!-- Dropdown Menu -->
-    <div *ngIf="dropdownVisible" class="dropdown-menu">
-      <ul>
-        <li *ngFor="let item of items" (click)="onItemSelect(item)">
-          {{ item.label }}
-        </li>
-      </ul>
+    <div class="dropdown">
+      <label class="" tabindex="0">
+        <div class="avatar-wrapper">
+          <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="avatar">
+        </div>
+      </label>
+      <div class="dropdown-menu dropdown-menu-bottom-left">
+        <a [routerLink]="['/profile']" class="dropdown-item text-sm">Profil</a>
+        <a class="dropdown-item text-sm">Se déconnecter</a>
+      </div>
     </div>
 
   </div>
-</div>
 
-<!-- Disconnected signup part-->
-<div *ngIf="!connected" class="h-full flex items-center pr-2">
-  <button class="bg-primary rounded-md p-1.5">Se connecter</button>
-</div>
+  <!-- Disconnected signup part-->
+  <div *ngIf="!connected" class="h-full flex items-center pr-2">
+    <button class="bg-primary rounded-md p-1.5">Se connecter</button>
+  </div>
 
 
 
