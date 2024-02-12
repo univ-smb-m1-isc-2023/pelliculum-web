@@ -1,41 +1,56 @@
 {
-  "hash": "5ed97417",
-  "configHash": "6732ada8",
-  "lockfileHash": "adc9dfeb",
-  "browserHash": "b65091a8",
+  "hash": "f3eb7f2d",
+  "configHash": "f548f7ee",
+  "lockfileHash": "ce64074b",
+  "browserHash": "e8b48df6",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/.pnpm/@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "385bd864",
+      "fileHash": "725f0625",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/.pnpm/@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "c1a4be6e",
+      "fileHash": "c30385b1",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/.pnpm/@angular+core@17.1.3_rxjs@7.8.1_zone.js@0.14.3/node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "4bbaf681",
+      "fileHash": "97f1a4ea",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/.pnpm/@angular+platform-browser@17.1.3_@angular+animations@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "91b82416",
+      "fileHash": "1d5bdeb3",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/.pnpm/@angular+router@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3_@angular+platform-browser@17.1.3_rxjs@7.8.1/node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "99545045",
+      "fileHash": "1923c56e",
+      "needsInterop": false
+    },
+    "primeng/carousel": {
+      "src": "../../../../../node_modules/.pnpm/primeng@17.6.0_@angular+common@17.1.3_@angular+core@17.1.3_@angular+forms@17.1.3_rxjs@7.8.1_zone.js@0.14.3/node_modules/primeng/fesm2022/primeng-carousel.mjs",
+      "file": "primeng_carousel.js",
+      "fileHash": "f074b0fb",
+      "needsInterop": false
+    },
+    "primeng/api": {
+      "src": "../../../../../node_modules/.pnpm/primeng@17.6.0_@angular+common@17.1.3_@angular+core@17.1.3_@angular+forms@17.1.3_rxjs@7.8.1_zone.js@0.14.3/node_modules/primeng/fesm2022/primeng-api.mjs",
+      "file": "primeng_api.js",
+      "fileHash": "4f099d44",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-WIR6I77X": {
+      "file": "chunk-WIR6I77X.js"
+    },
     "chunk-ZEMFRNYM": {
       "file": "chunk-ZEMFRNYM.js"
     },

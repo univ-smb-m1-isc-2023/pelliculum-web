@@ -5,6 +5,7 @@ import {BackdropComponent} from "../../shared/components/backdrop/backdrop.compo
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
 import {PosterComponent} from "../../shared/components/poster/poster.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
+import {CarouselModule} from "primeng/carousel";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import {CategoriesComponent} from "./components/categories/categories.component"
     BackdropComponent,
     BackdropDetailsComponent,
     PosterComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CarouselModule
   ],
   templateUrl: './home.component.html',
   styles: ``
@@ -39,13 +41,10 @@ export class HomeComponent implements OnInit {
 
   private startCarousel() {
     this.currentMovie = this.topMovies[0];
-    this.carousel = this.topMovies.slice(0, 9);
+    this.carousel = [this.topMovies[this.topMovies.length-1], ...this.topMovies];
     setInterval(() => {
-      const currentIndex = this.topMovies.indexOf(this.currentMovie);
-      const nextIndex = currentIndex === this.topMovies.length - 1 ? 0 : currentIndex + 1;
-      this.currentMovie = this.topMovies[nextIndex];
-      this.carousel = this.topMovies.slice(nextIndex, nextIndex + 9);
-    }, 5000);
+      this.currentMovie = this.carousel[this.carousel.indexOf(this.currentMovie) + 1] ?? this.carousel[0];
+    },4000)
   }
 
 }
