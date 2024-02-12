@@ -32,15 +32,3 @@ $gradient-end: #C8291E
   background: linear-gradient(to right, $gradient-start, $gradient-end) // Utilisation des variables
   @include border-radius(50%) // Utilisation du mixin pour border-radius
   padding: 1px // Épaisseur de la 'bordure' gradient
-
-  a
-    display: block
-    @include border-radius(50%) // Utilisation du mixin pour border-radius
-    line-height: 0 // Pour enlever l'espace supplémentaire sous l'image
-
-  .avatar
-    display: block
-    width: 36px // Ajustez selon vos besoins
-    height: 36px // Ajustez selon vos besoins
-    @include border-radius(50%) // Utilisation du mixin pour border-radius
-    border: 2px solid transparent // Garde la dimension de l'image si nécessaire
