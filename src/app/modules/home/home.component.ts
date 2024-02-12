@@ -7,6 +7,8 @@ import {debounceTime, distinctUntilChanged, Subject, takeUntil} from "rxjs";
 import {TmdbService} from "../../core/services/tmdb.service";
 import {BackdropComponent} from "../../shared/components/backdrop/backdrop.component";
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
+import {PosterComponent} from "../../shared/components/poster/poster.component";
+import {CategoriesComponent} from "./components/categories/categories.component";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,9 @@ import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-d
     NgIf,
     NgForOf,
     BackdropComponent,
-    BackdropDetailsComponent
+    BackdropDetailsComponent,
+    PosterComponent,
+    CategoriesComponent,
   ],
   templateUrl: './home.component.html',
   styles: ``
@@ -30,6 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentMovie: any = undefined;
   searchQuery: string = '';
   movies: any;
+  currentMovie: any = null;
+  carousel: any[] = [];
 
   private destroy$: Subject<void> = new Subject();
 
@@ -47,11 +53,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private startCarousel() {
     this.currentMovie = this.topMovies[0];
+    this.carousel = [this.topMovies[this.topMovies.length-1], ...this.topMovies];
     setInterval(() => {
-      const currentIndex = this.topMovies.indexOf(this.currentMovie);
-      const nextIndex = currentIndex === this.topMovies.length - 1 ? 0 : currentIndex + 1;
-      this.currentMovie = this.topMovies[nextIndex];
-    }, 5000);
+      this.currentMovie = this.carousel[this.carousel.indexOf(this.currentMovie) + 1] ?? this.carousel[0];
+    },4000)
   }
 
 

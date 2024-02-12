@@ -1,0 +1,22 @@
+.photo-container
+  .edit-overlay
+    transition: opacity 0.3s
+    opacity: 0 // La surcouche est initialement cachée
+    position: absolute
+    inset: 0
+    background: rgba(0, 0, 0, 0.5) // Utiliser rgba pour la transparence
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 50% // Assurez-vous que cette valeur correspond à celle de votre image pour un cercle parfait
+
+    .icon-pencil
+      font-size: 24px // Ajustez la taille selon vos besoins
+      color: white // Couleur de l'icône
+  // Ajoutez ici d'autres styles pour l'icône de crayon si nécessaire
+
+  &:hover
+    .edit-overlay
+      opacity: 1 // La surcouche apparaît au survol
+      cursor: pointer // Change le curseur pour indiquer un élément cliquable
+

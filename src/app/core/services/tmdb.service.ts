@@ -54,4 +54,13 @@ export class TmdbService {
 
 
 
+  getGenres(ids: number[]) {
+    return genres.filter(genre => ids.includes(genre.id));
+  }
+
+  getGenre(id: number) {
+    return genres.find(genre => genre.id === id);
+  }
+
+
 }
