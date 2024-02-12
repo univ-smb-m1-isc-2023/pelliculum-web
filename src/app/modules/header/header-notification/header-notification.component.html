@@ -1,0 +1,28 @@
+<div class="dropdown pt-2">
+  <label tabindex="0">
+    <div class="relative inline-block">
+      <span
+        class="absolute -top-2 -right-2 bg-primary text-white rounded-full px-[6px] py-[2px] text-xs h-[20px] flex items-center justify-center">3</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6M9 17v1a3 3 0 0 0 6 0v-1"></path>
+      </svg>
+    </div>
+  </label>
+
+<div class="dropdown-menu dropdown-menu-bottom-left w-72">
+
+  @for (item of items; track item.name; let last = $last) {
+    <a class="dropdown-item text-sm rounded-none {{!last ? 'border-b border-custom-light-border' : ''}}">
+      <div class="flex items-center">
+        <p>Votre ami <span class="font-bold">{{item.user}}</span> a {{item.name}} le film <span class="font-bold">{{item.film}}</span>.</p>
+      </div>
+    </a>
+  } @empty {
+    <a class="dropdown-item text-sm">
+      <p>Vous n'avez pas de notifications.</p>
+    </a>
+  }
+</div>
+</div>
+
