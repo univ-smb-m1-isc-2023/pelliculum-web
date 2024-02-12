@@ -5,11 +5,12 @@ import { BackdropComponent } from '../../shared/components/backdrop/backdrop.com
 import { BackdropDetailsComponent } from './components/backdrop-details/backdrop-details.component';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent],
+  imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent],
     templateUrl: './home.component.html',
     styles: ``
 })

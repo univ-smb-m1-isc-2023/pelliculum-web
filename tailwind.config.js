@@ -14,7 +14,16 @@ module.exports = {
             screens: {
                 xs: '320px',
                 '2xs': '375px'
-            }
+            },
+          keyframes: {
+            scroll: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-100%)' },
+            },
+          },
+            animation: {
+              scroll: 'scroll 25s linear infinite',
+            },
         }
     },
     plugins: [require('rippleui')]
