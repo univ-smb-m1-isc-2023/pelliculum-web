@@ -1,9 +1,21 @@
-<div class="flex flex-row">
-
-    <div>
-      @if(currentMovie){
+<div class="flex flex-col space-y-32 overflow-x-hidden">
+  <div class="relative flex flex-col justify-center items-center">
+      @if (currentMovie) {
         <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
       }
-    </div>
+      <div class="absolute h-40 -bottom-16 flex flex-row justify-center items-center space-x-12 px-12">
+        <p-carousel [value]="carousel" [numVisible]="11" [numScroll]="1" [circular]="true" [autoplayInterval]="4000">
+          <ng-template let-product pTemplate="item">
+            <div class="m-2 py-5 px-3">
+                <img alt="ee" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+product.poster_path" [ngClass]="'rounded-lg transition duration-500 ' + (product===currentMovie ? ' scale-[1.15] shadow-3xl': ' brightness-50 hover:brightness-90 cursor-pointer')">
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+  </div>
+
+  <app-categories/>
+
 
 </div>
+

@@ -12,6 +12,10 @@ module.exports = {
         'custom-light-border': 'rgba(255, 255, 255, 0.1)',
 
       },
+      screens: {
+        'xs': '320px',
+        '2xs': '375px',
+      }
     },
   },
   plugins: [],

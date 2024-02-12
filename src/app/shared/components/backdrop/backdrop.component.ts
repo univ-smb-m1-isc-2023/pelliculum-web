@@ -16,7 +16,7 @@ export class BackdropComponent {
 
   constructor() { }
 
-  getFullPosterUrl(): string {
+  getBackdropUrl(): string {
     return `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${this.backdropPath}`;
   }
 

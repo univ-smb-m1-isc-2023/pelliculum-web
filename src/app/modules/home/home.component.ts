@@ -3,6 +3,9 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {TmdbService} from "../../core/services/tmdb.service";
 import {BackdropComponent} from "../../shared/components/backdrop/backdrop.component";
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
+import {PosterComponent} from "../../shared/components/poster/poster.component";
+import {CategoriesComponent} from "./components/categories/categories.component";
+import {CarouselModule} from "primeng/carousel";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +14,10 @@ import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-d
     RouterLink,
     RouterLinkActive,
     BackdropComponent,
-    BackdropDetailsComponent
+    BackdropDetailsComponent,
+    PosterComponent,
+    CategoriesComponent,
+    CarouselModule
   ],
   templateUrl: './home.component.html',
   styles: ``
@@ -19,7 +25,8 @@ import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-d
 export class HomeComponent implements OnInit {
 
   topMovies: any[] = []
-  currentMovie: any = undefined;
+  currentMovie: any = null;
+  carousel: any[] = [];
 
   constructor(private tmdbService: TmdbService) {
   }
@@ -34,11 +41,10 @@ export class HomeComponent implements OnInit {
 
   private startCarousel() {
     this.currentMovie = this.topMovies[0];
+    this.carousel = [this.topMovies[this.topMovies.length-1], ...this.topMovies];
     setInterval(() => {
-      const currentIndex = this.topMovies.indexOf(this.currentMovie);
-      const nextIndex = currentIndex === this.topMovies.length - 1 ? 0 : currentIndex + 1;
-      this.currentMovie = this.topMovies[nextIndex];
-    }, 5000);
+      this.currentMovie = this.carousel[this.carousel.indexOf(this.currentMovie) + 1] ?? this.carousel[0];
+    },4000)
   }
 
 }
