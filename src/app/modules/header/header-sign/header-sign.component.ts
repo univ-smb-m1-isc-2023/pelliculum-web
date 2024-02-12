@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {HeaderPictureComponent} from "../header-picture/header-picture.component";
 
 @Component({
   selector: 'app-header-sign',
@@ -8,7 +9,8 @@ import {RouterLink} from "@angular/router";
   imports: [
     NgIf,
     RouterLink,
-    NgForOf
+    NgForOf,
+    HeaderPictureComponent
   ],
   templateUrl: './header-sign.component.html',
   styleUrls: ['./header-sign.component.sass']
