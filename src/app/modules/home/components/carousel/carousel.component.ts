@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 import { NgClass } from '@angular/common';
 
@@ -25,16 +25,23 @@ export class CarouselComponent implements OnInit, OnDestroy {
   readonly numberOfVisiblePosters: number = 7;
   readonly shiftInterval: number = 8000; // 4 secondes
 
-  ngOnInit() {
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'ArrowRight') this.navigate('next');
+    else if (event.key === 'ArrowLeft') this.navigate('prev');
+  }
+
+
+  ngOnInit(): void {
     // Dupliquez les films pour créer une liste circulaire
     this.startCarousel();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.intervalId) clearInterval(this.intervalId);
   }
 
-  startCarousel() {
+  startCarousel(): void {
     this.intervalId = setInterval(() => {
       this.indexMovie++;
       this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
@@ -47,8 +54,24 @@ export class CarouselComponent implements OnInit, OnDestroy {
     }, this.shiftInterval);
   }
 
-  goToMovie(i: number) {
+  goToMovie(i: number): void {
     this.indexMovie = i;
+    this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
+  }
+
+  navigate(direction: 'prev' | 'next'): void {
+    if (direction === 'next') {
+      this.indexMovie++;
+      if (this.indexMovie >= this.movies.length) {
+        this.indexMovie = 0; // Réinitialisation pour un défilement circulaire
+      }
+    } else if (direction === 'prev') {
+      this.indexMovie--;
+      if (this.indexMovie < 0) {
+        this.indexMovie = this.movies.length - 1; // Réinitialisation pour un défilement circulaire
+      }
+    }
+
     this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
   }
 
