@@ -1,8 +1,8 @@
-  <div class="flex p-10">
+<div class="flex w-full p-10">
     <div class="w-full">
-      <app-profile-tabs (tabSelected)="selectTab($event)">
-        <app-profile-security-tab *ngIf="activeTab === 'security'"></app-profile-security-tab>
-        <app-profile-customization-tab *ngIf="activeTab === 'customization'"></app-profile-customization-tab>
-      </app-profile-tabs>
+        <app-profile-tabs (tabSelected)="selectTab($event)">
+            <app-profile-security-tab *ngIf="activeTab === 'security'"></app-profile-security-tab>
+            <app-profile-customization-tab *ngIf="activeTab === 'customization'"></app-profile-customization-tab>
+        </app-profile-tabs>
     </div>
-  </div>
+</div>

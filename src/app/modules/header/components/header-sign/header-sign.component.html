@@ -1,0 +1,22 @@
+<!-- Connected signup part-->
+@if (connected){
+<div class="flex items-center space-x-6">
+    <!-- Message icon -->
+    <div class="relative pt-2">
+        <span class="absolute -right-2 -top-0 flex h-[20px] items-center justify-center rounded-full bg-primary px-[6px] py-[2px] text-xs text-white">{{ notif }}</span>
+        <i-tabler name="message" />
+    </div>
+
+    <!-- Notification icon -->
+    <app-header-notification></app-header-notification>
+
+    <!-- Profile picture -->
+
+    <app-header-picture></app-header-picture>
+</div>
+} @else {
+<!-- Disconnected signup part-->
+<div class="flex h-full items-center pr-2">
+    <button class="rounded-md bg-primary p-1.5">Se connecter</button>
+</div>
+}

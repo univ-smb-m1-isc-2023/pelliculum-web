@@ -2,18 +2,18 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 import {Injectable} from "@angular/core";
-import {genres} from "../../configs/genres.config";
+import { genres } from '../../configs/genres.config';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TmdbService {
+    private apiKey: string = 'efc1fdea36e98dc437d419f495a37666';
+    private baseUrl: string = 'https://api.themoviedb.org/3';
 
-  private apiKey: string = "efc1fdea36e98dc437d419f495a37666"
-  private baseUrl: string = "https://api.themoviedb.org/3"
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
 
 
 
@@ -63,6 +63,5 @@ export class TmdbService {
   getGenre(id: number) {
     return genres.find(genre => genre.id === id);
   }
-
-
+    
 }

@@ -1,28 +1,22 @@
 import { Component } from '@angular/core';
-import {ProfileTabsComponent} from "./profile-tabs/profile-tabs.component";
-import {ProfileSecurityTabComponent} from "./profile-security-tab/profile-security-tab.component";
-import {ProfileCustomizationTabComponent} from "./profile-customization-tab/profile-customization-tab.component";
-import {NgIf} from "@angular/common";
+import { ProfileTabsComponent } from './components/profile-tabs/profile-tabs.component';
+import { ProfileSecurityTabComponent } from './components/profile-security-tab/profile-security-tab.component';
+import { ProfileCustomizationTabComponent } from './components/profile-customization-tab/profile-customization-tab.component';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [
-    ProfileTabsComponent,
-    ProfileSecurityTabComponent,
-    ProfileCustomizationTabComponent,
-    NgIf
-  ],
-  templateUrl: './profile.component.html',
-  styles: ``
+    selector: 'app-profile',
+    standalone: true,
+    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf],
+    templateUrl: './profile.component.html',
+    styles: ``
 })
 export class ProfileComponent {
-  activeTab: string = 'customization';
+    activeTab: string = 'customization';
 
-  constructor() {
-  }
+    constructor() {}
 
-  selectTab(tab: string) {
-    this.activeTab = tab;
-  }
+    selectTab(tab: string) {
+        this.activeTab = tab;
+    }
 }
