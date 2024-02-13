@@ -5,10 +5,7 @@ import { IconsModule } from '../../../../core/icons/icons.module';
 @Component({
     selector: 'app-header-notification',
     standalone: true,
-  imports: [
-    TablerIconsModule,
-    IconsModule
-  ],
+    imports: [TablerIconsModule, IconsModule],
     templateUrl: './header-notification.component.html'
 })
 export class HeaderNotificationComponent {

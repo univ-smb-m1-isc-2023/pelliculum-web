@@ -1,24 +1,7 @@
 <div class="space-y-8">
-    <!-- Name part -->
-    <div class="flex h-16 border-b border-custom-light-border pb-6">
-        <p class="pr-20">Nom</p>
-        <div class="flex w-5/12 justify-between">
-            <app-input-custom value="{{name}}"></app-input-custom>
-            <app-input-custom value="{{lastname}}"></app-input-custom>
-        </div>
-    </div>
-
-    <!-- Email part-->
-    <div class="flex h-16 border-b border-custom-light-border pb-6">
-        <p class="pr-20">Email</p>
-        <div class="w-5/12 space-x-20">
-            <app-input-custom value="{{email}}" size="w-full" type="disabled"></app-input-custom>
-        </div>
-    </div>
-
     <!-- Profile picture part-->
-    <div class="flex h-24 items-center border-b border-custom-light-border pb-6">
-        <div class="pr-20">
+    <div class="flex items-center space-x-14">
+        <div>
             <p>Votre photo</p>
             <p class="text-xs text-gray-500">Visible des autres utilisateurs</p>
         </div>
@@ -40,21 +23,39 @@
         </div>
     </div>
 
-    <!-- Nickname part -->
-    <div class="flex h-16 pb-6">
-        <p class="pr-20">Pseudo</p>
-        <div class="w-5/12 space-x-20">
-            <app-input-custom value="{{pseudo}}" size="w-full"></app-input-custom>
+    <div class="divider"></div>
+
+    <!-- Name part -->
+    <div class="flex items-center space-x-14">
+        <p class="w-1/48">Nom</p>
+        <div class="flex w-5/12 space-x-12">
+            <input class="input transition focus:border-cinema" placeholder="{{name}}" value="{{name}}" />
+            <input class="input transition focus:border-cinema" placeholder="{{lastname}}" value="{{lastname}}" />
         </div>
     </div>
 
-    <div>
-        <div class="flex justify-end">
-            <button class="btn rounded-md bg-primary p-1.5">Enregistrer les modifications</button>
-        </div>
+    <div class="divider"></div>
+
+    <!-- Email part-->
+    <div class="flex items-center space-x-14">
+        <p class="w-1/48">Email</p>
+        <input class="input w-5/12 transition focus:border-cinema" placeholder="{{email}}" value="{{email}}" disabled />
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Nickname part -->
+    <div class="flex items-center space-x-14">
+        <p class="w-1/48">Pseudo</p>
+        <input class="input w-5/12 transition focus:border-cinema" placeholder="{{pseudo}}" value="{{pseudo}}" />
+    </div>
+
+    <div class="flex justify-end">
+        <button class="btn rounded-md bg-primary p-1.5">Enregistrer les modifications</button>
     </div>
 </div>
 
+<!-- Modal changing profile picture -->
 <input class="modal-state" id="modal-1" type="checkbox" />
 <div class="modal w-screen">
     <label class="modal-overlay" for="modal-1"></label>

@@ -7,6 +7,6 @@ import { IconsModule } from '../../../../core/icons/icons.module';
     selector: 'app-header-picture',
     standalone: true,
     imports: [RouterLink, TablerIconsModule, IconsModule],
-    templateUrl: './header-picture.component.html',
+    templateUrl: './header-picture.component.html'
 })
 export class HeaderPictureComponent {}
