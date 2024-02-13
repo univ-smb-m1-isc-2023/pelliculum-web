@@ -7,6 +7,6 @@ import { GameClassicComponent } from './modules/games/game-classic/game-classic.
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'profile', component: ProfileComponent },
-    { path: 'movie-details/:id', component: MovieDetailsComponent }
+    { path: 'movie-details/:id', component: MovieDetailsComponent },
     { path: 'game/classic', component: GameClassicComponent }
 ];
