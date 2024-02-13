@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 import { NgClass } from '@angular/common';
 
@@ -10,42 +10,46 @@ import { NgClass } from '@angular/common';
     NgClass,
   ],
   templateUrl: './carousel.component.html',
-  styles: ``
+  styles: ``,
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit, OnDestroy {
 
   @Input() movies: any[] = [];
-  indexMovie = 0
-  currentPosition = 0;
-  intervalId: any;
-  readonly posterWidth = 150; // Remplacez par la largeur réelle de vos posters
-  readonly shiftInterval = 4000; // 4 secondes
+
+  indexMovie: number = 0;
+  currentPosition: number = 0;
+  intervalId: number | undefined = undefined;
+
+  readonly posterWidth: number = 150; // La largeur réelle de vos posters
+  readonly spaceBetweenPosters: number = 48; // Espace entre les posters (space-x-12 correspond à 3rem soit environ 48px)
+  readonly numberOfVisiblePosters: number = 7;
+  readonly shiftInterval: number = 8000; // 4 secondes
 
   ngOnInit() {
+    // Dupliquez les films pour créer une liste circulaire
     this.startCarousel();
   }
 
   ngOnDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    if (this.intervalId) clearInterval(this.intervalId);
   }
 
   startCarousel() {
     this.intervalId = setInterval(() => {
-      // Calculez la nouvelle position
-      this.currentPosition += this.posterWidth + 28;
-      this.indexMovie ++;
-      // Si on arrive à la fin, on recommence
-      if (this.currentPosition > this.posterWidth * (this.movies.length - 7)) {
+      this.indexMovie++;
+      this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
+      console.log(this.movies, this.movies.length, this.indexMovie);
+      // Réinitialisez la position si nous avons atteint la fin des posters visibles
+      if (this.indexMovie === this.movies.length) {
         this.currentPosition = 0;
         this.indexMovie = 0;
       }
     }, this.shiftInterval);
   }
 
-  trackById(index: number, item: any): number {
-    return item.id; // Remplacez par la propriété unique de vos objets film
+  goToMovie(i: number) {
+    this.indexMovie = i;
+    this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
   }
 
 }

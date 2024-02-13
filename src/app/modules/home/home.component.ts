@@ -34,6 +34,6 @@ export class HomeComponent implements OnInit {
         this.carousel = [this.topMovies[this.topMovies.length - 1], ...this.topMovies];
         setInterval(() => {
             this.currentMovie = this.carousel[this.carousel.indexOf(this.currentMovie) + 1] ?? this.carousel[0];
-        }, 4000);
+        }, 8000);
     }
 }

@@ -1,18 +1,17 @@
 <div class="absolute -bottom-48 mr-12 h-72 px-12">
-  <div id="carousel" class="">
-    <div id="carouselInner" class="flex flex-row space-x-12 transition-transform duration-700" [style.transform]="'translateX(-' + currentPosition + 'px)'">
+    <div class="flex flex-row space-x-12 transition-transform duration-700" [style.transform]="'translateX(-' + (currentPosition) + 'px)'">
       @for (movie of movies; track movie.id; let i = $index){
         <img
+          (click)="goToMovie(i)"
           [alt]="movie.title"
           [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path"
           [ngClass]="{
-            'brightness-75 rounded-lg transition cursor-pointer': true,
-            'brightness-100 scale-[1.1]' : indexMovie === i,
+            'brightness-50 rounded-lg transition cursor-pointer': true,
+            'brightness-90 scale-[1.1]' : indexMovie === i,
             'hover:brightness-100 hover:scale-[1.1]' : indexMovie !== i
           }"
           style="min-width: 150px;"
         />
       }
     </div>
-  </div>
 </div>
