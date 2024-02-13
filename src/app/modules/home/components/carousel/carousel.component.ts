@@ -20,7 +20,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   currentPosition: number = 0;
   intervalId: number | undefined = undefined;
 
-  readonly posterWidth: number = 150; // La largeur réelle de vos posters
+  readonly posterWidth: number = 130; // La largeur réelle de vos posters
   readonly spaceBetweenPosters: number = 48; // Espace entre les posters (space-x-12 correspond à 3rem soit environ 48px)
   readonly numberOfVisiblePosters: number = 7;
   readonly shiftInterval: number = 8000; // 4 secondes
