@@ -32,6 +32,9 @@ dependencies:
   '@angular/router':
     specifier: ^17.1.0
     version: 17.1.3(@angular/common@17.1.3)(@angular/core@17.1.3)(@angular/platform-browser@17.1.3)(rxjs@7.8.1)
+  angular-tabler-icons:
+    specifier: ^2.46.0
+    version: 2.46.0(@angular/common@17.1.3)(@angular/core@17.1.3)
   eslint-config-prettier:
     specifier: ^9.1.0
     version: 9.1.0(eslint@8.56.0)
@@ -3135,6 +3138,17 @@ packages:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
       uri-js: 4.4.1
+
+  /angular-tabler-icons@2.46.0(@angular/common@17.1.3)(@angular/core@17.1.3):
+    resolution: {integrity: sha512-H29dbl4eCjJAfBTEL1CK3O/1Xb68TNA8xeyb9k2BwVb8V2WUqq3dROiPU0QKlAGjl07ezPLW0O2CyhG0YjuUKA==}
+    peerDependencies:
+      '@angular/common': 14 - 17
+      '@angular/core': 14 - 17
+    dependencies:
+      '@angular/common': 17.1.3(@angular/core@17.1.3)(rxjs@7.8.1)
+      '@angular/core': 17.1.3(rxjs@7.8.1)(zone.js@0.14.3)
+      tslib: 2.6.2
+    dev: false
 
   /ansi-colors@4.1.3:
     resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
