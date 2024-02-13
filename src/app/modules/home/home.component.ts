@@ -3,7 +3,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
-import {debounceTime, distinctUntilChanged, Subject, takeUntil} from "rxjs";
 import {TmdbService} from "../../core/services/tmdb.service";
 import {BackdropComponent} from "../../shared/components/backdrop/backdrop.component";
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
@@ -28,19 +27,16 @@ import {CategoriesComponent} from "./components/categories/categories.component"
   styles: ``
 })
 
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
   topMovies: any[] = []
-  currentMovie: any = undefined;
-  searchQuery: string = '';
-  movies: any;
+
   currentMovie: any = null;
   carousel: any[] = [];
 
-  private destroy$: Subject<void> = new Subject();
 
 
-  constructor(private router: Router,private tmdbService: TmdbService) {
+  constructor(private tmdbService: TmdbService) {
   }
 
   ngOnInit(): void {
@@ -60,30 +56,5 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 
-  searchMovies(): void {
-    this.tmdbService.searchMovies(this.searchQuery)
-      .pipe(
-        takeUntil(this.destroy$),
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe(
-        (data) => {
-          this.movies = data.results;
-          console.log('Movies:', this.movies);
-        },
-        (error) => {
-          console.error('Error:', error);
-        }
-      );
-  }
-
-  redirectToMovieDetails(movieId: number): void {
-    this.router.navigate(['/movie-details', movieId]);
-  }
 }

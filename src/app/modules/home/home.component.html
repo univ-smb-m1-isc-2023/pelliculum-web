@@ -1,20 +1,5 @@
 <div class="flex flex-col items-center">
 
-  <!-- Barre de recherche -->
-  <div class=" items-top  m-4">
-    <input type="text" [(ngModel)]="searchQuery" placeholder="Search for movies" (input)="searchMovies()"
-           class="p-4 text-xl border rounded bg-red-700 text-gray-900 focus:outline-none focus:border-gray-900 transition-all">
-  </div>
-
-  <!-- Liste des films -->
-
-  <div *ngIf="movies && movies.length > 0" class="flex flex-col items-center justify-center m-4">
-    <ul class="list-none">
-      <li *ngFor="let movie of movies" class="mb-1 text-white">{{ movie.title }}
-        <a [routerLink]="['/movie-details', movie.id]" class="text-red-700">details</a>
-      </li>
-    </ul>
-  </div>
 <div class="flex flex-col space-y-32 overflow-x-hidden">
   <div class="relative flex flex-col justify-center items-center">
       @if (currentMovie) {

@@ -1,7 +1,9 @@
-import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
+import {Injectable} from "@angular/core";
+import {genres} from "../../configs/genres.config";
+
 
 @Injectable({
   providedIn: 'root'
