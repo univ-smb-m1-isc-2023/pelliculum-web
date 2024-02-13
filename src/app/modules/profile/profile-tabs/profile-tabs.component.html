@@ -2,8 +2,8 @@
     <h2 class="pb-10 text-5xl">Paramètres</h2>
 
     <!-- Tabs -->
-    <div class="flex relative space-x-16 border-b border-custom-border pb-1.5">
-        <div id="marker" class="absolute h-0.5 rounded left-0 w-0 bg-red-500 -bottom-0.5 transition-all"></div>
+    <div class="relative flex space-x-16 border-b border-custom-border pb-1.5">
+        <div id="marker" class="absolute -bottom-0.5 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
         <a id="profile-private-info" (click)="selectTab('customization'); indicator($event)" class="tracking-wider" [class]="activeTab === 'customization' ? 'tab' : 'tab'">Informations personnelles</a>
         <a (click)="selectTab('security'); indicator($event)" class="tracking-wider" [class]="activeTab === 'security' ? 'tab' : 'tab'">Connexion et sécurité</a>
     </div>
@@ -14,5 +14,4 @@
     </div>
 </div>
 
-<style>
-</style>
+<style></style>

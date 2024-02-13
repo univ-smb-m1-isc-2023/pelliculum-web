@@ -10,7 +10,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 @Component({
     selector: 'app-home',
     standalone: true,
-  imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent],
+    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent],
     templateUrl: './home.component.html',
     styles: ``
 })
