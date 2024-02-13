@@ -15,12 +15,15 @@ import {
   ɵɵinject,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-57FJ57UA.js";
+} from "./chunk-V5V3QTLQ.js";
+import "./chunk-SG3BCSKH.js";
+import "./chunk-SAVXX6OM.js";
+import "./chunk-PQ7O3X3G.js";
 import {
   __spreadValues
 } from "./chunk-J4B6MK7R.js";
 
-// node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons.mjs
+// node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons.mjs
 var _c0 = ["*"];
 var OptionsProvider = class {
   constructor(options) {

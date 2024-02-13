@@ -8,6 +8,7 @@ import {BackdropComponent} from "../../shared/components/backdrop/backdrop.compo
 import {BackdropDetailsComponent} from "./components/backdrop-details/backdrop-details.component";
 import {PosterComponent} from "../../shared/components/poster/poster.component";
 import {CategoriesComponent} from "./components/categories/categories.component";
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ import {CategoriesComponent} from "./components/categories/categories.component"
     BackdropDetailsComponent,
     PosterComponent,
     CategoriesComponent,
+    CarouselComponent,
   ],
   templateUrl: './home.component.html',
   styles: ``
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
     topMovies: any[] = [];
     currentMovie: any = null;
     carousel: any[] = [];
+    ratings: any[] = [];
 
 
   constructor(private tmdbService: TmdbService) {

@@ -1,10 +1,6 @@
 import {
   withHttpTransferCache
-<<<<<<<< HEAD:.angular/cache/17.1.3/vite/deps/chunk-332K23RV.js
-} from "./chunk-PRNLISLM.js";
-========
-} from "./chunk-RBFYAN7V.js";
->>>>>>>> feature/home-classic:.angular/cache/17.1.3/vite/deps/chunk-Z43JWQO5.js
+} from "./chunk-ZCNOME4G.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -15,11 +11,7 @@ import {
   isPlatformServer,
   parseCookieValue,
   setRootDomAdapter
-<<<<<<<< HEAD:.angular/cache/17.1.3/vite/deps/chunk-332K23RV.js
-} from "./chunk-5X7LUNTU.js";
-========
-} from "./chunk-OFB2QPRT.js";
->>>>>>>> feature/home-classic:.angular/cache/17.1.3/vite/deps/chunk-Z43JWQO5.js
+} from "./chunk-6JPC3IXU.js";
 import {
   APP_ID,
   ApplicationModule,
@@ -75,19 +67,11 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-<<<<<<<< HEAD:.angular/cache/17.1.3/vite/deps/chunk-332K23RV.js
-} from "./chunk-M43NMAIA.js";
-import {
-  __spreadProps,
-  __spreadValues
-} from "./chunk-ZDOIMVJD.js";
-========
-} from "./chunk-57FJ57UA.js";
+} from "./chunk-V5V3QTLQ.js";
 import {
   __spreadProps,
   __spreadValues
 } from "./chunk-J4B6MK7R.js";
->>>>>>>> feature/home-classic:.angular/cache/17.1.3/vite/deps/chunk-Z43JWQO5.js
 
 // node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 var GenericBrowserDomAdapter = class extends DomAdapter {
@@ -1910,8 +1894,4 @@ export {
    * License: MIT
    *)
 */
-<<<<<<<< HEAD:.angular/cache/17.1.3/vite/deps/chunk-332K23RV.js
-//# sourceMappingURL=chunk-332K23RV.js.map
-========
-//# sourceMappingURL=chunk-Z43JWQO5.js.map
->>>>>>>> feature/home-classic:.angular/cache/17.1.3/vite/deps/chunk-Z43JWQO5.js
+//# sourceMappingURL=chunk-QULRGU4M.js.map
