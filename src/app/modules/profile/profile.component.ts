@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ProfileTabsComponent } from './profile-tabs/profile-tabs.component';
-import { ProfileSecurityTabComponent } from './profile-security-tab/profile-security-tab.component';
-import { ProfileCustomizationTabComponent } from './profile-customization-tab/profile-customization-tab.component';
+import { ProfileTabsComponent } from './components/profile-tabs/profile-tabs.component';
+import { ProfileSecurityTabComponent } from './components/profile-security-tab/profile-security-tab.component';
+import { ProfileCustomizationTabComponent } from './components/profile-customization-tab/profile-customization-tab.component';
 import { NgIf } from '@angular/common';
 
 @Component({

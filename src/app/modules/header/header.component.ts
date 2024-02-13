@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeaderSignComponent } from './header-sign/header-sign.component';
+import { HeaderSignComponent } from './components/header-sign/header-sign.component';
 
 @Component({
     selector: 'app-header',

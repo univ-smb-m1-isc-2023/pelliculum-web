@@ -1,5 +1,9 @@
-import { IconBell } from 'angular-tabler-icons/icons';
+import { IconBell, IconMessage, IconUser, IconLogout2 } from 'angular-tabler-icons/icons';
 
 export const icons = {
-    IconBell
+  IconBell,
+  IconMessage,
+  IconUser,
+  IconLogout2
+
 };

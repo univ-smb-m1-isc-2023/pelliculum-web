@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GameClassicComponent } from './game-classic.component';
+import { HeaderPictureComponent } from './header-picture.component';
 
-describe('GameClassicComponent', () => {
-    let component: GameClassicComponent;
-    let fixture: ComponentFixture<GameClassicComponent>;
+describe('HeaderPictureComponent', () => {
+    let component: HeaderPictureComponent;
+    let fixture: ComponentFixture<HeaderPictureComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [GameClassicComponent]
+            imports: [HeaderPictureComponent]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(GameClassicComponent);
+        fixture = TestBed.createComponent(HeaderPictureComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
