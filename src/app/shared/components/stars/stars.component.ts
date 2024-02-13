@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { startWith } from 'rxjs';
 
 @Component({
@@ -8,26 +8,19 @@ import { startWith } from 'rxjs';
     templateUrl: './stars.component.html',
     styles: ``
 })
-export class StarsComponent {
-    @Input() rating: number | undefined;
-    stars: string[] = [];
+export class StarsComponent implements OnInit{
 
-    constructor() {
-        this.voteToStars();
-        console.log(this.rating);
-    }
+    @Input() value: number = 0;
+    @Input() stars: number = 0;
+    @Input() size: string = 'w-6';
 
-    voteToStars() {
-        console.log(this.rating);
-        const starsRounded = Math.round(((this.rating ?? 0) / 2) * 2) / 2;
-        const fullStars = Math.floor(starsRounded);
-        const halfStar = starsRounded % 1 >= 0.5 ? 1 : 0;
-        const emptyStars = 5 - fullStars - halfStar;
+    percentage: number = 0;
+    starsArray: number[] = [];
 
-        const starsArray = Array(fullStars).fill('★');
-        if (halfStar) starsArray.push('½');
-        starsArray.push(...Array(emptyStars).fill('☆'));
+    constructor() {}
 
-        this.stars = starsArray;
+    ngOnInit(): void {
+        this.percentage = (this.value/this.stars)*100;
+        this.starsArray = Array(this.stars).fill(0).map((x, i) => i);
     }
 }
