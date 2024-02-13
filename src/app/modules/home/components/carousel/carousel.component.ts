@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 import { NgClass } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './carousel.component.html',
   styles: ``,
 })
-export class CarouselComponent implements OnInit, OnDestroy {
+export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() movies: any[] = [];
 
@@ -33,7 +33,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // Dupliquez les films pour créer une liste circulaire
     this.startCarousel();
   }
 
@@ -41,11 +40,17 @@ export class CarouselComponent implements OnInit, OnDestroy {
     if (this.intervalId) clearInterval(this.intervalId);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['movies']) {
+      console.log(this.movies.length);
+    }
+  }
+
   startCarousel(): void {
     this.intervalId = setInterval(() => {
       this.indexMovie++;
       this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
-      console.log(this.movies, this.movies.length, this.indexMovie);
+      this.movies.push(this.movies[this.indexMovie-1])
       // Réinitialisez la position si nous avons atteint la fin des posters visibles
       if (this.indexMovie === this.movies.length) {
         this.currentPosition = 0;
@@ -74,5 +79,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
 
     this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
   }
+
 
 }
