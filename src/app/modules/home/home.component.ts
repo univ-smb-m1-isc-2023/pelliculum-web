@@ -7,11 +7,12 @@ import { PosterComponent } from '../../shared/components/poster/poster.component
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgClass, NgIf } from '@angular/common';
+import { StarsComponent } from '../../shared/components/stars/stars.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf],
+    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent],
     templateUrl: './home.component.html',
     styles: ``
 })
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
     }
 
     randomRating() {
-        return Math.floor(Math.random() * 10 + 1);
+        return (Math.random() * 4 + 1).toFixed(1);
     }
 
     randomComment() {
