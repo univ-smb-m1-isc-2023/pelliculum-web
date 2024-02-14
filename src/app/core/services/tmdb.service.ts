@@ -19,7 +19,7 @@ export class TmdbService {
     getUpcomingMovies() {
         // Check all movie in discover/movie endpoints with query params release_date.gte to today's date
         console.log(new Date().toDateString());
-        const url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}&include_adult=false&language=fr&primary_release_date.gte=${new Date().toISOString().split("T")[0]}`;
+        const url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}&include_adult=false&language=fr&primary_release_date.gte=${new Date().toISOString().split('T')[0]}`;
         return this.http.get(url);
     }
 
