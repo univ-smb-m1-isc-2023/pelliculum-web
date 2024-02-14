@@ -1,27 +1,62 @@
-
-<div class="flex overflow-x-auto">
-  <table class="table-compact table max-w-4xl">
-    <thead>
-    <tr>
-      <th>Sexe</th>
-      <th>Nom</th>
-    </tr>
-    </thead>
-    <tbody>
-     @if(actors){
-      @for (actor of actors; track actor; let i = $index){
-        <tr>
-          @if(actor.genre == 1){
-            <th>Homme</th>
+<div class="relative flex flex-col">
+  <!-- Popover -->
+  <div class="popover popover-border absolute -top-5 -right-1 z-10">
+    <label class="popover-trigger my-2 bg-primary rounded-full w-5 h-5 text-center cursor-pointer" tabindex="0"></label>
+    <div class="popover-content popover-top-center" tabindex="0">
+      <div class="popover-arrow"></div>
+      <div class="pl-2 space-y-2">
+        <p class="text-sm">Une petite aide ?</p>
+        <button class="btn btn-outline-success btn-sm">Découvrir un acteur</button>
+      </div>
+    </div>
+  </div>
+  <div class="flex overflow-x-auto">
+    <table class="table-compact table max-w-4xl">
+      <thead>
+      <tr>
+        <th class="w-4/12">SEXE</th>
+        <th>NOM</th>
+      </tr>
+      </thead>
+      <tbody>
+        @if (actors) {
+          @for (actor of actors; track actor; let i = $index) {
+            <tr>
+              @if (actor.genre == 1) {
+                <th>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-man" width="24"
+                       height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M10 16v5"/>
+                    <path d="M14 16v5"/>
+                    <path d="M9 9h6l-1 7h-4z"/>
+                    <path d="M5 11c1.333 -1.333 2.667 -2 4 -2"/>
+                    <path d="M19 11c-1.333 -1.333 -2.667 -2 -4 -2"/>
+                    <path d="M12 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                  </svg>
+                </th>
+              } @else {
+                <th>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-woman" width="24"
+                       height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                       stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M10 16v5"/>
+                    <path d="M14 16v5"/>
+                    <path d="M8 16h8l-2 -7h-4z"/>
+                    <path d="M5 11c1.667 -1.333 3.333 -2 5 -2"/>
+                    <path d="M19 11c-1.667 -1.333 -3.333 -2 -5 -2"/>
+                    <path d="M12 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                  </svg>
+                </th>
+              }
+              <th>{{ actor.name }}</th>
+            </tr>
           }
-          @else{
-            <th>Femme</th>
-          }
-          <th>{{actor.name}}</th>
-        </tr>
-      }
-     }
+        }
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -10,7 +10,7 @@ import {Movie} from "../../../models/movie.model";
 })
 export class GameActorsComponent implements OnInit{
 
-  actors = [{name: "test", genre : 1}, {name: "Jhon Doe", genre: 2}];
+  actors = [{name: "Ryan Gosling", genre : 1}, {name: "Ana de Armas", genre: 2}];
 
   constructor(private tmdbService: TmdbService) {
   }
