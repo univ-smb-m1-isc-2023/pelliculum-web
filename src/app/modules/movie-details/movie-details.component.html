@@ -1,6 +1,8 @@
 <!-- Détails du film -->
 
-<div *ngIf="currentMovie" class="flex flex-col text-white items-center">
-  <h1>{{ currentMovie.title }}</h1>
-  <p>{{ currentMovie.overview }}</p>
-</div>
+@if (currentMovie) {
+    <div class="flex flex-col items-center justify-center h-screen text-white text-center">
+        <h1 class="text-3xl font-bold mb-4">{{ currentMovie.title }}</h1>
+        <p class="text-lg">{{ currentMovie.overview }}</p>
+    </div>
+}
