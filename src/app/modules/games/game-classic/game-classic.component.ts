@@ -3,13 +3,15 @@ import {TmdbService} from "../../../core/services/tmdb.service";
 import {GameGenresComponent} from "../../../shared/components/game-genres/game-genres.component";
 import {Movie} from "../../../shared/models/movie.model";
 import {GameDateComponent} from "../../../shared/components/game-date/game-date.component";
+import {GameActorsComponent} from "../../../shared/components/game-actors/game-actors.component";
 
 @Component({
   selector: 'app-game-classic',
   standalone: true,
   imports: [
     GameGenresComponent,
-    GameDateComponent
+    GameDateComponent,
+    GameActorsComponent
   ],
   templateUrl: './game-classic.component.html'
 })

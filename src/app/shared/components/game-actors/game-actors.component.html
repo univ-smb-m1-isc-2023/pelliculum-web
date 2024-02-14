@@ -1,0 +1,27 @@
+
+<div class="flex overflow-x-auto">
+  <table class="table-compact table max-w-4xl">
+    <thead>
+    <tr>
+      <th>Sexe</th>
+      <th>Nom</th>
+    </tr>
+    </thead>
+    <tbody>
+     @if(actors){
+      @for (actor of actors; track actor; let i = $index){
+        <tr>
+          @if(actor.genre == 1){
+            <th>Homme</th>
+          }
+          @else{
+            <th>Femme</th>
+          }
+          <th>{{actor.name}}</th>
+        </tr>
+      }
+     }
+
+    </tbody>
+  </table>
+</div>
