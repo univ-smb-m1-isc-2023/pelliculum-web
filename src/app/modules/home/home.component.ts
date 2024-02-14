@@ -8,11 +8,12 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgClass, NgIf } from '@angular/common';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
+import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent],
+    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent],
     templateUrl: './home.component.html',
     styles: ``
 })
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
     topMovies: any[] = [];
     currentMovie: any = null;
     carousel: any[] = [];
+    upcomings: any[] = [];
 
     ratings: any[] = []
 
@@ -39,7 +41,9 @@ export class HomeComponent implements OnInit {
                 comments: this.randomComments(),
             }));
         });
-        console.log(this.ratings);
+        this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
+            this.upcomings = data.results;
+        });
     }
 
     private startCarousel() {
