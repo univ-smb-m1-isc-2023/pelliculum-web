@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TmdbService} from "../../../core/services/tmdb.service";
-import {GameGenresComponent} from "../../../shared/components/game-genres/game-genres.component";
+import {GameGenresComponent} from "../../../shared/components/games/game-genres/game-genres.component";
 import {Movie} from "../../../shared/models/movie.model";
-import {GameDateComponent} from "../../../shared/components/game-date/game-date.component";
-import {GameActorsComponent} from "../../../shared/components/game-actors/game-actors.component";
+import {GameDateComponent} from "../../../shared/components/games/game-date/game-date.component";
+import {GameActorsComponent} from "../../../shared/components/games/game-actors/game-actors.component";
 
 @Component({
   selector: 'app-game-classic',

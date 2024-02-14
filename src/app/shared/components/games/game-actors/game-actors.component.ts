@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TmdbService} from "../../../core/services/tmdb.service";
-import {Movie} from "../../models/movie.model";
+import {TmdbService} from "../../../../core/services/tmdb.service";
+import {Movie} from "../../../models/movie.model";
 
 @Component({
   selector: 'app-game-actors',

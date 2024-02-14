@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {genres} from "../../../configs/genres.config";
+import {genres} from "../../../../configs/genres.config";
 
 @Component({
   selector: 'app-game-genres',
