@@ -10,14 +10,21 @@ import {Movie} from "../../../models/movie.model";
 })
 export class GameActorsComponent implements OnInit{
 
-  actors = [{name: "Ryan Gosling", genre : 1}, {name: "Ana de Armas", genre: 2}];
+  actorsDetail :any[] = [];
 
   constructor(private tmdbService: TmdbService) {
   }
   ngOnInit() {
-    this.tmdbService.getActors(1).subscribe((actors : any) => {
+    this.tmdbService.getActors(15).subscribe((actors : any) => {
       console.log(actors);
-      this.actors = actors;
+      for (let actor of actors.cast.slice(0, 10)){
+        this.tmdbService.getActorDetail(actor.id).subscribe((actorDetail : any) => {
+          actorDetail.guessName = '?'.repeat(actor.name.length);
+          actorDetail.guessName = actor.name.replace(/[^ ]/g, '?');
+
+          this.actorsDetail.push(actorDetail);
+        })
+      }
     })
   }
 

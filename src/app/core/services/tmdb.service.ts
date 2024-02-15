@@ -41,7 +41,12 @@ export class TmdbService {
   }
 
   getActors(movieId: number) {
-    const url = `https://api.themoviedb.org/3/movie/2/credits?api_key=${this.apiKey}&language=fr-FR`;
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${this.apiKey}&language=fr-FR`;
+    return this.http.get(url);
+  }
+
+  getActorDetail(actorId: number) {
+    const url = `https://api.themoviedb.org/3/person/${actorId}?api_key=${this.apiKey}&language=fr-FR`;
     return this.http.get(url);
   }
 
