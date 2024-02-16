@@ -27,6 +27,7 @@ export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
         else if (event.key === 'ArrowLeft') this.navigate('prev');
     }
 
+
     ngOnInit(): void {
         this.startCarousel();
     }
