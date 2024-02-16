@@ -11,7 +11,7 @@
         alt="e" />
 
     <!-- Rating part -->
-    <div class="flex flex-col space-y-3 pt-1">
+    <div class="flex flex-col space-y-3 py-1">
         <!-- Avatar and user name -->
         <div class="flex flex-row items-center space-x-3 truncate">
             <div class="avatar avatar-sm">
@@ -21,12 +21,12 @@
         </div>
 
         <!-- Movie title and rating -->
-        <div class="flex flex-col space-y-2">
+        <div class="flex flex-col space-y-2 w-full">
             <!-- Movie title and release date -->
-            <p class="truncate text-2xl font-semibold">
-                {{ rating.movie.title }}
+            <div class="flex flex-row items-baseline space-x-2">
+                <p class="truncate text-2xl font-semibold">{{ rating.movie.title }}</p>
                 <span class="text-sm font-normal text-primary">{{ rating.movie.release_date.slice(0, 4) }}</span>
-            </p>
+            </div>
 
             <!-- Rating -->
             <div class="flex flex-row items-center space-x-1.5">
@@ -39,7 +39,7 @@
         <p class="line-clamp-3">{{rating.comment}}</p>
 
         <!-- Likes and comments -->
-        <div class="flex flex-grow items-end pb-2">
+        <div class="flex flex-grow items-end">
             <div class="flex flex-row space-x-6">
                 <!-- Likes -->
                 <div class="flex cursor-pointer select-none flex-row items-center space-x-1">

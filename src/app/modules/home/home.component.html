@@ -53,7 +53,7 @@
             <div class="flex flex-row justify-between">
                 @for (watchlist of watchlists; track watchlist.name){
                     <div class="flex flex-col space-y-2 w-fit">
-                        <div class="flex flex-row -space-x-20">
+                        <div class="flex flex-row -space-x-20 cursor-pointer">
                             @for(movie of watchlist.movies; track movie.id){
                                 <img
                                     class="rounded-lg w-28"
@@ -110,9 +110,9 @@
                 <div class="divider"></div>
             </div>
 
-            <div class="grid grid-cols-1 gap-x-24 gap-y-12 xl:grid-cols-2">
+            <div class="grid grid-cols-1 gap-x-12 gap-y-12 xl:grid-cols-2">
                 @for (rating of ratings;track rating.user) {
-                <app-home-movie-rating [rating]="rating"></app-home-movie-rating>
+                    <app-home-movie-rating [rating]="rating"></app-home-movie-rating>
                 }
             </div>
         </div>
