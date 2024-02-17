@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
                     likes: this.randomLikes(),
                     comments: this.randomComments()
                 }));
-            this.watchlists = Array(5)
+            this.watchlists = Array(4)
                 .fill(0)
                 .map((x, i) => ({
                     name: this.randomWatchlistName(),

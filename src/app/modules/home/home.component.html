@@ -50,13 +50,13 @@
                 <div class="divider"></div>
             </div>
 
-            <div class="flex flex-row justify-between">
+            <div class="grid grid-cols-4 bg-amber-500">
                 @for (watchlist of watchlists; track watchlist.name){
-                    <div class="flex flex-col space-y-2 w-fit">
-                        <div class="flex flex-row -space-x-20 2xl:-space-x-24 cursor-pointer">
+                    <div class="flex flex-col space-y-2 max-w-fit bg-green-500">
+                        <div class="flex flex-row -space-x-20 cursor-pointer">
                             @for(movie of watchlist.movies; track movie.id){
                                 <img
-                                    class="rounded-lg w-28 2xl:w-32"
+                                    class="rounded-lg w-28"
                                     style="
                                     box-shadow:
                                         rgba(200, 41, 30, 0.03) 0px 13px 27px -5px,
