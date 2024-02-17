@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {TmdbService} from "../../core/services/tmdb.service";
 import {ActivatedRoute} from "@angular/router";
 import { SearchService } from '../../core/services/search.service';
+import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
   imports: [
+    BackdropComponent,
   ],
   templateUrl: './movie-details.component.html',
   styles: ``
 })
 export class MovieDetailsComponent implements OnInit {
-  currentMovie: any;
+  @Input() currentMovie: any;
   searchResults: any[] = [];
+  genres: { id: number; name: string }[] = [];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +31,15 @@ export class MovieDetailsComponent implements OnInit {
       (data) => {
         this.currentMovie = data;
         console.log('Current Movie:', this.currentMovie);
+
+        this.genres = this.currentMovie.genres;
+
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+
 
     this.searchService.searchResults$.subscribe((results) => {
       this.searchResults = results;

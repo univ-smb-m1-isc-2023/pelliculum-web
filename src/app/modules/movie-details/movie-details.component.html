@@ -1,8 +1,34 @@
 <!-- Détails du film -->
 
 @if (currentMovie) {
-    <div class="flex flex-col items-center justify-center h-screen text-white text-center">
-        <h1 class="text-3xl font-bold mb-4">{{ currentMovie.title }}</h1>
-        <p class="text-lg">{{ currentMovie.overview }}</p>
-    </div>
+        <div class="flex flex-col items-center justify-center text-center relative bg-secondary">
+            <div class="opacity-75">
+                <app-backdrop [backdropPath]="currentMovie.backdrop_path" />
+                <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
+                <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
+            </div>
+            <h1 class="text-4xl font-bold mb-4">{{ currentMovie.title }}</h1>
+
+            <p class="text-lg mb-8 ">{{ currentMovie.overview }}</p>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="text-sm"><span class="font-bold">Release Date:</span> {{ currentMovie.release_date }}</p>
+                    <p class="text-sm"><span class="font-bold">Runtime:</span> {{ currentMovie.runtime }} minutes</p>
+                    <p class="text-sm"><span
+                        class="font-bold">Genres:</span> @for (genre of genres;track genre.id;let first = $first;let last = $last) {
+                        <span
+                            [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
+                    }</p>
+
+
+                </div>
+
+                <div>
+                    <p class="text-sm"><span class="font-bold">Popularity:</span> {{ currentMovie.popularity }}</p>
+                    <p class="text-sm"><span class="font-bold">Vote Average:</span> {{ currentMovie.vote_average }}/10
+                    </p>
+                </div>
+            </div>
+        </div>
 }
