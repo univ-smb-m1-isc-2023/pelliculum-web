@@ -1,9 +1,8 @@
 <div class="flex flex-col space-y-32 overflow-x-hidden">
-
     <!--  Carousel -->
     <div class="relative flex flex-col">
         @if (currentMovie) {
-            <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
+        <app-backdrop-details [movie]="currentMovie"></app-backdrop-details>
         }
         <app-carousel [movies]="topMovies" />
     </div>
@@ -15,52 +14,57 @@
     </div>
 
     <!-- Ratings -->
-    <div class="px-12 space-y-2">
+    <div class="space-y-2 px-12">
         <div class="flex flex-col space-y-0">
-            <p class="font-normal text-2xl">Avis populaires cette semaine</p>
+            <p class="text-2xl font-normal">Avis populaires cette semaine</p>
             <div class="divider"></div>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-y-12 gap-x-24">
+        <div class="grid grid-cols-1 gap-x-24 gap-y-12 xl:grid-cols-2">
             @for (rating of ratings;track rating.user;let odd = $odd) {
-                <div class="flex space-x-4">
-                    <img class="rounded-lg w-48 shadow-xl" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + rating.movie.poster_path" alt="e" />
-                    <div class="flex flex-col space-y-3 pt-1">
-                        <div class="flex flex-row items-center space-x-3">
-                            <div class="avatar avatar-md">
-                                <img src="https://i.pravatar.cc/150" alt="avatar" />
-                            </div>
-                            <p class="text-lg">{{rating.user}}</p>
+            <div class="flex space-x-4">
+                <img class="w-48 rounded-lg shadow-xl" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + rating.movie.poster_path" alt="e" />
+                <div class="flex flex-col space-y-3 pt-1">
+                    <div class="flex flex-row items-center space-x-3">
+                        <div class="avatar avatar-md">
+                            <img src="https://i.pravatar.cc/150" alt="avatar" />
                         </div>
-                        <div class="flex flex-col space-y-2">
-                            <p class="font-semibold text-2xl truncate w-full">
-                                {{ rating.movie.title }}
-                                <span class="text-sm font-normal text-primary">{{ rating.movie.release_date.slice(0, 4) }}</span>
-                            </p>
-                            <div class="flex flex-row items-center space-x-1.5">
-                                <app-stars size="w-5" [stars]="5" [value]="rating.rating"/>
-                                <p class="text-sm">{{rating.rating}}</p>
+                        <p class="text-lg">{{rating.user}}</p>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <p class="w-full truncate text-2xl font-semibold">
+                            {{ rating.movie.title }}
+                            <span class="text-sm font-normal text-primary">{{ rating.movie.release_date.slice(0, 4) }}</span>
+                        </p>
+                        <div class="flex flex-row items-center space-x-1.5">
+                            <app-stars size="w-5" [stars]="5" [value]="rating.rating" />
+                            <p class="text-sm">{{rating.rating}}</p>
+                        </div>
+                    </div>
+                    <p class="line-clamp-3">{{rating.comment}}</p>
+                    <div class="flex flex-grow items-end pb-2">
+                        <div class="flex flex-row space-x-6">
+                            <div class="flex flex-row items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                                </svg>
+                                <p>{{rating.likes}}</p>
+                            </div>
+                            <div class="flex flex-row items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+                                    <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+                                </svg>
+                                <p>{{rating.comments}}</p>
                             </div>
                         </div>
-                        <p class="line-clamp-3 ">{{rating.comment}}</p>
-                        <div class="flex flex-grow items-end pb-2">
-                            <div class="flex flex-row space-x-6">
-                                <div class="flex flex-row items-center space-x-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" /></svg>
-                                    <p>{{rating.likes}}</p>
-                                </div>
-                                <div class="flex flex-row items-center space-x-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" /><path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" /></svg>
-                                    <p>{{rating.comments}}</p>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+            </div>
 
             }
         </div>
-
     </div>
 </div>

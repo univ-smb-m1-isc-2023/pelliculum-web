@@ -1,47 +1,64 @@
 @if (currentMovie) {
+<div class="flex flex-col space-y-56">
+    <!-- Backdrop with gradients -->
     <div class="relative">
-        <!-- Backdrop with gradients -->
-        <app-backdrop [backdropPath]="currentMovie.backdrop_path" />
-        <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
-        <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
+        <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
+        <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
 
+        <!-- Poster and movie details -->
+        <div class="absolute -bottom-48 flex px-80">
+            <div class="flex flex-row space-x-4">
+                <!-- Poster -->
+                <img class="w-96 rounded-lg" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path" />
 
-        <!-- Poster and Movie details container -->
-        <div class="flex items-center justify-start max-h-full">
-            <!-- Poster  -->
-            <div class="ml-14 w-full">
-                <app-poster [posterPath]="currentMovie.poster_path" />
-            </div>
+                <!-- Movie details -->
+                <div class="flex flex-col space-y-4">
+                    <!-- Title, details -->
+                    <div class="flex flex-col space-y-0">
+                        <p class="mb-4 text-4xl font-bold">{{ currentMovie.title }}</p>
 
-            <!-- Movie details container with two columns -->
-            <div class="text-white text-left ml-4 flex-grow overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-
-                    <!-- First column for sortie, genre -->
-                    <div class="text-sm">
-                        <p class="text-4xl font-bold mb-4">{{ currentMovie.title }}</p>
-
-                        <div class="flex mb-1">
-                            <p class="mr-4"><span
-                                class="font-bold">Sortie:</span> {{ currentMovie.release_date.substring(0, 4) }}</p>
-                            <p><span class="font-bold">Durée:</span> {{ currentMovie.runtime }} minutes</p>
+                        <!-- Date and duration -->
+                        <div class="flex flex-row space-x-4">
+                            <!-- Date -->
+                            <div class="flex flex-row space-x-2">
+                                <p class="font-bold">Sortie:</p>
+                                <p>{{ currentMovie.release_date.substring(0, 4) }}</p>
+                            </div>
+                            <!-- Duration -->
+                            <div class="flex flex-row space-x-2">
+                                <p class="font-bold">Durée:</p>
+                                <p>{{ currentMovie.runtime }} minutes</p>
+                            </div>
                         </div>
 
-                        <div class="whitespace-nowrap mb-1 overflow-hidden">
-                            <span
-                                class="font-bold">Genres:</span> @for (genre of genres;track genre.id;let first = $first;let last = $last) {
-                            <span
-                                [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-2' : 'px-2') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
-                        }
+                        <!-- Genres -->
+                        <div class="flex flex-row items-baseline space-x-2">
+                            <p class="font-bold">Genres:</p>
+                            @for (genre of genres;track genre.id;let first = $first;let last = $last) {
+                            <span [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-2' : 'px-2') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
+                            }
                         </div>
+
+                        <!-- Note -->
                         <p class="mb-1"><span class="font-bold">Note:</span> {{ currentMovie.vote_average }}/10</p>
                     </div>
-                    <!-- Second column for overview -->
-                    <div>
-                        <p class="text-lg mb-8">{{ currentMovie.overview }}</p>
-                    </div>
+
+                    <!-- Overview -->
+                    <p class="mb-8 text-lg">{{ currentMovie.overview }}</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Rest of the page -->
+    <div class="px-12">
+        <p>COUCOU</p>
+        <p>COUCOU</p>
+        <p>COUCOU</p>
+        <p>COUCOU</p>
+        <p>COUCOU</p>
+        <p>COUCOU</p>
+        <p>COUCOU</p>
+    </div>
+</div>
 }
