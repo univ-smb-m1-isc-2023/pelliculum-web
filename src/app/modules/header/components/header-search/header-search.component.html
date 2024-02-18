@@ -1,13 +1,13 @@
 <div class="relative">
 
     <!-- Barre de recherche -->
-    <div class="flex items-start w-full">
+    <div class="flex items-start">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#FDFDFD" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="10" cy="10" r="7" /><path d="m21 21l-6-6" /></g></svg>
         </span>
 
         <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher un film" (input)="searchMovies()"
-               class="input p-4 pl-10 border bg-transparent text-white focus:outline-none focus:border-white" />
+               class="input p-4 pl-10 border bg-transparent text-white focus:outline-none focus:border-white w-screen" />
 
         <span class="absolute inset-y-0 right-0 flex items-center pr-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#FDFDFD" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle
@@ -22,7 +22,7 @@
             <div class="mt-2">
                 @for (movie of movies; track movie.id; let last = $last){
                 <div class="p-2 flex items-center border bg-secondary rounded hover:bg-primary hover:text-white cursor-pointer transition">
-                    <app-backdrop class="w-16 h-16 object-cover" [backdropPath]="movie.backdrop_path" ></app-backdrop>
+                    <app-poster class="w-16 h-fit" [posterPath]="movie.poster_path"></app-poster>
 
                     <div class="cursor-pointer ml-2" (click)="redirectToMovieDetails(movie.id)">
                         {{ movie.title }}

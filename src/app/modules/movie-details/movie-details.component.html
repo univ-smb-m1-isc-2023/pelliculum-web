@@ -1,34 +1,47 @@
-<!-- Détails du film -->
-
 @if (currentMovie) {
-        <div class="flex flex-col items-center justify-center text-center relative bg-secondary">
-            <div class="opacity-75">
-                <app-backdrop [backdropPath]="currentMovie.backdrop_path" />
-                <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
-                <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
+    <div class="relative">
+        <!-- Backdrop with gradients -->
+        <app-backdrop [backdropPath]="currentMovie.backdrop_path" />
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
+        <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
+
+
+        <!-- Poster and Movie details container -->
+        <div class="flex items-center justify-start max-h-full">
+            <!-- Poster  -->
+            <div class="ml-14 w-full">
+                <app-poster [posterPath]="currentMovie.poster_path" />
             </div>
-            <h1 class="text-4xl font-bold mb-4">{{ currentMovie.title }}</h1>
 
-            <p class="text-lg mb-8 ">{{ currentMovie.overview }}</p>
+            <!-- Movie details container with two columns -->
+            <div class="text-white text-left ml-4 flex-grow overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <p class="text-sm"><span class="font-bold">Release Date:</span> {{ currentMovie.release_date }}</p>
-                    <p class="text-sm"><span class="font-bold">Runtime:</span> {{ currentMovie.runtime }} minutes</p>
-                    <p class="text-sm"><span
-                        class="font-bold">Genres:</span> @for (genre of genres;track genre.id;let first = $first;let last = $last) {
-                        <span
-                            [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
-                    }</p>
+                    <!-- First column for sortie, genre -->
+                    <div class="text-sm">
+                        <p class="text-4xl font-bold mb-4">{{ currentMovie.title }}</p>
 
+                        <div class="flex mb-1">
+                            <p class="mr-4"><span
+                                class="font-bold">Sortie:</span> {{ currentMovie.release_date.substring(0, 4) }}</p>
+                            <p><span class="font-bold">Durée:</span> {{ currentMovie.runtime }} minutes</p>
+                        </div>
 
-                </div>
-
-                <div>
-                    <p class="text-sm"><span class="font-bold">Popularity:</span> {{ currentMovie.popularity }}</p>
-                    <p class="text-sm"><span class="font-bold">Vote Average:</span> {{ currentMovie.vote_average }}/10
-                    </p>
+                        <div class="whitespace-nowrap mb-1 overflow-hidden">
+                            <span
+                                class="font-bold">Genres:</span> @for (genre of genres;track genre.id;let first = $first;let last = $last) {
+                            <span
+                                [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-2' : 'px-2') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
+                        }
+                        </div>
+                        <p class="mb-1"><span class="font-bold">Note:</span> {{ currentMovie.vote_average }}/10</p>
+                    </div>
+                    <!-- Second column for overview -->
+                    <div>
+                        <p class="text-lg mb-8">{{ currentMovie.overview }}</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 }

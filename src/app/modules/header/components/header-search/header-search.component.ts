@@ -6,6 +6,7 @@ import {Router, RouterLink} from "@angular/router";
 import {TmdbService} from "../../../../core/services/tmdb.service";
 import { SearchService } from '../../../../core/services/search.service';
 import { BackdropComponent } from '../../../../shared/components/backdrop/backdrop.component';
+import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 
 @Component({
   selector: 'app-header-search',
@@ -16,7 +17,7 @@ import { BackdropComponent } from '../../../../shared/components/backdrop/backdr
     ReactiveFormsModule,
     RouterLink,
     FormsModule,
-    BackdropComponent
+    PosterComponent,
   ],
   templateUrl: './header-search.component.html'
 })

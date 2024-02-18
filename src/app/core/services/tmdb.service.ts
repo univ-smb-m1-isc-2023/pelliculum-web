@@ -43,7 +43,7 @@ export class TmdbService {
   }
 
   getMovieDetails(movieId: number): Observable<any> {
-    const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr_FR`;
+    const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`;
     return this.http.get(url);
   }
 
