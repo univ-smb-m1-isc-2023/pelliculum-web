@@ -4,11 +4,21 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { filter, Subject, switchMap, takeUntil } from 'rxjs';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
+import { StarsComponent } from '../../shared/components/stars/stars.component';
+import { MovieDetailsTabsComponent } from './components/movie-details-tabs/movie-details-tabs.component';
+import { NgIf } from '@angular/common';
+import {
+  ProfileCustomizationTabComponent
+} from '../profile/components/profile-customization-tab/profile-customization-tab.component';
+import { ProfileSecurityTabComponent } from '../profile/components/profile-security-tab/profile-security-tab.component';
+import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile-tabs.component';
+import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';
+import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-tabs/movie-details-crew-tabs.component';
 
 @Component({
     selector: 'app-movie-details',
     standalone: true,
-    imports: [BackdropComponent, PosterComponent],
+  imports: [BackdropComponent, PosterComponent, StarsComponent, MovieDetailsTabsComponent, NgIf, ProfileCustomizationTabComponent, ProfileSecurityTabComponent, ProfileTabsComponent, MovieDetailsCastTabsComponent, MovieDetailsCrewTabsComponent],
     templateUrl: './movie-details.component.html',
     styles: ``
 })
@@ -17,7 +27,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
     genres: { id: number; name: string }[] = [];
 
-    private destroy$: Subject<void> = new Subject();
+    activeTab: string = 'cast';
+
+
+  private destroy$: Subject<void> = new Subject();
 
     constructor(
         private route: ActivatedRoute,
@@ -76,4 +89,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         const movieId = Number(this.route.snapshot.paramMap.get('id'));
         return isNaN(movieId) ? null : movieId;
     }
+
+  selectTab(tab: string) {
+    this.activeTab = tab;
+  }
 }

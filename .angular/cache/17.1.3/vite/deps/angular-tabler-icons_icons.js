@@ -1,6 +1,6 @@
 import "./chunk-J4B6MK7R.js";
 
-// node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons-icons.mjs
+// node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons-icons.mjs
 var Icon12Hours = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
