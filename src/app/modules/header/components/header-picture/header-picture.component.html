@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div class="dropdown dropdown-hover">
     <!-- Avatar -->
     <label tabindex="0">
         <div class="avatar avatar-md cursor-pointer bg-gradient-to-r from-white to-primary">
@@ -15,6 +15,14 @@
             </div>
         </a>
 
+        <a class="dropdown-item text-sm" [routerLink]="'/watchlist'">
+            <div class="flex items-center gap-2">
+                <i-tabler name="movie" />
+                <p>Films</p>
+            </div>
+        </a>
+
+        <div class="dropdown-divider" role="separator"></div>
         <a class="dropdown-item text-sm">
             <div class="flex items-center gap-2">
                 <i-tabler name="logout2" />
