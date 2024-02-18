@@ -9,6 +9,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgClass, NgIf } from '@angular/common';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
+import { setTitle } from '../../core/utils/utilities.utils';
 
 @Component({
     selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
     constructor(private tmdbService: TmdbService) {}
 
     ngOnInit(): void {
+        setTitle('Accueil')
         this.tmdbService.getTopMovies().subscribe((data: any) => {
             this.topMovies = data.results;
             this.startCarousel();
