@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
             }
         });
         this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
-            this.upcomings = data.results.slice(0,18);
+            this.upcomings = data.results.slice(0,20);
         });
         this.responsive.observe(Breakpoints.Small).subscribe((result) => {
             console.log(result.matches)

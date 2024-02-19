@@ -1,21 +1,13 @@
-<div class="flex flex-col w-fit">
+<div class="group flex flex-col shadow-lg">
     <!-- Poster -->
-    <div class="flex flex-row cursor-pointer -space-x-24 w-fit">
-        @for(movie of list.movies; track movie.id){
-            <img
-                class="rounded-lg max-w-32"
-                style="
-                                box-shadow:
-                                    rgba(200, 41, 30, 0.03) 0px 13px 27px -5px,
-                                    rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;
-                            "
-                [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + movie.poster_path"
-                alt="{{movie.name}}" />
-        }
+    <div class="relative flex flex-row cursor-pointer">
+        <img alt="de" class="rounded-t-xl" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+list.movies[0].backdrop_path"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
+        <div class="absolute group-hover:opacity-55 opacity-0 transition rounded-t-xl bg-[#161616] w-full h-full"></div>
     </div>
     <!-- Details -->
-    <div class="flex justify-between items-center space-x-2">
-        <div class="flex flex-row items-center space-x-2 w-10/12">
+    <div class="flex justify-between items-center space-x-2 px-2 py-1 bg-[#161616] rounded-b-xl w-full">
+        <div class="flex flex-row items-center space-x-2">
             <div class="avatar avatar-sm">
                 <img src="https://i.pravatar.cc/150" alt="avatar" />
             </div>
