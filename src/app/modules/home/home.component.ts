@@ -10,6 +10,7 @@ import { NgClass, NgIf } from '@angular/common';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
 import { setTitle } from '../../core/utils/utilities.utils';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
     selector: 'app-home',
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
 
     ratings: any[] = [];
 
-    constructor(private tmdbService: TmdbService) {}
+    constructor(private tmdbService: TmdbService, private responsive: BreakpointObserver) {}
 
     ngOnInit(): void {
         setTitle('Accueil')
@@ -60,6 +61,9 @@ export class HomeComponent implements OnInit {
         this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
             this.upcomings = data.results.slice(0,18);
         });
+        this.responsive.observe(Breakpoints.Small).subscribe((result) => {
+            console.log(result.matches)
+        })
     }
 
     private startCarousel() {
