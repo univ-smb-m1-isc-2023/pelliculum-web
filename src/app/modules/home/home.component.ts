@@ -11,11 +11,12 @@ import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
 import { setTitle } from '../../core/utils/utilities.utils';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MovieListComponent } from '../../shared/components/movie-list/movie-list.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent],
+    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent],
     templateUrl: './home.component.html',
     styles: ``
 })
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
     currentMovie: any = null;
     carousel: any[] = [];
     upcomings: any[] = [];
-    watchlists: any[] = [];
+    watchlist: any = null;
 
     ratings: any[] = [];
 
@@ -46,17 +47,14 @@ export class HomeComponent implements OnInit {
                     likes: this.randomLikes(),
                     comments: this.randomComments()
                 }));
-            this.watchlists = Array(4)
-                .fill(0)
-                .map((x, i) => ({
-                    name: this.randomWatchlistName(),
-                    comments: this.randomComments(),
-                    likes: this.randomLikes(),
-                    movies: Array(6)
-                        .fill(0)
-                        .map((x, i) => this.randomMovie())
-                }));
-            console.log(this.watchlists);
+            this.watchlist = {
+                name: this.randomWatchlistName(),
+                comments: this.randomComments(),
+                likes: this.randomLikes(),
+                movies: Array(6)
+                    .fill(0)
+                    .map((x, i) => this.randomMovie())
+            }
         });
         this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
             this.upcomings = data.results.slice(0,18);
