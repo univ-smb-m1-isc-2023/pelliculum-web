@@ -1,20 +1,40 @@
-<div class="p-20">
+<div class="pt-24 h-screen">
   <div class="flex justify-evenly">
-    <img src="assets/transparent_round_camera.png" width="200" alt="ad">
-    <div class="divider divider-vertical mx-0 h-44"></div>
+    <app-logo-movie-poster class="w-5/12" ></app-logo-movie-poster>
+    <!-- Input -->
+    <div class="flex flex-col w-5/12">
 
-    <div>
       <div class="flex flex-col items-center space-y-1">
         <p class="text-4xl font-bold">Bienvenue</p>
-        <p class="text-xs opacity-70">Créer votre compte pour partager la magie du 7ème art.</p>
+        @if (step === 1){
+          <p class="text-xs opacity-70">You do not talk about Pelliculum...</p>
+
+        } @else if (step === 2){
+          <p class="text-xs opacity-70">You do NOT talk about Pelliculum.</p>
+        } @else if (step === 3){
+          <p class="text-xs opacity-70">If this is your first time at Pelliculum, you have to review.</p>
+        }
       </div>
 
-      @if (step === 1) {
+      <app-signup-progression [step]="step" class="w-full"></app-signup-progression>
+
+      @if (step === 1){
         <app-signup-information></app-signup-information>
-      }
-      @if (step === 2) {
+
+      } @else if (step === 2){
+        <app-signup-password></app-signup-password>
+      } @else if (step === 3){
         <app-signup-preferences></app-signup-preferences>
       }
+
+      <!-- Continue button -->
+
+      <div class="w-full pt-10 space-y-2.5">
+        <div class="flex justify-center space-y-1.5 w-full">
+          <button class="btn-rounded btn w-5/6 hover:bg-primary" (click)="test()">Continuer</button>
+        </div>
+      </div>
+
     </div>
 
 
@@ -22,5 +42,3 @@
 
 
 </div>
-<button class="btn btn-primary" (click)="test()">Suivant</button>
-

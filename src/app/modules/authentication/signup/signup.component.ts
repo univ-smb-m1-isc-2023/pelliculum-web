@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import {NgClass} from "@angular/common";
+import {NgClass, NgOptimizedImage} from "@angular/common";
 import {SignupInformationComponent} from "./signup-information/signup-information.component";
 import {SignupPreferencesComponent} from "./signup-preferences/signup-preferences.component";
+import {LogoMoviePosterComponent} from "../../../shared/components/logo-movie-poster/logo-movie-poster.component";
+import {SignupProgressionComponent} from "./signup-progression/signup-progression.component";
+import {SignupPasswordComponent} from "./signup-password/signup-password.component";
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +12,11 @@ import {SignupPreferencesComponent} from "./signup-preferences/signup-preference
   imports: [
     NgClass,
     SignupInformationComponent,
-    SignupPreferencesComponent
+    SignupPreferencesComponent,
+    LogoMoviePosterComponent,
+    NgOptimizedImage,
+    SignupProgressionComponent,
+    SignupPasswordComponent
   ],
   templateUrl: './signup.component.html'
 })
