@@ -1,23 +1,22 @@
-<div class="pt-10 flex flex-col items-center w-full">
-
-  <!-- Input fields -->
-  <div class="flex flex-col w-full space-y-6">
-    <div class="flex flex-col space-y-0.5 w-full">
-      <p class="pl-1">Nom</p>
-      <input class="input input-sm focus:ring-1 focus:ring-primary" placeholder="Entrez votre nom"/>
-    </div>
-
-    <div class="flex flex-col space-y-0.5 w-full">
-      <p class="pl-1">Prénom</p>
-      <input class="input input-sm focus:ring-1 focus:ring-primary" placeholder="Entrez votre prénom"/>
-    </div>
-
+<div class="pl-10 w-full">
+  <div class="flex flex-col w-full space-y-6 pt-10">
     <div class="flex flex-col space-y-0.5 w-full">
       <p class="pl-1">Email</p>
-      <input class="input input-sm focus:ring-1 focus:ring-primary" placeholder="Entrez votre email"/>
+      <input class="input focus:ring-1 focus:ring-primary w-full" placeholder="Entrez votre email"/>
+    </div>
+
+    <div class="flex flex-col space-y-0.5 w-full">
+      <p class="pl-1">Mot de passe</p>
+      <input class="input focus:ring-1 focus:ring-primary" placeholder="Entrez votre mot de passe"/>
     </div>
   </div>
 
-
-
+  <!-- Remember me and forgot password !-->
+  <div class="flex space-x-20 pt-1.5 ">
+    <label class="flex cursor-pointer gap-2 opacity-70 hover:opacity-100">
+      <input type="checkbox" class="checkbox"/>
+      <span class="text-sm">Se rappeler de moi</span>
+    </label>
+    <p class="text-sm cursor-pointer opacity-70 hover:opacity-100">Mot de passe oublié</p>
+  </div>
 </div>
