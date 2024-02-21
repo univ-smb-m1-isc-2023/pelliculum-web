@@ -1,4 +1,4 @@
-import { IconBell, IconMessage, IconMovie, IconUser, IconLogout2, IconArrowNarrowRight } from 'angular-tabler-icons/icons';
+import { IconBell, IconMessage, IconMovie, IconUser, IconLogout2, IconArrowNarrowRight, IconLayoutGrid, IconSearch, IconBaselineDensityMedium, IconThumbUp, IconCalendarMonth } from 'angular-tabler-icons/icons';
 
 export const icons = {
     IconBell,
@@ -6,5 +6,10 @@ export const icons = {
     IconUser,
     IconLogout2,
     IconArrowNarrowRight,
-    IconMovie
+    IconMovie,
+    IconLayoutGrid,
+    IconBaselineDensityMedium,
+    IconThumbUp,
+    IconCalendarMonth,
+    IconSearch
 };

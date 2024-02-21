@@ -1,10 +1,12 @@
 <div class="group flex flex-col shadow-lg">
     <!-- Poster -->
-    <div class="relative flex flex-row cursor-pointer">
-        <img alt="de" class="rounded-t-xl" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+list.movies[0].backdrop_path"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
-        <div class="absolute group-hover:opacity-55 opacity-0 transition rounded-t-xl bg-[#161616] w-full h-full"></div>
-    </div>
+    <a [routerLink]="['list',getListUrl()]">
+        <div class="relative flex flex-row cursor-pointer">
+            <img alt="de" class="rounded-t-xl" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+list.movies[0].backdrop_path"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
+            <div class="absolute group-hover:opacity-55 opacity-0 transition rounded-t-xl bg-[#161616] w-full h-full"></div>
+        </div>
+    </a>
     <!-- Details -->
     <div class="flex justify-between items-center space-x-2 px-2 py-1 bg-[#161616] rounded-b-xl w-full">
         <div class="flex flex-row items-center space-x-2">
