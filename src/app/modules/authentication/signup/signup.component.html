@@ -1,0 +1,26 @@
+<div class="p-20">
+  <div class="flex justify-evenly">
+    <img src="assets/transparent_round_camera.png" width="200" alt="ad">
+    <div class="divider divider-vertical mx-0 h-44"></div>
+
+    <div>
+      <div class="flex flex-col items-center space-y-1">
+        <p class="text-4xl font-bold">Bienvenue</p>
+        <p class="text-xs opacity-70">Créer votre compte pour partager la magie du 7ème art.</p>
+      </div>
+
+      @if (step === 1) {
+        <app-signup-information></app-signup-information>
+      }
+      @if (step === 2) {
+        <app-signup-preferences></app-signup-preferences>
+      }
+    </div>
+
+
+  </div>
+
+
+</div>
+<button class="btn btn-primary" (click)="test()">Suivant</button>
+
