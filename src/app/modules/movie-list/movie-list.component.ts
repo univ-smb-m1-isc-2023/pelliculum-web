@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
+import { PosterComponent } from '../../shared/components/poster/poster.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -10,12 +11,14 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   imports: [
     BackdropComponent,
     TablerIconsModule,
+    PosterComponent,
   ],
   templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
 
   list: any;
+  movies: any[] = [];
 
   constructor(private tmdbService: TmdbService, private activatedRoute: ActivatedRoute) {
   }
@@ -29,6 +32,7 @@ export class MovieListComponent implements OnInit {
         likes: this.randomLikes(),
         movies: data.results
       }
+      this.movies = this.list.movies;
     });
   }
 
