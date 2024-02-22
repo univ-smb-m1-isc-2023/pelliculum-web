@@ -8,11 +8,12 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgClass, NgIf } from '@angular/common';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
+import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent],
+    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent],
     templateUrl: './home.component.html',
     styles: ``
 })
@@ -20,6 +21,8 @@ export class HomeComponent implements OnInit {
     topMovies: any[] = [];
     currentMovie: any = null;
     carousel: any[] = [];
+    upcomings: any[] = [];
+    watchlists: any[] = [];
 
     ratings: any[] = [];
 
@@ -40,8 +43,21 @@ export class HomeComponent implements OnInit {
                     likes: this.randomLikes(),
                     comments: this.randomComments()
                 }));
+            this.watchlists = Array(4)
+                .fill(0)
+                .map((x, i) => ({
+                    name: this.randomWatchlistName(),
+                    comments: this.randomComments(),
+                    likes: this.randomLikes(),
+                    movies: Array(6)
+                        .fill(0)
+                        .map((x, i) => this.randomMovie())
+                }));
+            console.log(this.watchlists);
         });
-        console.log(this.ratings);
+        this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
+            this.upcomings = data.results.slice(0,18);
+        });
     }
 
     private startCarousel() {
@@ -59,6 +75,11 @@ export class HomeComponent implements OnInit {
 
     randomComments() {
         return Math.floor(Math.random() * 1000);
+    }
+
+    randomWatchlistName() {
+        const watchlistNames = ['À voir', 'Classiques', 'Coups de cœur', 'En famille', 'Entre amis', 'Incontournables'];
+        return watchlistNames[Math.floor(Math.random() * watchlistNames.length)];
     }
 
     randomFirstNameAndLastName() {
