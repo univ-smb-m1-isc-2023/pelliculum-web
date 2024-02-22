@@ -53,11 +53,11 @@
     </div>
 
     <!-- Rest of the page -->
-    <div class="px-12">
-        <div class="w-full">
+    <div class="px-36">
+        <div class="">
             <app-movie-details-tabs (tabSelected)="selectTab($event)">
-                <app-movie-details-cast-tabs *ngIf="activeTab === 'cast'"></app-movie-details-cast-tabs>
-                <app-movie-details-crew-tabs *ngIf="activeTab === 'crew'"></app-movie-details-crew-tabs>
+                <app-movie-details-cast-tabs *ngIf="activeTab === 'cast'" [id]="currentMovie.id"></app-movie-details-cast-tabs>
+                <app-movie-details-crew-tabs *ngIf="activeTab === 'crew'" [id]="currentMovie.id"></app-movie-details-crew-tabs>
             </app-movie-details-tabs>
         </div>
     </div>

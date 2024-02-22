@@ -56,4 +56,9 @@ export class TmdbService {
     getGenre(id: number) {
         return genres.find((genre) => genre.id === id);
     }
+
+    getMovieCredits(movieId: number) {
+        const url = `${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}`;
+        return this.http.get(url);
+    }
 }

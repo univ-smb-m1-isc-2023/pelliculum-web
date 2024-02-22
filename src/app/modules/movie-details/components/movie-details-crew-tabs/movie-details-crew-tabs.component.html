@@ -1,1 +1,13 @@
-<p>movie-details-crew-tabs works!</p>
+<div class="relative">
+    <div class="mb-4 p-4 border border-gray-300 rounded">
+        <div class="flex flex-wrap">
+            @for (person of crew; track person) {
+                <div class="flex items-center justify-center w-1/5  mb-2 p-2">
+                        <span [attr.data-tooltip]="person.job" class="tooltip tooltip-top tooltip-secondary">
+                            <button class="btn">{{ person.name }}</button>
+                        </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
