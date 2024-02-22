@@ -53,12 +53,21 @@
     </div>
 
     <!-- Rest of the page -->
-    <div class="px-36">
-        <div class="">
+    <div class="flex flex-row space-x-3 px-36">
+        <!-- Left column for cast and crew -->
+        <div class="flex-1">
             <app-movie-details-tabs (tabSelected)="selectTab($event)">
-                <app-movie-details-cast-tabs *ngIf="activeTab === 'cast'" [id]="currentMovie.id"></app-movie-details-cast-tabs>
-                <app-movie-details-crew-tabs *ngIf="activeTab === 'crew'" [id]="currentMovie.id"></app-movie-details-crew-tabs>
+                @if (activeTab === 'cast') {
+                    <app-movie-details-cast-tabs [id]="currentMovie.id"></app-movie-details-cast-tabs>
+                } @else {
+                    <app-movie-details-crew-tabs [id]="currentMovie.id"></app-movie-details-crew-tabs>
+                }
             </app-movie-details-tabs>
+        </div>
+
+        <!-- Right column for reviews -->
+        <div class="flex-1">
+            <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>
 </div>

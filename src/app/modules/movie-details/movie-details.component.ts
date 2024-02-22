@@ -14,11 +14,14 @@ import { ProfileSecurityTabComponent } from '../profile/components/profile-secur
 import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile-tabs.component';
 import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';
 import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-tabs/movie-details-crew-tabs.component';
+import {
+  MovieDetailsRatingComponent,
+} from './components/movie-details-rating/movie-details-rating.component';
 
 @Component({
     selector: 'app-movie-details',
     standalone: true,
-  imports: [BackdropComponent, PosterComponent, StarsComponent, MovieDetailsTabsComponent, NgIf, ProfileCustomizationTabComponent, ProfileSecurityTabComponent, ProfileTabsComponent, MovieDetailsCastTabsComponent, MovieDetailsCrewTabsComponent],
+  imports: [BackdropComponent, PosterComponent, StarsComponent, MovieDetailsTabsComponent, NgIf, ProfileCustomizationTabComponent, ProfileSecurityTabComponent, ProfileTabsComponent, MovieDetailsCastTabsComponent, MovieDetailsCrewTabsComponent, MovieDetailsRatingComponent],
     templateUrl: './movie-details.component.html',
     styles: ``
 })

@@ -2,8 +2,8 @@
     <div class="mb-4 p-4 border border-gray-300 rounded">
         <div class="flex flex-wrap">
             @for (person of crew; track person) {
-                <div class="flex items-center justify-center w-1/5  mb-2 p-2">
-                        <span [attr.data-tooltip]="person.job" class="tooltip tooltip-top tooltip-secondary">
+                <div class="flex items-center justify-center w-full lg:w-1/3 md:w-1/2 sm:w-full space-x-2 mb-2 p-2 transition-transform transform hover:scale-105">
+                        <span [attr.data-tooltip]="person.job" class="tooltip tooltip-top">
                             <button class="btn">{{ person.name }}</button>
                         </span>
                 </div>
