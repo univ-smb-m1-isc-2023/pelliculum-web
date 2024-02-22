@@ -19,9 +19,9 @@ export class GameClassicComponent implements OnInit {
   constructor(private tmdbService: TmdbService) {
   }
 
-  movie : any;
   filmGenres : number[] = [];
   guessGenres : number[] = [];
+  guessActors : any[] = [];
 
   ngOnInit() {
     this.tmdbService.getRandomMovie().then((movie: Movie) => {
@@ -30,8 +30,11 @@ export class GameClassicComponent implements OnInit {
   }
 
   test(){
-    this.tmdbService.getRandomMovie().then((movie: Movie) => {
+    this.tmdbService.getRandomMovie().then((movie: any) => {
       this.guessGenres = movie.genre_ids;
+      this.tmdbService.getActors(movie.id).subscribe((actors : any) => {
+        this.guessActors = actors.cast
+      })
     })
   }
 

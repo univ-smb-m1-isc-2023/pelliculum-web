@@ -16,9 +16,7 @@ export class GameGenresComponent {
 
   ngOnChanges(changes: any) {
     if (changes.filmGenre){
-      console.log(this.filmGenre)
       for (let genre  of this.filmGenre){
-        console.log(genre)
         let match = genres.find(g => g.id === genre)
         if (match){
           this.foundGenre.push([match.id, match.name, false])
@@ -26,7 +24,6 @@ export class GameGenresComponent {
       }
     }
     if (changes.guessGenre){
-      console.log(changes.guessGenre)
       for (let genre of this.foundGenre){
         if (this.guessGenre.includes(genre[0])){
           genre[2] = true
