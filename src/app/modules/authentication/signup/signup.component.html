@@ -7,12 +7,12 @@
       <div class="flex flex-col items-center space-y-1">
         <p class="text-4xl font-bold">Bienvenue</p>
         @if (step === 1) {
-          <p class="text-xs opacity-70">You do not talk about Pelliculum...</p>
+        <p class="text-xs opacity-70">You do not talk about Pelliculum...</p>
 
         } @else if (step === 2) {
-          <p class="text-xs opacity-70">You do NOT talk about Pelliculum.</p>
+        <p class="text-xs opacity-70">You do NOT talk about Pelliculum.</p>
         } @else if (step === 3) {
-          <p class="text-xs opacity-70">If this is your first time at Pelliculum, you have to review.</p>
+        <p class="text-xs opacity-70">If this is your first time at Pelliculum, you have to review.</p>
         }
       </div>
 
@@ -20,11 +20,11 @@
 
       <!-- Step -->
       @if (step === 1) {
-        <app-signup-information></app-signup-information>
+      <app-signup-information></app-signup-information>
       } @else if (step === 2) {
-        <app-signup-password></app-signup-password>
+      <app-signup-password></app-signup-password>
       } @else if (step === 3) {
-        <app-signup-preferences></app-signup-preferences>
+      <app-signup-preferences></app-signup-preferences>
       }
 
 
