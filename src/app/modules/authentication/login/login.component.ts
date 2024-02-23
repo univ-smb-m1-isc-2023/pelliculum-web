@@ -4,6 +4,7 @@ import {SignupPreferencesComponent} from "../signup/signup-preferences/signup-pr
 import {NgOptimizedImage} from "@angular/common";
 import {LogoMoviePosterComponent} from "../../../shared/components/logo-movie-poster/logo-movie-poster.component";
 import {RouterLink} from "@angular/router";
+import {PosterComponent} from "../../../shared/components/poster/poster.component";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import {RouterLink} from "@angular/router";
     SignupPreferencesComponent,
     NgOptimizedImage,
     LogoMoviePosterComponent,
-    RouterLink
+    RouterLink,
+    PosterComponent
   ],
   templateUrl: './login.component.html'
 })

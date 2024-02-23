@@ -1,57 +1,63 @@
-<div class="pt-28 h-screen">
-  <div class="flex justify-evenly">
-    <app-logo-movie-poster class="w-5/12"></app-logo-movie-poster>
-    <!-- Input -->
-    <div class="flex flex-col w-4/12">
+<div class="h-screen">
+  <div class="flex flex-row">
+
+    <!-- Image et Logo-->
+    <div class="w-9/12">
+      <a [routerLink]="'/'" class="flex flex-row items-center justify-center space-x-2 absolute top-2 left-2">
+        <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701" width="709" />
+        <p class="bebas-neue-regular mt-1.5 text-4xl">Pelliculum</p>
+      </a>
+      <img ngSrc="assets/fig.png" alt="Fight Club" class="w-full h-screen object-cover" height="720" width="1280">
+    </div>
+
+    <!-- Left part -->
+    <div class="flex flex-col w-7/12 justify-center px-12">
 
       <div class="flex flex-col items-center space-y-1">
         <p class="text-4xl font-bold">Bon retour</p>
         <p class="text-xs opacity-70">Première règle : Vous ne parlez pas de Pelliculum.</p>
       </div>
 
-      <div class="pl-10">
-        <!-- Input fields -->
-        <div class="flex flex-col w-full space-y-6 pt-10">
-          <div class="flex flex-col space-y-0.5 w-full">
-            <p class="pl-1">Email</p>
-            <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre email"/>
-          </div>
-
-          <div class="flex flex-col space-y-0.5 w-full">
-            <p class="pl-1">Mot de passe</p>
-            <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre mot de passe"/>
-          </div>
+      <!-- Input fields -->
+      <div class="flex flex-col w-full space-y-6 pt-16">
+        <div class="flex flex-col space-y-0.5 w-full">
+          <p class="pl-1">Email</p>
+          <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre email"/>
         </div>
 
-        <!-- Remember me and forgot password !-->
-        <div class="flex justify-between pt-1.5">
-          <label class="flex cursor-pointer gap-2 opacity-70 hover:opacity-100">
-            <input type="checkbox" class="checkbox"/>
-            <span class="text-sm">Se rappeler de moi</span>
-          </label>
-          <p class="text-sm cursor-pointer opacity-70 hover:opacity-100">Mot de passe oublié</p>
+        <div class="flex flex-col space-y-0.5 w-full">
+          <p class="pl-1">Mot de passe</p>
+          <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre mot de passe"/>
         </div>
       </div>
 
+      <!-- Remember me and forgot password !-->
+      <div class="flex justify-between pt-1.5">
+        <label class="flex cursor-pointer gap-2 opacity-70 hover:opacity-100 pl-1">
+          <input type="checkbox" class="checkbox"/>
+          <span class="text-sm">Se rappeler de moi</span>
+        </label>
+        <p class="text-sm cursor-pointer opacity-70 hover:opacity-100">Mot de passe oublié</p>
+      </div>
 
 
-        <!-- Connect button -->
-        <div class="w-full pt-10 space-y-2.5 flex flex-col items-center">
-          <div class="flex justify-center space-y-1.5 w-3/4">
-            <button class="btn-rounded btn w-5/6 hover:bg-primary">Se connecter</button>
-          </div>
-
-          <div class="flex flex-col items-center space-y-1.5 w-3/4">
-            <button
-              class="btn btn-rounded w-5/6 flex items-center justify-center hover:bg-gray-100 hover:text-black py-2 px-4 gap-2">
-              <img ngSrc="assets/google.png" alt="Google Icon" class="w-5" height="512" width="512">
-              Se connecter avec Google
-            </button>
-          </div>
+      <!-- Connect button -->
+      <div class="w-full pt-10 space-y-2.5 flex flex-col items-center">
+        <div class="flex justify-center space-y-1.5 w-3/4">
+          <button class="btn-rounded btn w-5/6 hover:bg-primary">Se connecter</button>
         </div>
 
+        <div class="flex flex-col items-center space-y-1.5 w-3/4">
+          <button
+            class="btn btn-rounded w-5/6 flex items-center justify-center bg-gray-200 text-black py-2 px-4 gap-2 hover:bg-white">
+            <img ngSrc="assets/google.png" alt="Google Icon" class="w-5" height="512" width="512">
+            Se connecter avec Google
+          </button>
+        </div>
+      </div>
+
       <!-- Not registered yet -->
-      <div class="flex justify-center pt-20 space-x-2">
+      <div class="flex justify-center space-x-2 mt-40">
         <p class="text-xs opacity-70">Pas encore inscrit ?</p>
         <p class="text-xs opacity-70 hover:opacity-100 cursor-pointer" [routerLink]="'/signup'">Créer un compte</p>
       </div>
@@ -59,6 +65,4 @@
 
 
   </div>
-
-
 </div>
