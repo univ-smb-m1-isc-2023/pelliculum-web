@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-signup-password',
@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class SignupPasswordComponent {
 
+  @Output("increment") increment: EventEmitter<any> = new EventEmitter()
+
+  incrementStep(){
+    this.increment.emit();
+  }
 }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SignupPreferencesComponent } from './signup-preferences.component';
 
 describe('SignupPreferencesComponent', () => {
@@ -11,7 +10,7 @@ describe('SignupPreferencesComponent', () => {
       imports: [SignupPreferencesComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(SignupPreferencesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
