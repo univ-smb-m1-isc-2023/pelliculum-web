@@ -11,10 +11,16 @@
     </div>
 
     <!-- Left part -->
-    <div class="w-5/12 px-12">
+    <div class="w-5/12 px-12 flex flex-col py-12">
+
+      <app-signup-progression [step]="step"></app-signup-progression>
+
 
       @if (step == 1){
-        <app-signup-information></app-signup-information>
+        <app-signup-information (increment)="incrementStep()"></app-signup-information>
+      }
+      @else if (step == 2){
+        <app-signup-preferences (increment)="incrementStep()"></app-signup-preferences>
       }
     </div>
 

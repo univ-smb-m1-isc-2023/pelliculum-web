@@ -1,12 +1,5 @@
 <div class="flex flex-col justify-center space-y-14 h-screen">
 
-  <div class="flex flex-col items-center space-y-1">
-    <p class="text-4xl font-bold">Bienvenue</p>
-    <p class="text-xs opacity-70">Première règle : Vous ne parlez pas de Pelliculum.</p>
-  </div>
-
-  <app-signup-progression></app-signup-progression>
-
 
   <!-- Input fields -->
   <div class="flex flex-col w-full space-y-3">
@@ -28,7 +21,7 @@
 
   <!-- Submit button -->
   <div class="flex justify-center space-y-1.5">
-    <button class="btn-rounded btn w-4/6 hover:bg-primary">Continuer</button>
+    <button class="btn-rounded btn w-4/6 hover:bg-primary" (click)="incrementStep()">Continuer</button>
   </div>
 
 </div>

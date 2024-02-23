@@ -28,7 +28,7 @@ export class SignupComponent {
   constructor() {
   }
 
-  test(){
+  incrementStep(){
     this.step += 1;
   }
 
