@@ -1,15 +1,34 @@
-<div class="pl-10 w-full">
-  <div class="flex flex-col w-full space-y-6 pt-10">
+<div class="flex flex-col justify-center space-y-14 h-screen">
+
+  <div class="flex flex-col items-center space-y-1">
+    <p class="text-4xl font-bold">Bienvenue</p>
+    <p class="text-xs opacity-70">Première règle : Vous ne parlez pas de Pelliculum.</p>
+  </div>
+
+  <app-signup-progression></app-signup-progression>
+
+
+  <!-- Input fields -->
+  <div class="flex flex-col w-full space-y-3">
     <div class="flex flex-col space-y-0.5 w-full">
       <p class="pl-1">Email</p>
-      <input class="input focus:ring-1 focus:ring-primary w-full" placeholder="Entrez votre email"/>
+      <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre email"/>
     </div>
 
-    <div class="flex flex-col space-y-0.5 w-full">
-      <p class="pl-1">Mot de passe</p>
-      <input class="input focus:ring-1 focus:ring-primary" placeholder="Entrez votre mot de passe"/>
+    <div class="flex flex-col space-y-0.5 w-full pt-4">
+      <p class="pl-1">Nom</p>
+      <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre nom"/>
+    </div>
+
+    <div class="flex flex-col space-y-0.5 w-full pt-4">
+      <p class="pl-1">Prénom</p>
+      <input class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre prénom"/>
     </div>
   </div>
 
+  <!-- Submit button -->
+  <div class="flex justify-center space-y-1.5">
+    <button class="btn-rounded btn w-4/6 hover:bg-primary">Continuer</button>
+  </div>
 
 </div>

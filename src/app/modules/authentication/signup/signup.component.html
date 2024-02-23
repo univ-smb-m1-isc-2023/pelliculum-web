@@ -1,46 +1,22 @@
-<div class="pt-28 h-screen">
-  <div class="flex justify-evenly">
-    <app-logo-movie-poster class="w-5/12"></app-logo-movie-poster>
-    <!-- Input -->
-    <div class="flex flex-col w-4/12 items-center">
+<div class="h-screen">
+  <div class="flex flex-row">
 
-      <div class="flex flex-col items-center space-y-1">
-        <p class="text-4xl font-bold">Bienvenue</p>
-        @if (step === 1) {
-        <p class="text-xs opacity-70">You do not talk about Pelliculum...</p>
-
-        } @else if (step === 2) {
-        <p class="text-xs opacity-70">You do NOT talk about Pelliculum.</p>
-        } @else if (step === 3) {
-        <p class="text-xs opacity-70">If this is your first time at Pelliculum, you have to review.</p>
-        }
-      </div>
-
-      <app-signup-progression [step]="step" class="w-full"></app-signup-progression>
-
-      <!-- Step -->
-      @if (step === 1) {
-      <app-signup-information></app-signup-information>
-      } @else if (step === 2) {
-      <app-signup-password></app-signup-password>
-      } @else if (step === 3) {
-      <app-signup-preferences></app-signup-preferences>
-      }
-
-
-      <!-- Continue button -->
-
-      <!-- Connect button -->
-      <div class="w-full pt-10 space-y-2.5 flex flex-col items-center">
-        <div class="flex justify-center space-y-1.5 w-3/4">
-          <button class="btn-rounded btn w-5/6 hover:bg-primary">Continuer</button>
-        </div>
-      </div>
-
+    <!-- Image et Logo-->
+    <div class="w-7/12">
+      <a [routerLink]="'/'" class="flex flex-row items-center justify-center space-x-2 absolute top-2 left-2">
+        <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701" width="709" />
+        <p class="bebas-neue-regular mt-1.5 text-4xl">Pelliculum</p>
+      </a>
+      <img ngSrc="assets/fig.png" alt="Fight Club" class="w-full h-screen object-cover" height="720" width="1280">
     </div>
 
+    <!-- Left part -->
+    <div class="w-5/12 px-12">
+
+      @if (step == 1){
+        <app-signup-information></app-signup-information>
+      }
+    </div>
 
   </div>
-
-
 </div>
