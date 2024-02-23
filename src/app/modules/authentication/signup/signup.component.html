@@ -16,12 +16,12 @@
       <app-signup-progression [step]="step"></app-signup-progression>
 
 
-      @if (step == 1) {
+      @if (step == 3) {
         <app-signup-information class="h-full" (increment)="incrementStep()"></app-signup-information>
       } @else if (step == 2) {
         <app-signup-password  class="h-full"  (increment)="incrementStep()"></app-signup-password>
-      } @else if (step == 3) {
-        <app-signup-preferences (increment)="incrementStep()"></app-signup-preferences>
+      } @else if (step == 1) {
+        <app-signup-preferences class="h-full" (increment)="incrementStep()"></app-signup-preferences>
       }
     </div>
 
