@@ -6,7 +6,7 @@ import { NgOptimizedImage } from '@angular/common';
 @Component({
     selector: 'app-header',
     standalone: true,
-  imports: [HeaderSignComponent, RouterLink, NgOptimizedImage],
+    imports: [HeaderSignComponent, RouterLink, NgOptimizedImage],
     templateUrl: './header.component.html'
 })
 export class HeaderComponent {}

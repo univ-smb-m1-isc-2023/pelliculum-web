@@ -29,10 +29,13 @@ export class HomeComponent implements OnInit {
 
     ratings: any[] = [];
 
-    constructor(private tmdbService: TmdbService, private responsive: BreakpointObserver) {}
+    constructor(
+        private tmdbService: TmdbService,
+        private responsive: BreakpointObserver
+    ) {}
 
     ngOnInit(): void {
-        setTitle('Accueil')
+        setTitle('Accueil');
         this.tmdbService.getTopMovies().subscribe((data: any) => {
             this.topMovies = data.results;
             this.startCarousel();
@@ -54,14 +57,14 @@ export class HomeComponent implements OnInit {
                 movies: Array(6)
                     .fill(0)
                     .map((x, i) => this.randomMovie())
-            }
+            };
         });
         this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
-            this.upcomings = data.results.slice(0,20);
+            this.upcomings = data.results.slice(0, 20);
         });
         this.responsive.observe(Breakpoints.Small).subscribe((result) => {
-            console.log(result.matches)
-        })
+            console.log(result.matches);
+        });
     }
 
     private startCarousel() {

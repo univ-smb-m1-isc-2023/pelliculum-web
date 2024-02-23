@@ -1,7 +1,6 @@
 <div class="flex flex-col -space-y-64">
     <!-- App-backdrop with gradient -->
     <div class="relative flex flex-col">
-
         <!-- Famous movie backdrop with gradient -->
         <div class="opacity-75">
             <app-backdrop [backdropPath]="list.movies[0].backdrop_path" />
@@ -11,22 +10,16 @@
         </div>
 
         <!-- List description -->
-        <div class="absolute flex flex-row top-24 px-12 space-x-36 w-full">
-
+        <div class="absolute top-24 flex w-full flex-row space-x-36 px-12">
             <!-- Posters -->
-            <div class="flex flex-row -space-x-28 h-56 w-fit">
+            <div class="flex h-56 w-fit flex-row -space-x-28">
                 @for (movie of list.movies.slice(0, 5); track movie.id; let i = $index) {
-                    <img
-                        [alt]="movie.title"
-                        [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path"
-                        [class]="'rounded-lg w-44 h-fit'"
-                    />
+                <img [alt]="movie.title" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path" [class]="'rounded-lg w-44 h-fit'" />
                 }
             </div>
 
             <!-- Description -->
             <div class="flex flex-col space-y-3">
-
                 <p class="text-4xl font-semibold">{{ list.name }}</p>
 
                 <div class="flex flex-row items-center space-x-3">
@@ -45,9 +38,7 @@
                 </div>
 
                 <div class="w-7/12">
-                    <p class="line-clamp-3">Je suis un grand fan de cinéma et j'adore partagerer les frontières entre
-                        rêve et réalité. C'est un film qui captive à chaque visionnage et dont la complexité ne cesse de
-                        fasciner.</p>
+                    <p class="line-clamp-3">Je suis un grand fan de cinéma et j'adore partagerer les frontières entre rêve et réalité. C'est un film qui captive à chaque visionnage et dont la complexité ne cesse de fasciner.</p>
                 </div>
 
                 <!-- Likes and comments -->
@@ -55,21 +46,16 @@
                     <div class="flex flex-row space-x-6">
                         <!-- Likes -->
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up"
-                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                                <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
                             </svg>
                             <p>165</p>
                         </div>
 
                         <!-- Comments -->
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages"
-                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
                                 <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
@@ -79,67 +65,54 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
-
     <!-- Page -->
-    <div class="flex flex-col space-y-4 z-0 px-12">
-
+    <div class="z-0 flex flex-col space-y-4 px-12">
         <!-- Search bar -->
-        <div class="flex flex-row items-center z-0">
-            <div class="flex flex-row w-full items-center px-4 bg-[#161616] h-16 rounded-lg shadow-lg">
-                <div class="flex flex-row items-center w-full space-x-6">
-                    <div
-                        class="flex flex-row justify-center space-x-1 rounded-lg shadow-sm items-center px-4 py-2 bg-[#242220]">
+        <div class="z-0 flex flex-row items-center">
+            <div class="flex h-16 w-full flex-row items-center rounded-lg bg-[#161616] px-4 shadow-lg">
+                <div class="flex w-full flex-row items-center space-x-6">
+                    <button (click)="sortByLikes()" class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
                         <i-tabler name="thumb-up" />
                         <p>Trier par vote</p>
-                    </div>
-                    <div
-                        class="flex flex-row justify-center space-x-1 rounded-lg shadow-sm items-center px-4 py-2 bg-[#242220]">
+                    </button>
+                    <button (click)="sortByDate()" class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
                         <i-tabler name="calendar-month" />
                         <p>Trier par sortie</p>
-                    </div>
-                    <div
-                        class="flex flex-row justify-center space-x-1 rounded-lg shadow-sm items-center px-4 py-2 bg-[#242220]">
+                    </button>
+                    <button class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
+                        <i-tabler name="adjustments-alt" />
                         <p>Trier par genre</p>
-                    </div>
+                    </button>
 
                     <div class="relative">
-                        <input class="input pl-11 rounded-lg shadow-sm items-center px-4 py-2 bg-[#242220] border-none"
-                               placeholder="Rechercher" />
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <input [(ngModel)]="searchTerm" (ngModelChange)="filterMovies()"  class="input items-center rounded-lg border-none bg-[#242220] px-4 py-2 pl-11 shadow-sm" placeholder="Rechercher" />
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                             <i-tabler name="search" />
                         </div>
                     </div>
-
                 </div>
-                <div class="flex flex-row items-center space-x-2 justify-end">
+                <div class="flex flex-row items-center justify-end space-x-2">
                     <i-tabler name="layout-grid" />
                     <i-tabler name="baseline-density-medium" />
                 </div>
             </div>
         </div>
 
-
         <!-- Movies -->
-        <div class="flex flex-col justify-center items-center space-y-6">
-
+        <div class="flex flex-col items-center justify-center space-y-6">
             <!-- Grid -->
             <div class="grid grid-cols-10 gap-x-4 gap-y-4">
                 @for (movie of movies; track movie.id) {
-                    <app-poster [posterPath]="movie.poster_path" />
-                }
-                @for (movie of movies; track movie.id) {
-                    <app-poster [posterPath]="movie.poster_path" />
-                }
-                @for (movie of movies; track movie.id) {
-                    <app-poster [posterPath]="movie.poster_path" />
-                }x
-                @for (movie of movies; track movie.id) {
-                    <app-poster [posterPath]="movie.poster_path" />
+                <app-poster [posterPath]="movie.poster_path" />
+                } @for (movie of movies; track movie.id) {
+                <app-poster [posterPath]="movie.poster_path" />
+                } @for (movie of movies; track movie.id) {
+                <app-poster [posterPath]="movie.poster_path" />
+                } @for (movie of movies; track movie.id) {
+                <app-poster [posterPath]="movie.poster_path" />
                 }
             </div>
 
@@ -147,7 +120,11 @@
             <div class="pagination">
                 <button class="btn">
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2574 5.59165C11.9324 5.26665 11.4074 5.26665 11.0824 5.59165L7.25742 9.41665C6.93242 9.74165 6.93242 10.2667 7.25742 10.5917L11.0824 14.4167C11.4074 14.7417 11.9324 14.7417 12.2574 14.4167C12.5824 14.0917 12.5824 13.5667 12.2574 13.2417L9.02409 9.99998L12.2574 6.76665C12.5824 6.44165 12.5741 5.90832 12.2574 5.59165Z" fill="#969696" />
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M12.2574 5.59165C11.9324 5.26665 11.4074 5.26665 11.0824 5.59165L7.25742 9.41665C6.93242 9.74165 6.93242 10.2667 7.25742 10.5917L11.0824 14.4167C11.4074 14.7417 11.9324 14.7417 12.2574 14.4167C12.5824 14.0917 12.5824 13.5667 12.2574 13.2417L9.02409 9.99998L12.2574 6.76665C12.5824 6.44165 12.5741 5.90832 12.2574 5.59165Z"
+                            fill="#969696" />
                     </svg>
                 </button>
                 <button class="btn btn-active">1</button>
@@ -155,11 +132,14 @@
                 <button class="btn">3</button>
                 <button class="btn">
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.74375 5.2448C7.41875 5.5698 7.41875 6.0948 7.74375 6.4198L10.9771 9.65314L7.74375 12.8865C7.41875 13.2115 7.41875 13.7365 7.74375 14.0615C8.06875 14.3865 8.59375 14.3865 8.91875 14.0615L12.7437 10.2365C13.0687 9.91147 13.0687 9.38647 12.7437 9.06147L8.91875 5.23647C8.60208 4.9198 8.06875 4.9198 7.74375 5.2448Z" fill="#969696" />
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M7.74375 5.2448C7.41875 5.5698 7.41875 6.0948 7.74375 6.4198L10.9771 9.65314L7.74375 12.8865C7.41875 13.2115 7.41875 13.7365 7.74375 14.0615C8.06875 14.3865 8.59375 14.3865 8.91875 14.0615L12.7437 10.2365C13.0687 9.91147 13.0687 9.38647 12.7437 9.06147L8.91875 5.23647C8.60208 4.9198 8.06875 4.9198 7.74375 5.2448Z"
+                            fill="#969696" />
                     </svg>
                 </button>
             </div>
         </div>
     </div>
-
 </div>

@@ -10,5 +10,5 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'game/classic', component: GameClassicComponent },
     { path: 'watchlist', component: WatchlistComponent },
-    { path: 'list/:id', component: MovieListComponent },
+    { path: 'list/:id', component: MovieListComponent }
 ];

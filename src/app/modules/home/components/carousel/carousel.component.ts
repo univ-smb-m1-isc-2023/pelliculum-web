@@ -22,8 +22,7 @@ export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
     readonly numberOfVisiblePosters: number = 7;
     readonly shiftInterval: number = 8000; // 4 secondes
 
-    constructor(private responsive: BreakpointObserver) {
-    }
+    constructor(private responsive: BreakpointObserver) {}
 
     @HostListener('window:keydown', ['$event'])
     handleKeyboardEvent(event: KeyboardEvent) {
@@ -31,20 +30,13 @@ export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
         else if (event.key === 'ArrowLeft') this.navigate('prev');
     }
 
-
     ngOnInit(): void {
         this.startCarousel();
         this.observeBreakpoints();
     }
 
     observeBreakpoints(): void {
-        this.responsive.observe([
-            Breakpoints.XSmall,
-            Breakpoints.Small,
-            Breakpoints.Medium,
-            Breakpoints.Large,
-            Breakpoints.XLarge
-        ]).subscribe(result => {
+        this.responsive.observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge]).subscribe((result) => {
             if (result.matches) {
                 if (result.breakpoints[Breakpoints.XSmall]) {
                     this.updateCarouselSize(60, 16); // Exemple pour xs
