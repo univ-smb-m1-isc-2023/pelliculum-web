@@ -5,7 +5,7 @@
     </div>
     <div class="relative flex space-x-16 border-b border-custom-border pb-1.5"></div>
 
-    <div class="flex flex-col space-x-4">
+    <div class="flex flex-col space-x-0">
         @for (rating of ratings;track rating; let last = $last) {
                 <!-- Rating part -->
                 <div class="flex flex-col space-y-2 py-1">
@@ -14,7 +14,7 @@
                         <div class="avatar avatar-sm">
                             <img src="https://i.pravatar.cc/150" alt="avatar" />
                         </div>
-                        <p class="text-md">{{ rating.user }}</p>
+                        <p class="text-md">Note de {{ rating.user }}</p>
                         <!-- Rating -->
                         <div class="flex flex-row items-center space-x-1.5">
                             <app-stars size="w-5" [stars]="rating.stars" [value]="rating.value" />

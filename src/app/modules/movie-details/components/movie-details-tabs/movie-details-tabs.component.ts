@@ -18,8 +18,8 @@ export class MovieDetailsTabsComponent implements OnInit {
 
   ngOnInit(): void {
     this.marker = document.getElementById('marker') as HTMLDivElement;
-    const privateTab: HTMLDialogElement | null = document.getElementById('profile-private-info') as HTMLDialogElement;
-    privateTab.click();
+    const castTab:  HTMLDialogElement | null = document.getElementById('profile-private-info') as HTMLDialogElement;
+    castTab.click();
   }
 
   selectTab(tabName: string) {

@@ -31,10 +31,10 @@
         @if (movies && movies.length > 0) {
         <div class="mt-2">
             @for (movie of movies; track movie.id; let last = $last){
-            <div class="flex cursor-pointer items-center rounded border bg-secondary p-2 transition hover:bg-primary hover:text-white">
+            <div class="flex cursor-pointer items-center rounded border bg-secondary p-2 transition hover:bg-primary hover:text-white" (click)="redirectToMovieDetails(movie.id)">
                 <app-poster class="h-fit w-16" [posterPath]="movie.poster_path"></app-poster>
 
-                <div class="ml-2 cursor-pointer" (click)="redirectToMovieDetails(movie.id)">{{ movie.title }}</div>
+                <div class="ml-2 cursor-pointer">{{ movie.title }}</div>
                 @if (!last){
                 <hr class="my-2 border-t border-gray-300" />
                 }
