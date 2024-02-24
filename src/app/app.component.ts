@@ -12,4 +12,9 @@ import { FooterComponent } from './modules/footer/footer.component';
 })
 export class AppComponent {
     title = 'Pelliculum';
+
+    isInLoginOrRegisterPage() {
+        return window.location.pathname === '/login' || window.location.pathname === '/register';
+    }
+
 }
