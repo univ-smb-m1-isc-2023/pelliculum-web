@@ -15,10 +15,10 @@ import {
   ɵɵinject,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-Q6O6LX5Q.js";
+} from "./chunk-BOIW3HCK.js";
 import {
   __spreadValues
-} from "./chunk-J4B6MK7R.js";
+} from "./chunk-GLLL6ZVE.js";
 
 // node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons.mjs
 var _c0 = ["*"];

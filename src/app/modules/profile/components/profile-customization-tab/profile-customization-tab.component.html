@@ -1,14 +1,17 @@
-<div class="space-y-8">
+<form [formGroup]="profileForm" (ngSubmit)="save()" class="space-y-8">
+
     <!-- Profile picture part-->
     <div class="flex items-center space-x-14">
         <div>
             <p>Votre photo</p>
             <p class="text-xs text-gray-500">Visible des autres utilisateurs</p>
         </div>
+
+        <!-- Modal profile picture -->
         <div class="photo-container flex items-center space-x-4">
             <label for="modal-1">
                 <div class="relative">
-                    <img [src]="photo" alt="photo" class="h-16 w-16 rounded-full" />
+                    <img ngSrc="photo" alt="photo" class="h-16 w-16 rounded-full" />
                     <div class="edit-overlay absolute inset-0 hidden items-center justify-center rounded-full bg-black bg-opacity-50">
                         <span class="icon-pencil text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -29,8 +32,8 @@
     <div class="flex items-center space-x-14">
         <p class="w-1/48">Nom</p>
         <div class="flex w-5/12 space-x-12">
-            <input class="input transition focus:border-cinema" placeholder="{{name}}" value="{{name}}" />
-            <input class="input transition focus:border-cinema" placeholder="{{lastname}}" value="{{lastname}}" />
+            <input formControlName="firstname" class="input transition focus:border-cinema" />
+            <input formControlName="lastname" class="input transition focus:border-cinema" />
         </div>
     </div>
 
@@ -39,7 +42,7 @@
     <!-- Email part-->
     <div class="flex items-center space-x-14">
         <p class="w-1/48">Email</p>
-        <input class="input w-5/12 transition focus:border-cinema" placeholder="{{email}}" value="{{email}}" disabled />
+        <input formControlName="email" class="input w-5/12 transition focus:border-cinema" />
     </div>
 
     <div class="divider"></div>
@@ -47,13 +50,13 @@
     <!-- Nickname part -->
     <div class="flex items-center space-x-14">
         <p class="w-1/48">Pseudo</p>
-        <input class="input w-5/12 transition focus:border-cinema" placeholder="{{pseudo}}" value="{{pseudo}}" />
+        <input formControlName="username" class="input w-5/12 transition focus:border-cinema"/>
     </div>
 
     <div class="flex justify-end">
         <button class="btn rounded-md bg-primary p-1.5">Enregistrer les modifications</button>
     </div>
-</div>
+</form>
 
 <!-- Modal changing profile picture -->
 <input class="modal-state" id="modal-1" type="checkbox" />
@@ -62,10 +65,10 @@
     <div class="modal-content flex max-w-3xl flex-col gap-5">
         <label for="modal-1" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
         <div class="flex items-center gap-4 p-4">
-            <img [src]="tempSrc" alt="photo" class="h-32 w-32 rounded-full" />
+            <img [src]="photo" alt="photo" class="h-32 w-32 rounded-full" />
             <input type="file" (change)="onFileSelected($event)" class="input-file" />
         </div>
 
-        <label for="modal-1" (click)="onFileSaved()" class="btn btn-block"> Sauvegarder </label>
+        <label for="modal-1" (click)="save()" class="btn btn-block"> Sauvegarder </label>
     </div>
 </div>

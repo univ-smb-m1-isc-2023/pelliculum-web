@@ -1,4 +1,4 @@
-import "./chunk-J4B6MK7R.js";
+import "./chunk-GLLL6ZVE.js";
 
 // node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons-icons.mjs
 var Icon12Hours = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

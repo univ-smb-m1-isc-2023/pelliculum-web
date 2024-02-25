@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import axios, { AxiosRequestConfig, AxiosStatic } from 'axios';
+import axios, { Axios, AxiosRequestConfig, AxiosStatic } from 'axios';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
 
-  constructor() {
-    axios.defaults.baseURL = 'http://localhost:3000';
+  constructor(private router: Router) {
+    axios.defaults.baseURL = 'http://localhost:8080';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 
@@ -15,14 +16,34 @@ export class AxiosService {
     return localStorage.getItem('token');
   }
 
+  getUsername(): string | null {
+    return localStorage.getItem('username');
+  }
+
   setAuthToken(token?: string): void {
     if (token) {
       localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
       localStorage.removeItem('token');
-      delete axios.defaults.headers.common['Authorization'];
     }
+  }
+
+  setUsername(username?: string): void {
+    if (username) {
+      localStorage.setItem('username', username);
+    } else {
+      localStorage.removeItem('username');
+    }
+  }
+
+  async logout(): Promise<void> {
+    this.setAuthToken();
+    this.setUsername();
+    await this.router.navigateByUrl('/');
+  }
+
+  clearStorage(): void {
+    localStorage.clear();
   }
 
   request(method: string, url: string, data: any): Promise<any> {
@@ -34,19 +55,28 @@ export class AxiosService {
   }
 
   async get(url: string, config?: AxiosRequestConfig): Promise<any> {
-    return (await axios.get(url, config)).data;
+    return (await axios.get(url, this.getAuthorizationHeader(config))).data;
   }
 
   async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<any> {
-    return (await axios.post(url, data, config)).data;
+    return (await axios.post(url, data, this.getAuthorizationHeader(config))).data;
   }
 
   async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<any> {
-    return (await axios.put(url, data, config)).data;
+    return (await axios.put(url, data, this.getAuthorizationHeader(config))).data;
   }
 
   async delete(url: string, config?: AxiosRequestConfig): Promise<any> {
-    return (await axios.delete(url, config)).data;
+    return (await axios.delete(url, this.getAuthorizationHeader(config))).data;
+  }
+
+  getAuthorizationHeader(config?: AxiosRequestConfig): any {
+    let headers = config?.headers || {};
+    const token: string | null = this.getAuthToken();
+    if (token) {
+      headers = { ...headers, Authorization: `Bearer ${token}` };
+    }
+    return { ...config, headers };
   }
 
   axios(): AxiosStatic {
