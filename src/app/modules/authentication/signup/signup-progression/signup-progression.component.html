@@ -8,11 +8,12 @@
     } @else if (step == 3) {
       <p class="text-xs opacity-70">3ème règle : Si quelqu'un crie "stop", le combat est terminé</p>
     } @else if (step == 4) {
-      <p class="text-xs opacity-70">4ème règle : Si c'est votre première fois sur Pelliculum, vous devez noter un film</p>
+      <p class="text-xs opacity-70">4ème règle : Si c'est votre première fois sur Pelliculum, vous devez noter un
+        film</p>
     }
   </div>
 
-  <div class="flex justify-center">
+  <div class="flex justify-center pl-9">
     <div class="w-4/6">
       <ol class="steps">
         <li [ngClass]="{
@@ -36,10 +37,13 @@
       'step-done': step > 2
     }" class="step overflow-hidden">
           <div class="step-circle">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M7.49987 13.475L4.6082 10.5833C4.2832 10.2583 3.7582 10.2583 3.4332 10.5833C3.1082 10.9083 3.1082 11.4333 3.4332 11.7583L6.91654 15.2416C7.24154 15.5666 7.76654 15.5666 8.09154 15.2416L16.9082 6.42498C17.2332 6.09998 17.2332 5.57498 16.9082 5.24998C16.5832 4.92498 16.0582 4.92498 15.7332 5.24998L7.49987 13.475Z"
-                    class="fill-primary"/>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock" width="24" height="24"
+                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                 stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/>
+              <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/>
+              <path d="M8 11v-4a4 4 0 1 1 8 0v4"/>
             </svg>
           </div>
         </li>
@@ -49,10 +53,11 @@
       'step-done': step > 3
     }" class="step overflow-hidden">
           <div class="step-circle">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M7.49987 13.475L4.6082 10.5833C4.2832 10.2583 3.7582 10.2583 3.4332 10.5833C3.1082 10.9083 3.1082 11.4333 3.4332 11.7583L6.91654 15.2416C7.24154 15.5666 7.76654 15.5666 8.09154 15.2416L16.9082 6.42498C17.2332 6.09998 17.2332 5.57498 16.9082 5.24998C16.5832 4.92498 16.0582 4.92498 15.7332 5.24998L7.49987 13.475Z"
-                    class="fill-primary"/>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24"
+                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                 stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/>
             </svg>
           </div>
         </li>
@@ -63,10 +68,11 @@
       'step-done': step > 4
     }" class="step overflow-hidden">
           <div class="step-circle">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M7.49987 13.475L4.6082 10.5833C4.2832 10.2583 3.7582 10.2583 3.4332 10.5833C3.1082 10.9083 3.1082 11.4333 3.4332 11.7583L6.91654 15.2416C7.24154 15.5666 7.76654 15.5666 8.09154 15.2416L16.9082 6.42498C17.2332 6.09998 17.2332 5.57498 16.9082 5.24998C16.5832 4.92498 16.0582 4.92498 15.7332 5.24998L7.49987 13.475Z"
-                    class="fill-primary"/>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24"
+                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                 stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M5 12l5 5l10 -10"/>
             </svg>
           </div>
         </li>

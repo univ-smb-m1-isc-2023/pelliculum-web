@@ -7,7 +7,8 @@ import {NgClass} from "@angular/common";
   imports: [
     NgClass
   ],
-  templateUrl: './signup-progression.component.html'
+  templateUrl: './signup-progression.component.html',
+  styleUrls: ['./signup-progression.component.sass']
 })
 export class SignupProgressionComponent {
   @Input() step : number = 1;
