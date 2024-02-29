@@ -16,6 +16,7 @@ export class SignupPreferencesComponent implements OnInit{
 
   @Output("increment") increment: EventEmitter<any> = new EventEmitter()
   filmGenres : any[] = []
+  numberSelection : number = 0;
 
   ngOnInit(){
     this.filmGenres = genres.map(genre => ({
@@ -24,7 +25,14 @@ export class SignupPreferencesComponent implements OnInit{
     }));  }
 
   selectGenre(genre : any){
-    genre.selected = !genre.selected;
+    if (genre.selected){
+      genre.selected = false;
+      this.numberSelection--;
+    }
+    else if (this.numberSelection < 5){
+      genre.selected = true;
+      this.numberSelection++;
+    }
   }
 
   incrementStep(){

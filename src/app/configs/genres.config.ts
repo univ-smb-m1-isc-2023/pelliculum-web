@@ -57,7 +57,7 @@ export const genres: {id: number, name: string}[] = [
   },
   {
     "id": 878,
-    "name": "Science-Fiction"
+    "name": "Sci-Fi"
   },
   {
     "id": 10770,
