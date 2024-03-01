@@ -9,7 +9,6 @@ export class AxiosService {
 
   constructor(private router: Router) {
     axios.defaults.baseURL = 'http://localhost:8080';
-    axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 
   getAuthToken(): string | null {
@@ -34,6 +33,10 @@ export class AxiosService {
     } else {
       localStorage.removeItem('username');
     }
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getAuthToken();
   }
 
   async logout(): Promise<void> {

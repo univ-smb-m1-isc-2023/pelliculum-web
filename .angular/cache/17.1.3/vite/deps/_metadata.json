@@ -1,67 +1,67 @@
 {
-  "hash": "0ba5ab06",
-  "configHash": "a932a22c",
-  "lockfileHash": "a2ddd346",
-  "browserHash": "afd1b386",
+  "hash": "1ceaebf3",
+  "configHash": "60d0a66f",
+  "lockfileHash": "04f93b27",
+  "browserHash": "314d5dc1",
   "optimized": {
     "@angular/cdk/layout": {
       "src": "../../../../../node_modules/.pnpm/@angular+cdk@17.2.0_@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/cdk/fesm2022/layout.mjs",
       "file": "@angular_cdk_layout.js",
-      "fileHash": "4f939fde",
+      "fileHash": "84cc1c35",
       "needsInterop": false
     },
     "@angular/common": {
       "src": "../../../../../node_modules/.pnpm/@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "13299fbe",
+      "fileHash": "57a16265",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/.pnpm/@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "d4be20da",
+      "fileHash": "e2ca8db4",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/.pnpm/@angular+core@17.1.3_rxjs@7.8.1_zone.js@0.14.3/node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "0f8395ef",
+      "fileHash": "072a8dc9",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/.pnpm/@angular+forms@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3_@angular+platform-browser@17.1.3_rxjs@7.8.1/node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "ddb63681",
+      "fileHash": "eba6b04c",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/.pnpm/@angular+platform-browser@17.1.3_@angular+animations@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "ba675b2e",
+      "fileHash": "55c1f769",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/.pnpm/@angular+router@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3_@angular+platform-browser@17.1.3_rxjs@7.8.1/node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "a0fc9f06",
+      "fileHash": "a12d8b5a",
       "needsInterop": false
     },
     "angular-tabler-icons": {
       "src": "../../../../../node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons.mjs",
       "file": "angular-tabler-icons.js",
-      "fileHash": "bd9d503c",
+      "fileHash": "8ec21c88",
       "needsInterop": false
     },
     "angular-tabler-icons/icons": {
       "src": "../../../../../node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons-icons.mjs",
       "file": "angular-tabler-icons_icons.js",
-      "fileHash": "175aaa25",
+      "fileHash": "21785cea",
       "needsInterop": false
     },
     "axios": {
       "src": "../../../../../node_modules/.pnpm/axios@1.6.7/node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "e4e39de0",
+      "fileHash": "240ba876",
       "needsInterop": false
     }
   },

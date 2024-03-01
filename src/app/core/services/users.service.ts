@@ -20,4 +20,11 @@ export class UsersService {
     return this.axiosService.put(`/users/${username}`, data);
   }
 
+  uploadProfilePicture(username: string, file: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.axiosService.post(`/users/${username}/profile-picture`, formData);
+  }
+
+
 }

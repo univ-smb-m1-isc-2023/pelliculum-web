@@ -16,6 +16,8 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class ProfileCustomizationTabComponent implements OnInit{
 
+    imageUrl: string | undefined
+
     profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
         lastname: new FormControl('Doe', [Validators.required]),
@@ -31,12 +33,14 @@ export class ProfileCustomizationTabComponent implements OnInit{
 
     async ngOnInit() {
         this.user = await this.users.get(this.axiosService.getUsername()!)
+        console.log(this.user);
         this.profileForm.patchValue({
             firstname: this.user.firstname,
             lastname: this.user.lastname,
             email: this.user.email,
             username: this.user.username
         });
+        this.getUserProfilePicture()
     }
 
     async save() {
@@ -47,6 +51,12 @@ export class ProfileCustomizationTabComponent implements OnInit{
             email: this.profileForm.get('email')?.value,
         });
         console.log(response)
+
+        if (this.selectedFile) {
+            // Append other user details to formData if needed
+            const response = await this.users.uploadProfilePicture(this.axiosService.getUsername()!, this.selectedFile!);
+            console.log(response);
+        }
     }
 
     onFileSelected(event: any): void {
@@ -57,6 +67,11 @@ export class ProfileCustomizationTabComponent implements OnInit{
             reader.onload = (e: any) => this.photo = this.sanitizer.bypassSecurityTrustUrl(e.target.result);
             reader.readAsDataURL(this.selectedFile!);
         }
+    }
+
+    getUserProfilePicture() {
+        const username = this.axiosService.getUsername(); // Assurez-vous d'avoir le nom d'utilisateur
+        this.imageUrl = `http://localhost:8080/profilePictures/${username}.jpeg`;
     }
 
 }
