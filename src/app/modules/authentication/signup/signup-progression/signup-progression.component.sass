@@ -41,13 +41,3 @@
       &.step-primary::after
         @apply bg-red-4
 
-
-  &-horizontal
-    .step
-    &:not(:last-child):after
-      @apply relative h-px min-h-0 w-full min-w-[2rem] flex-1 content-[""]
-
-  &-vertical
-    .step
-    &:not(:last-child):after
-      @apply relative h-full min-h-[2rem] w-px min-w-0 flex-1 content-[""]

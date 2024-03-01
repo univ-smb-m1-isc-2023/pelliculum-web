@@ -11,7 +11,7 @@
       <div class="grid grid-cols-2 gap-2.5">
         @for (discover of discoverPossibilites; track discover; let id = $index) {
           <div (click)="selectedPossibility = id"
-            class="flex items-center space-x-2 justify-center bg-secondary rounded-md border-gray-400 p-1 cursor-pointer hover:bg-primary border-2"
+            class="flex transition-all items-center space-x-2 justify-center bg-secondary rounded-md border-[#343434] p-1 cursor-pointer hover:bg-primary border-2 "
             [ngClass]="{'border-primary' : selectedPossibility == id}">
             <p class="pl-0.5">{{ discover }}</p>
           </div>
