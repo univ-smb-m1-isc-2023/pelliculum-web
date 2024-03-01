@@ -1,11 +1,15 @@
 <div>
-    <h2 class="pb-10 text-5xl">Paramètres</h2>
-
     <!-- Tabs -->
-    <div class="relative flex space-x-16 border-b border-custom-border pb-1.5">
-        <div id="marker" class="absolute -bottom-0.5 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
-        <a id="profile-private-info" (click)="selectTab('customization'); indicator($event)" class="tracking-wider" [class]="activeTab === 'customization' ? 'tab' : 'tab'">Informations personnelles</a>
-        <a (click)="selectTab('security'); indicator($event)" class="tracking-wider" [class]="activeTab === 'security' ? 'tab' : 'tab'">Connexion et sécurité</a>
+    <div class="relative flex space-x-16 rounded-lg py-2.5 pr-16 pb-1.5 bg-[#161616]">
+        <div id="marker" class="absolute -bottom-0 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Profil</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Amis</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Watchlist</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Listes</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Films</a>
+        <div class="flex-grow"></div>
+        <a (click)="selectTab('customization'); indicator($event)" id="profile-private-info" class="tracking-wider cursor-pointer tab">Informations personnelles</a>
+        <a (click)="selectTab('security'); indicator($event)" class="tracking-wider cursor-pointer tab">Connexion et sécurité</a>
     </div>
 
     <!-- Active Tab Content -->
