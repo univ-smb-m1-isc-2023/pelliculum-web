@@ -2,66 +2,66 @@
   "hash": "1ceaebf3",
   "configHash": "60d0a66f",
   "lockfileHash": "04f93b27",
-  "browserHash": "314d5dc1",
+  "browserHash": "ac98279d",
   "optimized": {
-    "@angular/cdk/layout": {
-      "src": "../../../../../node_modules/.pnpm/@angular+cdk@17.2.0_@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/cdk/fesm2022/layout.mjs",
-      "file": "@angular_cdk_layout.js",
-      "fileHash": "84cc1c35",
-      "needsInterop": false
-    },
     "@angular/common": {
       "src": "../../../../../node_modules/.pnpm/@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "57a16265",
+      "fileHash": "6b159a38",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../node_modules/.pnpm/@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "e2ca8db4",
+      "fileHash": "7c4d11af",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/.pnpm/@angular+core@17.1.3_rxjs@7.8.1_zone.js@0.14.3/node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "072a8dc9",
-      "needsInterop": false
-    },
-    "@angular/forms": {
-      "src": "../../../../../node_modules/.pnpm/@angular+forms@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3_@angular+platform-browser@17.1.3_rxjs@7.8.1/node_modules/@angular/forms/fesm2022/forms.mjs",
-      "file": "@angular_forms.js",
-      "fileHash": "eba6b04c",
+      "fileHash": "11b77cc1",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/.pnpm/@angular+platform-browser@17.1.3_@angular+animations@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "55c1f769",
+      "fileHash": "1137f3fb",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/.pnpm/@angular+router@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3_@angular+platform-browser@17.1.3_rxjs@7.8.1/node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "a12d8b5a",
-      "needsInterop": false
-    },
-    "angular-tabler-icons": {
-      "src": "../../../../../node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons.mjs",
-      "file": "angular-tabler-icons.js",
-      "fileHash": "8ec21c88",
-      "needsInterop": false
-    },
-    "angular-tabler-icons/icons": {
-      "src": "../../../../../node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons-icons.mjs",
-      "file": "angular-tabler-icons_icons.js",
-      "fileHash": "21785cea",
+      "fileHash": "a3e350c4",
       "needsInterop": false
     },
     "axios": {
       "src": "../../../../../node_modules/.pnpm/axios@1.6.7/node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "240ba876",
+      "fileHash": "aeb37cf8",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../node_modules/.pnpm/@angular+forms@17.1.3_@angular+common@17.1.3_@angular+core@17.1.3_@angular+platform-browser@17.1.3_rxjs@7.8.1/node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "2bc2fc17",
+      "needsInterop": false
+    },
+    "angular-tabler-icons": {
+      "src": "../../../../../node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons.mjs",
+      "file": "angular-tabler-icons.js",
+      "fileHash": "d72c9bb0",
+      "needsInterop": false
+    },
+    "angular-tabler-icons/icons": {
+      "src": "../../../../../node_modules/.pnpm/angular-tabler-icons@2.46.0_@angular+common@17.1.3_@angular+core@17.1.3/node_modules/angular-tabler-icons/fesm2020/angular-tabler-icons-icons.mjs",
+      "file": "angular-tabler-icons_icons.js",
+      "fileHash": "737aa464",
+      "needsInterop": false
+    },
+    "@angular/cdk/layout": {
+      "src": "../../../../../node_modules/.pnpm/@angular+cdk@17.2.0_@angular+common@17.1.3_@angular+core@17.1.3_rxjs@7.8.1/node_modules/@angular/cdk/fesm2022/layout.mjs",
+      "file": "@angular_cdk_layout.js",
+      "fileHash": "b826c798",
       "needsInterop": false
     }
   },

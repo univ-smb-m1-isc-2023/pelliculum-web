@@ -14,7 +14,7 @@ export class HeaderPictureComponent implements OnInit{
 
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
-    constructor(private axiosService: AxiosService) {}
+    constructor(protected axiosService: AxiosService) {}
 
     ngOnInit(): void {
         if(!this.axiosService.isLoggedIn()) return

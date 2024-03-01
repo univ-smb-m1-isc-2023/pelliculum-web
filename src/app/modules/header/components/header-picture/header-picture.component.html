@@ -24,10 +24,10 @@
 
         <div class="dropdown-divider" role="separator"></div>
         <a class="dropdown-item text-sm">
-            <div class="flex items-center gap-2">
+            <button (click)="axiosService.logout()" class="flex items-center gap-2">
                 <i-tabler name="logout2" />
                 <p>Se déconnecter</p>
-            </div>
+            </button>
         </a>
     </div>
 </div>
