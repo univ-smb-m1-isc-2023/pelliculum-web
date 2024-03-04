@@ -11,17 +11,19 @@
     </div>
 
     <!-- Left part -->
-    <div class="w-5/12 px-12 flex flex-col py-6 space-y-16">
+    <div class="w-5/12 px-12 flex flex-col py-6 space-y-8">
 
       <app-signup-progression [step]="step"></app-signup-progression>
 
 
-      @if (step == 3) {
+      @if (step == 1) {
         <app-signup-information class="h-full" (increment)="incrementStep()"></app-signup-information>
       } @else if (step == 2) {
         <app-signup-password  class="h-full"  (increment)="incrementStep()"></app-signup-password>
-      } @else if (step == 1) {
+      } @else if (step == 3) {
         <app-signup-preferences class="h-full" (increment)="incrementStep()"></app-signup-preferences>
+      } @else if (step == 4) {
+        <app-signup-confirmation class="h-full"></app-signup-confirmation>
       }
     </div>
 
