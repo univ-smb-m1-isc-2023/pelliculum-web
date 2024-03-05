@@ -9,11 +9,7 @@ import { NgOptimizedImage } from '@angular/common';
 @Component({
     selector: 'app-header',
     standalone: true,
-<<<<<<< HEAD
-    imports: [HeaderSignComponent, RouterLink, NgOptimizedImage],
-=======
-    imports: [HeaderSignComponent, HeaderSearchComponent, FormsModule, NgForOf, NgIf],
->>>>>>> feature/search-movie
+    imports: [HeaderSignComponent, RouterLink, NgOptimizedImage, FormsModule, NgForOf, NgIf, HeaderSearchComponent],
     templateUrl: './header.component.html'
 })
 export class HeaderComponent {}
