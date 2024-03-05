@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {TmdbService} from "../../../core/services/tmdb.service";
-import {GameGenresComponent} from "../../../shared/components/games/game-genres/game-genres.component";
-import {Movie} from "../../../shared/models/movie.model";
-import {GameDateComponent} from "../../../shared/components/games/game-date/game-date.component";
-import {GameActorsComponent} from "../../../shared/components/games/game-actors/game-actors.component";
+import { Component, OnInit } from '@angular/core';
+import { TmdbService } from '../../../core/services/tmdb.service';
+import { GameGenresComponent } from '../../../shared/components/games/game-genres/game-genres.component';
+import { GameDateComponent } from '../../../shared/components/games/game-date/game-date.component';
+import { GameActorsComponent } from '../../../shared/components/games/game-actors/game-actors.component';
 
 @Component({
   selector: 'app-game-classic',
@@ -24,21 +23,11 @@ export class GameClassicComponent implements OnInit {
   guessActors : any[] = [];
 
   ngOnInit() {
-    this.tmdbService.getRandomMovie().then((movie: Movie) => {
-      this.filmGenres = movie.genre_ids;
-    })
+
   }
 
   test(){
-    this.tmdbService.getRandomMovie().then((movie: any) => {
-      this.guessGenres = movie.genre_ids;
-      this.tmdbService.getActors(movie.id).subscribe((actors : any) => {
-        this.guessActors = actors.cast
-      })
-    })
+
   }
-
-
-
 
 }

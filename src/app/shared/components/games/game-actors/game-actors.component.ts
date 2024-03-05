@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TmdbService} from "../../../../core/services/tmdb.service";
-import {Movie} from "../../../models/movie.model";
 
 @Component({
   selector: 'app-game-actors',
@@ -17,16 +16,7 @@ export class GameActorsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tmdbService.getActors(15).subscribe((actors: any) => {
-      for (let actor of actors.cast.slice(0, 10)) {
-        this.tmdbService.getActorDetail(actor.id).subscribe((actorDetail: any) => {
-          actorDetail.guessName = actor.name.replace(/[^ ]/g, '?');
-          actorDetail.found = false;
 
-          this.actorsDetail.push(actorDetail);
-        })
-      }
-    })
   }
 
   ngOnChanges(changes: any) {
