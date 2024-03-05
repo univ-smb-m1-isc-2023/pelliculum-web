@@ -16,5 +16,4 @@ export class AppComponent {
     isInLoginOrRegisterPage() {
         return window.location.pathname === '/login' || window.location.pathname === '/register';
     }
-
 }

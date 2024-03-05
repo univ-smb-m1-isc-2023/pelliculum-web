@@ -14,25 +14,28 @@ import { NgOptimizedImage } from '@angular/common';
     templateUrl: './profile-customization-tab.component.html',
     styleUrls: ['./profile-customization-tab.component.sass']
 })
-export class ProfileCustomizationTabComponent implements OnInit{
-
-    imageUrl: string | undefined
+export class ProfileCustomizationTabComponent implements OnInit {
+    imageUrl: string | undefined;
 
     profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
         lastname: new FormControl('Doe', [Validators.required]),
-        email: new FormControl({value: 'john.doe@gmail.com', disabled: true}, [Validators.required, Validators.email]),
-        username: new FormControl('JohnnyDowy', [Validators.required]),
+        email: new FormControl({ value: 'john.doe@gmail.com', disabled: true }, [Validators.required, Validators.email]),
+        username: new FormControl('JohnnyDowy', [Validators.required])
     });
 
     user: any = null;
     photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
     selectedFile: File | null = null;
 
-    constructor(private sanitizer: DomSanitizer, private users: UsersService, private axiosService: AxiosService) {}
+    constructor(
+        private sanitizer: DomSanitizer,
+        private users: UsersService,
+        private axiosService: AxiosService
+    ) {}
 
     async ngOnInit() {
-        this.user = await this.users.get(this.axiosService.getUsername()!)
+        this.user = await this.users.get(this.axiosService.getUsername()!);
         console.log(this.user);
         this.profileForm.patchValue({
             firstname: this.user.firstname,
@@ -40,7 +43,7 @@ export class ProfileCustomizationTabComponent implements OnInit{
             email: this.user.email,
             username: this.user.username
         });
-        this.getUserProfilePicture()
+        this.getUserProfilePicture();
     }
 
     async save() {
@@ -48,9 +51,9 @@ export class ProfileCustomizationTabComponent implements OnInit{
             firstname: this.profileForm.get('firstname')?.value,
             lastname: this.profileForm.get('lastname')?.value,
             username: this.profileForm.get('username')?.value,
-            email: this.profileForm.get('email')?.value,
+            email: this.profileForm.get('email')?.value
         });
-        console.log(response)
+        console.log(response);
 
         if (this.selectedFile) {
             // Append other user details to formData if needed
@@ -64,7 +67,7 @@ export class ProfileCustomizationTabComponent implements OnInit{
             this.selectedFile = event.target.files[0];
 
             const reader = new FileReader();
-            reader.onload = (e: any) => this.photo = this.sanitizer.bypassSecurityTrustUrl(e.target.result);
+            reader.onload = (e: any) => (this.photo = this.sanitizer.bypassSecurityTrustUrl(e.target.result));
             reader.readAsDataURL(this.selectedFile!);
         }
     }
@@ -73,5 +76,4 @@ export class ProfileCustomizationTabComponent implements OnInit{
         const username = this.axiosService.getUsername(); // Assurez-vous d'avoir le nom d'utilisateur
         this.imageUrl = `http://localhost:8080/profilePictures/${username}.jpeg`;
     }
-
 }

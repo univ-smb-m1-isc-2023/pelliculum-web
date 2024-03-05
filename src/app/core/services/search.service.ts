@@ -10,9 +10,7 @@ export class SearchService {
     private searchQuerySubject = new BehaviorSubject<string>('');
     searchQuery$ = this.searchQuerySubject.asObservable();
 
-    searchResults$ = this.searchQuery$.pipe(
-      switchMap(query => this.tmdbService.searchMovies(query))
-    );
+    searchResults$ = this.searchQuery$.pipe(switchMap((query) => this.tmdbService.searchMovies(query)));
 
     constructor(private tmdbService: TmdbService) {}
 

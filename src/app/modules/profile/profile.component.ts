@@ -15,11 +15,13 @@ import { AxiosService } from '../../core/services/axios.service';
     styles: ``
 })
 export class ProfileComponent implements OnInit {
-
     activeTab: string = 'customization';
-    movie: any
+    movie: any;
 
-    constructor(private tmdbService: TmdbService, protected axiosService: AxiosService) {}
+    constructor(
+        private tmdbService: TmdbService,
+        protected axiosService: AxiosService
+    ) {}
 
     ngOnInit() {
         this.tmdbService.getTopMovies().subscribe((data: any) => {

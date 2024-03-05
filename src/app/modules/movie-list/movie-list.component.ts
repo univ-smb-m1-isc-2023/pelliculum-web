@@ -53,17 +53,17 @@ export class MovieListComponent implements OnInit {
         if (!this.searchTerm) {
             this.movies = this.moviesCopy;
         } else {
-            this.movies = this.moviesCopy.filter(movie => movie.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+            this.movies = this.moviesCopy.filter((movie) => movie.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
             console.log(this.movies);
         }
     }
 
-    sortByDate(){
+    sortByDate() {
         this.isSortingByDate = !this.isSortingByDate;
         this.movies = this.isSortingByDate ? this.movies.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime()) : this.moviesCopy;
     }
 
-    sortByLikes(){
+    sortByLikes() {
         this.isSortingByLikes = !this.isSortingByLikes;
         this.movies = this.isSortingByLikes ? this.movies.sort((a, b) => b.vote_count - a.vote_count) : this.moviesCopy;
     }

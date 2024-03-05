@@ -10,16 +10,13 @@ import { AxiosService } from '../../../../core/services/axios.service';
     imports: [RouterLink, TablerIconsModule, IconsModule],
     templateUrl: './header-picture.component.html'
 })
-export class HeaderPictureComponent implements OnInit{
-
+export class HeaderPictureComponent implements OnInit {
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
     constructor(protected axiosService: AxiosService) {}
 
     ngOnInit(): void {
-        if(!this.axiosService.isLoggedIn()) return
-        this.profilePicture = `http://localhost:8080/profilePictures/${this.axiosService.getUsername()}.jpeg`
+        if (!this.axiosService.isLoggedIn()) return;
+        this.profilePicture = `http://localhost:8080/profilePictures/${this.axiosService.getUsername()}.jpeg`;
     }
-
-
 }

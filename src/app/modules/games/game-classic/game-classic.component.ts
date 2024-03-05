@@ -5,29 +5,19 @@ import { GameDateComponent } from '../../../shared/components/games/game-date/ga
 import { GameActorsComponent } from '../../../shared/components/games/game-actors/game-actors.component';
 
 @Component({
-  selector: 'app-game-classic',
-  standalone: true,
-  imports: [
-    GameGenresComponent,
-    GameDateComponent,
-    GameActorsComponent
-  ],
-  templateUrl: './game-classic.component.html'
+    selector: 'app-game-classic',
+    standalone: true,
+    imports: [GameGenresComponent, GameDateComponent, GameActorsComponent],
+    templateUrl: './game-classic.component.html'
 })
 export class GameClassicComponent implements OnInit {
-  constructor(private tmdbService: TmdbService) {
-  }
+    constructor(private tmdbService: TmdbService) {}
 
-  filmGenres : number[] = [];
-  guessGenres : number[] = [];
-  guessActors : any[] = [];
+    filmGenres: number[] = [];
+    guessGenres: number[] = [];
+    guessActors: any[] = [];
 
-  ngOnInit() {
+    ngOnInit() {}
 
-  }
-
-  test(){
-
-  }
-
+    test() {}
 }

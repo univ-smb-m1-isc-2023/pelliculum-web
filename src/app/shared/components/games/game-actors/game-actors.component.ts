@@ -1,35 +1,29 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {TmdbService} from "../../../../core/services/tmdb.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { TmdbService } from '../../../../core/services/tmdb.service';
 
 @Component({
-  selector: 'app-game-actors',
-  standalone: true,
-  imports: [],
-  templateUrl: './game-actors.component.html'
+    selector: 'app-game-actors',
+    standalone: true,
+    imports: [],
+    templateUrl: './game-actors.component.html'
 })
 export class GameActorsComponent implements OnInit {
+    actorsDetail: any[] = [];
+    @Input() guessActors: any[] = [];
 
-  actorsDetail: any[] = [];
-  @Input() guessActors: any[] = [];
+    constructor(private tmdbService: TmdbService) {}
 
-  constructor(private tmdbService: TmdbService) {
-  }
+    ngOnInit() {}
 
-  ngOnInit() {
-
-  }
-
-  ngOnChanges(changes: any) {
-    console.log(this.guessActors)
-    if (changes.guessActors) {
-      this.actorsDetail.forEach(actorDetail => {
-        if (this.guessActors.some(guessActor => guessActor.id === actorDetail.id)) {
-          actorDetail.found = true;
+    ngOnChanges(changes: any) {
+        console.log(this.guessActors);
+        if (changes.guessActors) {
+            this.actorsDetail.forEach((actorDetail) => {
+                if (this.guessActors.some((guessActor) => guessActor.id === actorDetail.id)) {
+                    actorDetail.found = true;
+                }
+            });
         }
-      });
+        console.log(this.actorsDetail);
     }
-    console.log(this.actorsDetail)
-
-  }
 }
-

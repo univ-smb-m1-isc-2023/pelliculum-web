@@ -2,15 +2,10 @@ import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserService {
+    constructor(private axiosService: AxiosService) {}
 
-  constructor(private axiosService: AxiosService) { }
-
-  get() {
-
-  }
-
-
+    get() {}
 }

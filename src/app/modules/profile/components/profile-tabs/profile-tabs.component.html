@@ -1,15 +1,15 @@
 <div>
     <!-- Tabs -->
-    <div class="relative flex space-x-16 rounded-lg py-2.5 pr-16 pb-1.5 bg-[#161616]">
+    <div class="relative flex space-x-16 rounded-lg bg-[#161616] py-2.5 pb-1.5 pr-16">
         <div id="marker" class="absolute -bottom-0 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Profil</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Amis</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Watchlist</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Listes</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w cursor-pointer tab">Films</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Profil</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Amis</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Watchlist</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Listes</a>
+        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Films</a>
         <div class="flex-grow"></div>
-        <a (click)="selectTab('customization'); indicator($event)" id="profile-private-info" class="tracking-wider cursor-pointer tab">Informations personnelles</a>
-        <a (click)="selectTab('security'); indicator($event)" class="tracking-wider cursor-pointer tab">Connexion et sécurité</a>
+        <a (click)="selectTab('customization'); indicator($event)" id="profile-private-info" class="tab cursor-pointer tracking-wider">Informations personnelles</a>
+        <a (click)="selectTab('security'); indicator($event)" class="tab cursor-pointer tracking-wider">Connexion et sécurité</a>
     </div>
 
     <!-- Active Tab Content -->

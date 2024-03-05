@@ -27,12 +27,10 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-            this.searchService.searchResults$.pipe(takeUntil(this.destroy$)).subscribe((results) => {
+        this.searchService.searchResults$.pipe(takeUntil(this.destroy$)).subscribe((results) => {
             this.movies = results.results;
         });
-
     }
-
 
     ngOnDestroy(): void {
         this.destroy$.next();

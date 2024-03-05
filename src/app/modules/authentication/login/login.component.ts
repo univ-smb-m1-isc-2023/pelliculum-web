@@ -10,36 +10,26 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import axios from 'axios';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    SignupInformationComponent,
-    SignupPreferencesComponent,
-    NgOptimizedImage,
-    LogoMoviePosterComponent,
-    RouterLink,
-    PosterComponent,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  templateUrl: './login.component.html',
+    selector: 'app-login',
+    standalone: true,
+    imports: [SignupInformationComponent, SignupPreferencesComponent, NgOptimizedImage, LogoMoviePosterComponent, RouterLink, PosterComponent, FormsModule, ReactiveFormsModule],
+    templateUrl: './login.component.html'
 })
 export class LoginComponent {
+    loginForm = new FormGroup({
+        username: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
 
-  loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-  });
+    constructor(
+        private axiosService: AxiosService,
+        private router: Router
+    ) {}
 
-  constructor(private axiosService: AxiosService, private router: Router) {
-  }
-
-  async login(): Promise<void> {
-    const response = await this.axiosService.post('/auth/login', this.loginForm.value)
-    this.axiosService.setAuthToken(response.token);
-    this.axiosService.setUsername(response.username);
-    await this.router.navigateByUrl('/')
-  }
-
-
+    async login(): Promise<void> {
+        const response = await this.axiosService.post('/auth/login', this.loginForm.value);
+        this.axiosService.setAuthToken(response.token);
+        this.axiosService.setUsername(response.username);
+        await this.router.navigateByUrl('/');
+    }
 }

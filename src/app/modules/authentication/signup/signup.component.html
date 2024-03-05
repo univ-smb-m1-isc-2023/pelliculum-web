@@ -1,31 +1,27 @@
 <div class="h-screen">
-  <div class="flex flex-row">
+    <div class="flex flex-row">
+        <!-- Image et Logo-->
+        <div class="w-7/12">
+            <a [routerLink]="'/'" class="absolute left-2 top-2 flex flex-row items-center justify-center space-x-2">
+                <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701" width="709" />
+                <p class="bebas-neue-regular mt-1.5 text-4xl">Pelliculum</p>
+            </a>
+            <img ngSrc="assets/fig.png" alt="Fight Club" class="h-screen w-full object-cover" height="720" width="1280" />
+        </div>
 
-    <!-- Image et Logo-->
-    <div class="w-7/12">
-      <a [routerLink]="'/'" class="flex flex-row items-center justify-center space-x-2 absolute top-2 left-2">
-        <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701" width="709"/>
-        <p class="bebas-neue-regular mt-1.5 text-4xl">Pelliculum</p>
-      </a>
-      <img ngSrc="assets/fig.png" alt="Fight Club" class="w-full h-screen object-cover" height="720" width="1280">
+        <!-- Left part -->
+        <div class="flex w-5/12 flex-col space-y-8 px-12 py-6">
+            <app-signup-progression [step]="step"></app-signup-progression>
+
+            @if (step == 1) {
+            <app-signup-information class="h-full" (increment)="incrementStep()"></app-signup-information>
+            } @else if (step == 2) {
+            <app-signup-password class="h-full" (increment)="incrementStep()"></app-signup-password>
+            } @else if (step == 3) {
+            <app-signup-preferences class="h-full" (increment)="incrementStep()"></app-signup-preferences>
+            } @else if (step == 4) {
+            <app-signup-confirmation class="h-full"></app-signup-confirmation>
+            }
+        </div>
     </div>
-
-    <!-- Left part -->
-    <div class="w-5/12 px-12 flex flex-col py-6 space-y-8">
-
-      <app-signup-progression [step]="step"></app-signup-progression>
-
-
-      @if (step == 1) {
-        <app-signup-information class="h-full" (increment)="incrementStep()"></app-signup-information>
-      } @else if (step == 2) {
-        <app-signup-password  class="h-full"  (increment)="incrementStep()"></app-signup-password>
-      } @else if (step == 3) {
-        <app-signup-preferences class="h-full" (increment)="incrementStep()"></app-signup-preferences>
-      } @else if (step == 4) {
-        <app-signup-confirmation class="h-full"></app-signup-confirmation>
-      }
-    </div>
-
-  </div>
 </div>
