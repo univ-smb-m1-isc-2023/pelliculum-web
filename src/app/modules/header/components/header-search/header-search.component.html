@@ -1,0 +1,46 @@
+<div class="relative">
+    <!-- Barre de recherche -->
+    <div class="flex items-start">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <g fill="none" stroke="#FDFDFD" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <circle cx="10" cy="10" r="7" />
+                    <path d="m21 21l-6-6" />
+                </g>
+            </svg>
+        </span>
+
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher un film" (input)="searchMovies()" class="input w-screen border bg-transparent p-4 pl-10 text-white focus:border-white focus:outline-none" />
+
+        <span class="absolute inset-y-0 right-0 flex items-center pr-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <g fill="none" stroke="#FDFDFD" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <circle cx="14" cy="6" r="2" />
+                    <path d="M4 6h8m4 0h4" />
+                    <circle cx="8" cy="12" r="2" />
+                    <path d="M4 12h2m4 0h10" />
+                    <circle cx="17" cy="18" r="2" />
+                    <path d="M4 18h11m4 0h1" />
+                </g>
+            </svg>
+        </span>
+    </div>
+
+    <!-- Liste des films -->
+    <div class="dropdown absolute mt-2 max-h-60 w-full">
+        @if (movies && movies.length > 0) {
+        <div class="mt-2">
+            @for (movie of movies; track movie.id; let last = $last){
+            <div class="flex cursor-pointer items-center rounded border bg-secondary p-2 transition hover:bg-primary hover:text-white" (click)="redirectToMovieDetails(movie.id)">
+                <app-poster class="h-fit w-16" [posterPath]="movie.poster_path"></app-poster>
+
+                <div class="ml-2 cursor-pointer">{{ movie.title }}</div>
+                @if (!last){
+                <hr class="my-2 border-t border-gray-300" />
+                }
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>
