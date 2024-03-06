@@ -67,6 +67,10 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    public onMovieSelected(movie: any) {
+        this.currentMovie = movie;
+    }
+
     private startCarousel() {
         this.currentMovie = this.topMovies[0];
         this.carousel = [this.topMovies[this.topMovies.length - 1], ...this.topMovies];

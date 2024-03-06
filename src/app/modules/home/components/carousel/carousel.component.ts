@@ -1,4 +1,14 @@
-import { Component, HostListener, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 import { NgClass } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -12,6 +22,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
     @Input() movies: any[] = [];
+    @Output() movieSelected: any = new EventEmitter<any>();
 
     indexMovie: number = 0;
     currentPosition: number = 0;
@@ -77,6 +88,10 @@ export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     goToMovie(i: number): void {
+        for (let j = 0; j < i - this.indexMovie; j++) {
+            this.movies.push(this.movies[this.indexMovie + j]);
+        }
+        this.movieSelected.emit(this.movies[i]);
         this.indexMovie = i;
         this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
     }
