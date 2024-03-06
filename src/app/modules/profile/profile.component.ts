@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { AxiosService } from '../../core/services/axios.service';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
     selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
     constructor(
         private tmdbService: TmdbService,
-        protected axiosService: AxiosService
+        protected user: UserService
     ) {}
 
     ngOnInit() {

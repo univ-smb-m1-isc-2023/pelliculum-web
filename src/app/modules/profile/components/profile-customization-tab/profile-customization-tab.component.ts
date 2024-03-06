@@ -6,6 +6,7 @@ import { AxiosService } from '../../../../core/services/axios.service';
 import axios from 'axios';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
+import { UserService } from '../../../../core/services/user.service';
 
 @Component({
     selector: 'app-profile-customization-tab',
@@ -24,19 +25,17 @@ export class ProfileCustomizationTabComponent implements OnInit {
         username: new FormControl('JohnnyDowy', [Validators.required])
     });
 
-    user: any = null;
     photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
     selectedFile: File | null = null;
+    user: any;
 
     constructor(
         private sanitizer: DomSanitizer,
-        private users: UsersService,
-        private axiosService: AxiosService
+        private userService: UserService
     ) {}
 
     async ngOnInit() {
-        this.user = await this.users.get(this.axiosService.getUsername()!);
-        console.log(this.user);
+        this.user = await this.userService.get();
         this.profileForm.patchValue({
             firstname: this.user.firstname,
             lastname: this.user.lastname,
@@ -47,7 +46,7 @@ export class ProfileCustomizationTabComponent implements OnInit {
     }
 
     async save() {
-        const response = await this.users.update(this.axiosService.getUsername()!, {
+        const response = await this.userService.update({
             firstname: this.profileForm.get('firstname')?.value,
             lastname: this.profileForm.get('lastname')?.value,
             username: this.profileForm.get('username')?.value,
@@ -56,8 +55,7 @@ export class ProfileCustomizationTabComponent implements OnInit {
         console.log(response);
 
         if (this.selectedFile) {
-            // Append other user details to formData if needed
-            const response = await this.users.uploadProfilePicture(this.axiosService.getUsername()!, this.selectedFile!);
+            const response = await this.userService.updateProfilePicture(this.selectedFile);
             console.log(response);
         }
     }
@@ -73,7 +71,7 @@ export class ProfileCustomizationTabComponent implements OnInit {
     }
 
     getUserProfilePicture() {
-        const username = this.axiosService.getUsername(); // Assurez-vous d'avoir le nom d'utilisateur
+        const username = this.user.getUsername(); // Assurez-vous d'avoir le nom d'utilisateur
         this.imageUrl = `http://localhost:8080/profilePictures/${username}.jpeg`;
     }
 }

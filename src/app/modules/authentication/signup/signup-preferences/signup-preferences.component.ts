@@ -1,16 +1,18 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SignupProgressionComponent } from '../signup-progression/signup-progression.component';
 import { genres } from '../../../../configs/genres.config';
 import { NgClass } from '@angular/common';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-signup-preferences',
     standalone: true,
-    imports: [SignupProgressionComponent, NgClass],
+    imports: [SignupProgressionComponent, NgClass, ReactiveFormsModule],
     templateUrl: './signup-preferences.component.html'
 })
 export class SignupPreferencesComponent implements OnInit {
     @Output('increment') increment: EventEmitter<any> = new EventEmitter();
+    @Input() details: FormGroup | any;
     filmGenres: any[] = [];
     numberSelection: number = 0;
 

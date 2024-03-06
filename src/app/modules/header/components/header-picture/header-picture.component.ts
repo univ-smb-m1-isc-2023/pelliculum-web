@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { IconsModule } from '../../../../core/icons/icons.module';
 import { AxiosService } from '../../../../core/services/axios.service';
+import { UserService } from '../../../../core/services/user.service';
 
 @Component({
     selector: 'app-header-picture',
@@ -13,10 +14,10 @@ import { AxiosService } from '../../../../core/services/axios.service';
 export class HeaderPictureComponent implements OnInit {
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
-    constructor(protected axiosService: AxiosService) {}
+    constructor(protected user: UserService) {}
 
     ngOnInit(): void {
-        if (!this.axiosService.isLoggedIn()) return;
-        this.profilePicture = `http://localhost:8080/profilePictures/${this.axiosService.getUsername()}.jpeg`;
+        if (!this.user.isLoggedIn()) return;
+        this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
     }
 }

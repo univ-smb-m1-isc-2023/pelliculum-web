@@ -8,6 +8,8 @@ import { PosterComponent } from '../../../shared/components/poster/poster.compon
 import { AxiosService } from '../../../core/services/axios.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import axios from 'axios';
+import { UserService } from '../../../core/services/user.service';
+import { AuthenticationService } from '../../../core/services/authentication.service';
 
 @Component({
     selector: 'app-login',
@@ -22,14 +24,12 @@ export class LoginComponent {
     });
 
     constructor(
-        private axiosService: AxiosService,
+        private authentication: AuthenticationService,
         private router: Router
     ) {}
 
     async login(): Promise<void> {
-        const response = await this.axiosService.post('/auth/login', this.loginForm.value);
-        this.axiosService.setAuthToken(response.token);
-        this.axiosService.setUsername(response.username);
+        await this.authentication.login(this.loginForm.value);
         await this.router.navigateByUrl('/');
     }
 }

@@ -1,4 +1,4 @@
-<div class="flex h-full flex-col justify-between">
+<div [formGroup]="details" class="flex h-full flex-col justify-between">
     <div class="flex justify-center">
         <h2>Sélectionnez jusqu'à 5 catégories qui vous plaisent</h2>
     </div>
@@ -14,10 +14,5 @@
             </svg>
         </div>
         }
-    </div>
-
-    <!-- Submit button -->
-    <div class="flex justify-center space-y-1.5">
-        <button class="btn btn-rounded w-4/6 hover:bg-primary" (click)="incrementStep()">Continuer</button>
     </div>
 </div>
