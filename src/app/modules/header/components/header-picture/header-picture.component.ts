@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { IconsModule } from '../../../../core/icons/icons.module';
-import { AxiosService } from '../../../../core/services/axios.service';
 import { UserService } from '../../../../core/services/user.service';
 
 @Component({

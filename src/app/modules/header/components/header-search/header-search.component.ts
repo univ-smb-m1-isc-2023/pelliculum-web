@@ -5,7 +5,6 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { TmdbService } from '../../../../core/services/tmdb.service';
 import { SearchService } from '../../../../core/services/search.service';
-import { BackdropComponent } from '../../../../shared/components/backdrop/backdrop.component';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 
 @Component({

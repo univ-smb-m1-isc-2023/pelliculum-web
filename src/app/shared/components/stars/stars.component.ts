@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { startWith } from 'rxjs';
 
 @Component({
     selector: 'app-stars',

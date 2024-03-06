@@ -7,7 +7,9 @@ import { PosterComponent } from '../../shared/components/poster/poster.component
 import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { MovieDetailsTabsComponent } from './components/movie-details-tabs/movie-details-tabs.component';
 import { NgIf } from '@angular/common';
-import { ProfileCustomizationTabComponent } from '../profile/components/profile-customization-tab/profile-customization-tab.component';
+import {
+  ProfileCustomizationTabComponent,
+} from '../profile/components/profile-customization-tab/profile-customization-tab.component';
 import { ProfileSecurityTabComponent } from '../profile/components/profile-security-tab/profile-security-tab.component';
 import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile-tabs.component';
 import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';

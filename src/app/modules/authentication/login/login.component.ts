@@ -5,10 +5,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { LogoMoviePosterComponent } from '../../../shared/components/logo-movie-poster/logo-movie-poster.component';
 import { Router, RouterLink } from '@angular/router';
 import { PosterComponent } from '../../../shared/components/poster/poster.component';
-import { AxiosService } from '../../../core/services/axios.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import axios from 'axios';
-import { UserService } from '../../../core/services/user.service';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 
 @Component({

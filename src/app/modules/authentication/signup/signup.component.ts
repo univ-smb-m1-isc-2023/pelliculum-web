@@ -8,7 +8,9 @@ import { SignupPasswordComponent } from './signup-password/signup-password.compo
 import { Router, RouterLink } from '@angular/router';
 import { SignupConfirmationComponent } from './signup-confirmation/signup-confirmation.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PelliculumLogoTitleComponent } from '../../../shared/components/pelliculum-logo-title/pelliculum-logo-title.component';
+import {
+    PelliculumLogoTitleComponent,
+} from '../../../shared/components/pelliculum-logo-title/pelliculum-logo-title.component';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 
 @Component({

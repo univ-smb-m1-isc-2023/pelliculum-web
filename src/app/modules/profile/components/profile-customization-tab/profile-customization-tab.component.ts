@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InputCustomComponent } from '../../../../shared/components/input-custom/input-custom.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { UsersService } from '../../../../core/services/users.service';
-import { AxiosService } from '../../../../core/services/axios.service';
-import axios from 'axios';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { UserService } from '../../../../core/services/user.service';
