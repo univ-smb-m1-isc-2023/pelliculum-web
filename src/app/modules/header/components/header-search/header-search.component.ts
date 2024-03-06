@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
@@ -20,6 +20,7 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
     movies: any;
 
     private destroy$: Subject<void> = new Subject();
+    @ViewChild('dropdownList') dropdownList!: ElementRef;
 
     constructor(
         private router: Router,
@@ -65,5 +66,12 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
 
     getPosterUrl(posterPath : string): string {
         return `https://image.tmdb.org/t/p/w220_and_h330_face${posterPath}`;
+    }
+
+    @HostListener('document:click', ['$event'])
+    onClickOutside(event : any) {
+        if (!this.dropdownList.nativeElement.contains(event.target)) {
+            this.movies = [];
+        }
     }
 }
