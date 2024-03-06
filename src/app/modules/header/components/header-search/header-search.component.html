@@ -27,17 +27,24 @@
     </div>
 
     <!-- Liste des films -->
-    <div class="dropdown absolute mt-2 max-h-60 w-full">
+    <div class="dropdown absolute mt-2 w-full">
         @if (movies && movies.length > 0) {
-        <div class="mt-2">
-            @for (movie of movies; track movie.id; let last = $last){
-            <div class="flex cursor-pointer items-center rounded border bg-secondary p-2 transition hover:bg-primary hover:text-white" (click)="redirectToMovieDetails(movie.id)">
-                <app-poster class="h-fit w-16" [posterPath]="movie.poster_path"></app-poster>
+        <div class="mt-2 border rounded">
+            @for (movie of movies; track movie.id; let last = $last; let first = $first){
+            <div [ngClass]="{'rounded-t': first, 'rounded-b': last}"
+                class="h-24 flex border-b border-custom-border items-center bg-secondary cursor-pointer hover:bg-primary pl-0.5" (click)="redirectToMovieDetails(movie.id)">
 
-                <div class="ml-2 cursor-pointer">{{ movie.title }}</div>
-                @if (!last){
-                <hr class="my-2 border-t border-gray-300" />
-                }
+                <img [src]="getPosterUrl(movie.poster_path)" alt="Poster" class="object-fill h-20"/>
+
+                <div class="ml-2">
+                    <p>{{ movie.title }}</p>
+                    <div class="flex space-x-2 items-center">
+                        <p class="text-sm text-gray-500">{{movie.release_date}}</p>
+                        <app-stars size="w-2" [stars]="5" [value]="movie.vote_average" />
+                    </div>
+
+                </div>
+
             </div>
             }
         </div>
