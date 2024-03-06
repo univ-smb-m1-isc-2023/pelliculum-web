@@ -45,6 +45,10 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$), debounceTime(300), distinctUntilChanged())
             .subscribe(
                 (data) => {
+                    if (this.searchQuery === '') {
+                        this.movies = [];
+                        return;
+                    }
                     this.movies = data.results.slice(0,5);
                     for (let i = 0; i < this.movies.length; i++) {
                         this.movies[i].release_date = this.movies[i].release_date.slice(0,4)
