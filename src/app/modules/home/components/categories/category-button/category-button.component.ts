@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IconsModule } from '../../../../core/icons/icons.module';
+import { IconsModule } from '../../../../../core/icons/icons.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({

@@ -2,28 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
-import { BackdropDetailsComponent } from './components/backdrop-details/backdrop-details.component';
+import { HomeCarouselBackdropComponent } from './components/home-carousel/home-carousel-backdrop/home-carousel-backdrop.component';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { HomeCarouselPostersComponent } from './components/home-carousel/home-carousel-posters/home-carousel-posters.component';
 import { NgClass, NgIf } from '@angular/common';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
 import { setTitle } from '../../core/utils/utilities.utils';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MovieListComponent } from '../../shared/components/movie-list/movie-list.component';
+import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [RouterLink, RouterLinkActive, BackdropComponent, BackdropDetailsComponent, PosterComponent, CategoriesComponent, CarouselComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent],
+    imports: [RouterLink, RouterLinkActive, BackdropComponent, HomeCarouselBackdropComponent, PosterComponent, CategoriesComponent, HomeCarouselPostersComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent, HomeCarouselComponent],
     templateUrl: './home.component.html',
     styles: ``
 })
 export class HomeComponent implements OnInit {
     topMovies: any[] = [];
-    currentMovie: any = null;
-    carousel: any[] = [];
+
     upcomings: any[] = [];
     watchlist: any = null;
 
@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
         setTitle('Accueil');
         this.tmdbService.getTopMovies().subscribe((data: any) => {
             this.topMovies = data.results;
-            this.startCarousel();
             this.ratings = Array(8)
                 .fill(0)
                 .map((x, i) => ({
@@ -65,18 +64,6 @@ export class HomeComponent implements OnInit {
         this.responsive.observe(Breakpoints.Small).subscribe((result) => {
             console.log(result.matches);
         });
-    }
-
-    public onMovieSelected(movie: any) {
-        this.currentMovie = movie;
-    }
-
-    private startCarousel() {
-        this.currentMovie = this.topMovies[0];
-        this.carousel = [this.topMovies[this.topMovies.length - 1], ...this.topMovies];
-        setInterval(() => {
-            this.currentMovie = this.carousel[this.carousel.indexOf(this.currentMovie) + 1] ?? this.carousel[0];
-        }, 8000);
     }
 
     randomMovie() {

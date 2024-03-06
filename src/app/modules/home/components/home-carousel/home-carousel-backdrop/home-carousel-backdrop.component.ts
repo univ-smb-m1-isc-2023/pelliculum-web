@@ -1,16 +1,17 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { BackdropComponent } from '../../../../shared/components/backdrop/backdrop.component';
-import { TmdbService } from '../../../../core/services/tmdb.service';
-import { StarsComponent } from '../../../../shared/components/stars/stars.component';
+import { BackdropComponent } from '../../../../../shared/components/backdrop/backdrop.component';
+import { TmdbService } from '../../../../../core/services/tmdb.service';
+import { StarsComponent } from '../../../../../shared/components/stars/stars.component';
 
 @Component({
-    selector: 'app-backdrop-details',
+    selector: 'app-home-carousel-backdrop',
     standalone: true,
     imports: [BackdropComponent, StarsComponent],
-    templateUrl: './backdrop-details.component.html',
+    templateUrl: './home-carousel-backdrop.component.html',
     styles: ``
 })
-export class BackdropDetailsComponent implements OnChanges {
+export class HomeCarouselBackdropComponent implements OnChanges {
+
     @Input() movie: any;
     genres: { id: number; name: string }[] = [];
 

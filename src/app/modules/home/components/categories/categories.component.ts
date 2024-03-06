@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CategoryButtonComponent } from '../category-button/category-button.component';
+import { CategoryButtonComponent } from './category-button/category-button.component';
 
 @Component({
     selector: 'app-categories',
