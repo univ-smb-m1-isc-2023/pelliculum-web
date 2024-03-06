@@ -108,7 +108,7 @@ export class CarouselComponent implements OnInit, OnDestroy, OnChanges {
                 this.indexMovie = this.movies.length - 1; // Réinitialisation pour un défilement circulaire
             }
         }
-
+        this.movieSelected.emit(this.movies[this.indexMovie]);
         this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
     }
 
