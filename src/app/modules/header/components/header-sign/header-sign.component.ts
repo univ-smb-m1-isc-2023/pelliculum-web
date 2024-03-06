@@ -15,7 +15,6 @@ import { UserService } from '../../../../core/services/user.service';
     styles: []
 })
 export class HeaderSignComponent {
-
     notif: string = '3';
     items: any[] = []; // Replace `any` with your item type
     dropdownVisible: boolean = false;

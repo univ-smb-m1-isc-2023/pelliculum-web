@@ -34,7 +34,10 @@ import { AuthenticationService } from '../../../core/services/authentication.ser
 export class SignupComponent {
     step: number = 1;
 
-    constructor(protected authenticationService: AuthenticationService, private router: Router) {}
+    constructor(
+        protected authenticationService: AuthenticationService,
+        private router: Router
+    ) {}
 
     registerForm = new FormGroup({
         accountDetails: new FormGroup({
@@ -64,7 +67,7 @@ export class SignupComponent {
             ...passwordDetails,
             ...preferencesDetails,
             ...userDetails
-        })
+        });
         await this.router.navigateByUrl('/');
     }
 
