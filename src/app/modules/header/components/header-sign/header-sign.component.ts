@@ -5,6 +5,7 @@ import { HeaderPictureComponent } from '../header-picture/header-picture.compone
 import { HeaderNotificationComponent } from '../header-notification/header-notification.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { IconsModule } from '../../../../core/icons/icons.module';
+import { UserService } from '../../../../core/services/user.service';
 
 @Component({
     selector: 'app-header-sign',
@@ -14,12 +15,12 @@ import { IconsModule } from '../../../../core/icons/icons.module';
     styles: []
 })
 export class HeaderSignComponent {
-    connected = true;
+
     notif: string = '3';
     items: any[] = []; // Replace `any` with your item type
     dropdownVisible: boolean = false;
 
-    constructor() {
+    constructor(protected user: UserService) {
         this.items = [
             { label: 'Item 1', value: 1 },
             { label: 'Item 2', value: 2 }
