@@ -61,6 +61,10 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
             );
     }
 
+    public onPosterError(event: any): void {
+        event.target.src = 'https://dummyimage.com/40x60/eee/aaa.png&text=No+Image';
+    }
+
     redirectToMovieDetails(movieId: number): void {
         this.searchQuery = '';
         this.searchService.setSearchQuery(this.searchQuery);

@@ -1,4 +1,4 @@
-<div class="relative">
+<div class="relative dropdown">
     <!-- Barre de recherche -->
     <div class="flex items-start">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -10,7 +10,9 @@
             </svg>
         </span>
 
-        <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher un film" (input)="searchMovies()" class="input w-screen border bg-transparent p-4 pl-10 text-white focus:border-white focus:outline-none" />
+        <label tabindex="0">
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher un film" (input)="searchMovies()" class="input w-screen border transition border-custom-border bg-transparent p-4 pl-10 text-white focus:border-[#505050] focus:outline-none" />
+        </label>
 
         <span class="absolute inset-y-0 right-0 flex items-center pr-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -27,26 +29,24 @@
     </div>
 
     <!-- Liste des films -->
-    <div class="dropdown absolute mt-2 w-full">
-        @if (movies && movies.length > 0) {
-        <div #dropdownList class="mt-2 border rounded border-custom-border-search">
-            @for (movie of movies; track movie.id; let last = $last; let first = $first){
-            <div [ngClass]="{'rounded-t': first, 'rounded-b': last}"
-                class="h-28 flex border-b border-custom-border items-center bg-secondary cursor-pointer hover:bg-primary" (click)="redirectToMovieDetails(movie.id)">
+    @if (movies && movies.length > 0) {
+    <div class="dropdown-menu mt-1 w-full">
+        @for (movie of movies; track movie.id){
 
-                <img [src]="getPosterUrl(movie.poster_path)" alt="Poster" class="object-fill h-24"/>
+        <!-- Movie -->
+        <div class="dropdown-item flex flex-row px-2 space-x-2">
 
-                <div class="ml-2">
-                    <p>{{ movie.title }}</p>
-                    <div class="flex space-x-2 items-center">
-                        <p class="text-xs text-gray-500">{{movie.release_date}}</p>
-                    </div>
+            <!-- Poster -->
+            <img [src]="getPosterUrl(movie.poster_path)" (error)="onPosterError($event)" alt="{{movie.title}}" class="object-fill h-24 rounded-lg"/>
 
-                </div>
-
+            <!-- Information -->
+            <div class="flex flex-col">
+                <p>{{ movie.title }}</p>
+                <p class="text-xs text-gray-500">{{movie.release_date}}</p>
             </div>
-            }
+
         </div>
         }
     </div>
+    }
 </div>
