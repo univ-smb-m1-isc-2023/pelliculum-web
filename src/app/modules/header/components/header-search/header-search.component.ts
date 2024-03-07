@@ -74,11 +74,5 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
     getPosterUrl(posterPath : string): string {
         return `https://image.tmdb.org/t/p/w220_and_h330_face${posterPath}`;
     }
-
-    @HostListener('document:click', ['$event'])
-    onClickOutside(event : any) {
-        if (!this.dropdownList.nativeElement.contains(event.target)) {
-            this.movies = [];
-        }
-    }
+    
 }

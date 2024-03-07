@@ -5,11 +5,12 @@ import { BackdropComponent } from '../../shared/components/backdrop/backdrop.com
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { FormsModule } from '@angular/forms';
+import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 
 @Component({
     selector: 'app-movie-list',
     standalone: true,
-    imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule],
+  imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule, SearchListMoviesComponent],
     templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
