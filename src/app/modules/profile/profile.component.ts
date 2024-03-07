@@ -8,11 +8,12 @@ import { NgIf } from '@angular/common';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { UserService } from '../../core/services/user.service';
+import { ProfileClassicComponent } from './components/profile-classic/profile-classic.component';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
-    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent],
+  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })

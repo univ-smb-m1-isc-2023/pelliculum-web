@@ -11,19 +11,21 @@ import {
   IconSearch,
   IconThumbUp,
   IconUser,
+  IconSettings,
 } from 'angular-tabler-icons/icons';
 
 export const icons = {
-    IconBell,
-    IconMessage,
-    IconUser,
-    IconLogout2,
-    IconArrowNarrowRight,
-    IconMovie,
-    IconLayoutGrid,
-    IconBaselineDensityMedium,
-    IconThumbUp,
-    IconCalendarMonth,
-    IconSearch,
-    IconAdjustmentsAlt
+  IconBell,
+  IconMessage,
+  IconUser,
+  IconLogout2,
+  IconArrowNarrowRight,
+  IconMovie,
+  IconLayoutGrid,
+  IconBaselineDensityMedium,
+  IconThumbUp,
+  IconCalendarMonth,
+  IconSearch,
+  IconAdjustmentsAlt,
+  IconSettings,
 };
