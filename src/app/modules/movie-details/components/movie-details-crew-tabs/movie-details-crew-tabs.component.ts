@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TmdbService } from '../../../../core/services/tmdb.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
     imports: [],
     templateUrl: './movie-details-crew-tabs.component.html'
 })
-export class MovieDetailsCrewTabsComponent implements OnInit {
+export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
     @Input() id: number = 0;
     crew: any[] = [];
     limit: number = 11;
@@ -17,6 +17,12 @@ export class MovieDetailsCrewTabsComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadCrew();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['id'] && !changes['id'].firstChange) {
+            this.loadCrew();
+        }
     }
 
     loadCrew() {
@@ -33,5 +39,9 @@ export class MovieDetailsCrewTabsComponent implements OnInit {
 
     showAllCrew() {
         this.showAll = true;
+    }
+
+    showLessCrew() {
+        this.showAll = false;
     }
 }

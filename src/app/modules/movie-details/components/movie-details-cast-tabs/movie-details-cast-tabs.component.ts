@@ -39,4 +39,8 @@ export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
     showAllActors() {
         this.showAll = true;
     }
+
+    showLessActors() {
+        this.showAll = false;
+    }
 }

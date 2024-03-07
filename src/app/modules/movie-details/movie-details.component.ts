@@ -24,9 +24,9 @@ import { MovieDetailsRatingComponent } from './components/movie-details-rating/m
 export class MovieDetailsComponent implements OnInit, OnDestroy {
     @Input() currentMovie: any;
 
-    genres: { id: number; name: string }[] = [];
+    public genres: { id: number; name: string }[] = [];
 
-    activeTab: string = 'cast';
+    public activeTab: string = 'cast';
 
     private destroy$: Subject<void> = new Subject();
 
