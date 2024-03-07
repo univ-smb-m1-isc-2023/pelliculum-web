@@ -1,14 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, HostListener, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { HomeCarouselBackdropComponent } from './home-carousel-backdrop/home-carousel-backdrop.component';
 import { HomeCarouselPostersComponent } from './home-carousel-posters/home-carousel-posters.component';
 import { NgIf } from '@angular/common';
@@ -26,37 +16,67 @@ import { NgIf } from '@angular/common';
 export class HomeCarouselComponent implements OnChanges, OnDestroy {
 
   @Input() movies: any[] = [];
-  movieSelected: any = null;
-  indexMovie: number = 1;
+
+  public movieSelected: any = null;
+  public indexMovie: number = 1;
 
   private carousel: number = 0;
+  private skipTime: number = 8000;
+  private isAnimating: boolean = false;
 
-  constructor() {
-  }
+  constructor() {}
 
-  private startCarousel() {
+  /**
+   * Start the carousel, setting the first movie and starting the automatic navigation
+   */
+  private startCarousel(): void {
     this.movieSelected = this.movies[0];
     this.movies = [this.movies[this.movies.length - 1], ...this.movies];
-    this.carousel = setInterval(() => this.navigateToMovie(this.indexMovie+1), 8000);
+    this.carousel = setInterval(() => this.navigateToMovie(this.indexMovie+1), this.skipTime);
+  }
+
+  /**
+   * Reset the carousel, clearing the interval and starting it again
+   */
+  private resetCarousel(): void {
+    clearInterval(this.carousel);
+    this.carousel = setInterval(() => this.navigateToMovie(this.indexMovie+1), this.skipTime);
   }
 
   private navigateToMovie(index: number): void {
-    const difference: number = index - this.indexMovie;
-    this.indexMovie = index;                                                                                     
+    this.indexMovie = index;
     this.movieSelected = this.movies[index];
+    // Remove first element of movies and add it to the end
 
   }
 
+  /**
+   * Navigate to the next or previous movie
+   * This function is triggered by the keyboard event on the posters
+   * It resets the carousel to avoid the automatic navigation
+   * @param direction {string} - The direction to navigate (prev or next)
+   * @private
+   */
   private navigate(direction: 'prev' | 'next'): void {
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+    setTimeout(() => this.isAnimating = false, 300);
     this.navigateToMovie(direction === 'next' ? this.indexMovie + 1 : this.indexMovie - 1);
+    this.resetCarousel();
   }
 
-  public onSelectMovie(movie: any){
+  /**
+   * Select a movie from the carousel and navigate to its details
+   * This function is triggered by the click event on the posters
+   * @param movie {any} - The movie to select
+   */
+  public onSelectMovie(movie: any): void {
     this.navigateToMovie(this.movies.indexOf(movie));
+    this.resetCarousel();
   }
 
   @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
+  handleKeyboardEvent(event: KeyboardEvent): void {
     if (event.key === 'ArrowRight') this.navigate('next');
     else if (event.key === 'ArrowLeft') this.navigate('prev');
   }
@@ -65,9 +85,8 @@ export class HomeCarouselComponent implements OnChanges, OnDestroy {
     if (changes['movies'] && this.movies.length > 0) this.startCarousel();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     clearInterval(this.carousel);
   }
-
 
 }
