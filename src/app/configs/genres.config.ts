@@ -1,78 +1,97 @@
-export const genres: { id: number; name: string }[] = [
+export const genres: { id: number; name: string, icon: string }[] = [
     {
         id: 28,
-        name: 'Action'
+        name: 'Action',
+        icon: 'bomb'
     },
     {
         id: 12,
-        name: 'Aventure'
+        name: 'Aventure',
+        icon: 'trekking'
     },
     {
         id: 16,
-        name: 'Animation'
+        name: 'Animation',
+        icon: 'brush'
     },
     {
         id: 35,
-        name: 'Comédie'
+        name: 'Comédie',
+        icon: 'mood-smile'
     },
     {
         id: 80,
-        name: 'Crime'
+        name: 'Crime',
+        icon: 'slice'
     },
     {
         id: 99,
-        name: 'Documentaire'
+        name: 'Documentaire',
+        icon: 'deer'
     },
     {
         id: 18,
-        name: 'Drame'
+        name: 'Drame',
+        icon: 'masks-theater'
     },
     {
         id: 10751,
-        name: 'Familial'
+        name: 'Familial',
+        icon: 'friends'
     },
     {
         id: 14,
-        name: 'Fantastique'
+        name: 'Fantastique',
+        icon: 'wand'
     },
     {
         id: 36,
-        name: 'Histoire'
+        name: 'Histoire',
+        icon: 'building-castle'
     },
     {
         id: 27,
-        name: 'Horreur'
+        name: 'Horreur',
+        icon: 'pumpkin-scary'
     },
     {
         id: 10402,
-        name: 'Musique'
+        name: 'Musique',
+        icon: 'music'
     },
     {
         id: 9648,
-        name: 'Mystère'
+        name: 'Mystère',
+        icon: 'question-mark'
     },
     {
         id: 10749,
-        name: 'Romance'
+        name: 'Romance',
+        icon: 'hearts'
     },
     {
         id: 878,
-        name: 'Sci-Fi'
+        name: 'Sci-Fi',
+        icon: 'rocket'
     },
     {
         id: 10770,
-        name: 'Téléfilm'
+        name: 'Téléfilm',
+        icon: 'device-tv'
     },
     {
         id: 53,
-        name: 'Thriller'
+        name: 'Thriller',
+        icon: 'mood-suprised'
     },
     {
         id: 10752,
-        name: 'Guerre'
+        name: 'Guerre',
+        icon: 'tank'
     },
     {
         id: 37,
-        name: 'Western'
+        name: 'Western',
+        icon: 'lasso'
     }
 ];
