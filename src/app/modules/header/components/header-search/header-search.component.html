@@ -34,7 +34,7 @@
         @for (movie of movies; track movie.id){
 
         <!-- Movie -->
-        <div class="dropdown-item flex flex-row px-2 space-x-2">
+        <div class="dropdown-item flex flex-row px-2 space-x-2 " [ngClass]="{'border-b rounded-b-none border-custom-border' : !$last}">
 
             <!-- Poster -->
             <img [src]="getPosterUrl(movie.poster_path)" (error)="onPosterError($event)" alt="{{movie.title}}" class="object-fill h-24 rounded-lg"/>
