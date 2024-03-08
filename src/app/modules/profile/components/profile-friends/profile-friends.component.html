@@ -1,9 +1,11 @@
 <div class="space-y-6">
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-row justify-between items-center">
         <p>follower / follow / reciproque</p>
         <!-- Add Friend Button -->
-        <label class="btn btn-rounded w-1/6 hover:bg-primary bg-transparent border border-custom-border items-center justify-between" for="modal-2">
-            <p>Ajouter un ami</p>
+        <label
+            class="btn btn-rounded w-1/6 hover:bg-primary bg-transparent border border-custom-border items-center justify-between"
+            for="modal-2">
+            <p class="truncate">Ajouter un ami</p>
             <tabler-icon name="user-plus"></tabler-icon>
         </label>
     </div>
@@ -16,85 +18,63 @@
             <!--Header -->
             <thead>
             <tr>
-                <th class="w-4/12">Nom</th>
-                <th>Visionnages</th>
-                <th>Critiques</th>
-                <th>Listes</th>
-                <th>Likes</th>
-                <th></th>
+                <th class="w-3/12">Nom</th>
+                <th class="w-2/12">Visionnages</th>
+                <th class="w-2/12">Critiques</th>
+                <th class="w-2/12">Listes</th>
+                <th class="w-2/12">Likes</th>
+                <th class="w-1/12"></th>
             </tr>
             </thead>
 
             <!--Body -->
             <tbody>
-            <tr>
-                <th class="flex space-x-2">
-                    <div class="avatar avatar-md cursor-pointer">
-                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
-                             class="border-2 border-transparent" />
-                    </div>
-                    <div>
-                        <p class="text-white cursor-pointer hover:text-primary transition-all">RealDragonMA</p>
-                        <p class="text-xs font-normal">1 Follower, 3 Follows</p>
+                @for (user of friends; track user) {
+                    <tr>
+                        <th class="flex space-x-2">
+                            <div class="avatar avatar-md cursor-pointer">
+                                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
+                                     class="border-2 border-transparent" />
+                            </div>
+                            <div>
+                                <p class="text-white cursor-pointer hover:text-primary transition-all">{{user.username}}</p>
+                                <p class="text-xs font-normal">1 Follower, 3 Follows</p>
 
-                    </div>
+                            </div>
 
-                </th>
-                <td>
-                    <div class="group flex items-center space-x-2 cursor-pointer w-min">
-                        <p class="group-hover:text-white">3</p>
-                        <tabler-icon name="eye-check" class="mb-0.5"></tabler-icon>
-                    </div>
-                </td>
-                <td>4</td>
-                <td>0</td>
-                <td>10</td>
-                <td class="flex justify-end">
-                    <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
-                </td>
-            </tr>
-            <tr>
-                <th class="flex space-x-2">
-                    <div class="avatar avatar-md cursor-pointer">
-                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
-                             class="border-2 border-transparent" />
-                    </div>
-                    <div>
-                        <p class="text-white">RealDragonMA</p>
-                        <p class="text-xs font-normal">1 Follower, 3 Follows</p>
+                        </th>
+                        <td>
+                            <div class="group flex items-center space-x-2 cursor-pointer w-min pl-1">
+                                <tabler-icon name="eye-check" ></tabler-icon>
+                                <p class="group-hover:text-white">3</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group flex items-center space-x-2 cursor-pointer w-min pl-1">
+                                <tabler-icon name="article" ></tabler-icon>
+                                <p class="group-hover:text-white">3</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group flex items-center space-x-2 cursor-pointer w-min pl-1">
+                                <tabler-icon name="list"></tabler-icon>
+                                <p class="group-hover:text-white">3</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="group flex items-center space-x-2 cursor-pointer w-min pl-1">
+                                <tabler-icon name="heart"></tabler-icon>
+                                <p class="group-hover:text-white">3</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex justify-end">
+                                <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
+                            </div>
+                        </td>
+                    </tr>
+                }
 
-                    </div>
-
-                </th>
-                <td>3</td>
-                <td>4</td>
-                <td>0</td>
-                <td>10</td>
-                <td class="flex justify-end">
-                    <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
-                </td>
-            </tr>
-            <tr>
-                <th class="flex space-x-2">
-                    <div class="avatar avatar-md cursor-pointer">
-                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
-                             class="border-2 border-transparent" />
-                    </div>
-                    <div>
-                        <p class="text-white">RealDragonMA</p>
-                        <p class="text-xs font-normal">1 Follower, 3 Follows</p>
-
-                    </div>
-
-                </th>
-                <td>3</td>
-                <td>4</td>
-                <td>0</td>
-                <td>10</td>
-                <td class="flex justify-end">
-                    <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
-                </td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -110,9 +90,10 @@
     <div class="modal-content flex flex-col gap-5 max-w-3xl pl-4">
         <label for="modal-2" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
         <h2 class="text-xl">Ajouter un nouvel ami</h2>
-        <input class="input" placeholder="Nom d'utilisateur" [(ngModel)]="friendName"/>
+        <input class="input" placeholder="Nom d'utilisateur" [(ngModel)]="friendName" />
         <div class="flex gap-3">
-            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFriend()">Envoyer la demande</label>
+            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFriend()">Envoyer la
+                demande</label>
         </div>
     </div>
 </div>

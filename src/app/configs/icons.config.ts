@@ -15,7 +15,10 @@ import {
   IconUserPlus,
   IconCircleCheckFilled,
   IconCircleXFilled,
-  IconEyeCheck
+  IconEyeCheck,
+  IconArticle,
+  IconList,
+  IconHeart
 } from 'angular-tabler-icons/icons';
 
 export const icons = {
@@ -35,5 +38,8 @@ export const icons = {
   IconUserPlus,
   IconCircleCheckFilled,
   IconCircleXFilled,
-  IconEyeCheck
+  IconEyeCheck,
+  IconArticle,
+  IconList,
+  IconHeart
 };
