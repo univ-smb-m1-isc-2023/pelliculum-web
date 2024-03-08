@@ -11,50 +11,89 @@
 
     <!-- Table Friends -->
     <div class="flex w-full overflow-x-auto">
-        <table class="table-compact table max-w-4xl">
+        <table class="table-compact table max-w-full">
+
+            <!--Header -->
             <thead>
             <tr>
-                <th>Nom</th>
-                <th>Where</th>
-                <th>Description</th>
-                <th>Amount</th>
+                <th class="w-4/12">Nom</th>
+                <th>Visionnages</th>
+                <th>Critiques</th>
+                <th>Listes</th>
+                <th>Likes</th>
+                <th></th>
             </tr>
             </thead>
+
+            <!--Body -->
             <tbody>
             <tr>
-                <th>
+                <th class="flex space-x-2">
                     <div class="avatar avatar-md cursor-pointer">
                         <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
                              class="border-2 border-transparent" />
                     </div>
+                    <div>
+                        <p class="text-white cursor-pointer hover:text-primary transition-all">RealDragonMA</p>
+                        <p class="text-xs font-normal">1 Follower, 3 Follows</p>
+
+                    </div>
+
                 </th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
+                <td>
+                    <div class="group flex items-center space-x-2 cursor-pointer w-min">
+                        <p class="group-hover:text-white">3</p>
+                        <tabler-icon name="eye-check" class="mb-0.5"></tabler-icon>
+                    </div>
+                </td>
+                <td>4</td>
+                <td>0</td>
+                <td>10</td>
+                <td class="flex justify-end">
+                    <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
+                </td>
             </tr>
             <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
+                <th class="flex space-x-2">
+                    <div class="avatar avatar-md cursor-pointer">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
+                             class="border-2 border-transparent" />
+                    </div>
+                    <div>
+                        <p class="text-white">RealDragonMA</p>
+                        <p class="text-xs font-normal">1 Follower, 3 Follows</p>
+
+                    </div>
+
+                </th>
+                <td>3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>10</td>
+                <td class="flex justify-end">
+                    <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
+                </td>
             </tr>
             <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-            </tr>
-            <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-            </tr>
-            <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
+                <th class="flex space-x-2">
+                    <div class="avatar avatar-md cursor-pointer">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
+                             class="border-2 border-transparent" />
+                    </div>
+                    <div>
+                        <p class="text-white">RealDragonMA</p>
+                        <p class="text-xs font-normal">1 Follower, 3 Follows</p>
+
+                    </div>
+
+                </th>
+                <td>3</td>
+                <td>4</td>
+                <td>0</td>
+                <td>10</td>
+                <td class="flex justify-end">
+                    <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -71,9 +110,9 @@
     <div class="modal-content flex flex-col gap-5 max-w-3xl pl-4">
         <label for="modal-2" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
         <h2 class="text-xl">Ajouter un nouvel ami</h2>
-        <input class="input" placeholder="Nom d'utilisateur" />
+        <input class="input" placeholder="Nom d'utilisateur" [(ngModel)]="friendName"/>
         <div class="flex gap-3">
-            <label for="modal-2" class="btn btn-block hover:bg-primary transition-all">Envoyer la demande</label>
+            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFriend()">Envoyer la demande</label>
         </div>
     </div>
 </div>

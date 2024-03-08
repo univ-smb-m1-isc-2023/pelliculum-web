@@ -102,4 +102,23 @@ export class UserService {
         this.setUsername();
         await this.router.navigateByUrl('/');
     }
+
+    /**
+     * Get the user's friends
+     * @returns {Promise<any>} - The user's friends
+     */
+    public async getFriends(): Promise<any> {
+        return this.axiosService.get(`/users/${this.getUsername()}/friends`);
+    }
+
+    /**
+     * Add a friend
+     * @param username {string} - The friend's username
+     * @returns {Promise<any>} - The response from the server
+     */
+    public async addFriend(username: string): Promise<any> {
+        return this.axiosService.post(`/users/${this.getUsername()}/friends/${username}`);
+
+    }
+
 }
