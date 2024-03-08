@@ -3,6 +3,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { UserService } from '../../../../core/services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Notyf } from 'notyf';
+import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Component({
   selector: 'app-profile-friends',
