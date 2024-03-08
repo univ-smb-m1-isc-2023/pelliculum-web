@@ -19,7 +19,9 @@ export class ProfileFriendsComponent implements OnInit {
   private notyf: Notyf = new Notyf();
 
   protected friendName: string = '';
-  protected friends: any[] = [];
+  protected contacts: any[] = [];
+  protected followers: any[] = [];
+  protected follows: any[] = [];
 
   constructor(
     private userService: UserService,
@@ -27,8 +29,18 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getFollows().then(r => this.friends = r);
-    this.userService.getFollowers().then(r => console.log('followers' + r));
+    this.userService.getFollows().then(r => {
+      this.follows = r
+      this.contacts = this.follows;
+    });
+    this.userService.getFollowers().then(r => this.followers = r);
+  }
+
+  switchFollowers(): void {
+    this.contacts = this.followers;
+  }
+  switchFollows(): void {
+    this.contacts = this.follows;
   }
 
   protected addFriend(): void {

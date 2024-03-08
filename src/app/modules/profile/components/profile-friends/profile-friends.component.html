@@ -1,6 +1,9 @@
 <div class="space-y-6">
     <div class="flex flex-row justify-between items-center">
-        <p>follower / follow / reciproque</p>
+        <div class="flex flex-row space-x-2">
+            <p (click)="switchFollows()">follows</p>
+            <p (click)="switchFollowers()">followers</p>
+        </div>
         <!-- Add Friend Button -->
         <label
             class="btn btn-rounded w-1/6 hover:bg-primary bg-transparent border border-custom-border items-center justify-between"
@@ -29,7 +32,7 @@
 
             <!--Body -->
             <tbody>
-                @for (user of friends; track user) {
+                @for (user of contacts; track user) {
                     <tr>
                         <th class="flex space-x-2">
                             <div class="avatar avatar-md cursor-pointer">
