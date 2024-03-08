@@ -3,14 +3,14 @@
     <div class="relative flex space-x-16 rounded-lg bg-[#161616] py-2.5 pb-1.5 pr-16">
         <div id="marker" class="absolute -bottom-0 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
         <a (click)="selectTab('classic'); indicator($event)" class="tracking-w tab cursor-pointer" id="classic">Profil</a>
-        <a (click)="selectTab('friends'); indicator($event)" class="tracking-w tab cursor-pointer">Amis</a>
+        <a (click)="selectTab('friends'); indicator($event)" class="tracking-w tab cursor-pointer" id="friends">Amis</a>
         <a (click)="selectTab('watchlist'); indicator($event)" class="tracking-w tab cursor-pointer">Watchlist</a>
         <a (click)="selectTab('list'); indicator($event)" class="tracking-w tab cursor-pointer">Listes</a>
         <a (click)="selectTab('films'); indicator($event)" class="tracking-w tab cursor-pointer">Films</a>
     </div>
 
     <!-- Active Tab Content -->
-    <div class="pl-1 pt-10">
+    <div class="px-12 pt-10">
         <ng-content></ng-content>
     </div>
 </div>

@@ -9,16 +9,17 @@ import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { UserService } from '../../core/services/user.service';
 import { ProfileClassicComponent } from './components/profile-classic/profile-classic.component';
+import { ProfileFriendsComponent } from './components/profile-friends/profile-friends.component';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
-  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent],
+  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })
 export class ProfileComponent implements OnInit {
-    activeTab: string = 'customization';
+    activeTab: string = '';
     movie: any;
 
     constructor(

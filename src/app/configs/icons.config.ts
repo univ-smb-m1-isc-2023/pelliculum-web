@@ -12,6 +12,7 @@ import {
   IconThumbUp,
   IconUser,
   IconSettings,
+  IconUserPlus
 } from 'angular-tabler-icons/icons';
 
 export const icons = {
@@ -28,4 +29,5 @@ export const icons = {
   IconSearch,
   IconAdjustmentsAlt,
   IconSettings,
+  IconUserPlus
 };

@@ -1,0 +1,79 @@
+<div class="space-y-6">
+    <div class="flex flex-row justify-between">
+        <p>follower / follow / reciproque</p>
+        <!-- Add Friend Button -->
+        <label class="btn btn-rounded w-1/6 hover:bg-primary bg-transparent border border-custom-border items-center justify-between" for="modal-2">
+            <p>Ajouter un ami</p>
+            <tabler-icon name="user-plus"></tabler-icon>
+        </label>
+    </div>
+
+
+    <!-- Table Friends -->
+    <div class="flex w-full overflow-x-auto">
+        <table class="table-compact table max-w-4xl">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Where</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>
+                    <div class="avatar avatar-md cursor-pointer">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo"
+                             class="border-2 border-transparent" />
+                    </div>
+                </th>
+                <td>Cy Ganderton</td>
+                <td>Quality Control Specialist</td>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td>Hart Hagerty</td>
+                <td>Desktop Support Technician</td>
+                <td>Purple</td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>Brice Swyre</td>
+                <td>Tax Accountant</td>
+                <td>Red</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal Friend Add -->
+
+
+<input class="modal-state" id="modal-2" type="checkbox" />
+<div class="modal w-screen">
+    <label class="modal-overlay" for="modal-2"></label>
+    <div class="modal-content flex flex-col gap-5 max-w-3xl pl-4">
+        <label for="modal-2" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+        <h2 class="text-xl">Ajouter un nouvel ami</h2>
+        <input class="input" placeholder="Nom d'utilisateur" />
+        <div class="flex gap-3">
+            <label for="modal-2" class="btn btn-block hover:bg-primary transition-all">Envoyer la demande</label>
+        </div>
+    </div>
+</div>
