@@ -25,10 +25,8 @@ export class ProfileComponent implements OnInit {
         protected user: UserService
     ) {}
 
-    ngOnInit() {
-        this.tmdbService.getTopMovies().subscribe((data: any) => {
-            this.movie = data.results[0];
-        });
+    async ngOnInit(): Promise<void> {
+        this.movie = (await this.tmdbService.getTopMovies())[0];
     }
 
     selectTab(tab: string) {

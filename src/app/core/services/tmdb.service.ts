@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { genres } from '../../configs/genres.config';
+import axios from 'axios';
 
 @Injectable({
     providedIn: 'root'
@@ -13,9 +14,9 @@ export class TmdbService {
 
     constructor(private http: HttpClient) {}
 
-    getTopMovies() {
-        const url = `${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`;
-        return this.http.get(url);
+    public async getTopMovies(): Promise<any> {
+        const results = (await axios.get(`${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`)).data.results;
+        return results;
     }
 
     searchMovies(term: string): Observable<any> {

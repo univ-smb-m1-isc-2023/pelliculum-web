@@ -45,10 +45,10 @@
             </div>
 
             <div class="grid grid-cols-4 gap-x-20">
-                <app-movie-list [list]="watchlist"></app-movie-list>
-                <app-movie-list [list]="watchlist"></app-movie-list>
-                <app-movie-list [list]="watchlist"></app-movie-list>
-                <app-movie-list [list]="watchlist"></app-movie-list>
+                <app-movie-list *ngIf="watchlist" [list]="watchlist"></app-movie-list>
+                <app-movie-list *ngIf="watchlist" [list]="watchlist"></app-movie-list>
+                <app-movie-list *ngIf="watchlist" [list]="watchlist"></app-movie-list>
+                <app-movie-list *ngIf="watchlist" [list]="watchlist"></app-movie-list>
             </div>
         </div>
 
