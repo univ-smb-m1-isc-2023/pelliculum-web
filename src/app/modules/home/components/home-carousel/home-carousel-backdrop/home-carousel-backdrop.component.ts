@@ -11,7 +11,6 @@ import { StarsComponent } from '../../../../../shared/components/stars/stars.com
     styles: ``
 })
 export class HomeCarouselBackdropComponent implements OnChanges {
-
     @Input() movie: any;
     genres: { id: number; name: string }[] = [];
 

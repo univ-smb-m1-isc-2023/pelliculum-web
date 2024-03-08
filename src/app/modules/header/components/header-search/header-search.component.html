@@ -1,4 +1,4 @@
-<div class="relative dropdown">
+<div class="dropdown relative">
     <!-- Barre de recherche -->
     <div class="flex items-start">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -11,7 +11,7 @@
         </span>
 
         <label tabindex="0">
-            <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher un film" (input)="searchMovies()" class="input w-screen border transition border-custom-border bg-transparent p-4 pl-10 text-white focus:border-[#505050] focus:outline-none" />
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Rechercher un film" (input)="searchMovies()" class="input w-screen border border-custom-border bg-transparent p-4 pl-10 text-white transition focus:border-[#505050] focus:outline-none" />
         </label>
 
         <span class="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -34,17 +34,15 @@
         @for (movie of movies; track movie.id){
 
         <!-- Movie -->
-        <div class="dropdown-item flex flex-row px-2 space-x-2 " [ngClass]="{'border-b rounded-b-none border-custom-border' : !$last}">
-
+        <div class="dropdown-item flex flex-row space-x-2 px-2" [ngClass]="{'border-b rounded-b-none border-custom-border' : !$last}">
             <!-- Poster -->
-            <img [src]="getPosterUrl(movie.poster_path)" (error)="onPosterError($event)" alt="{{movie.title}}" class="object-fill h-24 rounded-lg"/>
+            <img [src]="getPosterUrl(movie.poster_path)" (error)="onPosterError($event)" alt="{{movie.title}}" class="h-24 rounded-lg object-fill" />
 
             <!-- Information -->
             <div class="flex flex-col">
                 <p>{{ movie.title }}</p>
                 <p class="text-xs text-gray-500">{{movie.release_date}}</p>
             </div>
-
         </div>
         }
     </div>

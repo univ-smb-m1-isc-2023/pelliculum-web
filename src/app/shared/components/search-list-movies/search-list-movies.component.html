@@ -1,38 +1,38 @@
 <!-- Page -->
-<div class="z-0 flex flex-col space-y-4 px-12">
+<div class="z-10 flex select-none flex-col space-y-4 px-12">
     <!-- Search bar -->
-    <div class="z-0 flex flex-row items-center">
+    <div class="z-10 flex flex-row items-center">
         <div class="flex h-16 w-full flex-row items-center rounded-lg bg-[#161616] px-4 shadow-lg">
             <div class="flex w-full flex-row items-center space-x-6">
-                <button (click)="sortByLikes()" class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
+                <button (click)="toggleSortByLikes()" class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
                     <i-tabler [ngClass]="{'text-[#C8291E]': isSortingByLikes, 'transition': true}" name="thumb-up" />
                     <p>Trier par note</p>
                 </button>
-                <button (click)="sortByDate()" class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
+                <button (click)="toggleSortByDate()" class="flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm">
                     <i-tabler [ngClass]="{'text-[#C8291E]': isSortingByDate, 'transition': true}" name="calendar-month" />
                     <p>Trier par sortie</p>
                 </button>
 
-                <div class="popover">
-                    <label class="popover-trigger cursor-pointer flex flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm my-2" tabindex="0">
+                <div class="popover z-10">
+                    <label class="popover-trigger my-2 flex cursor-pointer flex-row items-center justify-center space-x-1 rounded-lg bg-[#242220] px-4 py-2 shadow-sm" tabindex="0">
                         <i-tabler [ngClass]="{'text-[#C8291E]': isSortingByGenre, 'transition': true}" name="adjustments-alt" />
                         <p>Trier par genre</p>
                     </label>
-                    <div class="popover-content w-max" tabindex="0">
+                    <div class="popover-content z-10 w-max" tabindex="0">
                         <div class="popover-arrow"></div>
-                        <div class="p-1 grid grid-cols-3 text-sm gap-y-2">
+                        <div class="grid grid-cols-3 gap-y-2 p-1 text-sm">
                             @for (genre of genres; track genre.id) {
-                                <label (change)="sortByGenre(genre.id)" class="flex cursor-pointer items-center space-x-2">
-                                    <input type="checkbox" class="checkbox" />
-                                    <span>{{ genre.name }}</span>
-                                </label>
+                            <label (change)="toggleSortByGenre(genre.id)" class="flex cursor-pointer items-center space-x-2">
+                                <input type="checkbox" class="checkbox" />
+                                <span>{{ genre.name }}</span>
+                            </label>
                             }
                         </div>
                     </div>
                 </div>
 
                 <div class="relative">
-                    <input [(ngModel)]="searchTerm" (ngModelChange)="filterMovies()" class="input items-center rounded-lg border-none bg-[#242220] px-4 py-2 pl-11 shadow-sm" placeholder="Rechercher" />
+                    <input [(ngModel)]="searchTerm" (ngModelChange)="sortAndFilterMovies()" class="input items-center rounded-lg border-none bg-[#242220] px-4 py-2 pl-11 shadow-sm" placeholder="Rechercher" />
                     <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <i-tabler name="search" />
                     </div>
@@ -47,79 +47,77 @@
 
     <!-- Movies -->
     <div class="flex flex-col items-center justify-center space-y-6">
-
         @if(isViewGrid){
-            <!-- Grid -->
-            <div class="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-7 sm:grid-cols-6 xs:grid-cols-4 gap-x-4 gap-y-4">
-                @for(movie of movies; track movie.id){
-                    <app-poster [posterPath]="movie.poster_path" />
-                }
-            </div>
+        <!-- Grid -->
+        <div class="grid gap-x-4 gap-y-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10">
+            @for(movie of movies; track movie.id){
+            <app-poster [posterPath]="movie.poster_path" />
+            }
+        </div>
         } @else {
-            <!-- List -->
-            <div class="grid xl:grid-cols-4 lg:grid-cols-8 md:grid-cols-7 sm:grid-cols-6 xs:grid-cols-4 gap-x-4 gap-y-4">
-                @for(movie of movies; track movie.id){
-                    <div class="flex space-x-4 w-full truncate">
-                        <!-- Poster -->
-                        <img
-                            class="w-32 rounded-lg"
-                            style="
-            box-shadow:
-                rgba(150, 150, 150, 0.1) 0px 50px 100px -20px,
-                rgba(200, 200, 200, 0.05) 0px 30px 60px -30px;
-        "
-                            [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + movie.poster_path"
-                            alt="e" />
+        <!-- List -->
+        <div class="grid w-full grid-flow-row-dense gap-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-4 2xl:grid-cols-5">
+            @for(movie of movies; track movie.id){
+            <div class="flex w-full space-x-4 truncate">
+                <!-- Poster -->
+                <img
+                    class="w-32 rounded-lg"
+                    style="
+                        box-shadow:
+                            rgba(150, 150, 150, 0.1) 0px 50px 100px -20px,
+                            rgba(200, 200, 200, 0.05) 0px 30px 60px -30px;
+                    "
+                    [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + movie.poster_path"
+                    alt="e" />
 
-                        <!-- Rating part -->
-                        <div class="flex flex-col space-y-1 py-1 w-full truncate">
+                <!-- Rating part -->
+                <div class="flex w-full flex-col space-y-1 truncate py-1">
+                    <!-- Movie title and rating -->
+                    <div class="flex w-full flex-col space-y-0.5">
+                        <!-- Movie title and release date -->
+                        <div class="flex select-text flex-col items-baseline">
+                            <p class="truncate text-lg font-semibold">{{ movie.title }}</p>
+                            <span class="text-xs font-normal text-primary">{{ movie.release_date.slice(0, 4) }}</span>
+                        </div>
 
-                            <!-- Movie title and rating -->
-                            <div class="flex w-full flex-col space-y-0.5">
-                                <!-- Movie title and release date -->
-                                <div class="flex flex-col items-baseline">
-                                    <p class="truncate text-lg font-semibold">{{ movie.title }}</p>
-                                    <span class="text-xs font-normal text-primary">{{ movie.release_date.slice(0, 4) }}</span>
-                                </div>
-
-                                <!-- Rating -->
-                                <div class="flex flex-row items-center space-x-1.5">
-                                    <app-stars size="w-4" [stars]="5" [value]="movie.average_vote" />
-                                    <p class="text-xs">{{movie.average_vote}}</p>
-                                </div>
-                            </div>
-
-                            <!-- User comment -->
-                            <p class="line-clamp-3">blabla</p>
-
-                            <!-- Likes and comments -->
-                            <div class="flex flex-grow items-end">
-                                <div class="flex flex-row space-x-6">
-                                    <!-- Likes -->
-                                    <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
-                                        </svg>
-                                        <p>156</p>
-                                    </div>
-
-                                    <!-- Comments -->
-                                    <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
-                                            <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
-                                        </svg>
-                                        <p>78</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Rating -->
+                        <div class="flex flex-row items-center space-x-1.5">
+                            <app-stars size="w-4" [stars]="5" [value]="movie.vote_average" />
+                            <p class="text-xs">{{movie.vote_average}}</p>
                         </div>
                     </div>
 
-                }
+                    <!-- User comment -->
+                    <p class="line-clamp-3">blabla</p>
+
+                    <!-- Likes and comments -->
+                    <div class="flex flex-grow items-end">
+                        <div class="flex flex-row space-x-6">
+                            <!-- Likes -->
+                            <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                                </svg>
+                                <p>156</p>
+                            </div>
+
+                            <!-- Comments -->
+                            <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+                                    <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+                                </svg>
+                                <p>78</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            }
+        </div>
         }
 
         <!-- Pagination -->
