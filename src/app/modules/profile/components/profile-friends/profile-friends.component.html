@@ -5,7 +5,7 @@
         <label
             class="btn btn-rounded w-1/6 hover:bg-primary bg-transparent border border-custom-border items-center justify-between"
             for="modal-2">
-            <p class="truncate">Ajouter un ami</p>
+            <p class="truncate">Suivre un utilisateur</p>
             <tabler-icon name="user-plus"></tabler-icon>
         </label>
     </div>
@@ -89,11 +89,10 @@
     <label class="modal-overlay" for="modal-2"></label>
     <div class="modal-content flex flex-col gap-5 max-w-3xl px-14">
         <label for="modal-2" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-        <h2 class="text-xl">Ajouter un nouvel ami</h2>
+        <h2 class="text-xl">Suivre un nouvel utilisateur</h2>
         <input class="input" placeholder="Nom d'utilisateur" [(ngModel)]="friendName" />
         <div class="flex gap-3">
-            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFriend()">Envoyer la
-                demande</label>
+            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFriend()">Confirmer</label>
         </div>
     </div>
 </div>

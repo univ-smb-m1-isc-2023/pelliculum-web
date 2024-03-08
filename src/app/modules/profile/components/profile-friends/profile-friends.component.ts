@@ -27,7 +27,8 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getFriends().then(r => this.friends = r);
+    this.userService.getFollows().then(r => this.friends = r);
+    this.userService.getFollowers().then(r => console.log('followers' + r));
   }
 
   protected addFriend(): void {

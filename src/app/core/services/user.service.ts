@@ -104,11 +104,19 @@ export class UserService {
     }
 
     /**
-     * Get the user's friends
+     * Get the user's follows
      * @returns {Promise<any>} - The user's friends
      */
-    public async getFriends(): Promise<any> {
+    public async getFollows(): Promise<any> {
         return this.axiosService.get(`/users/${this.getUsername()}/follows`);
+    }
+
+    /**
+     * Get the user's followers
+     * @returns {Promise<any>} - The user's followers
+     */
+    public async getFollowers(): Promise<any> {
+        return this.axiosService.get(`/users/${this.getUsername()}/followers`);
     }
 
     /**
