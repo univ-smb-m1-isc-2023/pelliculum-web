@@ -10,7 +10,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
 export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
     @Input() id: number = 0;
     crew: any[] = [];
-    limit: number = 11;
+    limit: number = 12;
     showAll: boolean = false;
 
     constructor(private tmdbService: TmdbService) {}
@@ -28,7 +28,7 @@ export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
     loadCrew() {
         this.tmdbService.getMovieCredits(this.id).subscribe(
             (response: any) => {
-                this.crew = response.crew;
+                this.crew = response.crew.slice(0, 20);
                 console.log('Crew:', this.crew);
             },
             (error: any) => {
