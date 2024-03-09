@@ -4,12 +4,14 @@ import { genres } from '../../configs/genres.config';
 import { slugify } from '../../core/utils/utilities.utils';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { NgOptimizedImage } from '@angular/common';
+import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 
 @Component({
   selector: 'app-movies-search',
   standalone: true,
   imports: [
     NgOptimizedImage,
+    SearchListMoviesComponent,
   ],
   templateUrl: './movies-search.component.html'
 })

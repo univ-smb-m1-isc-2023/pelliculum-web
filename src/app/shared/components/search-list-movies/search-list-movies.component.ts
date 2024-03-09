@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PosterComponent } from '../poster/poster.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
@@ -16,7 +16,7 @@ import { StarsComponent } from '../stars/stars.component';
 })
 export class SearchListMoviesComponent {
     public list: any;
-    public movies: any[] = [];
+    @Input() public movies: any[] = [];
     public moviesCopy: any[] = [];
     public searchTerm: string = '';
 
@@ -39,7 +39,9 @@ export class SearchListMoviesComponent {
             likes: this.randomLikes(),
             movies: result
         };
-        this.movies = this.list.movies;
+        if(this.movies.length === 0){
+            this.movies = this.list.movies;
+        }
         this.movies.map((movie) => {
             movie.vote_average = (movie.vote_average / 2).toFixed(1);
         });
