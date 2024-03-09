@@ -9,7 +9,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
 export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
     @Input() id: number = 0;
     cast: any[] = [];
-    limit: number = 11;
+    limit: number = 12;
     showAll: boolean = false;
 
     constructor(private tmdbService: TmdbService) {}
@@ -27,7 +27,7 @@ export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
     loadCast() {
         this.tmdbService.getMovieCredits(this.id).subscribe(
             (response: any) => {
-                this.cast = response.cast;
+                this.cast = response.cast.slice(0, 20);
                 console.log('Cast:', this.cast);
             },
             (error: any) => {
@@ -38,5 +38,9 @@ export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
 
     showAllActors() {
         this.showAll = true;
+    }
+
+    showLessActors() {
+        this.showAll = false;
     }
 }

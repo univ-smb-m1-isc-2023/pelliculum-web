@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TmdbService } from '../../../../core/services/tmdb.service';
 
 @Component({
@@ -7,10 +7,10 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
     imports: [],
     templateUrl: './movie-details-crew-tabs.component.html'
 })
-export class MovieDetailsCrewTabsComponent implements OnInit {
+export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
     @Input() id: number = 0;
     crew: any[] = [];
-    limit: number = 11;
+    limit: number = 12;
     showAll: boolean = false;
 
     constructor(private tmdbService: TmdbService) {}
@@ -19,10 +19,16 @@ export class MovieDetailsCrewTabsComponent implements OnInit {
         this.loadCrew();
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['id'] && !changes['id'].firstChange) {
+            this.loadCrew();
+        }
+    }
+
     loadCrew() {
         this.tmdbService.getMovieCredits(this.id).subscribe(
             (response: any) => {
-                this.crew = response.crew;
+                this.crew = response.crew.slice(0, 20);
                 console.log('Crew:', this.crew);
             },
             (error: any) => {
@@ -33,5 +39,9 @@ export class MovieDetailsCrewTabsComponent implements OnInit {
 
     showAllCrew() {
         this.showAll = true;
+    }
+
+    showLessCrew() {
+        this.showAll = false;
     }
 }
