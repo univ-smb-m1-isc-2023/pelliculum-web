@@ -7,6 +7,7 @@ import { LoginComponent } from './modules/authentication/login/login.component';
 import { SignupComponent } from './modules/authentication/signup/signup.component';
 import { WatchlistComponent } from './modules/watchlist/watchlist.component';
 import { MovieDetailsComponent } from './modules/movie-details/movie-details.component';
+import { MoviesSearchComponent } from './modules/movies-search/movies-search.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: 'game/classic', component: GameClassicComponent },
     { path: 'watchlist', component: WatchlistComponent },
     { path: 'list/:id', component: MovieListComponent },
-    { path: 'movie-details/:id', component: MovieDetailsComponent }
+    { path: 'movie-details/:id', component: MovieDetailsComponent },
+    { path: 'films/:genre', component: MoviesSearchComponent}
 ];

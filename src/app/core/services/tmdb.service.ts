@@ -69,4 +69,8 @@ export class TmdbService {
         const url = `${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}`;
         return this.http.get(url);
     }
+
+    public async getMoviesByGenre(genreId: number): Promise<any> {
+        return (await axios.get(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}&language=fr&with_genres=${genreId}`)).data.results;
+    }
 }

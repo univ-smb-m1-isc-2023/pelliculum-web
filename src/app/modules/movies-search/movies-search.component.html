@@ -1,0 +1,12 @@
+<div class="relative">
+
+    <div class="opacity-75">
+        <img class="w-full object-cover" [ngSrc]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movies[0].backdrop_path" alt="Poster" [width]="1920" [height]="800" priority/>
+        <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
+        <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
+    </div>
+
+    <div class="pt-20 px-12">
+        {{genre?.text}}
+    </div>
+</div>
