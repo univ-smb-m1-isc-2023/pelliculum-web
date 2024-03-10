@@ -112,6 +112,14 @@ export class UserService {
     }
 
     /**
+     * Get the user's follows details
+     * @returns {Promise<any>} - The user's follows details
+     */
+    public async getFollowsDetails(): Promise<any> {
+        return this.axiosService.get(`/users/${this.getUsername()}/follows-details`);
+    }
+
+    /**
      * Get the user's followers
      * @returns {Promise<any>} - The user's followers
      */
@@ -120,13 +128,32 @@ export class UserService {
     }
 
     /**
-     * Add a friend
-     * @param username {string} - The friend's username
+     * Get the user's followers details
+     * @returns {Promise<any>} - The user's followers details
+     */
+    public async getFollowersDetails(): Promise<any> {
+        return this.axiosService.get(`/users/${this.getUsername()}/followers-details`);
+    }
+
+
+
+    /**
+     * Add a follow
+     * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async addFriend(username: string): Promise<any> {
+    public async addFollow(username: string): Promise<any> {
         return this.axiosService.post(`/users/${this.getUsername()}/follows/${username}`);
 
+    }
+
+    /**
+     * Remove a follow
+     * @param username {string} - The follows username
+     * @returns {Promise<any>} - The response from the server
+     */
+    public async removeFollow(username: string): Promise<any> {
+        return this.axiosService.delete(`/users/${this.getUsername()}/unfollows/${username}`);
     }
 
 }

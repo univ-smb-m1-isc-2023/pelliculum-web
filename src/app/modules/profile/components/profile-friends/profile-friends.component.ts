@@ -42,12 +42,13 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
   public getNetwork(): void {
-    this.userService.getFollows().then(r => {
+    this.userService.getFollowsDetails().then(r => {
       this.follows = r;
       this.contacts = this.follows;
       this.shownContacts = this.contacts;
+      console.log(r)
     });
-    this.userService.getFollowers().then(r => this.followers = r);
+    this.userService.getFollowersDetails().then(r => this.followers = r);
   }
 
   public selectTab(tabName: string) {
@@ -84,14 +85,25 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
 
-  protected addFriend(): void {
-    this.userService.addFriend(this.friendName).then(
+  protected addFollow(): void {
+    this.userService.addFollow(this.friendName).then(
       r => {
         this.notyf.success(r);
       },
     ).catch(
       r => this.notyf.error(r.response.data),
     );
+  }
+
+  protected removeFollow(username : string): void {
+    this.userService.removeFollow(username).then(
+      r => {
+        this.notyf.success(r);
+      },
+    ).catch(
+      r => this.notyf.error(r.response.data),
+    );
+
   }
 
 }

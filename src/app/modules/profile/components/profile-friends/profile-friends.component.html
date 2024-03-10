@@ -36,7 +36,6 @@
             <tr>
                 <th class="w-3/12">Nom</th>
                 <th class="w-2/12">Visionnages</th>
-                <th class="w-2/12">Critiques</th>
                 <th class="w-2/12">Listes</th>
                 <th class="w-2/12">Likes</th>
                 <th class="w-1/12"></th>
@@ -54,8 +53,10 @@
                             </div>
                             <div>
                                 <p class="text-white cursor-pointer hover:text-primary transition-all">{{user.username}}</p>
-                                <p class="text-xs font-normal">1 Follower, 3 Follows</p>
-
+                                <p class="text-xs font-normal">
+                                    {{user.followsCount}} abonnement{{user.followsCount > 1 ? 's' : ''}},
+                                    {{user.followersCount}} abonné{{user.followersCount > 1 ? 's' : ''}}
+                                </p>
                             </div>
 
                         </th>
@@ -65,15 +66,10 @@
                                 <p class="group-hover:text-white">3</p>
                             </div>
                         </td>
+
                         <td>
                             <div class="group flex items-center space-x-2 cursor-pointer w-min">
-                                <tabler-icon name="article" ></tabler-icon>
-                                <p class="group-hover:text-white">3</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="group flex items-center space-x-2 cursor-pointer w-min">
-                                <tabler-icon name="list"></tabler-icon>
+                                <tabler-icon name="list" class="text-blue-800"></tabler-icon>
                                 <p class="group-hover:text-white">3</p>
                             </div>
                         </td>
@@ -85,7 +81,7 @@
                         </td>
                         <td>
                             <div class="flex justify-end">
-                                <tabler-icon name="circle-check-filled" class="text-green-500"></tabler-icon>
+                                <tabler-icon name="circle-check-filled" class="text-green-500 cursor-pointer" (click)="removeFollow(user.username)"></tabler-icon>
                             </div>
                         </td>
                     </tr>
@@ -108,7 +104,7 @@
         <h2 class="text-xl">Suivre un nouvel utilisateur</h2>
         <input class="input" placeholder="Nom d'utilisateur" [(ngModel)]="friendName" />
         <div class="flex gap-3">
-            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFriend()">Confirmer</label>
+            <label class="btn btn-block hover:bg-primary transition-all" (click)="addFollow()">Confirmer</label>
         </div>
     </div>
 </div>
