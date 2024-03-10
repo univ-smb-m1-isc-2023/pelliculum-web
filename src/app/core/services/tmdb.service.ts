@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { genres } from '../../configs/genres.config';
 import axios from 'axios';
+import { Movie } from '../../shared/models/movie.model';
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +15,8 @@ export class TmdbService {
 
     constructor(private http: HttpClient) {}
 
-    public async getTopMovies(): Promise<any> {
-        return (await axios.get(`${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`)).data.results;
+    public async getTopMovies(): Promise<Movie[]> {
+        return Movie.fromJson((await axios.get(`${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`)).data.results);
     }
 
     searchMovies(term: string): Observable<any> {
@@ -69,7 +70,7 @@ export class TmdbService {
         return this.http.get(url);
     }
 
-    public async getMoviesByGenre(genreId: number): Promise<any> {
+    public async getMoviesByGenre(genreId: number): Promise<Movie[]> {
         return (await axios.get(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}&language=fr&with_genres=${genreId}`)).data.results;
     }
 }

@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnChanges, OnDestroy, SimpleChanges } f
 import { HomeCarouselBackdropComponent } from './home-carousel-backdrop/home-carousel-backdrop.component';
 import { HomeCarouselPostersComponent } from './home-carousel-posters/home-carousel-posters.component';
 import { NgIf } from '@angular/common';
+import { Movie } from '../../../../shared/models/movie.model';
 
 @Component({
     selector: 'app-home-carousel',
@@ -10,7 +11,7 @@ import { NgIf } from '@angular/common';
     templateUrl: './home-carousel.component.html'
 })
 export class HomeCarouselComponent implements OnChanges, OnDestroy {
-    @Input() movies: any[] = [];
+    @Input() movies: Movie[] = [];
 
     public movieSelected: any = null;
     public indexMovie: number = 1;
@@ -70,16 +71,18 @@ export class HomeCarouselComponent implements OnChanges, OnDestroy {
     }
 
     @HostListener('window:keydown', ['$event'])
-    handleKeyboardEvent(event: KeyboardEvent): void {
+    public handleKeyboardEvent(event: KeyboardEvent): void {
         if (event.key === 'ArrowRight') this.navigate('next');
         else if (event.key === 'ArrowLeft') this.navigate('prev');
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes['movies'] && this.movies.length > 0) this.startCarousel();
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes['movies'] && this.movies.length > 0){
+            this.startCarousel();
+        }
     }
 
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         clearInterval(this.carousel);
     }
 }

@@ -4,16 +4,7 @@
 
     <div class="flex flex-col space-y-14">
         <!-- Categories -->
-        <div class="flex flex-col space-y-6 px-12">
-            <div class="flex flex-col space-y-0">
-                <div class="flex flex-row items-center justify-between">
-                    <p class="text-2xl font-normal">Découvrez !</p>
-                    <a [routerLink]="'/films/tous-les-films'" class="cursor-pointer">Voir tous les films</a>
-                </div>
-                <div class="divider"></div>
-            </div>
-            <app-categories />
-        </div>
+        <app-home-discover/>
 
         <!-- Next release -->
         <div class="space-y-2 px-12">

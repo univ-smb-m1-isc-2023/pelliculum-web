@@ -19,6 +19,6 @@ export const routes: Routes = [
     { path: 'watchlist', component: WatchlistComponent },
     { path: 'list/:id', component: MovieListComponent },
     { path: 'films/:genre', component: MoviesSearchComponent},
-    { path: 'movie-details/:id', component: MovieDetailsComponent },
+    { path: 'film/:id', component: MovieDetailsComponent },
     { path: 'settings', component: SettingsComponent }
 ];
