@@ -12,6 +12,7 @@ import { slugify } from '../../../../../core/utils/utilities.utils';
   styles: ``,
 })
 export class CategoryButtonComponent implements OnInit {
+
   @Input() genre: { id: number; name: string, text: string, icon: string } | undefined;
   @Input() icon: string | undefined;
 

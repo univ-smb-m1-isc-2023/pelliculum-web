@@ -15,8 +15,7 @@ export class TmdbService {
     constructor(private http: HttpClient) {}
 
     public async getTopMovies(): Promise<any> {
-        const results = (await axios.get(`${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`)).data.results;
-        return results;
+        return (await axios.get(`${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`)).data.results;
     }
 
     searchMovies(term: string): Observable<any> {
