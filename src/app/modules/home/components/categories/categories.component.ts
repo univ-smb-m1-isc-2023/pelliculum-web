@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CategoryButtonComponent } from './category-button/category-button.component';
+import { genres } from '../../../../configs/genres.config';
 
 @Component({
     selector: 'app-categories',
@@ -8,4 +9,6 @@ import { CategoryButtonComponent } from './category-button/category-button.compo
     templateUrl: './categories.component.html',
     styles: ``
 })
-export class CategoriesComponent {}
+export class CategoriesComponent {
+  protected readonly genres = genres;
+}

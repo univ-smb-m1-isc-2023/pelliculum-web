@@ -34,30 +34,28 @@ export class HomeComponent implements OnInit {
         private responsive: BreakpointObserver
     ) {}
 
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         setTitle('Accueil');
-        this.tmdbService.getTopMovies().subscribe((data: any) => {
-            this.topMovies = data.results;
-            this.ratings = Array(8)
-                .fill(0)
-                .map((x, i) => ({
-                    movie: this.randomMovie(),
-                    user: this.randomFirstNameAndLastName(),
-                    date: this.randomDate(),
-                    rating: this.randomRating(),
-                    comment: this.randomComment(),
-                    likes: this.randomLikes(),
-                    comments: this.randomComments()
-                }));
-            this.watchlist = {
-                name: this.randomWatchlistName(),
-                comments: this.randomComments(),
+        this.topMovies = await this.tmdbService.getTopMovies();
+        this.ratings = Array(8)
+            .fill(0)
+            .map((x, i) => ({
+                movie: this.randomMovie(),
+                user: this.randomFirstNameAndLastName(),
+                date: this.randomDate(),
+                rating: this.randomRating(),
+                comment: this.randomComment(),
                 likes: this.randomLikes(),
-                movies: Array(6)
-                    .fill(0)
-                    .map((x, i) => this.randomMovie())
-            };
-        });
+                comments: this.randomComments()
+            }));
+        this.watchlist = {
+            name: this.randomWatchlistName(),
+            comments: this.randomComments(),
+            likes: this.randomLikes(),
+            movies: Array(6)
+                .fill(0)
+                .map((x, i) => this.randomMovie())
+        };
         this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
             this.upcomings = data.results.slice(0, 20);
         });

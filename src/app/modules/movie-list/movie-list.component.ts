@@ -5,11 +5,13 @@ import { BackdropComponent } from '../../shared/components/backdrop/backdrop.com
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { FormsModule } from '@angular/forms';
+import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-movie-list',
     standalone: true,
-    imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule],
+    imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule, SearchListMoviesComponent, NgIf],
     templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
@@ -26,18 +28,17 @@ export class MovieListComponent implements OnInit {
         private activatedRoute: ActivatedRoute
     ) {}
 
-    ngOnInit() {
+    async ngOnInit(): Promise<void> {
         //this.list = this.activatedRoute.snapshot.paramMap.get('id');
-        this.tmdbService.getTopMovies().subscribe((data: any) => {
-            this.list = {
-                name: this.randomWatchlistName(),
-                comments: this.randomComments(),
-                likes: this.randomLikes(),
-                movies: data.results
-            };
-            this.movies = this.list.movies;
-            this.moviesCopy = this.movies;
-        });
+        const results = await this.tmdbService.getTopMovies();
+        this.list = {
+            name: this.randomWatchlistName(),
+            comments: this.randomComments(),
+            likes: this.randomLikes(),
+            movies: results
+        };
+        this.movies = this.list.movies;
+        this.moviesCopy = this.movies;
     }
 
     randomComments() {

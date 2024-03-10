@@ -68,7 +68,7 @@ export class ProfileCustomizationTabComponent implements OnInit {
     }
 
     getUserProfilePicture() {
-        const username = this.user.getUsername(); // Assurez-vous d'avoir le nom d'utilisateur
+        const username = this.user.getUsername();
         this.imageUrl = `http://localhost:8080/profilePictures/${username}.jpeg`;
     }
 }
