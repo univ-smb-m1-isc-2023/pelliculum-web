@@ -93,5 +93,5 @@ export const genres: { id: number; name: string, text: string }[] = [
         id: 37,
         name: 'Western',
         text: "Des cowboys, des indiens, et des duels au soleil : bienvenue dans le Far West !"
-    }
+    },
 ];

@@ -15,8 +15,11 @@ import { StarsComponent } from '../stars/stars.component';
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
-    public list: any;
+
     @Input() public movies: any[] = [];
+    @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
+
+    public list: any;
     public moviesCopy: any[] = [];
     public searchTerm: string = '';
 
@@ -46,6 +49,11 @@ export class SearchListMoviesComponent {
             movie.vote_average = (movie.vote_average / 2).toFixed(1);
         });
         this.moviesCopy = [...this.movies];
+        console.log(this.movies);
+    }
+
+    protected isGenreSelected(genre: any): boolean {
+        return this.genreSelected?.id === genre.id
     }
 
     protected changeView(view: 'grid' | 'list'): void {

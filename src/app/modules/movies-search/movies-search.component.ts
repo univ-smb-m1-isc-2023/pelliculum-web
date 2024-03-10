@@ -24,8 +24,16 @@ export class MoviesSearchComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    const queryGenre: string = this.route.snapshot.paramMap.get('genre') || '';
-    this.genre = genres.find((genre) => slugify(genre.name) === queryGenre);
+    const queryGenre: string | undefined = this.route.snapshot.paramMap.get('genre') || undefined;
+    if(!queryGenre){
+      this.genre = {
+        id: 0,
+        name: 'Tous les films',
+        text: 'Ici, vous pouvez rechercher des films parmi toutes les catégories.'
+      }
+    }else{
+      this.genre = genres.find((genre) => slugify(genre.name) === queryGenre);
+    }
     if (!this.genre) return
     this.movies = await this.tmdbService.getMoviesByGenre(this.genre.id);
   }

@@ -23,7 +23,7 @@
                         <div class="grid grid-cols-3 gap-y-2 p-1 text-sm">
                             @for (genre of genres; track genre.id) {
                             <label (change)="toggleSortByGenre(genre.id)" class="flex cursor-pointer items-center space-x-2">
-                                <input type="checkbox" class="checkbox" />
+                                <input type="checkbox" class="checkbox" [checked]="isGenreSelected(genre)" [disabled]="isGenreSelected(genre)"/>
                                 <span>{{ genre.name }}</span>
                             </label>
                             }
@@ -56,12 +56,12 @@
         </div>
         } @else {
         <!-- List -->
-        <div class="grid w-full grid-flow-row-dense gap-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-4 2xl:grid-cols-5">
+        <div class="grid gap-8 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3">
             @for(movie of movies; track movie.id){
-            <div class="flex w-full space-x-4 truncate">
+            <div class="flex w-full space-x-4">
                 <!-- Poster -->
                 <img
-                    class="w-32 rounded-lg"
+                    class="max-w-fit min-w-44 rounded-lg"
                     style="
                         box-shadow:
                             rgba(150, 150, 150, 0.1) 0px 50px 100px -20px,
@@ -71,11 +71,11 @@
                     alt="e" />
 
                 <!-- Rating part -->
-                <div class="flex w-full flex-col space-y-1 truncate py-1">
+                <div class="flex w-full flex-col space-y-1 py-1">
                     <!-- Movie title and rating -->
-                    <div class="flex w-full flex-col space-y-0.5">
+                    <div class="flex flex-col space-y-0.5">
                         <!-- Movie title and release date -->
-                        <div class="flex select-text flex-col items-baseline">
+                        <div class="flex select-text flex-col">
                             <p class="truncate text-lg font-semibold">{{ movie.title }}</p>
                             <span class="text-xs font-normal text-primary">{{ movie.release_date.slice(0, 4) }}</span>
                         </div>
@@ -88,7 +88,7 @@
                     </div>
 
                     <!-- User comment -->
-                    <p class="line-clamp-3">blabla</p>
+                    <p class="line-clamp-4">{{movie.overview}}</p>
 
                     <!-- Likes and comments -->
                     <div class="flex flex-grow items-end">
