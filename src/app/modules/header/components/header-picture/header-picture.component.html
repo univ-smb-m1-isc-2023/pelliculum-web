@@ -15,14 +15,20 @@
             </div>
         </a>
 
-        <a class="dropdown-item text-sm" [routerLink]="'/watchlist'">
+        <a class="dropdown-item rounded-b-none text-sm" [routerLink]="'/watchlist'">
             <div class="flex items-center gap-2">
                 <i-tabler name="movie" />
                 <p>Films</p>
             </div>
         </a>
 
-        <div class="dropdown-divider" role="separator"></div>
+        <a class="dropdown-item rounded-t-none border-t border-custom-border text-sm" [routerLink]="'/settings'">
+            <div class="flex items-center gap-2">
+                <i-tabler name="settings" />
+                <p>Paramètres</p>
+            </div>
+        </a>
+
         <a class="dropdown-item text-sm">
             <button (click)="user.logout()" class="flex items-center gap-2">
                 <i-tabler name="logout2" />

@@ -48,9 +48,9 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
                         this.movies = [];
                         return;
                     }
-                    this.movies = data.results.slice(0,5);
+                    this.movies = data.results.slice(0, 5);
                     for (let i = 0; i < this.movies.length; i++) {
-                        this.movies[i].release_date = this.movies[i].release_date.slice(0,4)
+                        this.movies[i].release_date = this.movies[i].release_date.slice(0, 4);
                     }
                     console.log('Movies:', this.movies);
                 },
@@ -70,15 +70,7 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
         this.router.navigate(['/movie-details', movieId]);
     }
 
-
-    getPosterUrl(posterPath : string): string {
+    getPosterUrl(posterPath: string): string {
         return `https://image.tmdb.org/t/p/w220_and_h330_face${posterPath}`;
-    }
-
-    @HostListener('document:click', ['$event'])
-    onClickOutside(event : any) {
-        if (!this.dropdownList.nativeElement.contains(event.target)) {
-            this.movies = [];
-        }
     }
 }

@@ -148,7 +148,6 @@ jsconfig.json
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/*
-
 # Also ignore code styles because .editorconfig is used instead.
 .idea/codeStyles/
 .angular/

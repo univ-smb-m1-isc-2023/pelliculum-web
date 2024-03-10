@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 import { UserService } from './user.service';
+import { Response } from '../../shared/models/api-response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -17,10 +18,10 @@ export class AuthenticationService {
      * @param values {any} - The user's registration information
      */
     public async login(values: any): Promise<any> {
+        const response: Response = await this.axiosService.post('/auth/login', values);
         localStorage.clear();
-        const response = await this.axiosService.post('/auth/login', values);
-        this.user.setAuthToken(response.token);
-        this.user.setUsername(response.username);
+        this.user.setAuthToken(response.data.token);
+        this.user.setUsername(response.data.username);
     }
 
     /**
@@ -29,9 +30,9 @@ export class AuthenticationService {
      * @param values {any} - The user's registration information
      */
     public async register(values: any): Promise<any> {
-        const response = await this.axiosService.post('/auth/register', values);
+        const response: Response = await this.axiosService.post('/auth/register', values);
         localStorage.clear();
-        this.user.setAuthToken(response.token);
-        this.user.setUsername(response.username);
+        this.user.setAuthToken(response.data.token);
+        this.user.setUsername(response.data.username);
     }
 }
