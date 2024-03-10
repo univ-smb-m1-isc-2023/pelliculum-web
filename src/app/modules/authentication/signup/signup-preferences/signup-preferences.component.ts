@@ -3,11 +3,12 @@ import { SignupProgressionComponent } from '../signup-progression/signup-progres
 import { genres } from '../../../../configs/genres.config';
 import { NgClass } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 @Component({
     selector: 'app-signup-preferences',
     standalone: true,
-    imports: [SignupProgressionComponent, NgClass, ReactiveFormsModule],
+  imports: [SignupProgressionComponent, NgClass, ReactiveFormsModule, TablerIconsModule],
     templateUrl: './signup-preferences.component.html'
 })
 export class SignupPreferencesComponent implements OnInit {

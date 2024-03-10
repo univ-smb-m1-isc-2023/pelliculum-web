@@ -17,7 +17,7 @@ import { AuthenticationService } from '../../../core/services/authentication.ser
 export class LoginComponent {
     loginForm = new FormGroup({
         username: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required, Validators.minLength(8)])
+        password: new FormControl('', [Validators.required, Validators.minLength(4)])
     });
 
     constructor(
