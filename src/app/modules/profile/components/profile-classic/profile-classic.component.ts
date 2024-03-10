@@ -10,11 +10,12 @@ import { UserService } from '../../../../core/services/user.service';
     templateUrl: './profile-classic.component.html'
 })
 export class ProfileClassicComponent implements OnInit {
+
     protected follows: any[] = [];
 
     constructor(private userService: UserService) {}
 
-    ngOnInit() {
-        this.userService.getFollows().then((r) => (this.follows = r));
+    public async ngOnInit(): Promise<void> {
+        this.follows = (await this.userService.getFollows()).data
     }
 }

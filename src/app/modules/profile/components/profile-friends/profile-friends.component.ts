@@ -3,7 +3,6 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { UserService } from '../../../../core/services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Notyf } from 'notyf';
-import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 import { NgClass, NgIf } from '@angular/common';
 
 @Component({
@@ -13,6 +12,7 @@ import { NgClass, NgIf } from '@angular/common';
     templateUrl: './profile-friends.component.html'
 })
 export class ProfileFriendsComponent implements OnInit {
+
     private notyf: Notyf = new Notyf();
 
     protected friendName: string = '';
@@ -23,27 +23,26 @@ export class ProfileFriendsComponent implements OnInit {
     protected searchQuery: string = '';
     protected hoverState: { [username: string]: boolean } = {};
 
-    public activeTab: string = 'follows';
-    marker: HTMLDivElement | undefined;
+    public activeTab: 'follows' | 'followers' = 'follows';
+    public marker: HTMLDivElement | undefined;
 
     constructor(private userService: UserService) {}
 
-    public ngOnInit(): void {
-        this.getNetwork();
+    public async ngOnInit(): Promise<void> {
         this.initMarker();
+        await this.getNetwork();
     }
 
-    public getNetwork(): void {
-        this.userService.getFollowsDetails().then((r) => {
-            this.follows = r;
-            this.contacts = this.follows;
-            this.shownContacts = this.contacts;
-            console.log(r);
-        });
-        this.userService.getFollowersDetails().then((r) => (this.followers = r));
+    public async getNetwork(): Promise<void> {
+        const follows = (await this.userService.getFollowsDetails()).data;
+        const followers = (await this.userService.getFollowersDetails()).data;
+        this.follows = follows;
+        this.followers = followers;
+        this.contacts = follows;
+        this.shownContacts = this.contacts;
     }
 
-    public selectTab(tabName: string) {
+    public selectTab(tabName: 'followers' | 'follows'): void {
         this.activeTab = tabName;
     }
 
@@ -51,13 +50,6 @@ export class ProfileFriendsComponent implements OnInit {
         this.marker = document.getElementById('markerNetwork') as HTMLDivElement;
         const privateTab: HTMLDialogElement | null = document.getElementById('follows') as HTMLDialogElement;
         privateTab.click();
-    }
-
-    indicatorTab(e: any): void {
-        console.log(e);
-        if (!this.marker || !e) return;
-        this.marker.style.left = e.target.offsetLeft + 10 + 'px';
-        this.marker.style.width = e.target.offsetWidth - 18 + 'px';
     }
 
     public switchFollowers(): void {
@@ -79,18 +71,23 @@ export class ProfileFriendsComponent implements OnInit {
     protected addFollow(username: string): void {
         this.userService
             .addFollow(username)
-            .then((r) => {
-                this.notyf.success(r);
+            .then(r => {
+                console.log(r);
+                this.notyf.success(r)
             })
-            .catch((r) => this.notyf.error(r.response.data));
+            .catch(r => this.notyf.error(r.response.data));
     }
 
     protected removeFollow(username: string): void {
         this.userService
             .removeFollow(username)
-            .then((r) => {
-                this.notyf.success(r);
-            })
-            .catch((r) => this.notyf.error(r.response.data));
+            .then(r => this.notyf.success(r))
+            .catch(r => this.notyf.error(r.response.data));
+    }
+
+    protected indicatorTab(e: any): void {
+        if (!this.marker || !e) return;
+        this.marker.style.left = e.target.offsetLeft + 10 + 'px';
+        this.marker.style.width = e.target.offsetWidth - 18 + 'px';
     }
 }

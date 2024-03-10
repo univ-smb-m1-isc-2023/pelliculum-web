@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 import { Router } from '@angular/router';
+import { Response } from '../../shared/models/api-response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -68,7 +69,7 @@ export class UserService {
      * Get the user's profile information
      * @returns {Promise<any>} - The user's profile information
      */
-    public async get(): Promise<any> {
+    public async get(): Promise<Response> {
         return this.axiosService.get(`/users/${this.getUsername()}`);
     }
 
@@ -77,7 +78,7 @@ export class UserService {
      * @param data {any} - The user's updated profile information
      * @returns {Promise<any>} - The user's updated profile information
      */
-    public async update(data: any): Promise<any> {
+    public async update(data: any): Promise<Response> {
         return this.axiosService.put(`/users/${this.getUsername()}`, data);
     }
 
@@ -86,7 +87,7 @@ export class UserService {
      * @param file {File} - The user's profile picture
      * @returns {Promise<any>} - The response from the server
      */
-    public async updateProfilePicture(file: File): Promise<any> {
+    public async updateProfilePicture(file: File): Promise<Response> {
         const formData: FormData = new FormData();
         formData.append('file', file);
         return this.axiosService.post(`/users/${this.getUsername()}/profile-picture`, formData);
@@ -107,7 +108,7 @@ export class UserService {
      * Get the user's follows
      * @returns {Promise<any>} - The user's friends
      */
-    public async getFollows(): Promise<any> {
+    public async getFollows(): Promise<Response> {
         return this.axiosService.get(`/users/${this.getUsername()}/follows`);
     }
 
@@ -115,7 +116,7 @@ export class UserService {
      * Get the user's follows details
      * @returns {Promise<any>} - The user's follows details
      */
-    public async getFollowsDetails(): Promise<any> {
+    public async getFollowsDetails(): Promise<Response> {
         return this.axiosService.get(`/users/${this.getUsername()}/follows-details`);
     }
 
@@ -123,7 +124,7 @@ export class UserService {
      * Get the user's followers
      * @returns {Promise<any>} - The user's followers
      */
-    public async getFollowers(): Promise<any> {
+    public async getFollowers(): Promise<Response> {
         return this.axiosService.get(`/users/${this.getUsername()}/followers`);
     }
 
@@ -131,7 +132,7 @@ export class UserService {
      * Get the user's followers details
      * @returns {Promise<any>} - The user's followers details
      */
-    public async getFollowersDetails(): Promise<any> {
+    public async getFollowersDetails(): Promise<Response> {
         return this.axiosService.get(`/users/${this.getUsername()}/followers-details`);
     }
 
@@ -140,7 +141,7 @@ export class UserService {
      * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async addFollow(username: string): Promise<any> {
+    public async addFollow(username: string): Promise<Response> {
         return this.axiosService.post(`/users/${this.getUsername()}/follows/${username}`);
     }
 
@@ -149,7 +150,7 @@ export class UserService {
      * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async removeFollow(username: string): Promise<any> {
+    public async removeFollow(username: string): Promise<Response> {
         return this.axiosService.delete(`/users/${this.getUsername()}/unfollows/${username}`);
     }
 }

@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
         protected user: UserService
     ) {}
 
-    ngOnInit() {
+    public ngOnInit(): void {
         this.tmdbService.getTopMovies().subscribe((data: any) => {
             this.movie = data.results[0];
         });
