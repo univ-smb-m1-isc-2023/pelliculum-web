@@ -1,5 +1,5 @@
 <div class="grid gap-x-6 gap-y-6 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-3">
     @for(genre of genres; track genre.id){
-        <app-category-button category="{{genre.name}}" />
+        <app-category-button genre="{{genre}}" />
     }
 </div>

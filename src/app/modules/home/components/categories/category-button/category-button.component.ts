@@ -12,7 +12,7 @@ import { slugify } from '../../../../../core/utils/utilities.utils';
   styles: ``,
 })
 export class CategoryButtonComponent implements OnInit {
-  @Input() category: string | undefined;
+  @Input() genre: { id: number; name: string, text: string, icon: string } | undefined;
   @Input() icon: string | undefined;
 
   protected url: string | undefined;
@@ -20,7 +20,7 @@ export class CategoryButtonComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-    this.url = '/films/' + slugify(this.category || '')
+  public ngOnInit(): void {
+    this.url = '/films/' + slugify(this.genre?.name || '')
   }
 }
