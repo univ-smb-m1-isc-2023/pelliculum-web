@@ -21,7 +21,7 @@ export class ProfileClassicComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.userService.getFollows().then(r => console.log(r));
+    this.userService.getFollows().then(r => this.follows = r);
   }
 
 }
