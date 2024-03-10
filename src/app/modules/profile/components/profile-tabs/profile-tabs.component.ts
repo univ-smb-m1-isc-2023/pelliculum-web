@@ -10,7 +10,7 @@ import { NgClass } from '@angular/common';
 })
 export class ProfileTabsComponent implements OnInit {
     @Output() tabSelected = new EventEmitter<string>();
-    activeTab: string = 'customization';
+    activeTab: string = 'classic';
     borderClass = 'border-b-gray-50'; // Classe de bordure par défaut
 
     marker: HTMLDivElement | undefined;
@@ -19,7 +19,7 @@ export class ProfileTabsComponent implements OnInit {
 
     ngOnInit(): void {
         this.marker = document.getElementById('marker') as HTMLDivElement;
-        const privateTab: HTMLDialogElement | null = document.getElementById('profile-private-info') as HTMLDialogElement;
+        const privateTab: HTMLDialogElement | null = document.getElementById('classic') as HTMLDialogElement;
         privateTab.click();
     }
 

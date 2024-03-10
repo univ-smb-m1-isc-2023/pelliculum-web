@@ -6,16 +6,18 @@ import { NgIf } from '@angular/common';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { UserService } from '../../core/services/user.service';
+import { ProfileClassicComponent } from './components/profile-classic/profile-classic.component';
+import { ProfileFriendsComponent } from './components/profile-friends/profile-friends.component';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
-    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent],
+    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })
 export class ProfileComponent implements OnInit {
-    activeTab: string = 'customization';
+    activeTab: string = '';
     movie: any;
 
     constructor(
@@ -23,8 +25,10 @@ export class ProfileComponent implements OnInit {
         protected user: UserService
     ) {}
 
-    async ngOnInit(): Promise<void> {
-        this.movie = (await this.tmdbService.getTopMovies())[0];
+    public ngOnInit(): void {
+        this.tmdbService.getTopMovies().subscribe((data: any) => {
+            this.movie = data.results[0];
+        });
     }
 
     selectTab(tab: string) {

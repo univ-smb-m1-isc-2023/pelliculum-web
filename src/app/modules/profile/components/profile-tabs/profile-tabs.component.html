@@ -2,18 +2,15 @@
     <!-- Tabs -->
     <div class="relative flex space-x-16 rounded-lg bg-[#161616] py-2.5 pb-1.5 pr-16">
         <div id="marker" class="absolute -bottom-0 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Profil</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Amis</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Watchlist</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Listes</a>
-        <a (click)="selectTab('profile'); indicator($event)" class="tracking-w tab cursor-pointer">Films</a>
-        <div class="flex-grow"></div>
-        <a (click)="selectTab('customization'); indicator($event)" id="profile-private-info" class="tab cursor-pointer tracking-wider">Informations personnelles</a>
-        <a (click)="selectTab('security'); indicator($event)" class="tab cursor-pointer tracking-wider">Connexion et sécurité</a>
+        <a (click)="selectTab('classic'); indicator($event)" class="tracking-w tab cursor-pointer" id="classic" [ngClass]="{'text-white' : activeTab === 'classic'}">Profil</a>
+        <a (click)="selectTab('friends'); indicator($event)" class="tracking-w tab cursor-pointer" id="friends" [ngClass]="{'text-white' : activeTab === 'friends'}">Amis</a>
+        <a (click)="selectTab('watchlist'); indicator($event)" class="tracking-w tab cursor-pointer">Watchlist</a>
+        <a (click)="selectTab('list'); indicator($event)" class="tracking-w tab cursor-pointer">Listes</a>
+        <a (click)="selectTab('films'); indicator($event)" class="tracking-w tab cursor-pointer">Films</a>
     </div>
 
     <!-- Active Tab Content -->
-    <div class="pl-1 pt-10">
+    <div class="px-12 pt-10">
         <ng-content></ng-content>
     </div>
 </div>

@@ -22,9 +22,9 @@
     <div class="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-b from-transparent to-[#100F10]"></div>
 </div>
 
-<div class="z-0 -mt-16 w-full px-12">
+<div class="z-0 -mt-16 w-full px-20">
     <app-profile-tabs (tabSelected)="selectTab($event)">
-        <app-profile-security-tab *ngIf="activeTab === 'security'"></app-profile-security-tab>
-        <app-profile-customization-tab *ngIf="activeTab === 'customization'"></app-profile-customization-tab>
+        <app-profile-classic *ngIf="activeTab === 'classic'"></app-profile-classic>
+        <app-profile-friends *ngIf="activeTab === 'friends'"></app-profile-friends>
     </app-profile-tabs>
 </div>

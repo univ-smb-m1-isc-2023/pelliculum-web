@@ -1,9 +1,29 @@
-import { IconAdjustmentsAlt, IconArrowNarrowRight, IconBaselineDensityMedium, IconBell, IconCalendarMonth, IconLayoutGrid, IconLogout2, IconMessage, IconMovie, IconSearch, IconThumbUp, IconThumbUpFilled, IconLayoutList, IconUser } from 'angular-tabler-icons/icons';
+import {
+    IconAdjustmentsAlt,
+    IconArrowNarrowRight,
+    IconBaselineDensityMedium,
+    IconBell,
+    IconCalendarMonth,
+    IconLayoutGrid,
+    IconLogout2,
+    IconMessage,
+    IconMovie,
+    IconSearch,
+    IconThumbUp,
+    IconUser,
+    IconSettings,
+    IconUserPlus,
+    IconCircleCheckFilled,
+    IconCircleXFilled,
+    IconEyeCheck,
+    IconArticle,
+    IconList,
+    IconHeart
+} from 'angular-tabler-icons/icons';
 
 export const icons = {
     IconBell,
     IconMessage,
-    IconThumbUpFilled,
     IconUser,
     IconLogout2,
     IconArrowNarrowRight,
@@ -13,6 +33,13 @@ export const icons = {
     IconThumbUp,
     IconCalendarMonth,
     IconSearch,
-    IconLayoutList,
-    IconAdjustmentsAlt
+    IconAdjustmentsAlt,
+    IconSettings,
+    IconUserPlus,
+    IconCircleCheckFilled,
+    IconCircleXFilled,
+    IconEyeCheck,
+    IconArticle,
+    IconList,
+    IconHeart
 };

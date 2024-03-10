@@ -10,22 +10,21 @@ import { NgClass } from '@angular/common';
 export class MovieDetailsTabsComponent implements OnInit {
     @Output() tabSelected = new EventEmitter<string>();
     activeTab: string = 'cast';
-    borderClass = 'border-b-gray-50';
 
     marker: HTMLDivElement | undefined;
 
     constructor() {}
 
     ngOnInit(): void {
+        this.activeTab = 'cast';
         this.marker = document.getElementById('marker') as HTMLDivElement;
-        const castTab: HTMLDialogElement | null = document.getElementById('profile-private-info') as HTMLDialogElement;
+        const castTab: HTMLDialogElement | null = document.getElementById('cast-crew-info') as HTMLDialogElement;
         castTab.click();
     }
 
     selectTab(tabName: string) {
         this.activeTab = tabName;
         this.tabSelected.emit(this.activeTab);
-        this.borderClass = this.activeTab === 'cast' ? 'border-b-primary' : 'border-b-gray-50';
     }
 
     indicator(e: any): void {
