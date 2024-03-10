@@ -19,17 +19,16 @@
     </div>
 
 
-    <!-- Friends -->
+    <!-- Follows -->
     <div class="space-y-0.5">
-        <p class="text-sm">Amis</p>
+        <p class="text-sm">Abonnements</p>
         <div class="border-t border-custom-border pt-1 flex space-x-1">
-            <div class="avatar avatar-md cursor-pointer">
-                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="border-2 border-transparent" />
-            </div>
-            <div class="avatar avatar-md cursor-pointer">
-                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="border-2 border-transparent" />
-            </div>
+            @for (user of follows; track user){
 
+            }
+            <div class="avatar avatar-md cursor-pointer">
+                <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="border-2 border-transparent" />
+            </div>
         </div>
     </div>
 </div>

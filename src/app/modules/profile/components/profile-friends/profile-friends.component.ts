@@ -35,8 +35,7 @@ export class ProfileFriendsComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.getNetwork();
