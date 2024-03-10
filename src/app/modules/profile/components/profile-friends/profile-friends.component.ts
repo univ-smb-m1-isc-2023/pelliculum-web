@@ -4,7 +4,7 @@ import { UserService } from '../../../../core/services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Notyf } from 'notyf';
 import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-profile-friends',
@@ -13,6 +13,7 @@ import { NgClass } from '@angular/common';
     TablerIconsModule,
     FormsModule,
     NgClass,
+    NgIf,
   ],
   templateUrl: './profile-friends.component.html',
 })
@@ -26,6 +27,7 @@ export class ProfileFriendsComponent implements OnInit {
   protected followers: any[] = [];
   protected follows: any[] = [];
   protected searchQuery: string = '';
+  protected hoverState: { [username: string]: boolean } = {};
 
   public activeTab: string = 'follows';
   marker: HTMLDivElement | undefined;
@@ -85,8 +87,8 @@ export class ProfileFriendsComponent implements OnInit {
   }
 
 
-  protected addFollow(): void {
-    this.userService.addFollow(this.friendName).then(
+  protected addFollow(username : string): void {
+    this.userService.addFollow(username).then(
       r => {
         this.notyf.success(r);
       },
