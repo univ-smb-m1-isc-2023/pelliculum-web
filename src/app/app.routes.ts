@@ -18,5 +18,5 @@ export const routes: Routes = [
     { path: 'watchlist', component: WatchlistComponent },
     { path: 'list/:id', component: MovieListComponent },
     { path: 'movie-details/:id', component: MovieDetailsComponent },
-    { path: 'settings', component : SettingsComponent}
+    { path: 'settings', component: SettingsComponent }
 ];

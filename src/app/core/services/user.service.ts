@@ -135,8 +135,6 @@ export class UserService {
         return this.axiosService.get(`/users/${this.getUsername()}/followers-details`);
     }
 
-
-
     /**
      * Add a follow
      * @param username {string} - The follows username
@@ -144,7 +142,6 @@ export class UserService {
      */
     public async addFollow(username: string): Promise<any> {
         return this.axiosService.post(`/users/${this.getUsername()}/follows/${username}`);
-
     }
 
     /**
@@ -155,5 +152,4 @@ export class UserService {
     public async removeFollow(username: string): Promise<any> {
         return this.axiosService.delete(`/users/${this.getUsername()}/unfollows/${username}`);
     }
-
 }

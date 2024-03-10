@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileTabsComponent } from './components/profile-tabs/profile-tabs.component';
 import { ProfileSecurityTabComponent } from './components/profile-security-tab/profile-security-tab.component';
-import {
-  ProfileCustomizationTabComponent,
-} from './components/profile-customization-tab/profile-customization-tab.component';
+import { ProfileCustomizationTabComponent } from './components/profile-customization-tab/profile-customization-tab.component';
 import { NgIf } from '@angular/common';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
@@ -14,7 +12,7 @@ import { ProfileFriendsComponent } from './components/profile-friends/profile-fr
 @Component({
     selector: 'app-profile',
     standalone: true,
-  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent],
+    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })

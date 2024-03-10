@@ -4,24 +4,17 @@ import { StarsComponent } from '../../../../shared/components/stars/stars.compon
 import { UserService } from '../../../../core/services/user.service';
 
 @Component({
-  selector: 'app-profile-classic',
-  standalone: true,
-  imports: [
-    PosterComponent,
-    StarsComponent,
-  ],
-  templateUrl: './profile-classic.component.html'
+    selector: 'app-profile-classic',
+    standalone: true,
+    imports: [PosterComponent, StarsComponent],
+    templateUrl: './profile-classic.component.html'
 })
-export class ProfileClassicComponent implements OnInit{
+export class ProfileClassicComponent implements OnInit {
+    protected follows: any[] = [];
 
-  protected follows : any[] = [];
+    constructor(private userService: UserService) {}
 
-  constructor(
-    private userService: UserService,
-  ) {}
-
-  ngOnInit() {
-    this.userService.getFollows().then(r => this.follows = r);
-  }
-
+    ngOnInit() {
+        this.userService.getFollows().then((r) => (this.follows = r));
+    }
 }

@@ -1,14 +1,4 @@
-import {
-    Component,
-    EventEmitter,
-    HostListener,
-    Input,
-    OnChanges,
-    OnDestroy,
-    OnInit,
-    Output,
-    SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { PosterComponent } from '../../../../../shared/components/poster/poster.component';
 import { NgClass } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -21,12 +11,11 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     styles: ``
 })
 export class HomeCarouselPostersComponent implements OnInit, OnChanges {
-
     @Input() movies: any[] = [];
     @Input() currentMovie: any = null;
     @Input() indexMovie: number = 0;
 
-    @Output() selectMovie: any = new EventEmitter<any>()
+    @Output() selectMovie: any = new EventEmitter<any>();
 
     currentPosition: number = 0;
 
@@ -39,9 +28,8 @@ export class HomeCarouselPostersComponent implements OnInit, OnChanges {
         this.observeBreakpoints();
     }
 
-
     public goToMovie(index?: number): void {
-        if(index) this.selectMovie.emit(this.movies[index])
+        if (index) this.selectMovie.emit(this.movies[index]);
         this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
     }
 
@@ -50,7 +38,6 @@ export class HomeCarouselPostersComponent implements OnInit, OnChanges {
         this.spaceBetweenPosters = spacing;
         this.currentPosition = (this.posterWidth + this.spaceBetweenPosters) * this.indexMovie;
     }
-
 
     observeBreakpoints(): void {
         this.responsive.observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge]).subscribe((result) => {
@@ -71,6 +58,6 @@ export class HomeCarouselPostersComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if(changes['currentMovie']) this.goToMovie()
+        if (changes['currentMovie']) this.goToMovie();
     }
 }
