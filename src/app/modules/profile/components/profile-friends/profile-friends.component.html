@@ -1,12 +1,14 @@
-<div class="space-y-2">
+<div class="space-y-4">
     <div class="flex flex-row justify-between items-center">
         <!-- Left Part -->
         <div class="flex flex-row space-x-10 items-center">
             <!-- Follows / Followers -->
-            <div class="flex space-x-2 text-sm">
-                <p (click)="switchFollows()">Abonnements</p>
-                <p (click)="switchFollowers()">Abonnés</p>
+            <div class="relative flex rounded-lg">
+                <div id="markerNetwork" class="absolute bottom-0.5 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
+                <a (click)="switchFollows(); indicatorTab($event)" class="tracking-w tab cursor-pointer" id="follows" [ngClass]="{'text-white' : activeTab === 'follows'}">Abonnements</a>
+                <a (click)="switchFollowers(); indicatorTab($event)" class="tracking-w tab cursor-pointer" id="followers" [ngClass]="{'text-white' : activeTab === 'followers'}">Abonnés</a>
             </div>
+
 
 
             <!-- Search Bar -->
