@@ -15,7 +15,6 @@ import { NgIf } from '@angular/common';
     styles: ``
 })
 export class HomeCarouselBackdropComponent implements OnChanges {
-
     @Input() movie: Movie | undefined;
 
     protected genres: Genre[] = [];

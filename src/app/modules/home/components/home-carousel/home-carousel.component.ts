@@ -77,7 +77,7 @@ export class HomeCarouselComponent implements OnChanges, OnDestroy {
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (changes['movies'] && this.movies.length > 0){
+        if (changes['movies'] && this.movies.length > 0) {
             this.startCarousel();
         }
     }

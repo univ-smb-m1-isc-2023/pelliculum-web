@@ -23,7 +23,7 @@
                         <div class="grid grid-cols-3 gap-y-2 p-1 text-sm">
                             @for (genre of genres; track genre.id) {
                             <label (change)="toggleSortByGenre(genre.id)" class="flex cursor-pointer items-center space-x-2">
-                                <input type="checkbox" class="checkbox" [checked]="isGenreSelected(genre)" [disabled]="isGenreSelected(genre)"/>
+                                <input type="checkbox" class="checkbox" [checked]="isGenreSelected(genre)" [disabled]="isGenreSelected(genre)" />
                                 <span>{{ genre.name }}</span>
                             </label>
                             }
@@ -61,7 +61,7 @@
             <div class="flex w-full space-x-4">
                 <!-- Poster -->
                 <img
-                    class="max-w-fit min-w-44 rounded-lg"
+                    class="min-w-44 max-w-fit rounded-lg"
                     style="
                         box-shadow:
                             rgba(150, 150, 150, 0.1) 0px 50px 100px -20px,

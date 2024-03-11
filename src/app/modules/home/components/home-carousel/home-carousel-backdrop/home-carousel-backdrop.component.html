@@ -20,7 +20,12 @@
 
         <!-- Rating and view button -->
         <h2 class="line-clamp-3 text-xs text-white md:text-sm lg:text-base xl:text-lg">{{ movie?.overview }}</h2>
-        <a *ngIf="movie" [routerLink]="movie!.getDetailsPageUrl()" class="w-fit rounded-lg border border-[#E62C1D] bg-[#C8291E] text-white shadow-xl transition hover:bg-[#E62C1D] sm:px-2 sm:py-1 sm:text-xs md:px-2 md:py-1 md:text-xs lg:px-3 lg:py-1.5 lg:text-sm xl:px-4 xl:py-2 xl:text-base">Voir plus</a>
+        <a
+            *ngIf="movie"
+            [routerLink]="movie!.getDetailsPageUrl()"
+            class="w-fit rounded-lg border border-[#E62C1D] bg-[#C8291E] text-white shadow-xl transition hover:bg-[#E62C1D] sm:px-2 sm:py-1 sm:text-xs md:px-2 md:py-1 md:text-xs lg:px-3 lg:py-1.5 lg:text-sm xl:px-4 xl:py-2 xl:text-base"
+            >Voir plus</a
+        >
     </section>
 
     <!-- Gradient bottom to site background color -->

@@ -12,7 +12,6 @@ import { NgClass, NgIf } from '@angular/common';
     templateUrl: './profile-friends.component.html'
 })
 export class ProfileFriendsComponent implements OnInit {
-
     private notyf: Notyf = new Notyf();
 
     protected friendName: string = '';
@@ -71,21 +70,21 @@ export class ProfileFriendsComponent implements OnInit {
     protected addFollow(username: string): void {
         this.userService
             .addFollow(username)
-            .then(r  => {
+            .then((r) => {
                 console.log(r);
-                if (this.follows.filter((f): boolean => f.username === r.data.username).length === 0){
-                    this.follows.push(r.data)
+                if (this.follows.filter((f): boolean => f.username === r.data.username).length === 0) {
+                    this.follows.push(r.data);
                 }
-                this.notyf.success(r)
+                this.notyf.success(r);
             })
-            .catch(r => this.notyf.error(r.response.data));
+            .catch((r) => this.notyf.error(r.response.data));
     }
 
     protected removeFollow(username: string): void {
         this.userService
             .removeFollow(username)
-            .then(r => this.notyf.success(r))
-            .catch(r => this.notyf.error(r.response.data));
+            .then((r) => this.notyf.success(r))
+            .catch((r) => this.notyf.error(r.response.data));
     }
 
     protected indicatorTab(e: any): void {
