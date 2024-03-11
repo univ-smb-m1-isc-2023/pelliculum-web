@@ -15,6 +15,8 @@ import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile
 import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';
 import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-tabs/movie-details-crew-tabs.component';
 import { MovieDetailsRatingComponent } from './components/movie-details-rating/movie-details-rating.component';
+import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
 
 @Component({
   selector: 'app-movie-details',
@@ -32,6 +34,8 @@ import { MovieDetailsRatingComponent } from './components/movie-details-rating/m
     MovieDetailsCastTabsComponent,
     MovieDetailsCrewTabsComponent,
     MovieDetailsRatingComponent,
+    TabsComponent,
+    TabComponent,
   ],
   templateUrl: './movie-details.component.html',
   styles: [`
@@ -44,6 +48,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   private id: number | null = null;
   protected genres: { id: number; name: string }[] = [];
   protected crew: any[] = [];
+  protected cast: any[] = [];
   protected director: string = '';
   protected activeTab: string = 'cast';
 
@@ -81,7 +86,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   private async loadCast(){
     if (!this.id) return;
     const response = await this.tmdbService.getMovieCredits(this.id);
-    this.crew = response.data.cast;
+    this.cast = response.data.cast;
   }
 
   private async loadMovieDetails() {

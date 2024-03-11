@@ -59,13 +59,14 @@
 
         <!-- Rest of the page -->
         <div class="flex flex-col xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
-            <app-movie-details-tabs (tabSelected)="selectTab($event)">
-                @if (activeTab === 'cast') {
-                    <app-movie-details-cast-tabs [id]="currentMovie.id"></app-movie-details-cast-tabs>
-                } @else {
-                    <app-movie-details-crew-tabs [id]="currentMovie.id"></app-movie-details-crew-tabs>
-                }
-            </app-movie-details-tabs>
+            <app-tabs tabsStyle="flex relative space-x-16 rounded-lg bg-[#161616] py-2.5 pb-1.5 pr-16">
+                <app-tab name="cast">
+                    <app-movie-details-cast-tabs [cast]="cast"></app-movie-details-cast-tabs>
+                </app-tab>
+                <app-tab name="crew">
+                    <app-movie-details-crew-tabs [crew]="crew"></app-movie-details-crew-tabs>
+                </app-tab>
+            </app-tabs>
             <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>

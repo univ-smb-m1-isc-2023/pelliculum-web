@@ -8,8 +8,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
     templateUrl: './movie-details-crew-tabs.component.html'
 })
 export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
-    @Input() id: number = 0;
-    crew: any[] = [];
+    @Input() crew: any[] = [];
     limit: number = 12;
     showAll: boolean = false;
 

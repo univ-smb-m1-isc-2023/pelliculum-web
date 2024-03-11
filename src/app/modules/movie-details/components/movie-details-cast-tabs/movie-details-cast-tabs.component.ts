@@ -7,8 +7,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
     templateUrl: './movie-details-cast-tabs.component.html'
 })
 export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
-    @Input() id: number = 0;
-    cast: any[] = [];
+    @Input() cast: any[] = [];
     limit: number = 12;
     showAll: boolean = false;
 
