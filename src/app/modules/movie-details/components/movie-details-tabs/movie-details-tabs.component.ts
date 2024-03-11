@@ -28,7 +28,7 @@ export class MovieDetailsTabsComponent implements OnInit {
     }
 
     indicator(e: any): void {
-        console.log(e);
+        // Ci gît un console.log ... (console.log(e);)
         if (!this.marker || !e) return;
         this.marker.style.left = e.target.offsetLeft + 'px';
         this.marker.style.width = e.target.offsetWidth + 'px';

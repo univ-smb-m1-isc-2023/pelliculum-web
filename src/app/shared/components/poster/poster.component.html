@@ -1,1 +1,7 @@
-<img class="{{style}} rounded-lg shadow" [src]="getPosterUrl()" alt="Poster" />
+<img *ngIf="movie"  [src]="Movie.getPosterUrl(movie)" [ngClass]="style" alt="{{movie.title}}" (error)="onPosterError($event)"/>
+
+<!--style="-->
+<!--box-shadow:-->
+<!--rgba(200, 41, 30, 0.03) 0px 13px 27px -5px,-->
+<!--rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;-->
+<!--"-->

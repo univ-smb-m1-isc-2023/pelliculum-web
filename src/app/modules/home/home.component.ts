@@ -20,11 +20,12 @@ import { HomeDiscoverComponent } from './components/home-discover/home-discover.
 import { Movie } from '../../shared/models/movie.model';
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
+import { HomeNextReleaseComponent } from './components/home-next-release/home-next-release.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, BackdropComponent, HomeCarouselBackdropComponent, PosterComponent, HomeCarouselPostersComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent, HomeCarouselComponent, HomeDiscoverComponent, TabsComponent, TabComponent],
+  imports: [RouterLink, RouterLinkActive, BackdropComponent, HomeCarouselBackdropComponent, PosterComponent, HomeCarouselPostersComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent, HomeCarouselComponent, HomeDiscoverComponent, TabsComponent, TabComponent, HomeNextReleaseComponent],
   templateUrl: './home.component.html',
   styles: ``,
 })
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit {
       this.upcomings = data.results.slice(0, 20);
     });
     this.responsive.observe(Breakpoints.Small).subscribe((result) => {
-      console.log(result.matches);
+      // Ci gît un console.log ... (console.log(result.matches);)
     });
   }
 
@@ -218,7 +219,7 @@ export class HomeComponent implements OnInit {
   randomId() {
     // Random between 1054774000 and 1054774547
     const id = Math.floor(1054774547 + Math.random() * 100);
-    console.log(id);
+    // Ci gît un console.log ... (console.log(id);)
     return id;
   }
 

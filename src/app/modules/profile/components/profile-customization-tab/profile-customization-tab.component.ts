@@ -49,11 +49,11 @@ export class ProfileCustomizationTabComponent implements OnInit {
             username: this.profileForm.get('username')?.value,
             email: this.profileForm.get('email')?.value
         });
-        console.log(response);
+        // Ci gît un console.log ... (console.log(response);)
 
         if (this.selectedFile) {
             const response = await this.userService.updateProfilePicture(this.selectedFile);
-            console.log(response);
+            // Ci gît un console.log ... (console.log(response);)
         }
     }
 

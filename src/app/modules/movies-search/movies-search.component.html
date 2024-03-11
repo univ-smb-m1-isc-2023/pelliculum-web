@@ -2,7 +2,7 @@
 
     <!-- Image of the "famous" movie of the genre -->
     <div class="relative">
-        <img class="w-full opacity-75 object-cover object-center h-96" [ngSrc]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movies[0].backdrop_path" alt="Poster" [width]="1920" [height]="800" priority/>
+        <app-backdrop [movie]="movies[0]" [style]="'w-full opacity-75 object-cover object-center h-96'"/>
         <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
         <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
         <div class="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-b from-transparent to-[#100F10]"></div>

@@ -52,7 +52,7 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
                     for (let i = 0; i < this.movies.length; i++) {
                         this.movies[i].release_date = this.movies[i].release_date.slice(0, 4);
                     }
-                    console.log('Movies:', this.movies);
+                    // Ci gît un console.log ... (console.log('Movies:', this.movies);)
                 },
                 (error) => {
                     console.error('Error:', error);

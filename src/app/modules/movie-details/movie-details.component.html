@@ -2,7 +2,7 @@
     <div class="flex flex-col space-y-56">
         <!-- Backdrop with gradients -->
         <div class="relative">
-            <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
+            <app-backdrop *ngIf="currentMovie" [style]="'opacity-75'" [movie]="currentMovie" />
             <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
 
             <!-- Poster and movie details -->

@@ -49,7 +49,7 @@ export class SearchListMoviesComponent {
             movie.vote_average = (movie.vote_average / 2).toFixed(1);
         });
         this.moviesCopy = [...this.movies];
-        console.log(this.movies);
+        // Ci gît un console.log ... (console.log(this.movies);)
     }
 
     protected isGenreSelected(genre: any): boolean {

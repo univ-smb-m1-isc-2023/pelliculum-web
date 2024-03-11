@@ -28,7 +28,7 @@ export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
         this.tmdbService.getMovieCredits(this.id).subscribe(
             (response: any) => {
                 this.cast = response.cast.slice(0, 20);
-                console.log('Cast:', this.cast);
+                // Ci gît un console.log ... (console.log('Cast:', this.cast);)
             },
             (error: any) => {
                 console.error('Error fetching movie credits:', error);

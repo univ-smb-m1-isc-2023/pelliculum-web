@@ -1,19 +1,30 @@
 import { Component, Input } from '@angular/core';
+import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
+import { IMovie, Movie } from '../../models/movie.model';
 
 @Component({
     selector: 'app-poster',
     standalone: true,
-    imports: [],
+  imports: [
+    NgClass,
+    NgIf,
+    NgOptimizedImage,
+  ],
     templateUrl: './poster.component.html',
     styles: ``
 })
 export class PosterComponent {
-    @Input() posterPath: string | undefined;
-    @Input() style: string | undefined;
+
+    @Input() public movie?: IMovie;
+    @Input() public style?: string;
+    @Input() public shadow?: boolean;
+
+    protected readonly Movie = Movie;
 
     constructor() {}
 
-    getPosterUrl(): string {
-        return `https://image.tmdb.org/t/p/w220_and_h330_face${this.posterPath}`;
+    public onPosterError(event: any): void {
+      event.target.src = 'https://dummyimage.com/40x60/eee/aaa.png&text=No+Image';
     }
+
 }

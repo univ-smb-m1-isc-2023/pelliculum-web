@@ -1,24 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { BackdropComponent } from '../backdrop/backdrop.component';
 import { RouterLink } from '@angular/router';
+import { PosterComponent } from '../poster/poster.component';
+import { slugify } from '../../../core/utils/utilities.utils';
 
 @Component({
     selector: 'app-movie-list',
     standalone: true,
-    imports: [BackdropComponent, RouterLink],
+  imports: [BackdropComponent, RouterLink, PosterComponent],
     templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent {
+
     @Input() list: any;
 
-    /**
-     * Return the name of the list with no accents and space replaced by hyphens
-     */
-    getListUrl() {
-        return this.list.name
-            .toLowerCase()
-            .replace(/ /g, '-')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
-    }
+  protected readonly slugify = slugify;
 }
