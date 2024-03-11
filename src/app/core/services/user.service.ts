@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 import { Router } from '@angular/router';
-import { Response } from '../../shared/models/api-response.model';
+import { Response } from '../../shared/models/response.model';
+import axios from 'axios';
+import { AuthenticationService } from './authentication.service';
+import { IUser } from '../../shared/models/user.model';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +12,8 @@ import { Response } from '../../shared/models/api-response.model';
 export class UserService {
     constructor(
         private router: Router,
-        private axiosService: AxiosService
+        private axiosService: AxiosService,
+        private authenticationService: AuthenticationService
     ) {}
 
     /**
@@ -31,32 +35,6 @@ export class UserService {
     }
 
     /**
-     * Set the authentication token in local storage
-     * @param token {string} - The authentication token
-     * If no token is provided, remove the token from local storage
-     */
-    public setAuthToken(token?: string): void {
-        if (token) {
-            localStorage.setItem('token', token);
-        } else {
-            localStorage.removeItem('token');
-        }
-    }
-
-    /**
-     * Set the username in local storage
-     * @param username {string} - The username
-     * If no username is provided, remove the username from local storage
-     */
-    public setUsername(username?: string): void {
-        if (username) {
-            localStorage.setItem('username', username);
-        } else {
-            localStorage.removeItem('username');
-        }
-    }
-
-    /**
      * Check if the user is logged in
      * If the authentication token is found, the user is logged in, else the user is not logged in
      * @returns {boolean} - True if the user is logged in, false otherwise
@@ -66,10 +44,19 @@ export class UserService {
     }
 
     /**
+     * Retrieve the user's profile image url
+     * @returns {string} - The user's profile image url
+     */
+    public getProfileImage(): string {
+        return `${axios.defaults.baseURL}/profilePictures/${this.getUsername()}.jpeg`
+    }
+
+
+    /**
      * Get the user's profile information
      * @returns {Promise<any>} - The user's profile information
      */
-    public async get(): Promise<Response> {
+    public async get(): Promise<Response<IUser>> {
         return this.axiosService.get(`/users/${this.getUsername()}`);
     }
 
@@ -78,7 +65,7 @@ export class UserService {
      * @param data {any} - The user's updated profile information
      * @returns {Promise<any>} - The user's updated profile information
      */
-    public async update(data: any): Promise<Response> {
+    public async update(data: any): Promise<Response<IUser>> {
         return this.axiosService.put(`/users/${this.getUsername()}`, data);
     }
 
@@ -87,7 +74,7 @@ export class UserService {
      * @param file {File} - The user's profile picture
      * @returns {Promise<any>} - The response from the server
      */
-    public async updateProfilePicture(file: File): Promise<Response> {
+    public async updateProfilePicture(file: File): Promise<Response<IUser>> {
         const formData: FormData = new FormData();
         formData.append('file', file);
         return this.axiosService.post(`/users/${this.getUsername()}/profile-picture`, formData);
@@ -99,8 +86,7 @@ export class UserService {
      * Redirect the user to the home page
      */
     public async logout(): Promise<void> {
-        this.setAuthToken();
-        this.setUsername();
+        await this.authenticationService.logout();
         await this.router.navigateByUrl('/');
     }
 
@@ -108,7 +94,7 @@ export class UserService {
      * Get the user's follows
      * @returns {Promise<any>} - The user's friends
      */
-    public async getFollows(): Promise<Response> {
+    public async getFollows(): Promise<Response<any>> {
         return this.axiosService.get(`/users/${this.getUsername()}/follows`);
     }
 
@@ -116,7 +102,7 @@ export class UserService {
      * Get the user's follows details
      * @returns {Promise<any>} - The user's follows details
      */
-    public async getFollowsDetails(): Promise<Response> {
+    public async getFollowsDetails(): Promise<Response<any>> {
         return this.axiosService.get(`/users/${this.getUsername()}/follows-details`);
     }
 
@@ -124,7 +110,7 @@ export class UserService {
      * Get the user's followers
      * @returns {Promise<any>} - The user's followers
      */
-    public async getFollowers(): Promise<Response> {
+    public async getFollowers(): Promise<Response<any>> {
         return this.axiosService.get(`/users/${this.getUsername()}/followers`);
     }
 
@@ -132,7 +118,7 @@ export class UserService {
      * Get the user's followers details
      * @returns {Promise<any>} - The user's followers details
      */
-    public async getFollowersDetails(): Promise<Response> {
+    public async getFollowersDetails(): Promise<Response<any>> {
         return this.axiosService.get(`/users/${this.getUsername()}/followers-details`);
     }
 
@@ -141,7 +127,7 @@ export class UserService {
      * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async addFollow(username: string): Promise<Response> {
+    public async addFollow(username: string): Promise<Response<any>> {
         return this.axiosService.post(`/users/${this.getUsername()}/follows/${username}`);
     }
 
@@ -150,7 +136,7 @@ export class UserService {
      * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async removeFollow(username: string): Promise<Response> {
+    public async removeFollow(username: string): Promise<Response<any>> {
         return this.axiosService.delete(`/users/${this.getUsername()}/unfollows/${username}`);
     }
 }

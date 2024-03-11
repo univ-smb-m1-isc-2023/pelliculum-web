@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
+import { IUser } from '../../shared/models/user.model';
+import { Response } from '../../shared/models/response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -7,21 +9,31 @@ import { AxiosService } from './axios.service';
 export class UsersService {
     constructor(private axiosService: AxiosService) {}
 
-    getAll(): Promise<any> {
-        return this.axiosService.get('/users');
+    /**
+     * Get all users
+     * @returns {Promise<Response<IUser[]>>} - The users
+     */
+    public async getAll(): Promise<Response<IUser[]>> {
+        return await this.axiosService.get('/users');
     }
 
-    get(username: string): Promise<any> {
+    /**
+     * Get a user by their username
+     * @param username {string} - The user's username
+     * @returns {Promise<Response<IUser>>} - The user
+     */
+    public async get(username: string): Promise<Response<IUser>> {
         return this.axiosService.get(`/users/${username}`);
     }
 
-    update(username: string, data: any): Promise<any> {
+    /**
+     * Update a user's profile
+     * @param username {string} - The user's username
+     * @param data {Partial<IUser>} - The user's updated profile information
+     * @returns {Promise<Response<IUser>>} - The updated user
+     */
+    public async update(username: string, data: Partial<IUser>): Promise<Response<IUser>> {
         return this.axiosService.put(`/users/${username}`, data);
     }
 
-    uploadProfilePicture(username: string, file: File) {
-        const formData: FormData = new FormData();
-        formData.append('file', file);
-        return this.axiosService.post(`/users/${username}/profile-picture`, formData);
-    }
 }

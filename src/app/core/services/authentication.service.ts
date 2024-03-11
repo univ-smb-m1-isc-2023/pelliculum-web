@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 import { UserService } from './user.service';
-import { Response } from '../../shared/models/api-response.model';
+import { Response } from '../../shared/models/response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -9,8 +9,33 @@ import { Response } from '../../shared/models/api-response.model';
 export class AuthenticationService {
     constructor(
         private axiosService: AxiosService,
-        private user: UserService
     ) {}
+
+    /**
+     * Set the authentication token in local storage
+     * @param token {string} - The authentication token
+     * If no token is provided, remove the token from local storage
+     */
+    private setAuthToken(token?: string): void {
+        if (token) {
+            localStorage.setItem('token', token);
+        } else {
+            localStorage.removeItem('token');
+        }
+    }
+
+    /**
+     * Set the username in local storage
+     * @param username {string} - The username
+     * If no username is provided, remove the username from local storage
+     */
+    private setUsername(username?: string): void {
+        if (username) {
+            localStorage.setItem('username', username);
+        } else {
+            localStorage.removeItem('username');
+        }
+    }
 
     /**
      * Send a request to the server to log in a user
@@ -18,10 +43,18 @@ export class AuthenticationService {
      * @param values {any} - The user's registration information
      */
     public async login(values: any): Promise<any> {
-        const response: Response = await this.axiosService.post('/auth/login', values);
         localStorage.clear();
-        this.user.setAuthToken(response.data.token);
-        this.user.setUsername(response.data.username);
+        const response: Response<{token: string, username: string}> = await this.axiosService.post('/auth/login', values);
+        this.setAuthToken(response.data.token);
+        this.setUsername(response.data.username);
+    }
+
+    /**
+     * Send a request to the server to log out a user
+     * If the request is successful, remove the user's authentication token and username
+     */
+    public async logout(): Promise<any> {
+        localStorage.clear();
     }
 
     /**
@@ -30,9 +63,9 @@ export class AuthenticationService {
      * @param values {any} - The user's registration information
      */
     public async register(values: any): Promise<any> {
-        const response: Response = await this.axiosService.post('/auth/register', values);
         localStorage.clear();
-        this.user.setAuthToken(response.data.token);
-        this.user.setUsername(response.data.username);
+        const response: Response<{token: string, username: string}> = await this.axiosService.post('/auth/register', values);
+        this.setAuthToken(response.data.token);
+        this.setUsername(response.data.username);
     }
 }

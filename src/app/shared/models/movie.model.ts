@@ -1,107 +1,71 @@
-import { genres } from '../../configs/genres.config';
-import { Genre } from './genre.model';
+import { Genre, IGenre } from './genre.model';
 import { slugify } from '../../core/utils/utilities.utils';
 
 export class Movie {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
 
-    constructor(
-        adult: boolean,
-        backdrop_path: string,
-        genre_ids: number[],
-        id: number,
-        original_language: string,
-        original_title: string,
-        overview: string,
-        popularity: number,
-        poster_path: string,
-        release_date: string,
-        title: string,
-        video: boolean,
-        vote_average: number,
-        vote_count: number
-    ) {
-        this.adult = adult;
-        this.backdrop_path = backdrop_path;
-        this.genre_ids = genre_ids;
-        this.id = id;
-        this.original_language = original_language;
-        this.original_title = original_title;
-        this.overview = overview;
-        this.popularity = popularity;
-        this.poster_path = poster_path;
-        this.release_date = release_date;
-        this.title = title;
-        this.video = video;
-        this.vote_average = vote_average;
-        this.vote_count = vote_count;
-    }
+  /**
+   * Get the details page URL
+   * @returns {string}
+   */
+  public static getDetailsPageUrl(movie: IMovie): string {
+    return `/film/${movie.id}`;
+  }
 
-    public static fromJson(data: any): Movie[] {
-        return data.map(
-            (movie: any) =>
-                new Movie(movie.adult, movie.backdrop_path, movie.genre_ids, movie.id, movie.original_language, movie.original_title, movie.overview, movie.popularity, movie.poster_path, movie.release_date, movie.title, movie.video, movie.vote_average, movie.vote_count)
-        );
-    }
+  /**
+   * Slugify the movie title
+   * @returns {string}
+   */
+  public static slug(movie: IMovie): string {
+    return slugify(movie.title);
+  }
 
-    /**
-     * Get the details page URL
-     * @returns {string}
-     */
-    public getDetailsPageUrl(): string {
-        return `/film/${this.id}`;
-    }
+  /**
+   * Get the poster URL
+   * @returns {string}
+   */
+  public static getPosterUrl(movie: IMovie): string {
+    return `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  }
 
-    /**
-     * Slugify the movie title
-     * @returns {string}
-     */
-    public slug(): string {
-        return slugify(this.title);
-    }
+  /**
+   * Get the backdrop URL
+   * @returns {string}
+   */
+  public static getBackdropUrl(movie: IMovie): string {
+    return `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+  }
 
-    /**
-     * Get the poster URL
-     * @returns {string}
-     */
-    public getPosterUrl(): string {
-        return `https://image.tmdb.org/t/p/w500${this.poster_path}`;
-    }
+  /**
+   * Get the release year
+   * @returns {number}
+   */
+  public static getReleaseYear(movie: IMovie): number {
+    return new Date(movie.release_date).getFullYear();
+  }
 
-    /**
-     * Get the backdrop URL
-     * @returns {string}
-     */
-    public getBackdropUrl(): string {
-        return `https://image.tmdb.org/t/p/w500${this.backdrop_path}`;
-    }
+  /**
+   *  Get the genres
+   *  @returns {IGenre[]}
+   */
+  public static getGenres(movie: IMovie): IGenre[] {
+    return movie.genre_ids.map((id) => Genre.fromId(id) as IGenre);
+  }
 
-    /**
-     * Get the release year
-     * @returns {number}
-     */
-    public getReleaseYear(): number {
-        return new Date(this.release_date).getFullYear();
-    }
+}
 
-    /**
-     *  Get the genres
-     *  @returns {Genre[]}
-     */
-    public getGenres(): Genre[] {
-        return genres.filter((genre) => this.genre_ids.includes(genre.id));
-    }
+export interface IMovie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
