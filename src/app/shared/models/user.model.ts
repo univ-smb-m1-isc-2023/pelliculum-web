@@ -1,34 +1,27 @@
 import axios from 'axios';
 
 export class User {
-    public id: number;
-    public firstname: string;
-    public lastname: string;
-    public username: string;
-    public email: string;
-    public role: string;
-    public avatar: string;
 
-    constructor(user: any) {
-      this.id = user.id;
-      this.firstname = user.name;
-      this.lastname = user.lastname;
-      this.username = user.username;
-      this.email = user.email;
-      this.role = user.role;
-      this.avatar = user.avatar;
+    public static isAdmin(user: IUser): boolean {
+      return user.role === 'admin';
     }
 
-    public isAdmin(): boolean {
-      return this.role === 'admin';
+    public static isUser(user: IUser): boolean {
+      return user.role === 'user';
     }
 
-    public isUser(): boolean {
-      return this.role === 'user' || this.isAdmin();
+    public static getProfileImage(user: IUser): string {
+      return `${axios.defaults.baseURL}/profilePictures/${user.username}.jpeg`
     }
 
-    public getProfileImage(): string {
-      return `${axios.defaults.baseURL}/profilePictures/${this.username}.jpeg`
-    }
+}
 
+export interface IUser {
+    id: number;
+    firstname: string;
+    lastname: string;
+    username: string;
+    email: string;
+    role: string;
+    avatar: string;
 }

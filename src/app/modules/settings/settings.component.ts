@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserService } from '../../core/services/user.service';
-import { Response } from '../../shared/models/api-response.model';
+import { Response } from '../../shared/models/response.model';
+import { IUser } from '../../shared/models/user.model';
 
 @Component({
     selector: 'app-settings',
@@ -36,14 +37,14 @@ export class SettingsComponent {
     }
 
     public async save(): Promise<void> {
-        const responseUpdate: Response = await this.userService.update({
+        const responseUpdate: Response<IUser> = await this.userService.update({
             firstname: this.profileForm.get('firstname')?.value,
             lastname: this.profileForm.get('lastname')?.value,
             username: this.profileForm.get('username')?.value,
             email: this.profileForm.get('email')?.value
         });
         if (!this.selectedFile) return;
-        const responseProfile: Response = await this.userService.updateProfilePicture(this.selectedFile);
+        const responseProfile: Response<IUser > = await this.userService.updateProfilePicture(this.selectedFile);
 
     }
 

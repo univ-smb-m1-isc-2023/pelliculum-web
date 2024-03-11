@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig, AxiosStatic } from 'axios';
-import { Response } from '../../shared/models/api-response.model';
+import { Response } from '../../shared/models/response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ export class AxiosService {
      * @param url {string} - The URL to send the request to
      * @param data {any} - The data to send with the request
      */
-    public request(method: string, url: string, data: any): Promise<Response> {
+    public request<T>(method: string, url: string, data: any): Promise<Response<T>> {
         return axios.request({ method, url, data });
     }
 
@@ -26,7 +26,7 @@ export class AxiosService {
      * @param config {AxiosRequestConfig} - The request configuration
      * @returns {Promise<any>} - The response from the server
      */
-    public async get(url: string, config?: AxiosRequestConfig): Promise<Response> {
+    public async get<T>(url: string, config?: AxiosRequestConfig): Promise<Response<T>> {
         return (await axios.get(url, this.getAuthorizationHeader(config))).data;
     }
 
@@ -37,7 +37,7 @@ export class AxiosService {
      * @param config {AxiosRequestConfig} - The request configuration
      * @returns {Promise<any>} - The response from the server
      */
-    public async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<Response> {
+    public async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<Response<T>> {
         return (await axios.post(url, data, this.getAuthorizationHeader(config))).data;
     }
 
@@ -48,7 +48,7 @@ export class AxiosService {
      * @param config {AxiosRequestConfig} - The request configuration
      * @returns {Promise<any>} - The response from the server
      */
-    public async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<Response> {
+    public async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<Response<T>> {
         return (await axios.put(url, data, this.getAuthorizationHeader(config))).data;
     }
 
@@ -58,7 +58,7 @@ export class AxiosService {
      * @param config {AxiosRequestConfig} - The request configuration
      * @returns {Promise<any>} - The response from the server
      */
-    public async delete(url: string, config?: AxiosRequestConfig): Promise<Response> {
+    public async delete<T>(url: string, config?: AxiosRequestConfig): Promise<Response<T>> {
         return (await axios.delete(url, this.getAuthorizationHeader(config))).data;
     }
 

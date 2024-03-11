@@ -18,7 +18,7 @@ export class UsersService {
     update(username: string, data: any): Promise<any> {
         return this.axiosService.put(`/users/${username}`, data);
     }
-
+    
     uploadProfilePicture(username: string, file: File) {
         const formData: FormData = new FormData();
         formData.append('file', file);

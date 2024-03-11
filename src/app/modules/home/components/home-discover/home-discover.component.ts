@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Genre } from '../../../../shared/models/genre.model';
+import { Genre, IGenre } from '../../../../shared/models/genre.model';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { genres } from '../../../../configs/genres.config';
 
@@ -15,9 +15,9 @@ import { genres } from '../../../../configs/genres.config';
 })
 export class HomeDiscoverComponent {
 
-  protected readonly genres = genres;
+  protected readonly genres: IGenre[] = genres;
 
-  protected getGenreUrl(genre: Genre): string {
-    return `/films/${genre.slug()}`;
+  protected getGenreUrl(genre: IGenre): string {
+    return `/films/${Genre.slug(genre)}`;
   }
 }

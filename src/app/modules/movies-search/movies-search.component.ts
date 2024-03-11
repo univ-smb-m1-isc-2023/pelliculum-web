@@ -5,7 +5,7 @@ import { slugify } from '../../core/utils/utilities.utils';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { NgOptimizedImage } from '@angular/common';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
-import { Genre } from '../../shared/models/genre.model';
+import { Genre, IGenre } from '../../shared/models/genre.model';
 
 @Component({
   selector: 'app-movies-search',
@@ -18,7 +18,7 @@ import { Genre } from '../../shared/models/genre.model';
 })
 export class MoviesSearchComponent {
 
-  protected genre: Genre | undefined;
+  protected genre: IGenre | undefined;
   protected movies: any[] = [];
 
   constructor(private route: ActivatedRoute, private tmdbService: TmdbService) {

@@ -3,25 +3,12 @@ import { slugify } from '../../core/utils/utilities.utils';
 
 export class Genre {
 
-  public id: number;
-  public name: string;
-  public text: string;
-  public icon: string;
-
-
-  constructor(id: number, name: string, text: string, icon: string) {
-    this.id = id;
-    this.name = name;
-    this.text = text;
-    this.icon = icon;
-  }
-
   /**
    * Slugify the genre name
    * @returns {string}
    */
-  public slug(): string {
-    return slugify(this.name);
+  public static slug(genre: IGenre): string {
+    return slugify(genre.name);
   }
 
   /**
@@ -29,7 +16,7 @@ export class Genre {
    * @param id {number} - The genre id
    * @returns {Genre | undefined}
    */
-  public static fromId(id: number): Genre | undefined {
+  public static fromId(id: number): IGenre | undefined {
     return genres.find((genre) => genre.id === id);
   }
 
@@ -38,13 +25,19 @@ export class Genre {
    * @param slug {string} - The genre slug
    * @returns {Genre | undefined}
    */
-  public static fromSlug(slug: string): Genre | undefined {
-    return genres.find((genre) => genre.slug() === slug);
+  public static fromSlug(slug: string): IGenre | undefined {
+    return genres.find((genre) => Genre.slug(genre) === slug);
   }
 
-  public static fromIds(ids: number[]): Genre[] {
-    return ids.map((id) => Genre.fromId(id) as Genre);
+  public static fromIds(ids: number[]): IGenre[] {
+    return ids.map((id) => Genre.fromId(id) as IGenre);
   }
 
+}
 
+export interface IGenre {
+  id: number;
+  name: string;
+  text: string;
+  icon: string;
 }
