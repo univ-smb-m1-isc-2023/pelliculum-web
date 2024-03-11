@@ -78,13 +78,20 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.director = this.crew.find(member => member.job === 'Director')?.name;
   }
 
+  private async loadCast(){
+    if (!this.id) return;
+    const response = await this.tmdbService.getMovieCredits(this.id);
+    this.crew = response.data.cast;
+  }
+
   private async loadMovieDetails() {
     if (!this.id) return;
     await this.tmdbService.getMovieDetails(this.id).then(response => {
       this.currentMovie = response.data;
       this.genres = this.currentMovie.genres;
     });
-    await this.loadCrew(); // Assurez-vous que les informations sur l'équipage sont également mises à jour.
+    await this.loadCrew();
+    await this.loadCast();
   }
 
   protected selectTab(tab: string) {

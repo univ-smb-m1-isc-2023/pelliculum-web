@@ -7,7 +7,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
 import { SearchService } from '../../../../core/services/search.service';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
-import { Movie } from '../../../../shared/models/movie.model';
+import { IMovie, Movie } from '../../../../shared/models/movie.model';
 
 @Component({
     selector: 'app-header-search',
@@ -17,7 +17,7 @@ import { Movie } from '../../../../shared/models/movie.model';
 })
 export class HeaderSearchComponent implements OnInit, OnDestroy {
     searchQuery: string = '';
-    movies: Movie[] = [];
+    movies: IMovie[] = [];
 
     private destroy$: Subject<void> = new Subject();
     @ViewChild('dropdownList') dropdownList!: ElementRef;
