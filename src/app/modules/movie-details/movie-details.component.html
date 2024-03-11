@@ -1,27 +1,26 @@
 @if (currentMovie) {
-<div class="flex flex-col space-y-56">
-    <!-- Backdrop with gradients -->
-    <div class="relative">
-        <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
-        <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
+    <div class="flex flex-col space-y-56">
+        <div class="relative">
 
-        <!-- Poster and movie details -->
-        <div class="absolute -bottom-48 flex flex-row space-x-4 px-40">
-            <div class="">
+            <!-- Backdrop with gradients -->
+            <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
+            <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
+
+
+            <!-- Poster and movie details -->
+            <div class="absolute -bottom-48 flex flex-row space-x-4 px-40 w-full">
                 <!-- Poster -->
-                <img class="w-screen rounded-lg" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path" alt="poster du film" />
-            </div>
-            <div class="">
+                <img class="w-3/12 h-fit rounded-lg"
+                     [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path"
+                     alt="poster du film" />
                 <!-- Movie details -->
-                <div class="flex flex-col space-y-4">
-                    <!-- Title, details -->
-                    <div class="flex flex-col space-y-0">
-                        <p class="mb-4 text-4xl font-bold">{{ currentMovie.title }}</p>
+                <div class="w-7/12 flex flex-col space-y-3">
+                    <!-- Title -->
+                    <p class="text-4xl font-bold">{{ currentMovie.title }}</p>
 
-                        <div class="flex flex-row items-center space-x-1.5">
-                            <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average" />
-                            <p class="text-sm">{{ currentMovie.vote_average }}</p>
-                        </div>
+                    <div class="flex flex-col">
+                        <!-- Rating -->
+                        <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average" class="pb-1" />
 
                         <!-- Date and duration -->
                         <div class="flex flex-row space-x-4">
@@ -40,35 +39,32 @@
                         <!-- Genres -->
                         <div class="flex flex-row items-baseline space-x-2">
                             <p class="font-bold">Genres:</p>
-                            @for (genre of genres;track genre.id;let first = $first;let last = $last) {
-                            <span [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-2' : 'px-2') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
+                            @for (genre of genres; track genre.id; let first = $first; let last = $last) {
+                                <span
+                                    [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-2' : 'px-2') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
                             }
                         </div>
+                        <!-- Overview -->
+                        <p class="mt-4 text-lg">{{ currentMovie.overview }}</p>
                     </div>
+                </div>
 
-                    <!-- Overview -->
-                    <p class="mb-8 text-lg">{{ currentMovie.overview }}</p>
+                <div class="w-2/12 bg-red-950">
+
                 </div>
             </div>
-            <div class="">
-                <p>ici ajouter le film au coup de coeur et donner son avis button</p>
-            </div>
+        </div>
+
+        <!-- Rest of the page -->
+        <div class="flex flex-col px-40">
+            <app-movie-details-tabs (tabSelected)="selectTab($event)">
+                @if (activeTab === 'cast') {
+                    <app-movie-details-cast-tabs [id]="currentMovie.id"></app-movie-details-cast-tabs>
+                } @else {
+                    <app-movie-details-crew-tabs [id]="currentMovie.id"></app-movie-details-crew-tabs>
+                }
+            </app-movie-details-tabs>
+            <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>
-
-    <!-- Rest of the page -->
-    <div class="flex px-96">
-        <app-movie-details-tabs (tabSelected)="selectTab($event)">
-            @if (activeTab === 'cast') {
-            <app-movie-details-cast-tabs [id]="currentMovie.id"></app-movie-details-cast-tabs>
-            } @else {
-            <app-movie-details-crew-tabs [id]="currentMovie.id"></app-movie-details-crew-tabs>
-            }
-        </app-movie-details-tabs>
-    </div>
-</div>
-
-<div class="flex flex-col px-40">
-    <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
-</div>
 }
