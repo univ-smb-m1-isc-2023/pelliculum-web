@@ -18,11 +18,13 @@ import { MovieListComponent } from '../../shared/components/movie-list/movie-lis
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 import { HomeDiscoverComponent } from './components/home-discover/home-discover.component';
 import { Movie } from '../../shared/models/movie.model';
+import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, BackdropComponent, HomeCarouselBackdropComponent, PosterComponent, HomeCarouselPostersComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent, HomeCarouselComponent, HomeDiscoverComponent],
+  imports: [RouterLink, RouterLinkActive, BackdropComponent, HomeCarouselBackdropComponent, PosterComponent, HomeCarouselPostersComponent, NgClass, NgIf, StarsComponent, HomeMovieRatingComponent, MovieListComponent, HomeCarouselComponent, HomeDiscoverComponent, TabsComponent, TabComponent],
   templateUrl: './home.component.html',
   styles: ``,
 })
