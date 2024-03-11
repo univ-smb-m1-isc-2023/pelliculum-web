@@ -1,5 +1,5 @@
 @if (currentMovie) {
-    <div class="flex flex-col space-y-56">
+    <div class="flex flex-col space-y-32">
         <div class="relative">
 
             <!-- Backdrop with gradients -->
@@ -8,7 +8,7 @@
 
 
             <!-- Poster and movie details -->
-            <div class="absolute -bottom-48 flex flex-row space-x-4 w-full xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
+            <div class="absolute -bottom-20 flex flex-row space-x-4 w-full xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
                 <!-- Poster -->
                 <img class="w-2/12 h-fit rounded-lg"
                      [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path"
@@ -59,7 +59,8 @@
 
         <!-- Rest of the page -->
         <div class="flex flex-col xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
-            <app-tabs tabsStyle="flex relative space-x-16 rounded-lg bg-[#161616] py-2.5 pb-1.5 pr-16">
+            <!-- Tabs Cast / Crew -->
+            <app-tabs tabsStyle="flex relative">
                 <app-tab name="cast">
                     <app-movie-details-cast-tabs [cast]="cast"></app-movie-details-cast-tabs>
                 </app-tab>
@@ -67,6 +68,8 @@
                     <app-movie-details-crew-tabs [crew]="crew"></app-movie-details-crew-tabs>
                 </app-tab>
             </app-tabs>
+
+            <!-- Rating -->
             <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>

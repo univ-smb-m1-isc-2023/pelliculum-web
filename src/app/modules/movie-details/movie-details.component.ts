@@ -5,7 +5,6 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
-import { MovieDetailsTabsComponent } from './components/movie-details-tabs/movie-details-tabs.component';
 import { NgClass, NgIf } from '@angular/common';
 import {
   ProfileCustomizationTabComponent,
@@ -25,7 +24,6 @@ import { TabComponent } from '../../shared/components/tabs/components/tab/tab.co
     BackdropComponent,
     PosterComponent,
     StarsComponent,
-    MovieDetailsTabsComponent,
     NgIf,
     NgClass,
     ProfileCustomizationTabComponent,
@@ -83,7 +81,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.director = this.crew.find(member => member.job === 'Director')?.name;
   }
 
-  private async loadCast(){
+  private async loadCast() {
     if (!this.id) return;
     const response = await this.tmdbService.getMovieCredits(this.id);
     this.cast = response.data.cast;
