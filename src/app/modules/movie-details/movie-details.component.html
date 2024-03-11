@@ -8,55 +8,57 @@
 
 
             <!-- Poster and movie details -->
-            <div class="absolute -bottom-48 flex flex-row space-x-4 px-40 w-full">
+            <div class="absolute -bottom-48 flex flex-row space-x-4 w-full xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
                 <!-- Poster -->
-                <img class="w-3/12 h-fit rounded-lg"
+                <img class="w-2/12 h-fit rounded-lg"
                      [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path"
                      alt="poster du film" />
                 <!-- Movie details -->
-                <div class="w-7/12 flex flex-col space-y-3">
+                <div class="w-7/12 flex flex-col space-y-2">
                     <!-- Title -->
-                    <p class="text-4xl font-bold">{{ currentMovie.title }}</p>
+                    <div class="items-center">
+                        <p class="text-4xl font-bold">{{ currentMovie.title }}</p>
+                        <p class="text-sm">Réalisé par <span class="cursor-pointer hover:text-primary">{{director}}</span></p>
+                    </div>
 
-                    <div class="flex flex-col">
+                    <div class="flex flex-col space-y-0.5">
                         <!-- Rating -->
-                        <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average" class="pb-1" />
+                        <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average"/>
 
                         <!-- Date and duration -->
                         <div class="flex flex-row space-x-4">
                             <!-- Date -->
-                            <div class="flex flex-row space-x-2">
+                            <div class="flex flex-row space-x-2 items-center">
                                 <p class="font-bold">Sortie:</p>
-                                <p>{{ currentMovie.release_date.substring(0, 4) }}</p>
+                                <p class="text-xs cursor-pointer hover:text-primary">{{ currentMovie.release_date.substring(0, 4) }}</p>
                             </div>
                             <!-- Duration -->
-                            <div class="flex flex-row space-x-2">
+                            <div class="flex flex-row space-x-2 items-center">
                                 <p class="font-bold">Durée:</p>
-                                <p>{{ currentMovie.runtime }} minutes</p>
+                                <p class="text-xs">{{ currentMovie.runtime }} minutes</p>
                             </div>
                         </div>
 
                         <!-- Genres -->
-                        <div class="flex flex-row items-baseline space-x-2">
+                        <div class="flex flex-row items-center space-x-2">
                             <p class="font-bold">Genres:</p>
                             @for (genre of genres; track genre.id; let first = $first; let last = $last) {
-                                <span
-                                    [class]="'text-white xl:text-sm lg:text-sm md:text-xs sm:text-xs ' + (first ? 'pr-2' : 'px-2') + ' ' + (last ? '' : 'border-r border-gray-700')"> {{ genre.name }} </span>
+                                <span class="text-xs cursor-pointer hover:text-primary" [ngClass]="{'border-r border-custom-border pr-2' : !last}"> {{ genre.name }} </span>
                             }
                         </div>
                         <!-- Overview -->
-                        <p class="mt-4 text-lg">{{ currentMovie.overview }}</p>
+                        <p class="text-lg line-clamp-4">{{ currentMovie.overview }}</p>
                     </div>
                 </div>
 
-                <div class="w-2/12 bg-red-950">
+                <div class="w-3/12 bg-transparent border border-custom-border rounded">
 
                 </div>
             </div>
         </div>
 
         <!-- Rest of the page -->
-        <div class="flex flex-col px-40">
+        <div class="flex flex-col xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
             <app-movie-details-tabs (tabSelected)="selectTab($event)">
                 @if (activeTab === 'cast') {
                     <app-movie-details-cast-tabs [id]="currentMovie.id"></app-movie-details-cast-tabs>

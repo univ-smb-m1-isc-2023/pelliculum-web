@@ -14,6 +14,7 @@ module.exports = {
                 black: '#100F10',
                 white: '#FDFDFD',
                 cinema: '#C8291E',
+                bababa: '#BABABA',
                 'custom-border': 'rgba(255, 255, 255, 0.3)',
                 'custom-light-border': 'rgba(255, 255, 255, 0.1)',
                 'custom-border-search': 'rgba(255, 255, 255, 0.8)'
