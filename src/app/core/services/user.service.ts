@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AxiosService } from './axios.service';
 import { Router } from '@angular/router';
 import { Response } from '../../shared/models/api-response.model';
+import axios from 'axios';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +11,8 @@ import { Response } from '../../shared/models/api-response.model';
 export class UserService {
     constructor(
         private router: Router,
-        private axiosService: AxiosService
+        private axiosService: AxiosService,
+        private authenticationService: AuthenticationService
     ) {}
 
     /**
@@ -31,32 +34,6 @@ export class UserService {
     }
 
     /**
-     * Set the authentication token in local storage
-     * @param token {string} - The authentication token
-     * If no token is provided, remove the token from local storage
-     */
-    public setAuthToken(token?: string): void {
-        if (token) {
-            localStorage.setItem('token', token);
-        } else {
-            localStorage.removeItem('token');
-        }
-    }
-
-    /**
-     * Set the username in local storage
-     * @param username {string} - The username
-     * If no username is provided, remove the username from local storage
-     */
-    public setUsername(username?: string): void {
-        if (username) {
-            localStorage.setItem('username', username);
-        } else {
-            localStorage.removeItem('username');
-        }
-    }
-
-    /**
      * Check if the user is logged in
      * If the authentication token is found, the user is logged in, else the user is not logged in
      * @returns {boolean} - True if the user is logged in, false otherwise
@@ -64,6 +41,15 @@ export class UserService {
     public isLoggedIn(): boolean {
         return !!this.getAuthToken();
     }
+
+    /**
+     * Retrieve the user's profile image url
+     * @returns {string} - The user's profile image url
+     */
+    public getProfileImage(): string {
+        return `${axios.defaults.baseURL}/profilePictures/${this.getUsername()}.jpeg`
+    }
+
 
     /**
      * Get the user's profile information
@@ -99,8 +85,7 @@ export class UserService {
      * Redirect the user to the home page
      */
     public async logout(): Promise<void> {
-        this.setAuthToken();
-        this.setUsername();
+        await this.authenticationService.logout();
         await this.router.navigateByUrl('/');
     }
 

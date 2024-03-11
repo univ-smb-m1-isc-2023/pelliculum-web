@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserService } from '../../core/services/user.service';
+import { Response } from '../../shared/models/api-response.model';
 
 @Component({
     selector: 'app-settings',
@@ -10,17 +11,17 @@ import { UserService } from '../../core/services/user.service';
     templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
-    imageUrl: string | undefined;
 
-    profileForm = new FormGroup({
+    protected profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
         lastname: new FormControl('Doe', [Validators.required]),
         email: new FormControl({ value: 'john.doe@gmail.com', disabled: true }, [Validators.required, Validators.email]),
         username: new FormControl('JohnnyDowy', [Validators.required])
     });
 
-    photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
-    selectedFile: File | null = null;
+    protected imageUrl: string | undefined;
+    protected photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
+    protected selectedFile: File | null = null;
     user: any;
 
     constructor(
@@ -28,44 +29,29 @@ export class SettingsComponent {
         private userService: UserService
     ) {}
 
-    async ngOnInit() {
+    public async ngOnInit(): Promise<void> {
         this.user = await this.userService.get();
-        this.profileForm.patchValue({
-            firstname: this.user.firstname,
-            lastname: this.user.lastname,
-            email: this.user.email,
-            username: this.user.username
-        });
-        this.getUserProfilePicture();
+        this.profileForm.patchValue(this.user);
+        this.photo = this.user.getProfileImage();
     }
 
-    async save() {
-        const response = await this.userService.update({
+    public async save(): Promise<void> {
+        const responseUpdate: Response = await this.userService.update({
             firstname: this.profileForm.get('firstname')?.value,
             lastname: this.profileForm.get('lastname')?.value,
             username: this.profileForm.get('username')?.value,
             email: this.profileForm.get('email')?.value
         });
-        console.log(response);
+        if (!this.selectedFile) return;
+        const responseProfile: Response = await this.userService.updateProfilePicture(this.selectedFile);
 
-        if (this.selectedFile) {
-            const response = await this.userService.updateProfilePicture(this.selectedFile);
-            console.log(response);
-        }
     }
 
-    onFileSelected(event: any): void {
-        if (event.target.files && event.target.files[0]) {
-            this.selectedFile = event.target.files[0];
-
-            const reader = new FileReader();
-            reader.onload = (e: any) => (this.photo = this.sanitizer.bypassSecurityTrustUrl(e.target.result));
-            reader.readAsDataURL(this.selectedFile!);
-        }
-    }
-
-    getUserProfilePicture() {
-        const username = this.user.getUsername(); // Assurez-vous d'avoir le nom d'utilisateur
-        this.imageUrl = `http://localhost:8080/profilePictures/${username}.jpeg`;
+    public onFileSelected(event: any): void {
+        if (!event.target.files || !event.target.files[0]) return
+        this.selectedFile = event.target.files[0];
+        const reader: FileReader = new FileReader();
+        reader.onload = (e: any) => (this.photo = this.sanitizer.bypassSecurityTrustUrl(e.target.result));
+        reader.readAsDataURL(this.selectedFile!);
     }
 }
