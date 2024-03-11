@@ -7,14 +7,11 @@ import { Router, RouterLink } from '@angular/router';
 import { PosterComponent } from '../../../shared/components/poster/poster.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../core/services/authentication.service';
-import {
-  PelliculumLogoTitleComponent
-} from '../../../shared/components/pelliculum-logo-title/pelliculum-logo-title.component';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-  imports: [SignupInformationComponent, SignupPreferencesComponent, NgOptimizedImage, LogoMoviePosterComponent, RouterLink, PosterComponent, FormsModule, ReactiveFormsModule, PelliculumLogoTitleComponent],
+    imports: [SignupInformationComponent, SignupPreferencesComponent, NgOptimizedImage, LogoMoviePosterComponent, RouterLink, PosterComponent, FormsModule, ReactiveFormsModule],
     templateUrl: './login.component.html'
 })
 export class LoginComponent {

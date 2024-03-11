@@ -29,9 +29,9 @@ export class TmdbService {
         return this.http.get(url).pipe(
             tap((data) => {
                 if (data) {
-                    // Ci gît un console.log ... (console.log(`Found movies matching "${term}"`, data);)
+                    console.log(`Found movies matching "${term}"`, data);
                 } else {
-                    // Ci gît un console.log ... (console.log(`No movies found matching "${term}"`);)
+                    console.log(`No movies found matching "${term}"`);
                 }
             }),
             catchError(this.handleError('searchMovies', []))
@@ -52,7 +52,7 @@ export class TmdbService {
 
     getUpcomingMovies() {
         // Check all movie in discover/movie endpoints with query params release_date.gte to today's date
-        // Ci gît un console.log ... (console.log(new Date().toDateString());)
+        console.log(new Date().toDateString());
         const url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}&include_adult=false&language=fr&primary_release_date.gte=${new Date().toISOString().split('T')[0]}`;
         return this.http.get(url);
     }
@@ -70,7 +70,7 @@ export class TmdbService {
         return this.http.get(url);
     }
 
-    public async getMoviesByGenre(genreId: number): Promise<IMovie[]> {
+    public async getMoviesByGenre(genreId: number): Promise<Movie[]> {
         return (await axios.get(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}&language=fr&with_genres=${genreId}`)).data.results;
     }
 }

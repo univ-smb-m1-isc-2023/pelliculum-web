@@ -29,7 +29,7 @@ export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
         this.tmdbService.getMovieCredits(this.id).subscribe(
             (response: any) => {
                 this.crew = response.crew.slice(0, 20);
-                // Ci gît un console.log ... (console.log('Crew:', this.crew);)
+                console.log('Crew:', this.crew);
             },
             (error: any) => {
                 console.error('Error fetching movie credits:', error);

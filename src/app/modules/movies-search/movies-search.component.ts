@@ -6,8 +6,6 @@ import { TmdbService } from '../../core/services/tmdb.service';
 import { NgOptimizedImage } from '@angular/common';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 import { Genre, IGenre } from '../../shared/models/genre.model';
-import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
-import { IMovie } from '../../shared/models/movie.model';
 
 @Component({
   selector: 'app-movies-search',
@@ -15,14 +13,13 @@ import { IMovie } from '../../shared/models/movie.model';
   imports: [
     NgOptimizedImage,
     SearchListMoviesComponent,
-    BackdropComponent,
   ],
   templateUrl: './movies-search.component.html'
 })
 export class MoviesSearchComponent {
 
-  protected genre?: IGenre;
-  protected movies: IMovie[] = [];
+  protected genre: IGenre | undefined;
+  protected movies: any[] = [];
 
   constructor(private route: ActivatedRoute, private tmdbService: TmdbService) {
   }

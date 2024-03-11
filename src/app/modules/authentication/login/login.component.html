@@ -2,7 +2,10 @@
     <div class="flex flex-row">
         <!-- Image et Logo-->
         <div class="w-7/12">
-            <app-pelliculum-logo-title class="absolute left-2 top-2"/>
+            <a [routerLink]="'/'" class="absolute left-2 top-2 flex flex-row items-center justify-center space-x-2">
+                <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701" width="709" />
+                <p class="bebas-neue-regular mt-1.5 text-4xl">Pelliculum</p>
+            </a>
             <img priority ngSrc="assets/fig.png" alt="Fight Club" class="h-screen w-full object-cover" height="720" width="1280" />
         </div>
 

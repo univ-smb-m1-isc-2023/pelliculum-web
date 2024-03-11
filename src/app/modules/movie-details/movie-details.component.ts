@@ -48,7 +48,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             .subscribe(
                 (data) => {
                     this.currentMovie = data;
-                    // Ci gît un console.log ... (console.log('Current Movie:', this.currentMovie);)
+                    console.log('Current Movie:', this.currentMovie);
                     this.genres = this.currentMovie.genres;
                 },
                 (error) => {
@@ -67,7 +67,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
                     this.tmdbService.getMovieDetails(movieId).subscribe(
                         (data) => {
                             this.currentMovie = data;
-                            // Ci gît un console.log ... (console.log('Current Movie (Route Change):', this.currentMovie);)
+                            console.log('Current Movie (Route Change):', this.currentMovie);
                             this.genres = this.currentMovie.genres;
                         },
                         (error) => {

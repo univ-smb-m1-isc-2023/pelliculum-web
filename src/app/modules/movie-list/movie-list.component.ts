@@ -7,7 +7,6 @@ import { PosterComponent } from '../../shared/components/poster/poster.component
 import { FormsModule } from '@angular/forms';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 import { NgIf } from '@angular/common';
-import { IMovie } from '../../shared/models/movie.model';
 
 @Component({
     selector: 'app-movie-list',
@@ -31,7 +30,7 @@ export class MovieListComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         //this.list = this.activatedRoute.snapshot.paramMap.get('id');
-        const results: IMovie[] = await this.tmdbService.getTopMovies();
+        const results = await this.tmdbService.getTopMovies();
         this.list = {
             name: this.randomWatchlistName(),
             comments: this.randomComments(),
@@ -56,7 +55,7 @@ export class MovieListComponent implements OnInit {
             this.movies = this.moviesCopy;
         } else {
             this.movies = this.moviesCopy.filter((movie) => movie.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
-            // Ci gît un console.log ... (console.log(this.movies);)
+            console.log(this.movies);
         }
     }
 
@@ -201,7 +200,7 @@ export class MovieListComponent implements OnInit {
     randomId() {
         // Random between 1054774000 and 1054774547
         const id = Math.floor(1054774547 + Math.random() * 100);
-        // Ci gît un console.log ... (console.log(id);)
+        console.log(id);
         return id;
     }
 }

@@ -36,7 +36,7 @@
         <!-- Movie -->
         <a [routerLink]="'/movie-details/'+movie.id" class="dropdown-item flex flex-row space-x-2 px-2" [ngClass]="{'border-b rounded-b-none border-custom-border' : !$last}">
             <!-- Poster -->
-            <app-poster [movie]="movie" [style]="'h-24 rounded-lg object-fill'"/>
+            <img [src]="getPosterUrl(movie.poster_path)" (error)="onPosterError($event)" alt="{{movie.title}}" class="h-24 rounded-lg object-fill" />
 
             <!-- Information -->
             <div class="flex flex-col">

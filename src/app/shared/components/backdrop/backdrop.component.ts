@@ -1,20 +1,19 @@
 import { Component, Input } from '@angular/core';
-import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
-import { IMovie, Movie } from '../../models/movie.model';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'app-backdrop',
     standalone: true,
-    imports: [NgOptimizedImage, NgClass, NgIf],
+    imports: [NgOptimizedImage],
     templateUrl: './backdrop.component.html',
     styles: ``
 })
 export class BackdropComponent {
-
-    @Input() public movie?: IMovie;
-    @Input() public style?: string;
+    @Input() backdropPath: string | undefined;
 
     constructor() {}
 
-    protected readonly Movie = Movie;
+    getBackdropUrl(): string {
+        return `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${this.backdropPath}`;
+    }
 }

@@ -1,8 +1,8 @@
 <div class="group flex flex-col shadow-lg">
     <!-- Poster -->
-    <a [routerLink]="['list',slugify(list.name)]">
+    <a [routerLink]="['list',getListUrl()]">
         <div class="relative flex cursor-pointer flex-row">
-            <app-backdrop [movie]="list.movies[0]" [style]="'rounded-t-xl'"/>
+            <img alt="de" class="rounded-t-xl" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+list.movies[0].backdrop_path" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
             <div class="absolute h-full w-full rounded-t-xl bg-[#161616] opacity-0 transition group-hover:opacity-55"></div>
         </div>
