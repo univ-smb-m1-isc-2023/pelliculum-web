@@ -16,6 +16,10 @@ import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-t
 import { MovieDetailsRatingComponent } from './components/movie-details-rating/movie-details-rating.component';
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import {
+  MovieDetailsInteractionsComponent
+} from './components/movie-details-interactions/movie-details-interactions.component';
 
 @Component({
   selector: 'app-movie-details',
@@ -34,6 +38,8 @@ import { TabComponent } from '../../shared/components/tabs/components/tab/tab.co
     MovieDetailsRatingComponent,
     TabsComponent,
     TabComponent,
+    TablerIconsModule,
+    MovieDetailsInteractionsComponent,
   ],
   templateUrl: './movie-details.component.html',
   styles: [`
