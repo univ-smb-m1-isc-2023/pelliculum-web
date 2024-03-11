@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../core/services/tmdb.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
-import { filter, Subject, switchMap, takeUntil } from 'rxjs';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { MovieDetailsTabsComponent } from './components/movie-details-tabs/movie-details-tabs.component';
@@ -19,77 +19,51 @@ import { MovieDetailsRatingComponent } from './components/movie-details-rating/m
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [BackdropComponent, PosterComponent, StarsComponent, MovieDetailsTabsComponent, NgIf, ProfileCustomizationTabComponent, ProfileSecurityTabComponent, ProfileTabsComponent, MovieDetailsCastTabsComponent, MovieDetailsCrewTabsComponent, MovieDetailsRatingComponent, NgClass],
+  imports: [
+    BackdropComponent,
+    PosterComponent,
+    StarsComponent,
+    MovieDetailsTabsComponent,
+    NgIf,
+    NgClass,
+    ProfileCustomizationTabComponent,
+    ProfileSecurityTabComponent,
+    ProfileTabsComponent,
+    MovieDetailsCastTabsComponent,
+    MovieDetailsCrewTabsComponent,
+    MovieDetailsRatingComponent,
+  ],
   templateUrl: './movie-details.component.html',
-  styles: ``,
+  styles: [`
+    /* Vos styles ici */
+  `],
 })
-
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   @Input() currentMovie: any;
 
-  public genres: { id: number; name: string }[] = [];
+  private id: number | null = null;
+  protected genres: { id: number; name: string }[] = [];
+  protected crew: any[] = [];
+  protected director: string = '';
+  protected activeTab: string = 'cast';
 
-  public crew: any[] = [];
-  public id: number | null = null;
+  private destroy$ = new Subject<void>();
 
-  public director : string = '';
-
-  public activeTab: string = 'cast';
-
-  private destroy$: Subject<void> = new Subject();
-
-
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private tmdbService: TmdbService,
-  ) {
+  constructor(private route: ActivatedRoute, private tmdbService: TmdbService) {
   }
 
-  public async ngOnInit(): Promise<void> {
-    this.id = this.extractMovieIdFromRoute();
-    this.loadCrew();
-
-
-    this.route.params
-      .pipe(
-        takeUntil(this.destroy$),
-        switchMap((params) => {
-          this.id = Number(params['id']);
-          return this.tmdbService.getMovieDetails(this.id);
-        }),
-      )
-      .subscribe(
-        (data) => {
-          this.currentMovie = data;
-          console.log('Current Movie:', this.currentMovie);
-          this.genres = this.currentMovie.genres;
-        },
-        (error) => {
-          console.error('Error:', error);
-        },
-      );
-
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        takeUntil(this.destroy$),
-      )
-      .subscribe(() => {
-        if (this.id) {
-          this.tmdbService.getMovieDetails(this.id).subscribe(
-            (data) => {
-              this.currentMovie = data;
-              console.log('Current Movie (Route Change):', this.currentMovie);
-              this.genres = this.currentMovie.genres;
-            },
-            (error) => {
-              console.error('Error (Route Change):', error);
-            },
-          );
+  ngOnInit(): void {
+    this.route.params.pipe(
+      switchMap(params => {
+        const movieId = Number(params['id']);
+        if (!isNaN(movieId)) {
+          this.id = movieId;
+          return this.loadMovieDetails();
         }
-      });
+        return [];
+      }),
+      takeUntil(this.destroy$),
+    ).subscribe();
   }
 
   ngOnDestroy(): void {
@@ -97,28 +71,23 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private extractMovieIdFromRoute(): number | null {
-    const movieId = Number(this.route.snapshot.paramMap.get('id'));
-    return isNaN(movieId) ? null : movieId;
+  private async loadCrew() {
+    if (!this.id) return;
+    const response = await this.tmdbService.getMovieCredits(this.id);
+    this.crew = response.data.crew;
+    this.director = this.crew.find(member => member.job === 'Director')?.name;
   }
 
-  selectTab(tab: string) {
+  private async loadMovieDetails() {
+    if (!this.id) return;
+    await this.tmdbService.getMovieDetails(this.id).then(response => {
+      this.currentMovie = response.data;
+      this.genres = this.currentMovie.genres;
+    });
+    await this.loadCrew(); // Assurez-vous que les informations sur l'équipage sont également mises à jour.
+  }
+
+  protected selectTab(tab: string) {
     this.activeTab = tab;
-  }
-
-  loadCrew() {
-    if (this.id) {
-      this.tmdbService.getMovieCredits(this.id).subscribe(
-        (response: any) => {
-          this.director = response.crew.find((member: { job: string; }) => member.job === 'Director').name;
-          console.log(this.director)
-          this.crew = response.crew.slice(0, 20);
-          console.log('Crew:', this.crew);
-        },
-        (error: any) => {
-          console.error('Error fetching movie credits:', error);
-        },
-      );
-    }
   }
 }
