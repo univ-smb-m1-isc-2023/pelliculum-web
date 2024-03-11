@@ -71,8 +71,11 @@ export class ProfileFriendsComponent implements OnInit {
     protected addFollow(username: string): void {
         this.userService
             .addFollow(username)
-            .then(r => {
+            .then(r  => {
                 console.log(r);
+                if (this.follows.filter((f): boolean => f.username === r.data.username).length === 0){
+                    this.follows.push(r.data)
+                }
                 this.notyf.success(r)
             })
             .catch(r => this.notyf.error(r.response.data));
