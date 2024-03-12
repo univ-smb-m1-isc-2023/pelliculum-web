@@ -23,7 +23,7 @@
 
                     <div class="flex flex-col space-y-1.5">
                         <!-- Rating -->
-                        <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average"/>
+                        <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average/2"/>
 
                         <!-- Date and duration -->
                         <div class="flex flex-row space-x-4">
@@ -54,7 +54,7 @@
 
                 <!-- Right Part -->
                 <div class="w-3/12 bg-transparent border border-custom-border rounded">
-                    <app-movie-details-interactions class="w-full"></app-movie-details-interactions>
+                    <app-movie-details-interactions [rating]="currentMovie.vote_average" class="w-full"></app-movie-details-interactions>
                 </div>
             </div>
         </div>
