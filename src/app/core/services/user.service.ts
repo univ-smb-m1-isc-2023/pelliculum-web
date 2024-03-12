@@ -48,9 +48,8 @@ export class UserService {
      * @returns {string} - The user's profile image url
      */
     public getProfileImage(): string {
-        return `${axios.defaults.baseURL}/profilePictures/${this.getUsername()}.jpeg`
+        return `${axios.defaults.baseURL}/profilePictures/${this.getUsername()}.jpeg`;
     }
-
 
     /**
      * Get the user's profile information

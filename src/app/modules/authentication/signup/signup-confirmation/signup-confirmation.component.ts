@@ -11,7 +11,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class SignupConfirmationComponent {
     @Input() details: FormGroup | any;
     @Input() discoverPossibilities: FormGroup | undefined;
-    @Output('increment') increment: EventEmitter<any> = new EventEmitter();
+    @Output() increment: EventEmitter<any> = new EventEmitter();
 
     discoverPossibilites: string[] = ['Réseaux sociaux', 'Proches', 'Publicité en ligne', 'Autre'];
     selectedPossibility: number = -1;

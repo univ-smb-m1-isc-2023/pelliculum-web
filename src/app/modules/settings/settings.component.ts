@@ -12,7 +12,6 @@ import { IUser } from '../../shared/models/user.model';
     templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
-
     protected profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
         lastname: new FormControl('Doe', [Validators.required]),
@@ -20,9 +19,12 @@ export class SettingsComponent {
         username: new FormControl('JohnnyDowy', [Validators.required])
     });
 
+    public test: string = '';
+
     protected imageUrl: string | undefined;
     protected photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
     protected selectedFile: File | null = null;
+
     user: any;
 
     constructor(
@@ -44,12 +46,11 @@ export class SettingsComponent {
             email: this.profileForm.get('email')?.value
         });
         if (!this.selectedFile) return;
-        const responseProfile: Response<IUser > = await this.userService.updateProfilePicture(this.selectedFile);
-
+        const responseProfile: Response<IUser> = await this.userService.updateProfilePicture(this.selectedFile);
     }
 
     public onFileSelected(event: any): void {
-        if (!event.target.files || !event.target.files[0]) return
+        if (!event.target.files || !event.target.files[0]) return;
         this.selectedFile = event.target.files[0];
         const reader: FileReader = new FileReader();
         reader.onload = (e: any) => (this.photo = this.sanitizer.bypassSecurityTrustUrl(e.target.result));

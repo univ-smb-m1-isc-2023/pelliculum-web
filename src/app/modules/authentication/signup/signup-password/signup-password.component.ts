@@ -8,7 +8,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     templateUrl: './signup-password.component.html'
 })
 export class SignupPasswordComponent {
-    @Output('increment') increment: EventEmitter<any> = new EventEmitter();
+    @Output() increment: EventEmitter<any> = new EventEmitter();
 
     @Input() details: FormGroup | any;
 

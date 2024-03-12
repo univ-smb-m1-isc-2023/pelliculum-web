@@ -15,7 +15,6 @@ import { StarsComponent } from '../stars/stars.component';
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
-
     @Input() public movies: any[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
 
@@ -42,7 +41,7 @@ export class SearchListMoviesComponent {
             likes: this.randomLikes(),
             movies: result
         };
-        if(this.movies.length === 0){
+        if (this.movies.length === 0) {
             this.movies = this.list.movies;
         }
         this.movies.map((movie) => {
@@ -53,7 +52,7 @@ export class SearchListMoviesComponent {
     }
 
     protected isGenreSelected(genre: any): boolean {
-        return this.genreSelected?.id === genre.id
+        return this.genreSelected?.id === genre.id;
     }
 
     protected changeView(view: 'grid' | 'list'): void {

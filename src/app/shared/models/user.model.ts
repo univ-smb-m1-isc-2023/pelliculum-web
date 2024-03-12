@@ -1,19 +1,17 @@
 import axios from 'axios';
 
 export class User {
-
     public static isAdmin(user: IUser): boolean {
-      return user.role === 'admin';
+        return user.role === 'admin';
     }
 
     public static isUser(user: IUser): boolean {
-      return user.role === 'user';
+        return user.role === 'user';
     }
 
     public static getProfileImage(user: IUser): string {
-      return `${axios.defaults.baseURL}/profilePictures/${user.username}.jpeg`
+        return `${axios.defaults.baseURL}/profilePictures/${user.username}.jpeg`;
     }
-
 }
 
 export interface IUser {
