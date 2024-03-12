@@ -61,17 +61,22 @@
 
         <!-- Rest of the page -->
         <div class="flex flex-col xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
-            <!-- Tabs Cast / Crew -->
-            <app-tabs tabsStyle="flex relative">
-                <app-tab name="cast">
-                    <app-movie-details-cast-tabs [cast]="cast"></app-movie-details-cast-tabs>
-                </app-tab>
-                <app-tab name="crew">
-                    <app-movie-details-crew-tabs [crew]="crew"></app-movie-details-crew-tabs>
-                </app-tab>
-            </app-tabs>
+            <!-- Crew and Cast -->
+            <div class="w-1/2">
 
-            <!-- Rating -->
+                <!-- Tabs Cast / Crew -->
+                <app-tabs tabsStyle="flex relative">
+                    <app-tab name="Cast">
+                        <app-movie-details-cast-tabs [cast]="cast"></app-movie-details-cast-tabs>
+                    </app-tab>
+                    <app-tab name="Crew">
+                        <app-movie-details-crew-tabs [crew]="crew"></app-movie-details-crew-tabs>
+                    </app-tab>
+                </app-tabs>
+            </div>
+
+
+            <!-- Reviews -->
             <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>
