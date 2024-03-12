@@ -12,20 +12,19 @@ import { IUser } from '../../shared/models/user.model';
     templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
+    public static test = 'ok';
+    public test: string = '';
+    public user: any;
+
     protected profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
         lastname: new FormControl('Doe', [Validators.required]),
         email: new FormControl({ value: 'john.doe@gmail.com', disabled: true }, [Validators.required, Validators.email]),
         username: new FormControl('JohnnyDowy', [Validators.required])
     });
-
-    public test: string = '';
-
     protected imageUrl: string | undefined;
     protected photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
     protected selectedFile: File | null = null;
-
-    user: any;
 
     constructor(
         private sanitizer: DomSanitizer,
