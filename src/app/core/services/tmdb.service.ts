@@ -38,9 +38,9 @@ export class TmdbService {
         );
     }
 
-    getMovieDetails(movieId: number): Observable<any> {
-        const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`;
-        return this.http.get(url);
+    async getMovieDetails(movieId: number): Promise<any>{
+        return await axios.get(`${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`);
+
     }
 
     private handleError<T>(operation = 'operation', result?: T) {
@@ -66,8 +66,7 @@ export class TmdbService {
     }
 
     getMovieCredits(movieId: number) {
-        const url = `${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}`;
-        return this.http.get(url);
+        return axios.get(`${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}&language=fr`);
     }
 
     public async getMoviesByGenre(genreId: number): Promise<Movie[]> {

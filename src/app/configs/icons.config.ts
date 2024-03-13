@@ -38,7 +38,8 @@ import {
     IconEyeCheck,
     IconArticle,
     IconList,
-    IconHeart
+    IconHeart,
+    IconClockPlus
 } from 'angular-tabler-icons/icons';
 
 export const icons = {
@@ -81,5 +82,6 @@ export const icons = {
     IconEyeCheck,
     IconArticle,
     IconList,
-    IconHeart
+    IconHeart,
+    IconClockPlus
 };
