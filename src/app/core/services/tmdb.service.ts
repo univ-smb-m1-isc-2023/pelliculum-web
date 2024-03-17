@@ -74,14 +74,11 @@ export class TmdbService {
         return (await axios.get(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}&language=fr&with_genres=${genreId}`)).data.results;
     }
 
-    getActorById(actorId: number) {
-        const url = `${this.baseUrl}/person/${actorId}?api_key=${this.apiKey}&language=fr`;
-        return this.http.get(url);
+    public async getActorById(actorId: number) {
+        return (await axios.get(`${this.baseUrl}/person/${actorId}?api_key=${this.apiKey}&language=fr`)).data;
     }
 
-    getActorMovies(actorId: number) {
-        const url = `${this.baseUrl}/person/${actorId}/movie_credits?api_key=${this.apiKey}&language
-        =fr`;
-        return this.http.get(url);
+    public async getActorMovies(actorId: number) {
+        return (await axios.get(`${this.baseUrl}/person/${actorId}/movie_credits?api_key=${this.apiKey}&language=fr`)).data;
     }
 }

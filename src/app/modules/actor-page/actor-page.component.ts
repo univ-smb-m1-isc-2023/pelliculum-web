@@ -13,7 +13,7 @@ import { TmdbService } from '../../core/services/tmdb.service';
   ],
   templateUrl: './actor-page.component.html'
 })
-export class ActorPageComponent implements OnInit{
+export class ActorPageComponent implements OnInit {
   protected actor: any;
   protected actorMovies: any[] = [];
 
@@ -22,36 +22,10 @@ export class ActorPageComponent implements OnInit{
     private tmdbService: TmdbService
   ) {}
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const actorId = +params['id'];
-      this.loadActor(actorId);
-      this.loadActorMovies(actorId);
-    });
-  }
-
-  loadActor(actorId: number): void {
-    this.tmdbService.getActorById(actorId).subscribe(
-      (response: any) => {
-        this.actor = response;
-        console.log('Actor:', this.actor);
-      },
-      (error: any) => {
-        console.error('Error fetching actor details:', error);
-      }
-    );
-  }
-
-  loadActorMovies(actorId: number): void {
-    this.tmdbService.getActorMovies(actorId).subscribe(
-      (response: any) => {
-        this.actorMovies = response.cast;
-        console.log('Actor Movie:', this.actorMovies);
-      },
-      (error: any) => {
-        console.error('Error fetching actor movies:', error);
-      }
-    );
+  async ngOnInit(): Promise<void> {
+    const actorId = Number(this.route.snapshot.paramMap.get('id'));
+    this.actor = await this.tmdbService.getActorById(actorId);
+    this.actorMovies = await this.tmdbService.getActorMovies(actorId);
   }
 
 }
