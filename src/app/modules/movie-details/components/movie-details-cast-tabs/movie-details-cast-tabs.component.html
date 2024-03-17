@@ -1,7 +1,7 @@
 <div class="relative">
     <div class="flex flex-wrap">
         @for (actor of (showAll ? cast : cast.slice(0, limit));track actor.name) {
-        <div class="flex w-full transform items-center justify-center space-x-2 p-1 transition-transform hover:scale-105 sm:w-full md:w-1/3 lg:w-1/4">
+        <div [routerLink]="'/actor/' + actor.id" class="flex w-full transform items-center justify-center space-x-2 p-1 transition-transform hover:scale-105 sm:w-full md:w-1/3 lg:w-1/4">
             <span [attr.data-tooltip]="actor.character" class="tooltip tooltip-top w-full">
                 <button class="whitespace-no-wrap btn w-full text-ellipsis text-xs">{{ actor.name }}</button>
             </span>

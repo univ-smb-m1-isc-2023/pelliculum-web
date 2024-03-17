@@ -73,4 +73,9 @@ export class TmdbService {
     public async getMoviesByGenre(genreId: number): Promise<Movie[]> {
         return (await axios.get(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}&language=fr&with_genres=${genreId}`)).data.results;
     }
+
+    getActorById(actorId: number) {
+        const url = `${this.baseUrl}/person/${actorId}?api_key=${this.apiKey}&language=fr`;
+        return this.http.get(url);
+    }
 }
