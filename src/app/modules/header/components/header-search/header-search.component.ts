@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
@@ -62,12 +62,6 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
 
     public onPosterError(event: any): void {
         event.target.src = 'https://dummyimage.com/40x60/eee/aaa.png&text=No+Image';
-    }
-
-    redirectToMovieDetails(movieId: number): void {
-        this.searchQuery = '';
-        this.searchService.setSearchQuery(this.searchQuery);
-        this.router.navigate(['/movie-details', movieId]);
     }
 
     getPosterUrl(posterPath: string): string {

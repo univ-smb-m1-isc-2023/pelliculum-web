@@ -68,6 +68,10 @@ export class SearchListMoviesComponent {
         this.movies = movies;
     }
 
+    public onPosterError(event: any): void {
+        event.target.src = 'https://dummyimage.com/40x60/eee/aaa.png&text=No+Image';
+    }
+
     private sortByDate(movies: any[]): any[] {
         return movies.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
     }
@@ -105,4 +109,6 @@ export class SearchListMoviesComponent {
     protected randomLikes(): number {
         return Math.floor(Math.random() * 1000);
     }
+
+
 }

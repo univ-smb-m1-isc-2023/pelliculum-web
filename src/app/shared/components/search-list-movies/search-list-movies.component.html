@@ -68,7 +68,9 @@
                             rgba(200, 200, 200, 0.05) 0px 30px 60px -30px;
                     "
                     [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + movie.poster_path"
-                    alt="e" />
+                    (error)="onPosterError($event)" alt="{{movie.title}}" />
+
+
 
                 <!-- Rating part -->
                 <div class="flex w-full flex-col space-y-1 py-1">
