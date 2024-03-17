@@ -78,4 +78,10 @@ export class TmdbService {
         const url = `${this.baseUrl}/person/${actorId}?api_key=${this.apiKey}&language=fr`;
         return this.http.get(url);
     }
+
+    getActorMovies(actorId: number) {
+        const url = `${this.baseUrl}/person/${actorId}/movie_credits?api_key=${this.apiKey}&language
+        =fr`;
+        return this.http.get(url);
+    }
 }

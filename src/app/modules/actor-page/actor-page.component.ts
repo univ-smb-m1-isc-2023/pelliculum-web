@@ -3,7 +3,6 @@ import { NgOptimizedImage } from '@angular/common';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../core/services/tmdb.service';
-import { Genre } from '../../shared/models/genre.model';
 
 @Component({
   selector: 'app-actor-page',
@@ -16,6 +15,7 @@ import { Genre } from '../../shared/models/genre.model';
 })
 export class ActorPageComponent implements OnInit{
   protected actor: any;
+  protected actorMovies: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +26,7 @@ export class ActorPageComponent implements OnInit{
     this.route.params.subscribe(params => {
       const actorId = +params['id'];
       this.loadActor(actorId);
+      this.loadActorMovies(actorId);
     });
   }
 
@@ -37,6 +38,18 @@ export class ActorPageComponent implements OnInit{
       },
       (error: any) => {
         console.error('Error fetching actor details:', error);
+      }
+    );
+  }
+
+  loadActorMovies(actorId: number): void {
+    this.tmdbService.getActorMovies(actorId).subscribe(
+      (response: any) => {
+        this.actorMovies = response.cast;
+        console.log('Actor Movie:', this.actorMovies);
+      },
+      (error: any) => {
+        console.error('Error fetching actor movies:', error);
       }
     );
   }

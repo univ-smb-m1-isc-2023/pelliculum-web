@@ -7,4 +7,20 @@
         <div class="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-b from-transparent to-[#100F10]"></div>
     </div>
 
+    <!-- Name of the actor -->
+    <h2 class="text-3xl font-bold text-white">{{ actor.name }}</h2>
+
+    @if (actorMovies.length > 0){
+    <div>
+        <ul>
+            @for (movie of actorMovies; track movie;) {
+                <li>{{ movie.title }} ({{ movie.release_date }})</li>
+            }
+        </ul>
+    </div>
+    }
+
+
+
+
 </div>
