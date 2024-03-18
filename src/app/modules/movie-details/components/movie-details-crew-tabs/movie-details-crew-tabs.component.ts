@@ -29,9 +29,11 @@ export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
 
     showAllCrew() {
         this.showAll = true;
+        this.limit = 48;
     }
 
     showLessCrew() {
         this.showAll = false;
+        this.limit = 12;
     }
 }

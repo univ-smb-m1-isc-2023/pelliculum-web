@@ -1,6 +1,6 @@
 <div class="relative space-y-1">
-    <div class="grid grid-cols-4">
-        @for (actor of (showAll ? cast : cast.slice(0, limit));track actor.name) {
+    <div class="grid grid-cols-6">
+        @for (actor of (cast.slice(0, limit));track actor.name) {
         <div class="flex transform items-center justify-center p-0.5 transition-transform">
             <span [attr.data-tooltip]="actor.character" class="tooltip tooltip-top w-full">
                 <p class="text-sm bg-greyRipple text-center rounded-sm truncate px-1 hover:text-primary cursor-pointer transition-all">{{actor.name}}</p>
@@ -14,7 +14,8 @@
         @if (!showAll && cast.length > limit) {
         <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/3 hover:bg-primary transition-all" (click)="showAllActors()">Voir plus...</button>
         } @else if (showAll && cast.length > limit) {
-        <button class="whitespace-no-wrap btn text-ellipsis text-xs" (click)="showLessActors()">Voir moins</button>
+            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/3 hover:bg-primary transition-all" (click)="showLessActors()">Voir moins</button>
+
         } @else {
         <button></button>
         }

@@ -23,9 +23,11 @@ export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
 
     showAllActors() {
         this.showAll = true;
+        this.limit = 48;
     }
 
     showLessActors() {
         this.showAll = false;
+        this.limit = 12;
     }
 }
