@@ -49,7 +49,7 @@ import {
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   @Input() currentMovie: any;
 
-  private id: number | null = null;
+  protected id: number | null = null;
   protected genres: { id: number; name: string }[] = [];
   protected crew: any[] = [];
   protected cast: any[] = [];

@@ -5,6 +5,8 @@ import { Response } from '../../shared/models/response.model';
 import axios from 'axios';
 import { AuthenticationService } from './authentication.service';
 import { IUser } from '../../shared/models/user.model';
+import { TmdbService } from './tmdb.service';
+import { IMovie } from '../../shared/models/movie.model';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +15,8 @@ export class UserService {
     constructor(
         private router: Router,
         private axiosService: AxiosService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private tmdbService: TmdbService
     ) {}
 
     /**
@@ -137,5 +140,35 @@ export class UserService {
      */
     public async removeFollow(username: string): Promise<Response<any>> {
         return this.axiosService.delete(`/users/${this.getUsername()}/unfollows/${username}`);
+    }
+
+    /**
+     * Get the user's watchlist
+     * @returns {Promise<any>} - The user's watchlist
+     */
+    public async getWatchlist(): Promise<IMovie[]> {
+        const movieIds: number[] = (await this.axiosService.get<number[]>(`/users/${this.getUsername()}/watchlist`)).data;
+        return await Promise.all(movieIds.map(async (movieId: number) => {
+            return (await this.tmdbService.getMovieDetails(movieId)).data;
+        }));
+
+    }
+
+    /**
+     * Add a movie to the user's watchlist
+     * @param movieId {number} - The movie id
+     * @returns {Promise<any>} - The response from the server
+     */
+    public async addWatchlist(movieId: number): Promise<Response<any>> {
+        return this.axiosService.post(`/users/${this.getUsername()}/watchlist/${movieId}`);
+    }
+
+    /**
+     * Remove a movie from the user's watchlist
+     * @param movieId {number} - The movie id
+     * @returns {Promise<any>} - The response from the server
+     */
+    public async removeWatchlist(movieId: number): Promise<Response<any>> {
+        return this.axiosService.delete(`/users/${this.getUsername()}/watchlist/${movieId}`);
     }
 }
