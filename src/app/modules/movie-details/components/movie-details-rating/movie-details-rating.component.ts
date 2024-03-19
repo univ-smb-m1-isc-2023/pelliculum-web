@@ -5,7 +5,8 @@ import { StarsComponent } from '../../../../shared/components/stars/stars.compon
     selector: 'app-movie-details-rating',
     standalone: true,
     imports: [StarsComponent],
-    templateUrl: './movie-details-rating.component.html'
+    templateUrl: './movie-details-rating.component.html',
+    styleUrls: ['./movie-details-rating.sass']
 })
 export class MovieDetailsRatingComponent {
     @Input() id: number = 0;
