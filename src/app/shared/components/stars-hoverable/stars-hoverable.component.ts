@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './stars-hoverable.component.html',
-  styleUrls: ['./stars-hoverable.component.scss']
+  styleUrls: ['./stars-hoverable.component.sass']
 })
 export class StarsHoverableComponent {
 
