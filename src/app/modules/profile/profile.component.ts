@@ -15,7 +15,7 @@ import { ProfileWatchlistComponent } from './components/profile-watchlist/profil
 @Component({
     selector: 'app-profile',
     standalone: true,
-  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent],
+    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })

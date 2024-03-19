@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileWatchlistComponent } from './profile-watchlist.component';
+import { StarHoverableComponent } from './star-hoverable.component';
 
-describe('ProfileWatchlistComponent', () => {
-    let component: ProfileWatchlistComponent;
-    let fixture: ComponentFixture<ProfileWatchlistComponent>;
+describe('StarHoverableComponent', () => {
+    let component: StarHoverableComponent;
+    let fixture: ComponentFixture<StarHoverableComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ProfileWatchlistComponent]
+            imports: [StarHoverableComponent]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ProfileWatchlistComponent);
+        fixture = TestBed.createComponent(StarHoverableComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

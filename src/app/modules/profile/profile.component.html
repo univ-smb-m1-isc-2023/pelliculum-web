@@ -1,7 +1,7 @@
 <div class="relative">
     <!-- App-backdrop with gradient -->
     <div class="opacity-75">
-        <img class="h-80 w-full object-cover" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movie.backdrop_path" alt="Poster" />
+        <img [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movie.backdrop_path" alt="Poster" class="h-80 w-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
         <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
     </div>
@@ -10,9 +10,9 @@
     <section class="absolute inset-x-0 flex flex-col space-y-3 p-14 transition-all xs:top-[3%] sm:top-[8%] sm:w-11/12 md:top-[8%] md:w-8/12 lg:top-[12%] xl:top-[15%] xl:w-6/12">
         <!-- Title and genres -->
         <div class="flex flex-row space-x-4">
-            <img [alt]="user.getUsername()" class="h-fit w-28 rounded-full" [src]="'http://localhost:8080/profilePictures/' + user.getUsername() + '.jpeg'" />
+            <img [alt]="user.getUsername()" [src]="'http://localhost:8080/profilePictures/' + user.getUsername() + '.jpeg'" class="h-fit w-28 rounded-full" />
             <div class="flex flex-col">
-                <h1 class="sm:text-md font-bold text-white md:text-xl lg:text-2xl xl:text-3xl">{{user.getUsername()}}</h1>
+                <h1 class="sm:text-md font-bold text-white md:text-xl lg:text-2xl xl:text-3xl">{{ user.getUsername() }}</h1>
                 <p>150 films | 12 likes | 541 revues</p>
             </div>
         </div>
@@ -23,9 +23,17 @@
 </div>
 
 <div class="z-0 -mt-16 w-full px-12">
-    <app-profile-tabs (tabSelected)="selectTab($event)">
-        <app-profile-classic *ngIf="activeTab === 'classic'"></app-profile-classic>
-        <app-profile-friends *ngIf="activeTab === 'friends'"></app-profile-friends>
-        <app-profile-watchlist *ngIf="activeTab === 'watchlist'"></app-profile-watchlist>
-    </app-profile-tabs>
+    <app-tabs [tabsStyle]="'relative flex space-x-16 rounded-lg bg-[#161616] py-2.5 pb-1.5 pr-16'">
+        <app-tab name="Profil">
+            <app-profile-classic></app-profile-classic>
+        </app-tab>
+        <app-tab name="Amis">
+            <app-profile-friends></app-profile-friends>
+        </app-tab>
+        <app-tab name="Watchlist">
+            <app-profile-watchlist></app-profile-watchlist>
+        </app-tab>
+        <app-tab name="Listes"></app-tab>
+        <app-tab name="Films"></app-tab>
+    </app-tabs>
 </div>

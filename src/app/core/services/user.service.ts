@@ -148,10 +148,11 @@ export class UserService {
      */
     public async getWatchlist(): Promise<IMovie[]> {
         const movieIds: number[] = (await this.axiosService.get<number[]>(`/users/${this.getUsername()}/watchlist`)).data;
-        return await Promise.all(movieIds.map(async (movieId: number) => {
-            return (await this.tmdbService.getMovieDetails(movieId)).data;
-        }));
-
+        return await Promise.all(
+            movieIds.map(async (movieId: number) => {
+                return (await this.tmdbService.getMovieDetails(movieId)).data;
+            })
+        );
     }
 
     /**

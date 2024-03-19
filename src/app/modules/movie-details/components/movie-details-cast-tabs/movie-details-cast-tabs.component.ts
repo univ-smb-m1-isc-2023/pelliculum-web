@@ -13,8 +13,7 @@ export class MovieDetailsCastTabsComponent implements OnInit, OnChanges {
 
     constructor(private tmdbService: TmdbService) {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['id'] && !changes['id'].firstChange) {

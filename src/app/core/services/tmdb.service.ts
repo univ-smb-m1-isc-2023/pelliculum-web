@@ -38,9 +38,8 @@ export class TmdbService {
         );
     }
 
-    async getMovieDetails(movieId: number): Promise<any>{
+    async getMovieDetails(movieId: number): Promise<any> {
         return await axios.get(`${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`);
-
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

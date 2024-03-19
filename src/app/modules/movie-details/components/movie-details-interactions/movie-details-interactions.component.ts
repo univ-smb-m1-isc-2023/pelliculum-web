@@ -5,29 +5,23 @@ import { RatingsGraphComponent } from '../../../../shared/components/ratings-gra
 import { UserService } from '../../../../core/services/user.service';
 
 @Component({
-  selector: 'app-movie-details-interactions',
-  standalone: true,
-  imports: [
-    StarsComponent,
-    TablerIconsModule,
-    RatingsGraphComponent,
-  ],
-  templateUrl: './movie-details-interactions.component.html'
+    selector: 'app-movie-details-interactions',
+    standalone: true,
+    imports: [StarsComponent, TablerIconsModule, RatingsGraphComponent],
+    templateUrl: './movie-details-interactions.component.html'
 })
 export class MovieDetailsInteractionsComponent {
+    @Input() movieId: number = 0;
+    @Input() rating: number = 0;
 
-  @Input() movieId: number = 0;
-  @Input() rating: number = 0;
+    constructor(private user: UserService) {}
 
-  constructor(private user: UserService) {}
-
-  protected async addToWatchlist(): Promise<void> {
-    this.user.addWatchlist(this.movieId).then(() => {
-      console.log('ok');
-    }).catch(() => {
-
-    })
-  }
-
-
+    protected async addToWatchlist(): Promise<void> {
+        this.user
+            .addWatchlist(this.movieId)
+            .then(() => {
+                console.log('ok');
+            })
+            .catch(() => {});
+    }
 }

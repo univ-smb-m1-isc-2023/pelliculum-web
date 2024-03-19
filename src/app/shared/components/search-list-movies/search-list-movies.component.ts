@@ -3,36 +3,38 @@ import { FormsModule } from '@angular/forms';
 import { PosterComponent } from '../poster/poster.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { TmdbService } from '../../../core/services/tmdb.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { genres } from '../../../configs/genres.config';
 import { StarsComponent } from '../stars/stars.component';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
     selector: 'app-search-list-movies',
     standalone: true,
-    imports: [FormsModule, PosterComponent, TablerIconsModule, NgClass, StarsComponent],
+    imports: [FormsModule, PosterComponent, TablerIconsModule, NgClass, StarsComponent, RouterLink],
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
+
+    @Input() public style?: string;
     @Input() public movies: any[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
 
     public list: any;
     public moviesCopy: any[] = [];
     public searchTerm: string = '';
-
-    private sortingGenres: number[] = [];
-
     protected isSortingByLikes: boolean = false;
     protected isSortingByDate: boolean = false;
     protected isSortingByGenre: boolean = false;
     protected isViewGrid: boolean = true;
     protected readonly genres = genres;
+    private sortingGenres: number[] = [];
 
     constructor(
         private tmdbService: TmdbService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        protected userService: UserService
     ) {}
 
     async ngOnInit(): Promise<void> {
@@ -68,18 +70,6 @@ export class SearchListMoviesComponent {
         this.movies = movies;
     }
 
-    private sortByDate(movies: any[]): any[] {
-        return movies.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
-    }
-
-    private sortByLikes(movies: any[]): any[] {
-        return movies.sort((a, b) => b.vote_average - a.vote_average);
-    }
-
-    private sortByGenre(movies: any[]): any[] {
-        return movies.filter((movie) => this.sortingGenres.every((genre) => movie.genre_ids.includes(genre)));
-    }
-
     protected searchMovies(movies: any[]): any[] {
         return movies.filter((movie) => movie.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
     }
@@ -104,5 +94,17 @@ export class SearchListMoviesComponent {
 
     protected randomLikes(): number {
         return Math.floor(Math.random() * 1000);
+    }
+
+    private sortByDate(movies: any[]): any[] {
+        return movies.sort((a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+    }
+
+    private sortByLikes(movies: any[]): any[] {
+        return movies.sort((a, b) => b.vote_average - a.vote_average);
+    }
+
+    private sortByGenre(movies: any[]): any[] {
+        return movies.filter((movie) => this.sortingGenres.every((genre) => movie.genre_ids.includes(genre)));
     }
 }
