@@ -11,10 +11,10 @@
 
     <!-- "Voir plus" -->
     <div class="flex w-full items-center justify-center">
-        @if (!showAll && crew.length > limit) {
-            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/3 hover:bg-primary transition-all" (click)="showAllCrew()">Voir plus...</button>
-        } @else if (showAll && crew.length > limit) {
-            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/3 hover:bg-primary transition-all" (click)="showLessCrew()">Voir moins</button>
+        @if (!showAll) {
+            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/5 hover:bg-primary transition-all" (click)="showAllCrew()">Voir plus...</button>
+        } @else if (showAll) {
+            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/5 hover:bg-primary transition-all" (click)="showLessCrew()">Voir moins</button>
 
         } @else {
             <button></button>
