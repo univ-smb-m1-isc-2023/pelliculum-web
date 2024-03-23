@@ -14,6 +14,6 @@ import { RatingsGraphComponent } from '../../../../shared/components/ratings-gra
   templateUrl: './movie-details-interactions.component.html'
 })
 export class MovieDetailsInteractionsComponent {
-  @Input() rating: number = 0;
+  @Input() reviews: any[] = [];
 
 }

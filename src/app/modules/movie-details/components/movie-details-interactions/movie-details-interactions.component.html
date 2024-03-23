@@ -4,11 +4,11 @@
     <tabler-icon name="clock-plus" style="width: 35px; height: 35px"></tabler-icon>
 </div>
 <div class="border-b border-custom-border h-1/6 flex justify-evenly items-center">
-    <app-stars [value]="rating/2" [stars]="5" size="w-9"></app-stars>
+    <app-stars [value]="1" [stars]="5" size="w-9"></app-stars>
 </div>
 <div class="border-b border-custom-border h-1/6 flex justify-evenly items-center">
 
 </div>
 <div class="h-3/6 flex justify-evenly items-center">
-    <app-ratings-graph></app-ratings-graph>
+    <app-ratings-graph [reviews]="reviews"></app-ratings-graph>
 </div>
