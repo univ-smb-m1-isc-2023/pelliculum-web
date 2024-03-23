@@ -13,8 +13,7 @@ import { StarsComponent } from '../stars/stars.component';
 })
 export class RatingsGraphComponent {
 
-  @Input() rating: number[] = []
-  protected ratings : number[] = []
+  @Input() ratings: number[] = []
   protected highestRating : number = 0
   protected height = 50
   protected totalRating : number = 0
