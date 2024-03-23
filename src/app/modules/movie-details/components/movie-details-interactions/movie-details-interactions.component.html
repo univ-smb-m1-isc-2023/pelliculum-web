@@ -1,14 +1,18 @@
-<div class="border-b border-custom-border h-1/6 flex justify-evenly items-center">
-    <tabler-icon name="eye-check" style="width: 35px; height: 35px"></tabler-icon>
-    <tabler-icon name="heart" style="width: 35px; height: 35px"></tabler-icon>
-    <tabler-icon name="clock-plus" style="width: 35px; height: 35px"></tabler-icon>
-</div>
-<div class="border-b border-custom-border h-1/6 flex justify-evenly items-center">
-    <app-stars [value]="1" [stars]="5" size="w-9"></app-stars>
-</div>
-<div class="border-b border-custom-border h-1/6 flex justify-evenly items-center">
+<div class="flex flex-col justify-between h-full">
+    <div class="flex justify-evenly items-center pt-4">
+            <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a ma watchlist">
+                <tabler-icon name="eye-plus" style="width: 60px;"></tabler-icon>
+            </span>
+            <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a une liste">
+                <tabler-icon name="text-plus" style="width: 60px;"></tabler-icon>
+            </span>
+    </div>
+    <div class="flex justify-evenly items-center">
+        <app-stars [value]="1" [stars]="5" size="w-9"></app-stars>
+    </div>
 
+    <div class="flex justify-evenly items-center">
+        <app-ratings-graph [reviews]="reviews"></app-ratings-graph>
+    </div>
 </div>
-<div class="h-3/6 flex justify-evenly items-center">
-    <app-ratings-graph [reviews]="reviews"></app-ratings-graph>
-</div>
+
