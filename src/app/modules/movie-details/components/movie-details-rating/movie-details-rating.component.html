@@ -5,7 +5,7 @@
         {{ reviews.length }} critique{{ reviews.length > 1 ? 's' : '' }}
     </p>
 
-    <div class="relative flex space-x-16 border-t border-custom-border pb-1.5"></div>
+    <div class="relative flex space-x-16 border-t border-custom-border pb-2"></div>
 
     <!-- Post a Review -->
     <div class="pb-2">
@@ -25,8 +25,21 @@
 
                     }
                     <span class="focus-border"></span>
-
+                    <div class="absolute -top-2 right-0">
+                        @if (this.spoiler) {
+                            <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique spoil"
+                                  (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
+                            </span>
+                        } @else {
+                            <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique ne spoil pas"
+                                  (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
+                            </span>
+                        }
+                    </div>
                 </div>
+
                 <div class="flex flex-row items-start">
                     <app-stars size="w-4" [stars]="5" [value]="5" class="flex flex-grow" />
                     @if (!reviewed) {
@@ -35,8 +48,10 @@
                         </button>
                     } @else {
                         <div class="items-center flex space-x-2">
-                            <span class="tooltip tooltip-top flex items-center" data-tooltip="Supprimer mon commentaire">
-                                <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer" (click)="deleteReview()"></tabler-icon>
+                            <span class="tooltip tooltip-top flex items-center"
+                                  data-tooltip="Supprimer mon commentaire">
+                                <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer"
+                                             (click)="deleteReview()"></tabler-icon>
                             </span>
 
                             <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="updateReview()">
@@ -79,7 +94,32 @@
                 </div>
 
                 <!-- User comment -->
-                <p class="line-clamp-3">{{ review.comment }}</p>
+                @if (review.spoiler) {
+                    <div class="flex items-center space-x-3 text-primary justify-center">
+                        <tabler-icon name="alert-triangle"></tabler-icon>
+                        <p class="line-clamp line-clamp-3">SPOILER ALERT</p>
+                        <tabler-icon name="alert-triangle"></tabler-icon>
+                        @if (!review.showSpoiler) {
+                            <span class="tooltip tooltip-top" data-tooltip="Voir quand même">
+                            <tabler-icon name="triangle-inverted"
+                                         style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
+                                         (click)="toggleShowSpoiler(review)"></tabler-icon>
+                            </span>
+                        } @else {
+                            <span class="tooltip tooltip-top" data-tooltip="Cacher le spoiler">
+                            <tabler-icon name="triangle"
+                                         style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
+                                         (click)="toggleShowSpoiler(review)"></tabler-icon>
+                            </span>
+
+                        }
+                    </div>
+                    @if (review.showSpoiler) {
+                        <p class="line-clamp-3">{{ review.comment }}</p>
+                    }
+                } @else {
+                    <p class="line-clamp-3">{{ review.comment }}</p>
+                }
 
                 <!-- Likes and comments -->
                 <div class="flex flex-grow items-end">

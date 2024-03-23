@@ -15,10 +15,12 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 })
 export class MovieDetailsRatingComponent implements OnInit{
     @Input() id: number = 0;
-    @Input() reviews: any[] = [];
+
+    protected reviews: any[] = [];
     protected reviewed: boolean = false;
     protected userReview: any = {};
     protected comment : string = '';
+    protected spoiler : boolean = false;
 
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -29,28 +31,29 @@ export class MovieDetailsRatingComponent implements OnInit{
     ngOnInit(): void {
         if (!this.user.isLoggedIn()) return;
         this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
-        this.getRating()
+        this.getReviews()
     }
 
-    private getRating(): void {
+    private getReviews(): void {
         this.tmdbService.getReviews(this.id).then(r => {
             this.reviews = r.data.map((review: any) => {
                 return {
                     ...review,
+                    showSpoiler : false,
                     profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
                     timeElapsed: this.getTimeElapsed(review.createdAt)
                 };
             });
 
-            const username = this.user.getUsername(); // Assurez-vous que cette méthode existe
-            const userReviewFound = this.reviews.find(review => review.user.username === username); // Utilisez find pour obtenir la review
-
-            if (userReviewFound) {
+            const username = this.user.getUsername();
+            const userReviewFound = this.reviews.find(review => review.user.username === username);
+            if (userReviewFound) { // si trouvé on update les variables lié a l'input
                 this.reviewed = true;
-                this.userReview = userReviewFound; // Stockez la review de l'utilisateur
+                this.userReview = userReviewFound;
+                this.spoiler = this.userReview.spoiler;
             } else {
                 this.reviewed = false;
-                this.userReview = null; // Réinitialisez si aucune review de l'utilisateur n'est trouvée
+                this.userReview = null;
             }
         });
     }
@@ -86,14 +89,20 @@ export class MovieDetailsRatingComponent implements OnInit{
     }
 
     protected postReview(): void {
-        this.userService.postReview(this.comment, this.id, 4.5).then(r => this.reviews.push(r.data))
+        this.userService.postReview(this.comment, this.id, 4.5, this.spoiler).then(r => {
+            this.reviews.push(r.data)
+            this.reviewed = true;
+        })
     }
 
     protected updateReview(): void {
-        this.userService.updateReview(this.userReview.id, this.comment, 4.5).then(r => {
+        console.log(this.spoiler)
+        this.userService.updateReview(this.userReview.id, this.comment, 4.5, this.spoiler).then(r => {
             const index = this.reviews.findIndex(review => review.id === this.userReview.id);
             this.reviews[index].comment = r.data.comment;
             this.reviews[index].rating = r.data.rating;
+            this.reviews[index].spoiler = r.data.spoiler;
+            console.log(r.data.spoiler)
         });
     }
 
@@ -104,6 +113,14 @@ export class MovieDetailsRatingComponent implements OnInit{
             this.reviewed = false;
             this.userReview = null;
         });
+    }
+
+    protected toggleSpoiler(): void {
+        this.spoiler = !this.spoiler;
+    }
+
+    protected toggleShowSpoiler(review: any): void {
+        review.showSpoiler = !review.showSpoiler;
     }
 
 }

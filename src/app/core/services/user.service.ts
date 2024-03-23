@@ -155,10 +155,11 @@ export class UserService {
    * @param comment {string} - The review comment
    * @param movieId {number} - The movie id
    * @param rating {number} - The review rating
+   * @param spoiler {boolean} - Is it a spoiler
    * @returns {Promise<any>} - The response from the server
    */
-  public async postReview(comment: string, movieId: number, rating: number): Promise<Response<any>> {
-    return this.axiosService.post(`/users/${this.getUsername()}/reviews`, { comment, movieId, rating });
+  public async postReview(comment: string, movieId: number, rating: number, spoiler : boolean): Promise<Response<any>> {
+    return this.axiosService.post(`/users/${this.getUsername()}/reviews`, { comment, movieId, rating, spoiler});
   }
 
   /**
@@ -166,11 +167,12 @@ export class UserService {
    * @param reviewId {number} - The review id
    * @param comment {string} - The review comment
    * @param rating {number} - The review rating
+   * @param spoiler {boolean} - Is it a spoiler
    * @returns {Promise<any>} - The response from the server
    */
 
-  public async updateReview(reviewId: number, comment: string, rating: number): Promise<Response<any>> {
-    return this.axiosService.put(`/reviews/${reviewId}`, { comment, rating });
+  public async updateReview(reviewId: number, comment: string, rating: number, spoiler : boolean): Promise<Response<any>> {
+    return this.axiosService.put(`/reviews/${reviewId}`, { comment, rating, spoiler });
   }
 
   /**
