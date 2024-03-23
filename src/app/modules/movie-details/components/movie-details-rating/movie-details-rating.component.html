@@ -96,9 +96,12 @@
                 <!-- User comment -->
                 @if (review.spoiler) {
                     <div class="flex items-center space-x-3 text-primary justify-center">
+                        <!-- Spoiler alert -->
                         <tabler-icon name="alert-triangle"></tabler-icon>
                         <p class="line-clamp line-clamp-3">SPOILER ALERT</p>
                         <tabler-icon name="alert-triangle"></tabler-icon>
+
+                        <!-- Show spoiler -->
                         @if (!review.showSpoiler) {
                             <span class="tooltip tooltip-top" data-tooltip="Voir quand même">
                             <tabler-icon name="triangle-inverted"
@@ -114,6 +117,8 @@
 
                         }
                     </div>
+
+                    <!-- Comment -->
                     @if (review.showSpoiler) {
                         <p class="line-clamp-3">{{ review.comment }}</p>
                     }
