@@ -50,6 +50,8 @@ import { UserService } from '../../core/services/user.service';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   @Input() currentMovie: any;
 
+  private destroy$ = new Subject<void>();
+
   private id: number | null = null;
   protected genres: { id: number; name: string }[] = [];
 
@@ -61,9 +63,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   protected selectedRating: number = 0;
   protected userReview: any = {};
-
-  private destroy$ = new Subject<void>();
-
+  
   constructor(private route: ActivatedRoute, private tmdbService: TmdbService, protected user: UserService) {
   }
 
