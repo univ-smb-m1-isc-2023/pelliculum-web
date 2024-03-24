@@ -56,10 +56,18 @@ export class UserService {
 
     /**
      * Get the user's profile information
-     * @returns {Promise<any>} - The user's profile information
+     * @returns {Promise<IUser>} - The user's profile information
+     * If the user's profile information is not found in local storage, retrieve it from the server
+     * and store it in local storage
      */
-    public async get(): Promise<Response<IUser>> {
-        return this.axiosService.get(`/users/${this.getUsername()}`);
+    public async get(): Promise<IUser> {
+        let user: string | null = sessionStorage.getItem('user');
+        if (!user) {
+            const userData: IUser  = (await this.axiosService.get<IUser>(`/users/${this.getUsername()}`)).data;
+            user = JSON.stringify(userData);
+            sessionStorage.setItem('user', user);
+        }
+        return JSON.parse(user);
     }
 
     /**
@@ -68,7 +76,10 @@ export class UserService {
      * @returns {Promise<any>} - The user's updated profile information
      */
     public async update(data: any): Promise<Response<IUser>> {
-        return this.axiosService.put(`/users/${this.getUsername()}`, data);
+        return this.axiosService.put<IUser>(`/users/${this.getUsername()}`, data).then((response: Response<IUser>) => {
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+            return response;
+        });
     }
 
     /**
@@ -129,8 +140,11 @@ export class UserService {
      * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async addFollow(username: string): Promise<Response<any>> {
-        return this.axiosService.post(`/users/${this.getUsername()}/follows/${username}`);
+    public async addFollow(username: string): Promise<Response<IUser>> {
+        return this.axiosService.post<IUser>(`/users/${this.getUsername()}/follows/${username}`).then((response: Response<IUser>) => {
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+            return response;
+        });
     }
 
     /**
@@ -138,15 +152,18 @@ export class UserService {
      * @param username {string} - The follows username
      * @returns {Promise<any>} - The response from the server
      */
-    public async removeFollow(username: string): Promise<Response<any>> {
-        return this.axiosService.delete(`/users/${this.getUsername()}/unfollows/${username}`);
+    public async removeFollow(username: string): Promise<Response<IUser>> {
+        return this.axiosService.delete<IUser>(`/users/${this.getUsername()}/unfollows/${username}`).then((response: Response<IUser>) => {
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+            return response;
+        });
     }
 
     /**
      * Get the user's watchlist
      * @returns {Promise<any>} - The user's watchlist
      */
-    public async getWatchlist(): Promise<IMovie[]> {
+    public async getWatchlistDetails(): Promise<IMovie[]> {
         const movieIds: number[] = (await this.axiosService.get<number[]>(`/users/${this.getUsername()}/watchlist`)).data;
         return await Promise.all(
             movieIds.map(async (movieId: number) => {
@@ -156,12 +173,25 @@ export class UserService {
     }
 
     /**
+     * Check if a movie is watchlisted by the user
+     * @param movieId {number} - The movie id
+     * @returns {Promise<boolean>} - True if the movie is watchlisted, false otherwise
+     */
+    public async isWatchlisted(movieId: number): Promise<boolean> {
+        const movieIds: number[] = (await this.get()).watchlist;
+        return movieIds.includes(movieId);
+    }
+
+    /**
      * Add a movie to the user's watchlist
      * @param movieId {number} - The movie id
      * @returns {Promise<any>} - The response from the server
      */
     public async addWatchlist(movieId: number): Promise<Response<any>> {
-        return this.axiosService.post(`/users/${this.getUsername()}/watchlist/${movieId}`);
+        return this.axiosService.post<IUser>(`/users/${this.getUsername()}/watchlist/${movieId}`).then((response: Response<IUser>) => {
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+            return response;
+        });
     }
 
     /**
@@ -170,6 +200,9 @@ export class UserService {
      * @returns {Promise<any>} - The response from the server
      */
     public async removeWatchlist(movieId: number): Promise<Response<any>> {
-        return this.axiosService.delete(`/users/${this.getUsername()}/watchlist/${movieId}`);
+        return this.axiosService.delete<IUser>(`/users/${this.getUsername()}/watchlist/${movieId}`).then((response: Response<IUser>) => {
+            sessionStorage.setItem('user', JSON.stringify(response.data));
+            return response;
+        });
     }
 }

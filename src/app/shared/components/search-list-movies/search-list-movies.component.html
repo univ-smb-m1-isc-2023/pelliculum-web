@@ -51,11 +51,15 @@
         <!-- Grid -->
         <div class="grid gap-x-4 gap-y-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10">
             @for (movie of movies; track movie.id) {
-            <a [routerLink]="'/film/'+movie.id" class="group relative cursor-pointer">
+            <a class="group relative cursor-pointer">
                 <app-poster [style]="'border-custom-border group-hover:opacity-55 transition'" [posterPath]="movie.poster_path" />
                 <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                     <div class="mt-auto flex h-full flex-col rounded-lg">
-                        <i-tabler (click)="userService.addWatchlist(movie.id)" name="eye-plus" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                        @if (isWatchlisted(movie.id)) {
+                            <i-tabler (click)="toggleWatchlist(movie.id)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                        } @else {
+                        <i-tabler (click)="toggleWatchlist(movie.id)" [name]="'eye-plus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                        }
                         <div class="flex items-center justify-center pb-2">
                             <app-stars [stars]="5" [value]="3.7" />
                         </div>
@@ -70,7 +74,7 @@
             @for (movie of movies; track movie.id) {
             <div class="flex w-full space-x-4">
                 <!-- Poster -->
-                <a [routerLink]="'/film/'+movie.id" class="group relative cursor-pointer">
+                <a class="group relative cursor-pointer">
                     <img
                         class="min-w-44 max-w-fit rounded-lg border-custom-border group-hover:opacity-55 transition"
                         style="
@@ -83,9 +87,13 @@
 
                     <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                         <div class="mt-auto flex h-full flex-col rounded-lg">
-                            <i-tabler (click)="userService.addWatchlist(movie.id)" name="eye-plus" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                            @if (isWatchlisted(movie.id)) {
+                                <i-tabler (click)="toggleWatchlist(movie.id)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                            } @else {
+                                <i-tabler (click)="toggleWatchlist(movie.id)" [name]="'eye-plus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                            }
                             <div class="flex items-center justify-center pb-2">
-                                <app-stars [stars]="5" [value]="3.7" />
+                                <app-stars [stars]="5" [value]="3.7" [size]="'w-fit'"/>
                             </div>
                         </div>
                     </div>
