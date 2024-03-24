@@ -83,4 +83,12 @@ export class TmdbService {
     return this.axiosService.get(`/reviews/${movieId}`);
 
   }
+
+  public async getActorById(actorId: number) {
+    return (await axios.get(`${this.baseUrl}/person/${actorId}?api_key=${this.apiKey}&language=fr`)).data;
+  }
+
+  public async getActorMovies(actorId: number) {
+    return (await axios.get(`${this.baseUrl}/person/${actorId}/movie_credits?api_key=${this.apiKey}&language=fr`)).data;
+  }
 }
