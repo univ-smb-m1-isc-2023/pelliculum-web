@@ -16,6 +16,7 @@ import { HomeDiscoverComponent } from './components/home-discover/home-discover.
 import { Movie } from '../../shared/models/movie.model';
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
+import { StarHoverableComponent } from '../../shared/components/star-hoverable/star-hoverable.component';
 
 @Component({
     selector: 'app-home',
@@ -35,18 +36,18 @@ import { TabComponent } from '../../shared/components/tabs/components/tab/tab.co
         HomeCarouselComponent,
         HomeDiscoverComponent,
         TabsComponent,
-        TabComponent
+        TabComponent,
+        StarHoverableComponent
     ],
     templateUrl: './home.component.html',
     styles: ``
 })
 export class HomeComponent implements OnInit {
-    protected topMovies: Movie[] = [];
-
     upcomings: any[] = [];
     watchlist: any = null;
-
     ratings: any[] = [];
+    protected topMovies: Movie[] = [];
+    protected readonly Date = Date;
 
     constructor(
         private tmdbService: TmdbService,
@@ -231,6 +232,4 @@ export class HomeComponent implements OnInit {
         console.log(id);
         return id;
     }
-
-    protected readonly Date = Date;
 }

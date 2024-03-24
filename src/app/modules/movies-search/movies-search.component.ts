@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { genres } from '../../configs/genres.config';
 import { slugify } from '../../core/utils/utilities.utils';
 import { TmdbService } from '../../core/services/tmdb.service';
-import { NgOptimizedImage } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 import { Genre, IGenre } from '../../shared/models/genre.model';
 
 @Component({
     selector: 'app-movies-search',
     standalone: true,
-    imports: [NgOptimizedImage, SearchListMoviesComponent],
+  imports: [NgOptimizedImage, SearchListMoviesComponent, NgIf],
     templateUrl: './movies-search.component.html'
 })
 export class MoviesSearchComponent {

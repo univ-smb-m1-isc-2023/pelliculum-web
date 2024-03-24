@@ -22,4 +22,6 @@ export interface IUser {
     email: string;
     role: string;
     avatar: string;
+    watchlist: number[];
+    follows: number[];
 }

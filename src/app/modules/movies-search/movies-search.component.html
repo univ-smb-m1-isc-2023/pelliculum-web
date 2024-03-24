@@ -1,7 +1,7 @@
 <div class="relative flex flex-col space-y-2">
     <!-- Image of the "famous" movie of the genre -->
     <div class="relative">
-        <img class="h-96 w-full object-cover object-center opacity-75" [ngSrc]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movies[0].backdrop_path" alt="Poster" [width]="1920" [height]="800" priority />
+        <img *ngIf="movies[0]" [height]="800" [ngSrc]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movies[0].backdrop_path" [width]="1920" alt="Poster" class="h-96 w-full object-cover object-center opacity-75" priority />
         <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
         <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
         <div class="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-b from-transparent to-[#100F10]"></div>
@@ -14,5 +14,5 @@
     </div>
 
     <!-- List with movies -->
-    <app-search-list-movies [genreSelected]="genre" [movies]="movies"></app-search-list-movies>
+    <app-search-list-movies [genreSelected]="genre" [movies]="movies" [style]="'px-12'"></app-search-list-movies>
 </div>

@@ -47,6 +47,7 @@ export class TmdbService {
 
   }
 
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);
@@ -60,6 +61,7 @@ export class TmdbService {
     const url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}&include_adult=false&language=fr&primary_release_date.gte=${new Date().toISOString().split('T')[0]}`;
     return this.http.get(url);
   }
+
 
   getGenres(ids: number[]) {
     return genres.filter((genre) => ids.includes(genre.id));

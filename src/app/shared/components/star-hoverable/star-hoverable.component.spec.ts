@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RatingsGraphComponent } from './ratings-graph.component';
+import { StarHoverableComponent } from './star-hoverable.component';
 
-describe('RatingsGraphComponent', () => {
-    let component: RatingsGraphComponent;
-    let fixture: ComponentFixture<RatingsGraphComponent>;
+describe('StarHoverableComponent', () => {
+    let component: StarHoverableComponent;
+    let fixture: ComponentFixture<StarHoverableComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [RatingsGraphComponent]
+            imports: [StarHoverableComponent]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(RatingsGraphComponent);
+        fixture = TestBed.createComponent(StarHoverableComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

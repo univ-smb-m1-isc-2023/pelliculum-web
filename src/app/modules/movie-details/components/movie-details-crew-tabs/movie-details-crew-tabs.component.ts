@@ -24,8 +24,7 @@ export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
         }
     }
 
-    loadCrew() {
-    }
+    loadCrew() {}
 
     showAllCrew() {
         this.showAll = true;
