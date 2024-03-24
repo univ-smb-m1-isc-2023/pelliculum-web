@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,15 +10,31 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './stars-hoverable.component.html',
   styleUrls: ['./stars-hoverable.component.sass']
 })
-export class StarsHoverableComponent {
+export class StarsHoverableComponent implements OnInit{
+  @Input() starSize = 1;
 
   constructor() { }
 
   rating: number | null = 4.5;
 
-  onRatingChange(ratingValue: number): void {
+  ngOnInit(): void {
+    this.processSize();
+  }
+
+  protected onRatingChange(ratingValue: number): void {
     this.rating = ratingValue;
-    console.log('Étoile cochée :', this.rating);
+  }
+
+  private processSize(){
+    const newWidth = 1.39306640625 * this.starSize;
+    const newHeight = 1.5 * this.starSize;
+    const halfStar = 0.69580078125 * this.starSize;
+    const marginValue = -halfStar;
+
+    document.documentElement.style.setProperty('--star-width', `${newWidth}em`);
+    document.documentElement.style.setProperty('--star-height', `${newHeight}em`);
+    document.documentElement.style.setProperty('--half-star-width', `${halfStar}em`);
+    document.documentElement.style.setProperty('--margin-value', `${marginValue}em`);
   }
 
 }

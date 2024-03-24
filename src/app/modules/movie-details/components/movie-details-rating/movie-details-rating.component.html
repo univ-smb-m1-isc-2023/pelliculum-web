@@ -40,8 +40,8 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row items-start">
-                    <app-stars size="w-4" [stars]="5" [value]="5" class="flex flex-grow" />
+                <div class="flex flex-row items-center space-x-2">
+                        <app-stars-hoverable></app-stars-hoverable>
                     @if (!reviewed) {
                         <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="postReview()">
                             Publier

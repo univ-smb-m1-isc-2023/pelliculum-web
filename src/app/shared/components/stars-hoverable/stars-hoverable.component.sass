@@ -1,6 +1,13 @@
 $color-gold: #ffc41f
 $color-gold-light: #ffd560
 
+root
+  --star-width: 1.39306640625em
+  --star-height: 1.5em
+  --half-star-width: 0.69580078125em
+  --margin-value: -0.69580078125em
+
+
 body
   display: flex
   justify-content: center
@@ -21,23 +28,20 @@ body
 
 .comment-stars-input:checked
   & ~ .comment-stars-view:hover svg
-  & ~ .comment-stars-view:hover ~ .comment-stars-view svg
     fill: $color-gold-light
 
 .comment-stars-view
   cursor: pointer
   svg
     fill: #ededef
-    width: 1.39306640625em
-    height: 1.5em
+    width: var(--star-width)
+    height: var(--star-height)
+
+  &:hover svg, &:hover ~ .comment-stars-view svg
+    fill: $color-gold-light
 
   &.is-half
     transform: translateX(100%)
-    margin-left: -0.69580078125em
-
+    margin-left: var(--margin-value)
     svg
-      width: 0.69580078125em
-
-  &:hover svg
-  &.hover ~ .comment-stars-view svg
-    fill: $color-gold-light
+      width: var(--half-star-width)
