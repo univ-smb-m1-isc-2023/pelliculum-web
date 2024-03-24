@@ -67,15 +67,15 @@ export class SearchListMoviesComponent {
 
     /**
      * Add a movie to the watchlist if it's not already there, remove it if it is
-     * @param movieId {number} - The movie id
+     * @param movie {IMovie} - The movie id
      */
-    protected async toggleWatchlist(movieId: number): Promise<void> {
-        if (this.isWatchlisted(movieId)) {
-            this.watchlist = this.watchlist.filter((id) => id !== movieId);
-            await this.userService.removeWatchlist(movieId);
+    protected async toggleWatchlist(movie: IMovie): Promise<void> {
+        if (this.isWatchlisted(movie?.id)) {
+            this.watchlist = this.watchlist.filter((id) => id !== movie?.id);
+            await this.userService.removeWatchlist(movie);
         } else {
-            this.watchlist = [...this.watchlist, movieId];
-            await this.userService.addWatchlist(movieId);
+            this.watchlist = [...this.watchlist, movie?.id];
+            await this.userService.addWatchlist(movie);
         }
     }
 

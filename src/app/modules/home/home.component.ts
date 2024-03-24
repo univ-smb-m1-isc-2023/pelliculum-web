@@ -17,6 +17,7 @@ import { Movie } from '../../shared/models/movie.model';
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
 import { StarHoverableComponent } from '../../shared/components/star-hoverable/star-hoverable.component';
+import { notyf } from '../../core/utils/notyf.utils';
 
 @Component({
     selector: 'app-home',

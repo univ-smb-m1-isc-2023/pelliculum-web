@@ -7,6 +7,7 @@ import { AuthenticationService } from './authentication.service';
 import { IUser } from '../../shared/models/user.model';
 import { TmdbService } from './tmdb.service';
 import { IMovie } from '../../shared/models/movie.model';
+import { success_watchlist } from '../utils/notyf.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -230,23 +231,24 @@ export class UserService {
 
     /**
      * Add a movie to the user's watchlist
-     * @param movieId {number} - The movie id
+     * @param movie {IMovie} - The movie id
      * @returns {Promise<any>} - The response from the server
      */
-    public async addWatchlist(movieId: number): Promise<Response<any>> {
-        return this.axiosService.post<IUser>(`/users/${this.getUsername()}/watchlist/${movieId}`).then((response: Response<IUser>) => {
+    public async addWatchlist(movie: IMovie): Promise<Response<any>> {
+        return this.axiosService.post<IUser>(`/users/${this.getUsername()}/watchlist/${movie?.id}`).then((response: Response<IUser>) => {
             sessionStorage.setItem('user', JSON.stringify(response.data));
+            success_watchlist(`${movie?.title} a été ajouté à la watchlist`, movie);
             return response;
         });
     }
 
     /**
      * Remove a movie from the user's watchlist
-     * @param movieId {number} - The movie id
+     * @param movie {IMovie} - The movie id
      * @returns {Promise<any>} - The response from the server
      */
-    public async removeWatchlist(movieId: number): Promise<Response<any>> {
-        return this.axiosService.delete<IUser>(`/users/${this.getUsername()}/watchlist/${movieId}`).then((response: Response<IUser>) => {
+    public async removeWatchlist(movie: IMovie): Promise<Response<any>> {
+        return this.axiosService.delete<IUser>(`/users/${this.getUsername()}/watchlist/${movie?.id}`).then((response: Response<IUser>) => {
             sessionStorage.setItem('user', JSON.stringify(response.data));
             return response;
         });
