@@ -4,11 +4,12 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserService } from '../../core/services/user.service';
 import { Response } from '../../shared/models/response.model';
 import { IUser } from '../../shared/models/user.model';
+import { StarsHoverableComponent } from '../../shared/components/stars-hoverable/stars-hoverable.component';
 
 @Component({
     selector: 'app-settings',
     standalone: true,
-    imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, StarsHoverableComponent],
     templateUrl: './settings.component.html'
 })
 export class SettingsComponent {

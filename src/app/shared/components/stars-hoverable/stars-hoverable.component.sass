@@ -1,0 +1,43 @@
+$color-gold: #ffc41f
+$color-gold-light: #ffd560
+
+body
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100vh
+  font-size: 30px
+
+.comment-stars
+  display: flex
+  flex-direction: row-reverse
+
+.comment-stars-input
+  display: none
+
+.comment-stars-input:checked
+  & ~ .comment-stars-view svg
+    fill: $color-gold
+
+.comment-stars-input:checked
+  & ~ .comment-stars-view:hover svg
+  & ~ .comment-stars-view:hover ~ .comment-stars-view svg
+    fill: $color-gold-light
+
+.comment-stars-view
+  cursor: pointer
+  svg
+    fill: #ededef
+    width: 1.39306640625em
+    height: 1.5em
+
+  &.is-half
+    transform: translateX(100%)
+    margin-left: -0.69580078125em
+
+    svg
+      width: 0.69580078125em
+
+  &:hover svg
+  &.hover ~ .comment-stars-view svg
+    fill: $color-gold-light
