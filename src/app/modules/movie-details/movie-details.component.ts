@@ -121,20 +121,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.activeTab = tab;
   }
 
-  private getReviews(): void {
+  private async getReviews(){
     if (!this.id) return;
-    this.tmdbService.getReviews(this.id).then(r => {
-      this.reviews = r.data.map((review: any) => {
-        return {
-          ...review,
-          showSpoiler: false,
-          profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
-          timeElapsed: this.getTimeElapsed(review.createdAt),
-        };
-      });
-      this.getCurrentUserReview();
-
+    const response = await this.tmdbService.getReviews(this.id);
+    this.reviews = response.data.map((review: any) => {
+      return {
+        ...review,
+        showSpoiler: false,
+        profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
+        timeElapsed: this.getTimeElapsed(review.createdAt),
+      };
     });
+    this.getCurrentUserReview();
   }
 
   protected getCurrentUserReview(): void {
