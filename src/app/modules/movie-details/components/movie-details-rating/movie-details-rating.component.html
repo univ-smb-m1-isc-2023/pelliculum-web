@@ -17,7 +17,7 @@
                 <div class="relative">
                     @if (!reviewed) {
                         <input class="effect-3 text-xs" type="text" [(ngModel)]="comment"
-                               placeholder="Ajoutez votre critique !">
+                               placeholder="Ajoutez un commentaire !">
                     } @else {
                         <input class="effect-3 text-xs" type="text"
                                placeholder="{{userReview.comment === '' ? 'Rajoutez un commentaire !' : userReview.comment}}"
@@ -48,7 +48,7 @@
                     } @else {
                         <div class="items-center flex space-x-2">
                             <span class="tooltip tooltip-top flex items-center"
-                                  data-tooltip="Supprimer mon commentaire">
+                                  data-tooltip="Supprimer ma critique">
                                 <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer"
                                              (click)="deleteReview()"></tabler-icon>
                             </span>

@@ -162,19 +162,20 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     const years = Math.floor(days / 365);
 
     if (seconds < 60) {
-      return `il y a ${seconds} secondes`;
+      return `il y a ${seconds} seconde${seconds > 1 ? 's' : ''}`;
     } else if (minutes < 60) {
-      return `il y a ${minutes} minutes`;
+      return `il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
     } else if (hours < 24) {
-      return `il y a ${hours} heures`;
+      return `il y a ${hours} heure${hours > 1 ? 's' : ''}`;
     } else if (days < 7) {
-      return `il y a ${days} jours`;
+      return `il y a ${days} jour${days > 1 ? 's' : ''}`;
     } else if (weeks < 4) {
-      return `il y a ${weeks} semaines`;
+      return `il y a ${weeks} semaine${weeks > 1 ? 's' : ''}`;
     } else if (months < 12) {
-      return `il y a ${months} mois`;
+      return `il y a ${months} mois`
     } else {
-      return `il y a ${years} ans`;
+      return `il y a ${years} an${years > 1 ? 's' : ''}`;
     }
+
   }
 }
