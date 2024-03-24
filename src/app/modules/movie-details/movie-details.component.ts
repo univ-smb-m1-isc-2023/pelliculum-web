@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
@@ -41,6 +41,7 @@ import { UserService } from '../../core/services/user.service';
     TabComponent,
     TablerIconsModule,
     MovieDetailsInteractionsComponent,
+    RouterLink,
   ],
   templateUrl: './movie-details.component.html',
   styles: [`
@@ -57,7 +58,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   protected cast: any[] = [];
   protected reviews: any[] = [];
 
-  protected director: string = '';
+  protected director?: any = null;
   protected activeTab: string = 'cast';
 
   private destroy$ = new Subject<void>();
@@ -99,7 +100,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     if (!this.id) return;
     const response = await this.tmdbService.getMovieCredits(this.id);
     this.crew = response.data.crew;
-    this.director = this.crew.find(member => member.job === 'Director')?.name;
+    this.director = this.crew.find(member => member.job === 'Director');
   }
 
   private async loadCast() {
