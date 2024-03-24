@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgClass, NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
@@ -7,6 +7,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
 import { SearchService } from '../../../../core/services/search.service';
 import { PosterComponent } from '../../../../shared/components/poster/poster.component';
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
+import { IMovie, Movie } from '../../../../shared/models/movie.model';
 
 @Component({
     selector: 'app-header-search',
@@ -16,7 +17,7 @@ import { StarsComponent } from '../../../../shared/components/stars/stars.compon
 })
 export class HeaderSearchComponent implements OnInit, OnDestroy {
     searchQuery: string = '';
-    movies: any;
+    movies: IMovie[] = [];
 
     private destroy$: Subject<void> = new Subject();
     @ViewChild('dropdownList') dropdownList!: ElementRef;
@@ -62,6 +63,12 @@ export class HeaderSearchComponent implements OnInit, OnDestroy {
 
     public onPosterError(event: any): void {
         event.target.src = 'https://dummyimage.com/40x60/eee/aaa.png&text=No+Image';
+    }
+
+    redirectToMovieDetails(movieId: number): void {
+        this.searchQuery = '';
+        this.searchService.setSearchQuery(this.searchQuery);
+        this.router.navigate(['/film', movieId]);
     }
 
     getPosterUrl(posterPath: string): string {

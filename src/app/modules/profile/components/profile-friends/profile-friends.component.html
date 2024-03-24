@@ -3,7 +3,7 @@
         <!-- Left Part -->
         <div class="flex flex-row items-center space-x-10">
             <!-- Follows / Followers -->
-            <div class="relative flex rounded-lg">
+            <div class="relative flex">
                 <div id="markerNetwork" class="absolute bottom-0.5 left-0 h-0.5 w-0 rounded bg-red-500 transition-all"></div>
                 <a (click)="switchFollows(); indicatorTab($event)" class="tracking-w tab cursor-pointer" id="follows" [ngClass]="{'text-white' : activeTab === 'follows'}">Abonnements</a>
                 <a (click)="switchFollowers(); indicatorTab($event)" class="tracking-w tab cursor-pointer" id="followers" [ngClass]="{'text-white' : activeTab === 'followers'}">Abonnés</a>

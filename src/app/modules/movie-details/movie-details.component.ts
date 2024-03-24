@@ -1,94 +1,160 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TmdbService } from '../../core/services/tmdb.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
-import { filter, Subject, switchMap, takeUntil } from 'rxjs';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
-import { MovieDetailsTabsComponent } from './components/movie-details-tabs/movie-details-tabs.component';
-import { NgIf } from '@angular/common';
-import { ProfileCustomizationTabComponent } from '../profile/components/profile-customization-tab/profile-customization-tab.component';
+import { NgClass, NgIf } from '@angular/common';
+import {
+  ProfileCustomizationTabComponent,
+} from '../profile/components/profile-customization-tab/profile-customization-tab.component';
 import { ProfileSecurityTabComponent } from '../profile/components/profile-security-tab/profile-security-tab.component';
 import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile-tabs.component';
 import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';
 import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-tabs/movie-details-crew-tabs.component';
 import { MovieDetailsRatingComponent } from './components/movie-details-rating/movie-details-rating.component';
+import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import {
+  MovieDetailsInteractionsComponent,
+} from './components/movie-details-interactions/movie-details-interactions.component';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
-    selector: 'app-movie-details',
-    standalone: true,
-    imports: [BackdropComponent, PosterComponent, StarsComponent, MovieDetailsTabsComponent, NgIf, ProfileCustomizationTabComponent, ProfileSecurityTabComponent, ProfileTabsComponent, MovieDetailsCastTabsComponent, MovieDetailsCrewTabsComponent, MovieDetailsRatingComponent],
-    templateUrl: './movie-details.component.html',
-    styles: ``
+  selector: 'app-movie-details',
+  standalone: true,
+  imports: [
+    BackdropComponent,
+    PosterComponent,
+    StarsComponent,
+    NgIf,
+    NgClass,
+    ProfileCustomizationTabComponent,
+    ProfileSecurityTabComponent,
+    ProfileTabsComponent,
+    MovieDetailsCastTabsComponent,
+    MovieDetailsCrewTabsComponent,
+    MovieDetailsRatingComponent,
+    TabsComponent,
+    TabComponent,
+    TablerIconsModule,
+    MovieDetailsInteractionsComponent,
+  ],
+  templateUrl: './movie-details.component.html',
+  styles: [`
+    /* Vos styles ici */
+  `],
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy {
-    @Input() currentMovie: any;
+  @Input() currentMovie: any;
 
-    public genres: { id: number; name: string }[] = [];
+  private id: number | null = null;
+  protected genres: { id: number; name: string }[] = [];
 
-    public activeTab: string = 'cast';
+  protected crew: any[] = [];
+  protected cast: any[] = [];
+  protected reviews: any[] = [];
 
-    private destroy$: Subject<void> = new Subject();
+  protected director: string = '';
+  protected activeTab: string = 'cast';
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private tmdbService: TmdbService
-    ) {}
+  private destroy$ = new Subject<void>();
 
-    ngOnInit(): void {
-        this.route.params
-            .pipe(
-                takeUntil(this.destroy$),
-                switchMap((params) => {
-                    const movieId = Number(params['id']);
-                    return this.tmdbService.getMovieDetails(movieId);
-                })
-            )
-            .subscribe(
-                (data) => {
-                    this.currentMovie = data;
-                    console.log('Current Movie:', this.currentMovie);
-                    this.genres = this.currentMovie.genres;
-                },
-                (error) => {
-                    console.error('Error:', error);
-                }
-            );
+  constructor(private route: ActivatedRoute, private tmdbService: TmdbService, protected user: UserService) {
+  }
 
-        this.router.events
-            .pipe(
-                filter((event) => event instanceof NavigationEnd),
-                takeUntil(this.destroy$)
-            )
-            .subscribe(() => {
-                const movieId = this.extractMovieIdFromRoute();
-                if (movieId) {
-                    this.tmdbService.getMovieDetails(movieId).subscribe(
-                        (data) => {
-                            this.currentMovie = data;
-                            console.log('Current Movie (Route Change):', this.currentMovie);
-                            this.genres = this.currentMovie.genres;
-                        },
-                        (error) => {
-                            console.error('Error (Route Change):', error);
-                        }
-                    );
-                }
-            });
+  ngOnInit(): void {
+    this.route.params.pipe(
+      switchMap(params => {
+        const movieId = Number(params['id']);
+        if (!isNaN(movieId)) {
+          this.id = movieId;
+          return this.loadMovieDetails();
+        }
+        return [];
+      }),
+      takeUntil(this.destroy$),
+    ).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private async loadMovieDetails() {
+    if (!this.id) return;
+    await this.tmdbService.getMovieDetails(this.id).then(response => {
+      this.currentMovie = response.data;
+      this.genres = this.currentMovie.genres;
+    });
+    await this.loadCrew();
+    await this.loadCast();
+    this.getReviews();
+  }
+
+  private async loadCrew() {
+    if (!this.id) return;
+    const response = await this.tmdbService.getMovieCredits(this.id);
+    this.crew = response.data.crew;
+    this.director = this.crew.find(member => member.job === 'Director')?.name;
+  }
+
+  private async loadCast() {
+    if (!this.id) return;
+    const response = await this.tmdbService.getMovieCredits(this.id);
+    this.cast = response.data.cast;
+  }
+
+
+
+  protected selectTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  private getReviews(): void {
+    if (!this.id) return;
+    this.tmdbService.getReviews(this.id).then(r => {
+      this.reviews = r.data.map((review: any) => {
+        return {
+          ...review,
+          showSpoiler: false,
+          profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
+          timeElapsed: this.getTimeElapsed(review.createdAt),
+        };
+      });
+    });
+  }
+
+  private getTimeElapsed(dateString: string): string {
+    const previousDate = new Date(dateString);
+    const currentDate = new Date();
+    const elapsed = currentDate.getTime() - previousDate.getTime();
+
+    const seconds = Math.floor(elapsed / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(days / 365);
+
+    if (seconds < 60) {
+      return `il y a ${seconds} secondes`;
+    } else if (minutes < 60) {
+      return `il y a ${minutes} minutes`;
+    } else if (hours < 24) {
+      return `il y a ${hours} heures`;
+    } else if (days < 7) {
+      return `il y a ${days} jours`;
+    } else if (weeks < 4) {
+      return `il y a ${weeks} semaines`;
+    } else if (months < 12) {
+      return `il y a ${months} mois`;
+    } else {
+      return `il y a ${years} ans`;
     }
-
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-
-    private extractMovieIdFromRoute(): number | null {
-        const movieId = Number(this.route.snapshot.paramMap.get('id'));
-        return isNaN(movieId) ? null : movieId;
-    }
-
-    selectTab(tab: string) {
-        this.activeTab = tab;
-    }
+  }
 }

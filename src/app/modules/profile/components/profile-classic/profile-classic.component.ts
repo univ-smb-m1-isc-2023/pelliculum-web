@@ -11,10 +11,13 @@ import { UserService } from '../../../../core/services/user.service';
 })
 export class ProfileClassicComponent implements OnInit {
     protected follows: any[] = [];
+    protected reviews: any[] = [];
 
     constructor(private userService: UserService) {}
 
     public async ngOnInit(): Promise<void> {
         this.follows = (await this.userService.getFollows()).data;
+        this.reviews = (await this.userService.getReviews()).data;
+        console.log(this.reviews)
     }
 }
