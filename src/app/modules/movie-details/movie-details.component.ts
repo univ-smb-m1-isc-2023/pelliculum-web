@@ -58,7 +58,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   protected reviews: any[] = [];
 
   protected director: string = '';
-  protected activeTab: string = 'cast';
 
   protected selectedRating: number = 0;
   protected userReview: any = {};
@@ -99,7 +98,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     });
     await this.loadCrew();
     await this.loadCast();
-    this.getReviews();
+    await this.getReviews();
   }
 
   private async loadCrew() {
@@ -115,13 +114,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.cast = response.data.cast;
   }
 
-
-
-  protected selectTab(tab: string) {
-    this.activeTab = tab;
-  }
-
-  private async getReviews(){
+  private async getReviews() {
     if (!this.id) return;
     const response = await this.tmdbService.getReviews(this.id);
     this.reviews = response.data.map((review: any) => {
@@ -133,17 +126,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       };
     });
     this.getCurrentUserReview();
-  }
-
-  protected getCurrentUserReview(): void {
-    const username = this.user.getUsername();
-    const userReviewFound = this.reviews.find(review => review.user.username === username);
-    if (userReviewFound) { // si trouvé on update les variables lié a l'input
-      this.userReview = userReviewFound;
-      this.selectedRating = this.userReview.rating;
-    }
-    console.log(this.userReview);
-    console.log(this.selectedRating);
   }
 
   private getTimeElapsed(dateString: string): string {
@@ -170,10 +152,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     } else if (weeks < 4) {
       return `il y a ${weeks} semaine${weeks > 1 ? 's' : ''}`;
     } else if (months < 12) {
-      return `il y a ${months} mois`
+      return `il y a ${months} mois`;
     } else {
       return `il y a ${years} an${years > 1 ? 's' : ''}`;
     }
+  }
 
+  protected getCurrentUserReview(): void {
+    const username = this.user.getUsername();
+    const userReviewFound = this.reviews.find(review => review.user.username === username);
+    if (userReviewFound) { // si trouvé on update les variables lié a l'input
+      this.userReview = userReviewFound;
+      this.selectedRating = this.userReview.rating;
+    }
   }
 }
