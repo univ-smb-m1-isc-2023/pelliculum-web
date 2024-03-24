@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,17 +12,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class StarsHoverableComponent implements OnInit{
   @Input() starSize = 1;
+  @Output() ratingChange = new EventEmitter<number>();
 
   constructor() { }
-
   rating: number | null = 4.5;
 
   ngOnInit(): void {
     this.processSize();
-  }
-
-  protected onRatingChange(ratingValue: number): void {
-    this.rating = ratingValue;
   }
 
   private processSize(){
@@ -35,6 +31,12 @@ export class StarsHoverableComponent implements OnInit{
     document.documentElement.style.setProperty('--star-height', `${newHeight}em`);
     document.documentElement.style.setProperty('--half-star-width', `${halfStar}em`);
     document.documentElement.style.setProperty('--margin-value', `${marginValue}em`);
+  }
+
+  protected onRatingChange(ratingValue: number): void {
+    this.rating = ratingValue;
+    console.log(ratingValue)
+    this.ratingChange.emit(ratingValue);
   }
 
 }

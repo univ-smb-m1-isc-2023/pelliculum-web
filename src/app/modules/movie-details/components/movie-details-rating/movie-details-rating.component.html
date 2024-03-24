@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="flex flex-row items-center space-x-2">
-                        <app-stars-hoverable></app-stars-hoverable>
+                        <app-stars-hoverable [starSize]="0.7"></app-stars-hoverable>
                     @if (!reviewed) {
                         <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="postReview()">
                             Publier
