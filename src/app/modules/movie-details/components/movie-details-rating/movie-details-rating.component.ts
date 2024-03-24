@@ -19,14 +19,16 @@ export class MovieDetailsRatingComponent implements OnInit, OnChanges {
 
     protected reviewed: boolean = false;
     protected userReview: any = {};
-    protected comment : string = '';
-    protected spoiler : boolean = false;
+    protected comment: string = '';
+    protected spoiler: boolean = false;
 
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
-    constructor(protected user: UserService,
-                protected tmdbService : TmdbService,
-                protected userService : UserService) {}
+    constructor(
+        protected user: UserService,
+        protected tmdbService: TmdbService,
+        protected userService: UserService
+    ) {}
 
     ngOnInit(): void {
         if (!this.user.isLoggedIn()) return;
@@ -34,24 +36,24 @@ export class MovieDetailsRatingComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['reviews']){
+        if (changes['reviews']) {
             this.getCurrentUserReview();
-
         }
     }
 
     protected postReview(): void {
-        this.userService.postReview(this.comment, this.id, 4.5, this.spoiler).then(r => {
-            this.reviews.push(r.data)
+        this.userService.postReview(this.comment, this.id, 4.5, this.spoiler).then((r) => {
+            this.reviews.push(r.data);
             this.reviewed = true;
             this.userReview.id = r.data.id;
-        })
+        });
     }
 
     protected getCurrentUserReview(): void {
         const username = this.user.getUsername();
-        const userReviewFound = this.reviews.find(review => review.user.username === username);
-        if (userReviewFound) { // si trouvé on update les variables lié a l'input
+        const userReviewFound = this.reviews.find((review) => review.user.username === username);
+        if (userReviewFound) {
+            // si trouvé on update les variables lié a l'input
             this.reviewed = true;
             this.userReview = userReviewFound;
             this.spoiler = this.userReview.spoiler;
@@ -62,19 +64,19 @@ export class MovieDetailsRatingComponent implements OnInit, OnChanges {
     }
 
     protected updateReview(): void {
-        console.log(this.spoiler)
-        this.userService.updateReview(this.userReview.id, this.comment, 4.5, this.spoiler).then(r => {
-            const index = this.reviews.findIndex(review => review.id === this.userReview.id);
+        console.log(this.spoiler);
+        this.userService.updateReview(this.userReview.id, this.comment, 4.5, this.spoiler).then((r) => {
+            const index = this.reviews.findIndex((review) => review.id === this.userReview.id);
             this.reviews[index].comment = r.data.comment;
             this.reviews[index].rating = r.data.rating;
             this.reviews[index].spoiler = r.data.spoiler;
-            console.log(r.data.spoiler)
+            console.log(r.data.spoiler);
         });
     }
 
     protected deleteReview(): void {
         this.userService.deleteReview(this.userReview.id).then(() => {
-            const index = this.reviews.findIndex(review => review.id === this.userReview.id);
+            const index = this.reviews.findIndex((review) => review.id === this.userReview.id);
             this.reviews.splice(index, 1);
             this.reviewed = false;
             this.userReview.comment = '';
@@ -88,5 +90,4 @@ export class MovieDetailsRatingComponent implements OnInit, OnChanges {
     protected toggleShowSpoiler(review: any): void {
         review.showSpoiler = !review.showSpoiler;
     }
-
 }

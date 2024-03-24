@@ -14,11 +14,10 @@ import { IMovie } from '../../models/movie.model';
 @Component({
     selector: 'app-search-list-movies',
     standalone: true,
-  imports: [FormsModule, PosterComponent, TablerIconsModule, NgClass, StarsComponent, RouterLink, AsyncPipe],
+    imports: [FormsModule, PosterComponent, TablerIconsModule, NgClass, StarsComponent, RouterLink, AsyncPipe],
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
-
     @Input() public style?: string;
     @Input() public movies: any[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
@@ -64,7 +63,6 @@ export class SearchListMoviesComponent {
         console.log(this.movies);
     }
 
-
     /**
      * Add a movie to the watchlist if it's not already there, remove it if it is
      * @param movie {IMovie} - The movie id
@@ -82,7 +80,6 @@ export class SearchListMoviesComponent {
     protected isWatchlisted(movieId: number): boolean {
         return this.watchlist.includes(movieId);
     }
-
 
     protected isGenreSelected(genre: any): boolean {
         return this.genreSelected?.id === genre.id;

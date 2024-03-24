@@ -18,6 +18,6 @@ export class ProfileClassicComponent implements OnInit {
     public async ngOnInit(): Promise<void> {
         this.follows = (await this.userService.getFollows()).data;
         this.reviews = (await this.userService.getReviews()).data;
-        console.log(this.reviews)
+        console.log(this.reviews);
     }
 }

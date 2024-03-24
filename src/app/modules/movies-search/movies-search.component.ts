@@ -10,7 +10,7 @@ import { Genre, IGenre } from '../../shared/models/genre.model';
 @Component({
     selector: 'app-movies-search',
     standalone: true,
-  imports: [NgOptimizedImage, SearchListMoviesComponent, NgIf],
+    imports: [NgOptimizedImage, SearchListMoviesComponent, NgIf],
     templateUrl: './movies-search.component.html'
 })
 export class MoviesSearchComponent {

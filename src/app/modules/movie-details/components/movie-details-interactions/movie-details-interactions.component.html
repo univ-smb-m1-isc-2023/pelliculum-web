@@ -1,18 +1,17 @@
-<div class="flex flex-col justify-between h-full">
-    <div class="flex justify-evenly items-center pt-4">
-            <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a ma watchlist">
-                <tabler-icon name="eye-plus" style="width: 60px;"></tabler-icon>
-            </span>
-            <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a une liste">
-                <tabler-icon name="text-plus" style="width: 60px;"></tabler-icon>
-            </span>
+<div class="flex h-full flex-col justify-between">
+    <div class="flex items-center justify-evenly pt-4">
+        <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a ma watchlist">
+            <tabler-icon name="eye-plus" style="width: 60px"></tabler-icon>
+        </span>
+        <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a une liste">
+            <tabler-icon name="text-plus" style="width: 60px"></tabler-icon>
+        </span>
     </div>
-    <div class="flex justify-evenly items-center">
+    <div class="flex items-center justify-evenly">
         <app-stars [value]="1" [stars]="5" size="w-9"></app-stars>
     </div>
 
-    <div class="flex justify-evenly items-center">
+    <div class="flex items-center justify-evenly">
         <app-ratings-graph [reviews]="reviews"></app-ratings-graph>
     </div>
 </div>
-

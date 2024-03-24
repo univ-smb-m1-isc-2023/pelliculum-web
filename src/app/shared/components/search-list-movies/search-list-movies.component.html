@@ -56,7 +56,7 @@
                 <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                     <div class="mt-auto flex h-full flex-col rounded-lg">
                         @if (isWatchlisted(movie.id)) {
-                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                        <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
                         } @else {
                         <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
                         }
@@ -76,7 +76,7 @@
                 <!-- Poster -->
                 <a class="group relative cursor-pointer">
                     <img
-                        class="min-w-44 max-w-fit rounded-lg border-custom-border group-hover:opacity-55 transition"
+                        class="min-w-44 max-w-fit rounded-lg border-custom-border transition group-hover:opacity-55"
                         style="
                             box-shadow:
                                 rgba(150, 150, 150, 0.1) 0px 50px 100px -20px,
@@ -88,12 +88,12 @@
                     <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                         <div class="mt-auto flex h-full flex-col rounded-lg">
                             @if (isWatchlisted(movie.id)) {
-                                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
                             } @else {
-                                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
                             }
                             <div class="flex items-center justify-center pb-2">
-                                <app-stars [stars]="5" [value]="3.7" [size]="'w-fit'"/>
+                                <app-stars [stars]="5" [value]="3.7" [size]="'w-fit'" />
                             </div>
                         </div>
                     </div>
