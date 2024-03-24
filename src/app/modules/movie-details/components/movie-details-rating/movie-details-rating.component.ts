@@ -16,6 +16,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 export class MovieDetailsRatingComponent implements OnInit, OnChanges {
     @Input() id: number = 0;
     @Input() reviews: any[] = [];
+    @Input() selectedRating: number = 0;
 
     protected reviewed: boolean = false;
     protected userReview: any = {};
@@ -41,7 +42,8 @@ export class MovieDetailsRatingComponent implements OnInit, OnChanges {
     }
 
     protected postReview(): void {
-        this.userService.postReview(this.comment, this.id, 4.5, this.spoiler).then(r => {
+        console.log(this.selectedRating)
+        this.userService.postReview(this.comment, this.id, this.selectedRating, this.spoiler).then(r => {
             this.reviews.push(r.data)
             this.reviewed = true;
             this.userReview.id = r.data.id;

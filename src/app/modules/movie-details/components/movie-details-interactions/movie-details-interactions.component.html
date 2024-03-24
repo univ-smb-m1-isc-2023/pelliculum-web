@@ -8,7 +8,7 @@
             </span>
     </div>
     <div class="flex justify-evenly items-center">
-        <app-stars-hoverable [starSize]="1.8"></app-stars-hoverable>
+        <app-stars-hoverable [starSize]="1.8" (ratingChange)="handleRatingChange($event)" [rating]="selectedRating"></app-stars-hoverable>
     </div>
 
     <div class="flex justify-evenly items-center">

@@ -12,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class StarsHoverableComponent implements OnInit{
   @Input() starSize = 1;
+  @Input() rating: number | null = 0;
   @Output() ratingChange = new EventEmitter<number>();
 
   constructor() { }
-  rating: number | null = 4.5;
 
   ngOnInit(): void {
     this.processSize();

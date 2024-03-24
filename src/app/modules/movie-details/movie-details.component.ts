@@ -60,6 +60,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   protected director: string = '';
   protected activeTab: string = 'cast';
 
+  protected selectedRating: number = 0;
+  protected userReview: any = {};
+
   private destroy$ = new Subject<void>();
 
   constructor(private route: ActivatedRoute, private tmdbService: TmdbService, protected user: UserService) {
@@ -82,6 +85,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  public onRatingChange(ratingValue: number): void {
+    this.selectedRating = ratingValue;
   }
 
   private async loadMovieDetails() {
@@ -125,7 +132,20 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
           timeElapsed: this.getTimeElapsed(review.createdAt),
         };
       });
+      this.getCurrentUserReview();
+
     });
+  }
+
+  protected getCurrentUserReview(): void {
+    const username = this.user.getUsername();
+    const userReviewFound = this.reviews.find(review => review.user.username === username);
+    if (userReviewFound) { // si trouvé on update les variables lié a l'input
+      this.userReview = userReviewFound;
+      this.selectedRating = this.userReview.rating;
+    }
+    console.log(this.userReview);
+    console.log(this.selectedRating);
   }
 
   private getTimeElapsed(dateString: string): string {
