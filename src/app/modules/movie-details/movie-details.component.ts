@@ -21,6 +21,7 @@ import {
   MovieDetailsInteractionsComponent,
 } from './components/movie-details-interactions/movie-details-interactions.component';
 import { UserService } from '../../core/services/user.service';
+import { SharedReviewService } from '../../core/services/shared-review.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -61,10 +62,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   protected director: string = '';
 
-  protected selectedRating: number = 0;
-  protected userReview: any = {};
-  
-  constructor(private route: ActivatedRoute, private tmdbService: TmdbService, protected user: UserService) {
+  constructor(private route: ActivatedRoute, private tmdbService: TmdbService,
+              protected user: UserService, protected reviewService: SharedReviewService) {
   }
 
   ngOnInit(): void {
@@ -84,10 +83,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  public onRatingChange(ratingValue: number): void {
-    this.selectedRating = ratingValue;
   }
 
   private async loadMovieDetails() {
@@ -162,8 +157,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     const username = this.user.getUsername();
     const userReviewFound = this.reviews.find(review => review.user.username === username);
     if (userReviewFound) { // si trouvé on update les variables lié a l'input
-      this.userReview = userReviewFound;
-      this.selectedRating = this.userReview.rating;
+      this.reviewService.selectedRating.next(userReviewFound.rating);
+      console.log(this.reviewService.selectedRating)
+      this.reviewService.comment = userReviewFound.comment;
+      this.reviewService.spoiler = userReviewFound.spoiler;
     }
   }
 }
