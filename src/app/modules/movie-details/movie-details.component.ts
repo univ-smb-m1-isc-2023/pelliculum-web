@@ -9,7 +9,6 @@ import { NgClass, NgIf } from '@angular/common';
 import {
   ProfileCustomizationTabComponent,
 } from '../profile/components/profile-customization-tab/profile-customization-tab.component';
-import { ProfileSecurityTabComponent } from '../profile/components/profile-security-tab/profile-security-tab.component';
 import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile-tabs.component';
 import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';
 import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-tabs/movie-details-crew-tabs.component';
@@ -33,7 +32,6 @@ import { SharedReviewService } from '../../core/services/shared-review.service';
     NgIf,
     NgClass,
     ProfileCustomizationTabComponent,
-    ProfileSecurityTabComponent,
     ProfileTabsComponent,
     MovieDetailsCastTabsComponent,
     MovieDetailsCrewTabsComponent,

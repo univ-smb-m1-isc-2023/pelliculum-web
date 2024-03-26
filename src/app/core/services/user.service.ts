@@ -147,7 +147,7 @@ export class UserService {
    */
 
   public async getReviews(): Promise<Response<any>> {
-    return this.axiosService.get(`/users/${this.getUsername()}/reviews`);
+    return this.axiosService.get(`/reviews/user/${this.getUsername()}`);
   }
 
   /**
