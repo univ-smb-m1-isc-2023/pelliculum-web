@@ -83,6 +83,15 @@ export class MovieDetailsRatingComponent implements OnInit, OnChanges {
         });
     }
 
+    protected addLikeToReview(reviewId: number): void {
+        this.userService.addLikeToReview(reviewId, this.user.getUsername()).then(r => {
+            const review = this.reviews.find(review => review.id === reviewId);
+            console.log(review);
+            review.likes.push(r.data);
+            console.log(r.data);
+        });
+    }
+
     protected toggleSpoiler(): void {
         this.spoiler = !this.spoiler;
     }

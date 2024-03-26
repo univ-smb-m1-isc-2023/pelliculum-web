@@ -117,6 +117,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   private async getReviews() {
     if (!this.id) return;
     const response = await this.tmdbService.getReviews(this.id);
+    console.log(response.data);
     this.reviews = response.data.map((review: any) => {
       return {
         ...review,
