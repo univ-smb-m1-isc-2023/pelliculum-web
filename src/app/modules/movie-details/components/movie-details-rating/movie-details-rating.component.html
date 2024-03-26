@@ -85,10 +85,10 @@
                     </div>
                     <p class="text-md">Critique de {{ review.user.username }}</p>
                     <!-- Rating -->
-                    <div class="flex flex-row items-center space-x-1.5">
+                    <div class="flex flex-row items-baseline space-x-1.5">
                         <app-stars size="w-5" [stars]="5" [value]="review.rating" />
                         <!-- Time elapsed -->
-                        <p class="text-xs font-normal italic text-opacity-10">{{ review.timeElapsed }}</p>
+                        <p class="text-xs font-normal italic text-gray-500">{{ review.timeElapsed }}</p>
                     </div>
                 </div>
 

@@ -73,7 +73,6 @@ export class MovieDetailsRatingComponent implements OnInit{
     }
 
     protected updateReview(): void {
-        console.log('here')
         this.reviewService.comment = this.comment;
         this.reviewService.spoiler = this.spoiler;
 
@@ -82,6 +81,7 @@ export class MovieDetailsRatingComponent implements OnInit{
             this.reviews[index].comment = r.data.comment;
             this.reviews[index].rating = r.data.rating;
             this.reviews[index].spoiler = r.data.spoiler;
+            console.log(this.reviews)
         });
     }
 
