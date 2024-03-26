@@ -31,7 +31,6 @@ export class MovieDetailsRatingComponent implements OnInit{
 
     constructor(protected user: UserService,
                 protected tmdbService : TmdbService,
-                protected userService : UserService,
                 protected reviewService : SharedReviewService) {}
 
     ngOnInit(): void {
@@ -102,6 +101,7 @@ export class MovieDetailsRatingComponent implements OnInit{
             this.userReview = userReviewFound;
             this.spoiler = this.userReview.spoiler;
             this.reviewService.reviewId = userReviewFound.id;
+            this.reviewService.selectedRating.next(userReviewFound.rating);
         } else {
             this.reviewed = false;
             this.userReview.comment = '';
