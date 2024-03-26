@@ -58,7 +58,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   protected crew: any[] = [];
   protected cast: any[] = [];
-  protected reviews: any[] = [];
 
   protected director: string = '';
 
@@ -93,7 +92,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     });
     await this.loadCrew();
     await this.loadCast();
-    await this.getReviews();
   }
 
   private async loadCrew() {
@@ -109,58 +107,4 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.cast = response.data.cast;
   }
 
-  private async getReviews() {
-    if (!this.id) return;
-    const response = await this.tmdbService.getReviews(this.id);
-    this.reviews = response.data.map((review: any) => {
-      return {
-        ...review,
-        showSpoiler: false,
-        profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
-        timeElapsed: this.getTimeElapsed(review.createdAt),
-      };
-    });
-    this.getCurrentUserReview();
-  }
-
-  private getTimeElapsed(dateString: string): string {
-    const previousDate = new Date(dateString);
-    const currentDate = new Date();
-    const elapsed = currentDate.getTime() - previousDate.getTime();
-
-    const seconds = Math.floor(elapsed / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    const weeks = Math.floor(days / 7);
-    const months = Math.floor(days / 30);
-    const years = Math.floor(days / 365);
-
-    if (seconds < 60) {
-      return `il y a ${seconds} seconde${seconds > 1 ? 's' : ''}`;
-    } else if (minutes < 60) {
-      return `il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
-    } else if (hours < 24) {
-      return `il y a ${hours} heure${hours > 1 ? 's' : ''}`;
-    } else if (days < 7) {
-      return `il y a ${days} jour${days > 1 ? 's' : ''}`;
-    } else if (weeks < 4) {
-      return `il y a ${weeks} semaine${weeks > 1 ? 's' : ''}`;
-    } else if (months < 12) {
-      return `il y a ${months} mois`;
-    } else {
-      return `il y a ${years} an${years > 1 ? 's' : ''}`;
-    }
-  }
-
-  protected getCurrentUserReview(): void {
-    const username = this.user.getUsername();
-    const userReviewFound = this.reviews.find(review => review.user.username === username);
-    if (userReviewFound) { // si trouvé on update les variables lié a l'input
-      this.reviewService.selectedRating.next(userReviewFound.rating);
-      console.log(this.reviewService.selectedRating)
-      this.reviewService.comment = userReviewFound.comment;
-      this.reviewService.spoiler = userReviewFound.spoiler;
-    }
-  }
 }

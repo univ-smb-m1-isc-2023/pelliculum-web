@@ -54,7 +54,7 @@
 
                 <!-- Right Part -->
                 <div class="w-3/12 bg-transparent border border-custom-border rounded">
-                    <app-movie-details-interactions [reviews]="reviews" class="w-full"></app-movie-details-interactions>
+                    <app-movie-details-interactions class="w-full"></app-movie-details-interactions>
                 </div>
             </div>
         </div>
@@ -76,10 +76,7 @@
             </div>
 
 
-            <!-- Reviews -->
-            @if (reviews !== []) {
-                <app-movie-details-rating [id]="currentMovie.id" [reviews]="reviews"></app-movie-details-rating>
-            }
+            <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>
 }
