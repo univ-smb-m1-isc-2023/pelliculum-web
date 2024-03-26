@@ -192,6 +192,7 @@ export class UserService {
    * @returns {Promise<any>} - The response from the server
    */
   public async addLikeToReview(reviewId: number, username : String | null): Promise<Response<any>> {
-    return this.axiosService.put(`/like/${reviewId}/${username}`);
+    console.log(reviewId, username)
+    return this.axiosService.put(`/reviews/like/${reviewId}/${username}`);
   }
 }
