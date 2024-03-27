@@ -194,4 +194,15 @@ export class UserService {
   public async addLikeToReview(reviewId: number, username: String | null): Promise<Response<any>> {
     return this.axiosService.put(`/reviews/${username}/like/${reviewId}`);
   }
+
+  /**
+   * Remove a like
+   * @param reviewId {number} - The review id
+   * @param username {string} - The username
+   * @returns {Promise<any>} - The response from the server
+   */
+
+  public async unlikeReview(reviewId: number, username: String | null): Promise<Response<any>> {
+    return this.axiosService.delete(`/reviews/${username}/unlike/${reviewId}`);
+  }
 }
