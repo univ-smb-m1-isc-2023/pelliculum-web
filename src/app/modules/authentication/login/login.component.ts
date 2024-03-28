@@ -7,11 +7,17 @@ import { Router, RouterLink } from '@angular/router';
 import { PosterComponent } from '../../../shared/components/poster/poster.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../core/services/authentication.service';
+import {
+    GoogleLoginProvider,
+    GoogleSigninButtonModule,
+    SocialAuthService,
+    SocialUser,
+} from '@abacritt/angularx-social-login';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [SignupInformationComponent, SignupPreferencesComponent, NgOptimizedImage, LogoMoviePosterComponent, RouterLink, PosterComponent, FormsModule, ReactiveFormsModule],
+    imports: [SignupInformationComponent, SignupPreferencesComponent, NgOptimizedImage, LogoMoviePosterComponent, RouterLink, PosterComponent, FormsModule, ReactiveFormsModule, GoogleSigninButtonModule],
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
@@ -22,11 +28,12 @@ export class LoginComponent {
 
     constructor(
         private authentication: AuthenticationService,
-        private router: Router
-    ) {}
+        private router: Router,
+        private authService: SocialAuthService    ) {}
 
     async login(): Promise<void> {
         await this.authentication.login(this.loginForm.value);
         await this.router.navigateByUrl('/');
     }
+
 }

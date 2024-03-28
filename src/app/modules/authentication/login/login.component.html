@@ -1,12 +1,17 @@
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="627519143350-aeri28ps2si0rliljpir0dp2egdlpam4.apps.googleusercontent.com">
+
 <div class="h-screen">
     <div class="flex flex-row">
         <!-- Image et Logo-->
         <div class="w-7/12">
             <a [routerLink]="'/'" class="absolute left-2 top-2 flex flex-row items-center justify-center space-x-2">
-                <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701" width="709" />
+                <img ngSrc="assets/icon.png" alt="icon" class="h-10 w-10 rounded-full border" height="701"
+                     width="709" />
                 <p class="bebas-neue-regular mt-1.5 text-4xl">Pelliculum</p>
             </a>
-            <img priority ngSrc="assets/fig.png" alt="Fight Club" class="h-screen w-full object-cover" height="720" width="1280" />
+            <img priority ngSrc="assets/fig.png" alt="Fight Club" class="h-screen w-full object-cover" height="720"
+                 width="1280" />
         </div>
 
         <!-- Left part -->
@@ -20,12 +25,16 @@
             <div class="flex w-full flex-col">
                 <div class="flex w-full flex-col space-y-0.5">
                     <label for="loginUsername" class="pl-1">Nom d'utilisateur</label>
-                    <input id="loginUsername" name="username" formControlName="username" class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre nom d'utilisateur" required />
+                    <input id="loginUsername" name="username" formControlName="username"
+                           class="input-login focus:ring-1 focus:ring-primary"
+                           placeholder="Entrez votre nom d'utilisateur" required />
                 </div>
 
                 <div class="flex w-full flex-col space-y-0.5 pt-4">
                     <label for="loginPassword" class="pl-1">Mot de passe</label>
-                    <input id="loginPassword" type="password" formControlName="password" class="input-login focus:ring-1 focus:ring-primary" placeholder="Entrez votre mot de passe" />
+                    <input id="loginPassword" type="password" formControlName="password"
+                           class="input-login focus:ring-1 focus:ring-primary"
+                           placeholder="Entrez votre mot de passe" />
                 </div>
 
                 <!-- Remember me and forgot password !-->
@@ -42,22 +51,39 @@
             <div class="flex w-full flex-col items-center space-y-2.5">
                 <!-- Simple connect button -->
                 <div class="flex w-3/4 justify-center space-y-1.5">
-                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-rounded w-5/6 hover:bg-primary">Se connecter</button>
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-rounded w-5/6 hover:bg-primary">
+                        Se connecter
+                    </button>
                 </div>
 
                 <!-- Google connect button -->
                 <div class="flex w-3/4 flex-col items-center space-y-1.5">
-                    <button class="btn btn-rounded flex w-5/6 items-center justify-center gap-2 bg-gray-200 px-4 py-2 text-black hover:bg-white">
-                        <img ngSrc="assets/google.png" alt="Google Icon" class="w-5" height="512" width="512" />
-                        Se connecter avec Google
-                    </button>
-                </div>
-            </div>
 
-            <!-- Not registered yet -->
-            <div class="flex justify-center space-x-2">
-                <p class="text-xs opacity-70">Pas encore inscrit ?</p>
-                <p class="cursor-pointer text-xs opacity-70 hover:opacity-100" [routerLink]="'/register'">Créer un compte</p>
+                    <div id="g_id_onload"
+                         data-client_id="627519143350-aeri28ps2si0rliljpir0dp2egdlpam4.apps.googleusercontent.com"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-login_uri="http://localhost:4200/login"
+                         data-auto_select="true"
+                         data-itp_support="true">
+                    </div>
+
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="pill"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="left">
+                    </div>
+                </div>
+
+                <!-- Not registered yet -->
+                <div class="flex justify-center space-x-2">
+                    <p class="text-xs opacity-70">Pas encore inscrit ?</p>
+                    <p class="cursor-pointer text-xs opacity-70 hover:opacity-100" [routerLink]="'/register'">Créer un
+                        compte</p>
+                </div>
             </div>
         </form>
     </div>
