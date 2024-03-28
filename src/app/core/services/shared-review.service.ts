@@ -73,5 +73,15 @@ export class SharedReviewService {
     return this.axiosService.get(`/movies/${filmId}/reviews`);
   }
 
+  /**
+   * Add a like
+   * @param reviewId {number} - The review id
+   * @param username {string} - The username
+   * @returns {Promise<any>} - The response from the server
+   */
+  public async addLikeToReview(reviewId: number, username: String | null): Promise<Response<any>> {
+    return this.axiosService.put(`/reviews/${username}/like/${reviewId}`);
+  }
+
 
 }
