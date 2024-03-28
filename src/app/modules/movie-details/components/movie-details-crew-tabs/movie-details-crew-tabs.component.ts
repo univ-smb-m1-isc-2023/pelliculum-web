@@ -8,8 +8,7 @@ import { TmdbService } from '../../../../core/services/tmdb.service';
     templateUrl: './movie-details-crew-tabs.component.html'
 })
 export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
-    @Input() id: number = 0;
-    crew: any[] = [];
+    @Input() crew: any[] = [];
     limit: number = 12;
     showAll: boolean = false;
 
@@ -25,23 +24,15 @@ export class MovieDetailsCrewTabsComponent implements OnInit, OnChanges {
         }
     }
 
-    loadCrew() {
-        this.tmdbService.getMovieCredits(this.id).subscribe(
-            (response: any) => {
-                this.crew = response.crew.slice(0, 20);
-                console.log('Crew:', this.crew);
-            },
-            (error: any) => {
-                console.error('Error fetching movie credits:', error);
-            }
-        );
-    }
+    loadCrew() {}
 
     showAllCrew() {
         this.showAll = true;
+        this.limit = 48;
     }
 
     showLessCrew() {
         this.showAll = false;
+        this.limit = 12;
     }
 }

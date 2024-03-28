@@ -1,5 +1,4 @@
 <div class="flex flex-col space-y-6 px-12">
-
     <!-- Divider part -->
     <div class="flex flex-col space-y-0">
         <div class="flex flex-row items-center justify-between">
@@ -10,29 +9,26 @@
     </div>
 
     <!-- All categories button -->
-    <div class="grid gap-x-6 gap-y-6 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-3">
+    <div class="grid gap-x-6 gap-y-6 xs:grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-6">
         @for(genre of genres; track genre.id){
 
-            <!-- Category card -->
-            <a [routerLink]="getGenreUrl(genre)" class="group h-20 cursor-pointer flex w-full flex-row items-center justify-between rounded-lg border border-[#191919] bg-[#161616] px-4 text-[#FDFDFD] shadow-md">
+        <!-- Category card -->
+        <a [routerLink]="getGenreUrl(genre)" class="group flex h-20 w-full cursor-pointer flex-row items-center justify-between rounded-lg border border-[#191919] bg-[#161616] px-4 text-[#FDFDFD] shadow-md">
+            <!-- Category name and icon -->
+            <div class="flex flex-row items-center space-x-4">
+                <!-- Genre icon -->
+                <i-tabler name="{{genre?.icon}}"></i-tabler>
 
-                <!-- Category name and icon -->
-                <div class="flex flex-row items-center space-x-4">
-
-                    <!-- Genre icon -->
-                    <i-tabler name="{{genre?.icon}}"></i-tabler>
-
-                    <!-- Genre name & number of movies -->
-                    <div class="flex flex-col">
-                        <p class="font-medium">{{genre?.name}}</p>
-                        <p class="text-sm text-gray-300">12 films</p>
-                    </div>
+                <!-- Genre name & number of movies -->
+                <div class="flex flex-col">
+                    <p class="font-medium">{{genre?.name}}</p>
+                    <p class="text-sm text-gray-300">12 films</p>
                 </div>
+            </div>
 
-                <!-- Arrow icon -->
-                <i-tabler name="arrow-narrow-right" class="transition group-hover:translate-x-1.5 group-hover:text-primary" />
-            </a>
+            <!-- Arrow icon -->
+            <i-tabler name="arrow-narrow-right" class="transition group-hover:translate-x-1.5 group-hover:text-primary" />
+        </a>
         }
     </div>
-
 </div>

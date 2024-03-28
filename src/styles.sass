@@ -51,3 +51,22 @@ body
   -moz-user-select: none
   user-select: none
 
+.notyf__toast--success
+  position: relative
+  z-index: 2
+  color: white // Assurez-vous que le texte se détache bien sur le fond
+  background: no-repeat center center / cover
+  // Utilisation d'un pseudo-élément pour l'arrière-plan flou
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: -1
+    // Ajustez cette URL en fonction de votre besoin
+    filter: blur(8px)
+    // Utilisation d'une couleur de fond pour les espaces vides
+    background: rgba(0, 0, 0, 0.8) no-repeat center
+

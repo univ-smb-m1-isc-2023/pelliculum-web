@@ -8,11 +8,14 @@ import { BackdropComponent } from '../../shared/components/backdrop/backdrop.com
 import { UserService } from '../../core/services/user.service';
 import { ProfileClassicComponent } from './components/profile-classic/profile-classic.component';
 import { ProfileFriendsComponent } from './components/profile-friends/profile-friends.component';
+import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
+import { ProfileWatchlistComponent } from './components/profile-watchlist/profile-watchlist.component';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
-    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent],
+    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })

@@ -15,15 +15,15 @@ export class GameGenresComponent {
 
     ngOnChanges(changes: any) {
         if (changes.filmGenre) {
-            for (let genre of this.filmGenre) {
-                let match = genres.find((g) => g.id === genre);
+            for (const genre of this.filmGenre) {
+                const match = genres.find((g) => g.id === genre);
                 if (match) {
                     this.foundGenre.push([match.id, match.name, false]);
                 }
             }
         }
         if (changes.guessGenre) {
-            for (let genre of this.foundGenre) {
+            for (const genre of this.foundGenre) {
                 if (this.guessGenre.includes(genre[0])) {
                     genre[2] = true;
                 }

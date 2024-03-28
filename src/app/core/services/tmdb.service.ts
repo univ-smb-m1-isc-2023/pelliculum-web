@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { genres } from '../../configs/genres.config';
 import axios from 'axios';
 import { IMovie, Movie } from '../../shared/models/movie.model';
+import { AxiosService } from './axios.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,10 @@ export class TmdbService {
     private apiKey: string = 'efc1fdea36e98dc437d419f495a37666';
     private baseUrl: string = 'https://api.themoviedb.org/3';
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private axiosService: AxiosService
+    ) {}
 
     public async getTopMovies(): Promise<IMovie[]> {
         return (await axios.get(`${this.baseUrl}/movie/popular?api_key=${this.apiKey}&language=fr`)).data.results;
@@ -38,9 +42,8 @@ export class TmdbService {
         );
     }
 
-    getMovieDetails(movieId: number): Observable<any> {
-        const url = `${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`;
-        return this.http.get(url);
+    async getMovieDetails(movieId: number): Promise<any> {
+        return await axios.get(`${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`);
     }
 
     private handleError<T>(operation = 'operation', result?: T) {
@@ -66,11 +69,22 @@ export class TmdbService {
     }
 
     getMovieCredits(movieId: number) {
-        const url = `${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}`;
-        return this.http.get(url);
+        return axios.get(`${this.baseUrl}/movie/${movieId}/credits?api_key=${this.apiKey}&language=fr`);
     }
 
     public async getMoviesByGenre(genreId: number): Promise<Movie[]> {
         return (await axios.get(`${this.baseUrl}/discover/movie?api_key=${this.apiKey}&language=fr&with_genres=${genreId}`)).data.results;
+    }
+
+    public async getReviews(movieId: number): Promise<any> {
+        return this.axiosService.get(`/reviews/${movieId}`);
+    }
+
+    public async getActorById(actorId: number) {
+        return (await axios.get(`${this.baseUrl}/person/${actorId}?api_key=${this.apiKey}&language=fr`)).data;
+    }
+
+    public async getActorMovies(actorId: number) {
+        return (await axios.get(`${this.baseUrl}/person/${actorId}/movie_credits?api_key=${this.apiKey}&language=fr`)).data;
     }
 }

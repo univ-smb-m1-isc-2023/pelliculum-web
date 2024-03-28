@@ -7,9 +7,7 @@ import { Response } from '../../shared/models/response.model';
     providedIn: 'root'
 })
 export class AuthenticationService {
-    constructor(
-        private axiosService: AxiosService,
-    ) {}
+    constructor(private axiosService: AxiosService) {}
 
     /**
      * Set the authentication token in local storage
@@ -44,7 +42,7 @@ export class AuthenticationService {
      */
     public async login(values: any): Promise<any> {
         localStorage.clear();
-        const response: Response<{token: string, username: string}> = await this.axiosService.post('/auth/login', values);
+        const response: Response<{ token: string; username: string }> = await this.axiosService.post('/auth/login', values);
         this.setAuthToken(response.data.token);
         this.setUsername(response.data.username);
     }
@@ -64,7 +62,7 @@ export class AuthenticationService {
      */
     public async register(values: any): Promise<any> {
         localStorage.clear();
-        const response: Response<{token: string, username: string}> = await this.axiosService.post('/auth/register', values);
+        const response: Response<{ token: string; username: string }> = await this.axiosService.post('/auth/register', values);
         this.setAuthToken(response.data.token);
         this.setUsername(response.data.username);
     }

@@ -4,6 +4,7 @@ import {
     IconBaselineDensityMedium,
     IconBell,
     IconCalendarMonth,
+    IconEye,
     IconLayoutGrid,
     IconLayoutList,
     IconLogout2,
@@ -38,7 +39,15 @@ import {
     IconEyeCheck,
     IconArticle,
     IconList,
-    IconHeart
+    IconHeart,
+    IconClockPlus,
+    IconTrash,
+    IconAlertTriangle,
+    IconTriangleInverted,
+    IconTriangle,
+    IconTextPlus,
+    IconEyePlus,
+    IconEyeMinus
 } from 'angular-tabler-icons/icons';
 
 export const icons = {
@@ -65,6 +74,9 @@ export const icons = {
     IconMasksTheater,
     IconFriends,
     IconWand,
+    IconEye,
+    IconEyePlus,
+    IconEyeMinus,
     IconBuildingCastle,
     IconPumpkinScary,
     IconMusic,
@@ -81,5 +93,11 @@ export const icons = {
     IconEyeCheck,
     IconArticle,
     IconList,
-    IconHeart
+    IconHeart,
+    IconClockPlus,
+    IconTrash,
+    IconAlertTriangle,
+    IconTriangleInverted,
+    IconTriangle,
+    IconTextPlus
 };

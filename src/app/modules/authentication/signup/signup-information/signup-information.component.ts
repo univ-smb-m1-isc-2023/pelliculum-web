@@ -11,7 +11,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     templateUrl: './signup-information.component.html'
 })
 export class SignupInformationComponent {
-    @Output('increment') increment: EventEmitter<any> = new EventEmitter();
+    @Output() increment: EventEmitter<any> = new EventEmitter();
 
     @Input() details: FormGroup | any;
 
