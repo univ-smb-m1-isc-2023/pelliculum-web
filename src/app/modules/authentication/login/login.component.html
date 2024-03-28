@@ -1,6 +1,4 @@
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="627519143350-aeri28ps2si0rliljpir0dp2egdlpam4.apps.googleusercontent.com">
-
+<script src="https://accounts.google.com/gsi/client" async></script>
 <div class="h-screen">
     <div class="flex flex-row">
         <!-- Image et Logo-->
@@ -57,26 +55,7 @@
                 </div>
 
                 <!-- Google connect button -->
-                <div class="flex w-3/4 flex-col items-center space-y-1.5">
-
-                    <div id="g_id_onload"
-                         data-client_id="627519143350-aeri28ps2si0rliljpir0dp2egdlpam4.apps.googleusercontent.com"
-                         data-context="signin"
-                         data-ux_mode="popup"
-                         data-login_uri="http://localhost:4200/login"
-                         data-auto_select="true"
-                         data-itp_support="true">
-                    </div>
-
-                    <div class="g_id_signin"
-                         data-type="standard"
-                         data-shape="pill"
-                         data-theme="outline"
-                         data-text="signin_with"
-                         data-size="large"
-                         data-logo_alignment="left">
-                    </div>
-                </div>
+                <asl-google-signin-button shape="pill" theme="outline" type='standard' size='medium' class="bg-red-900"></asl-google-signin-button>
 
                 <!-- Not registered yet -->
                 <div class="flex justify-center space-x-2">

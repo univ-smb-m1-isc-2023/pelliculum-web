@@ -29,7 +29,17 @@ export class LoginComponent {
     constructor(
         private authentication: AuthenticationService,
         private router: Router,
-        private authService: SocialAuthService    ) {}
+        private socialAuthService:SocialAuthService,
+        private authService: AuthenticationService) {}
+
+    ngOnInit(): void {
+        this.socialAuthService.authState.subscribe((user) => {
+            console.log(user)
+            this.authService.register(user).then(r => {
+                console.log(r)
+            });
+        });
+    }
 
     async login(): Promise<void> {
         await this.authentication.login(this.loginForm.value);
