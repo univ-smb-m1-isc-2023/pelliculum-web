@@ -140,15 +140,56 @@
 
                         <!-- Comments -->
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages"
-                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
-                                <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
-                            </svg>
+                            <tabler-icon (click)="viewAnswers(review)" name="message" style="width: 20px"></tabler-icon>
+                            <p>{{ review.answers }}</p>
                         </div>
+
+
                     </div>
+                </div>
+                <div class="px-8">
+                    @if (review.showAnswers) {
+                        <div class="pb-2">
+                            <div class="flex space-x-2">
+                                <div class="avatar">
+                                    <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
+                                </div>
+                                <div class="flex flex-col flex-grow pr-4 space-y-1.5">
+                                    <div class="relative">
+
+                                        <input class="effect-3 text-xs" type="text" [(ngModel)]="answer"
+                                               placeholder="Ajoutez une réponse !">
+
+                                        <span class="focus-border"></span>
+                                        <div class="absolute -top-2 right-0">
+                                            @if (this.spoiler) {
+                                                <span class="tooltip tooltip-left cursor-pointer"
+                                                      data-tooltip="Ma critique spoil"
+                                                      (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
+                            </span>
+                                            } @else {
+                                                <span class="tooltip tooltip-left cursor-pointer"
+                                                      data-tooltip="Ma critique ne spoil pas"
+                                                      (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
+                            </span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-row items-center justify-end">
+
+                                        <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                                (click)="postAnswerToReview(review.id, answer)">
+                                            Publier
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="relative flex space-x-16 border-b border-custom-light-border pb-1.5"></div>

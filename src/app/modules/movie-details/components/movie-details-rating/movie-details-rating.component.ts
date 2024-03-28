@@ -27,6 +27,7 @@ export class MovieDetailsRatingComponent implements OnInit {
   protected comment: string = '';
   protected spoiler: boolean = false;
   protected liked: boolean = false;
+  protected answer: string = '';
 
   profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -50,11 +51,13 @@ export class MovieDetailsRatingComponent implements OnInit {
           ...review,
           showSpoiler: false,
           isLiked: review.likes.includes(this.user.getUsername()),
+          showAnswers: false,
           profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
           timeElapsed: this.getTimeElapsed(review.createdAt),
         };
       });
       this.getCurrentUserReview();
+      console.log(this.reviews);
     });
   }
 
@@ -128,6 +131,22 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.notyf.error('Erreur lors de l\'ajout du like');
     });
 
+  }
+
+  protected postAnswerToReview(reviewId: number, answer: string): void {
+    const username = this.user.getUsername();
+
+    this.reviewService.answer = this.answer;
+    console.log(this.answer);
+
+    this.reviewService.postAnswerToReview(reviewId, username, answer).then(r => {
+      const review = this.reviews.find(review => review.id === reviewId);
+      review.answers.push(r.data);
+    });
+  }
+
+  protected viewAnswers(review: any): void {
+    review.showAnswers = !review.showAnswers;
   }
 
 
