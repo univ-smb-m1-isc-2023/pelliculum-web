@@ -54,12 +54,41 @@
             <a class="group relative cursor-pointer">
                 <app-poster [style]="'border-custom-border group-hover:opacity-55 transition'" [posterPath]="movie.poster_path" />
                 <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
-                    <div class="mt-auto flex h-full flex-col rounded-lg">
-                        @if (isWatchlisted(movie.id)) {
-                        <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
-                        } @else {
-                        <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip m-auto" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
-                        }
+                    <div class="flex h-full flex-col rounded-lg">
+                        <div class="flex flex-col justify-center items-center m-auto">
+                            @if (isWatchlisted(movie.id)) {
+                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                            } @else {
+                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                            }
+                            <div class="popover">
+                                <i-tabler [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
+                                <div class="popover-content" tabindex="0">
+                                    <div class="popover-arrow"></div>
+                                    <div class="flex flex-col">
+                                        <div class="flex flex-col -space-y-1">
+                                            <p class="text-sm">Mes listes</p>
+                                            <div class="divider"></div>
+                                        </div>
+                                        <div class="flex flex-col space-y-2">
+                                            <label class="flex flex-row items-center cursor-pointer space-x-2">
+                                                <input type="checkbox" class="checkbox" />
+                                                <span class="truncate text-sm">Classiques</span>
+                                            </label>
+                                            <label class="flex flex-row items-center cursor-pointer space-x-2">
+                                                <div class="flex justify-center items-center">
+                                                    <input type="checkbox" class="checkbox" />
+                                                </div>
+                                                <span class="truncate text-sm">100 films a avoir vu dans votre vie</span>
+                                            </label>
+                                            <button class="btn btn-primary btn-xs">
+                                                Ajouter
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="flex items-center justify-center pb-2">
                             <app-stars [stars]="5" [value]="3.7" />
                         </div>
