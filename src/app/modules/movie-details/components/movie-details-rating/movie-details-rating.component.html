@@ -132,7 +132,7 @@
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
                             <tabler-icon (click)="addLikeToReview(review.id)"
                                          name="thumb-up"
-                                         [style.color]="liked ? 'green' : ''"
+                                         [style.color]="review.liked ? 'green' : ''"
                                          style="width: 20px"></tabler-icon>
 
                             <p>{{ review.likes }}</p>
