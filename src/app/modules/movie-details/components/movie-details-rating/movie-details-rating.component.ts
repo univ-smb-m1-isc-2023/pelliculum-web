@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
 import { StarsHoverableComponent } from '../../../../shared/components/stars-hoverable/stars-hoverable.component';
 import { UserService } from '../../../../core/services/user.service';
@@ -49,13 +49,12 @@ export class MovieDetailsRatingComponent implements OnInit {
         return {
           ...review,
           showSpoiler: false,
-          isLiked: false,
+          isLiked: review.likes.includes(this.user.getUsername()),
           profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
           timeElapsed: this.getTimeElapsed(review.createdAt),
         };
       });
       this.getCurrentUserReview();
-      console.log(this.reviews);
     });
   }
 
@@ -85,7 +84,6 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.reviews[index].comment = r.data.comment;
       this.reviews[index].rating = r.data.rating;
       this.reviews[index].spoiler = r.data.spoiler;
-      console.log(this.reviews);
     });
   }
 
@@ -114,17 +112,20 @@ export class MovieDetailsRatingComponent implements OnInit {
   }
 
   protected addLikeToReview(reviewId: number): void {
-    this.reviewService.addLikeToReview(reviewId, this.user.getUsername()).then(() => {
+    const username = this.user.getUsername();
+    this.reviewService.addLikeToReview(reviewId, username).then(() => {
       const review = this.reviews.find(review => review.id === reviewId);
       if (!this.liked) {
-        console.log('liked');
+        review.likes.push(this.user.getUsername());
+        review.isLiked = true;
         this.liked = true;
-        review.likes++;
-      } else {
-        console.log('unliked');
+      }else{
+        review.likes = review.likes.filter((like: any) => like !== this.user.getUsername());
+        review.isLiked = false;
         this.liked = false;
-        review.likes--;
       }
+    }).catch(() => {
+      this.notyf.error('Erreur lors de l\'ajout du like');
     });
 
   }
