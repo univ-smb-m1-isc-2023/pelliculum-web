@@ -15,79 +15,78 @@ import { Notyf } from 'notyf';
     templateUrl: './movie-details-rating.component.html',
     styleUrls: ['./movie-details-rating.sass']
 })
-export class MovieDetailsRatingComponent implements OnInit{
+export class MovieDetailsRatingComponent implements OnInit {
     @Input() id: number = 0;
     @Input() reviews: any[] = [];
 
     private notyf = new Notyf();
 
-
     protected reviewed: boolean = false;
     protected userReview: any = {};
-    protected comment : string = '';
-    protected spoiler : boolean = false;
+    protected comment: string = '';
+    protected spoiler: boolean = false;
 
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
-    constructor(protected user: UserService,
-                protected tmdbService : TmdbService,
-                protected reviewService : SharedReviewService) {}
+    constructor(
+        protected user: UserService,
+        protected tmdbService: TmdbService,
+        protected reviewService: SharedReviewService
+    ) {}
 
     ngOnInit(): void {
         if (!this.user.isLoggedIn()) return;
         this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
 
-        this.getReviews()
-
+        this.getReviews();
     }
 
     protected getReviews(): void {
-        this.tmdbService.getReviews(this.id).then(r => {
+        this.tmdbService.getReviews(this.id).then((r) => {
             this.reviews = r.data.map((review: any) => {
                 return {
                     ...review,
                     showSpoiler: false,
                     profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
-                    timeElapsed: this.getTimeElapsed(review.createdAt),
+                    timeElapsed: this.getTimeElapsed(review.createdAt)
                 };
             });
             this.getCurrentUserReview();
-        })
+        });
     }
 
     protected postReview(): void {
-        if (this.reviewService.selectedRating.getValue() == 0){
-            this.notyf.error('Veuillez sélectionner une note')
-            return
+        if (this.reviewService.selectedRating.getValue() == 0) {
+            this.notyf.error('Veuillez sélectionner une note');
+            return;
         }
 
         this.reviewService.comment = this.comment;
         this.reviewService.spoiler = this.spoiler;
 
-        this.reviewService.postReview(this.id).then(r => {
+        this.reviewService.postReview(this.id).then((r) => {
             this.reviews.push(r.data);
-            this.reviewService.reviewId = r.data.id
+            this.reviewService.reviewId = r.data.id;
             this.reviewed = true;
-        })
-
+        });
     }
 
     protected updateReview(): void {
         this.reviewService.comment = this.comment;
         this.reviewService.spoiler = this.spoiler;
 
-        this.reviewService.updateReview().then(r => {
-            const index = this.reviews.findIndex(review => review.id === this.reviewService.reviewId);
+        this.reviewService.updateReview().then((r) => {
+            const index = this.reviews.findIndex((review) => review.id === this.reviewService.reviewId);
             this.reviews[index].comment = r.data.comment;
             this.reviews[index].rating = r.data.rating;
             this.reviews[index].spoiler = r.data.spoiler;
-            console.log(this.reviews)
+            console.log(this.reviews);
         });
     }
 
     protected deleteReview(): void {
         this.reviewService.deleteReview(this.reviewService.reviewId).then(() => {
-            const index = this.reviews.findIndex(review => review.id === this.reviewService.reviewId);
+            const index = this.reviews.findIndex((review) => review.id === this.reviewService.reviewId);
             this.reviews.splice(index, 1);
             this.reviewService.reviewId = 0;
             this.reviewed = false;
@@ -95,8 +94,9 @@ export class MovieDetailsRatingComponent implements OnInit{
     }
     protected getCurrentUserReview(): void {
         const username = this.user.getUsername();
-        const userReviewFound = this.reviews.find(review => review.user.username === username);
-        if (userReviewFound) { // si trouvé on update les variables lié a l'input
+        const userReviewFound = this.reviews.find((review) => review.user.username === username);
+        if (userReviewFound) {
+            // si trouvé on update les variables lié a l'input
             this.reviewed = true;
             this.userReview = userReviewFound;
             this.spoiler = this.userReview.spoiler;
@@ -107,7 +107,6 @@ export class MovieDetailsRatingComponent implements OnInit{
             this.userReview.comment = '';
         }
     }
-
 
     protected toggleSpoiler(): void {
         this.spoiler = !this.spoiler;
@@ -146,5 +145,4 @@ export class MovieDetailsRatingComponent implements OnInit{
             return `il y a ${years} an${years > 1 ? 's' : ''}`;
         }
     }
-
 }

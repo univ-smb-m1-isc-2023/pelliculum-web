@@ -1,82 +1,75 @@
 @if (currentMovie) {
-    <div class="flex flex-col space-y-32">
-        <div class="relative">
+<div class="flex flex-col space-y-32">
+    <div class="relative">
+        <!-- Backdrop with gradients -->
+        <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
+        <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
 
-            <!-- Backdrop with gradients -->
-            <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
-            <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
+        <!-- Poster and movie details -->
+        <div class="absolute -bottom-20 flex w-full flex-row space-x-4 xs:px-1 sm:px-1 md:px-8 lg:px-14 xl:px-40">
+            <!-- Poster -->
+            <img class="h-fit w-2/12 rounded-lg" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path" alt="poster du film" />
+            <!-- Movie details -->
+            <div class="flex w-7/12 flex-col space-y-1.5">
+                <!-- Title -->
+                <div class="items-center">
+                    <p class="text-4xl font-bold">{{ currentMovie.title }}</p>
+                    <p class="text-sm">Réalisé par <span class="cursor-pointer hover:text-primary hover:underline">{{director}}</span></p>
+                </div>
 
+                <div class="flex flex-col space-y-1.5">
+                    <!-- Rating -->
+                    <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average/2" />
 
-            <!-- Poster and movie details -->
-            <div class="absolute -bottom-20 flex flex-row space-x-4 w-full xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1">
-                <!-- Poster -->
-                <img class="w-2/12 h-fit rounded-lg"
-                     [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path"
-                     alt="poster du film" />
-                <!-- Movie details -->
-                <div class="w-7/12 flex flex-col space-y-1.5">
-                    <!-- Title -->
-                    <div class="items-center">
-                        <p class="text-4xl font-bold">{{ currentMovie.title }}</p>
-                        <p class="text-sm">Réalisé par <span class="cursor-pointer hover:text-primary hover:underline">{{director}}</span></p>
-                    </div>
-
-                    <div class="flex flex-col space-y-1.5">
-                        <!-- Rating -->
-                        <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average/2"/>
-
-                        <!-- Date and duration -->
-                        <div class="flex flex-row space-x-4">
-                            <!-- Date -->
-                            <div class="flex flex-row space-x-2 items-center">
-                                <p class="font-bold text-sm">Sortie:</p>
-                                <p class="text-xs cursor-pointer hover:text-primary hover:underline">{{ currentMovie.release_date.substring(0, 4) }}</p>
-                            </div>
-                            <!-- Duration -->
-                            <div class="flex flex-row space-x-2 items-center">
-                                <p class="font-bold text-sm">Durée:</p>
-                                <p class="text-xs">{{ currentMovie.runtime }} minutes</p>
-                            </div>
-                        </div>
-
-                        <!-- Genres -->
+                    <!-- Date and duration -->
+                    <div class="flex flex-row space-x-4">
+                        <!-- Date -->
                         <div class="flex flex-row items-center space-x-2">
-                            <p class="font-bold text-sm">Genres:</p>
-                            @for (genre of genres; track genre.id; let first = $first; let last = $last) {
-                                <span class="text-xs cursor-pointer hover:text-primary hover:underline" [ngClass]="{'border-r border-custom-border pr-2' : !last}"> {{ genre.name }} </span>
-                            }
+                            <p class="text-sm font-bold">Sortie:</p>
+                            <p class="cursor-pointer text-xs hover:text-primary hover:underline">{{ currentMovie.release_date.substring(0, 4) }}</p>
                         </div>
-                        <!-- Overview -->
-                        <p class="text-lg line-clamp-4">{{ currentMovie.overview }}</p>
+                        <!-- Duration -->
+                        <div class="flex flex-row items-center space-x-2">
+                            <p class="text-sm font-bold">Durée:</p>
+                            <p class="text-xs">{{ currentMovie.runtime }} minutes</p>
+                        </div>
                     </div>
-                </div>
 
-
-                <!-- Right Part -->
-                <div class="w-3/12 bg-transparent border border-custom-border rounded">
-                    <app-movie-details-interactions class="w-full"></app-movie-details-interactions>
+                    <!-- Genres -->
+                    <div class="flex flex-row items-center space-x-2">
+                        <p class="text-sm font-bold">Genres:</p>
+                        @for (genre of genres; track genre.id; let first = $first; let last = $last) {
+                        <span class="cursor-pointer text-xs hover:text-primary hover:underline" [ngClass]="{'border-r border-custom-border pr-2' : !last}"> {{ genre.name }} </span>
+                        }
+                    </div>
+                    <!-- Overview -->
+                    <p class="line-clamp-4 text-lg">{{ currentMovie.overview }}</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Rest of the page -->
-        <div class="flex flex-col xl:px-40 lg:px-14 md:px-8 sm:px-1 xs:px-1 space-y-10">
-            <!-- Crew and Cast -->
-            <div class="w-full">
-
-                <!-- Tabs Cast / Crew -->
-                <app-tabs tabsStyle="flex relative">
-                    <app-tab name="Cast">
-                        <app-movie-details-cast-tabs [cast]="cast"></app-movie-details-cast-tabs>
-                    </app-tab>
-                    <app-tab name="Crew">
-                        <app-movie-details-crew-tabs [crew]="crew"></app-movie-details-crew-tabs>
-                    </app-tab>
-                </app-tabs>
+            <!-- Right Part -->
+            <div class="w-3/12 rounded border border-custom-border bg-transparent">
+                <app-movie-details-interactions class="w-full"></app-movie-details-interactions>
             </div>
-
-
-            <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
         </div>
     </div>
+
+    <!-- Rest of the page -->
+    <div class="flex flex-col space-y-10 xs:px-1 sm:px-1 md:px-8 lg:px-14 xl:px-40">
+        <!-- Crew and Cast -->
+        <div class="w-full">
+            <!-- Tabs Cast / Crew -->
+            <app-tabs tabsStyle="flex relative">
+                <app-tab name="Cast">
+                    <app-movie-details-cast-tabs [cast]="cast"></app-movie-details-cast-tabs>
+                </app-tab>
+                <app-tab name="Crew">
+                    <app-movie-details-crew-tabs [crew]="crew"></app-movie-details-crew-tabs>
+                </app-tab>
+            </app-tabs>
+        </div>
+
+        <app-movie-details-rating [id]="currentMovie.id"></app-movie-details-rating>
+    </div>
+</div>
 }

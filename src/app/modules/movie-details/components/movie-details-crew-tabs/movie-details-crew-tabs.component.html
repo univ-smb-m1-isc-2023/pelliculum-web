@@ -1,23 +1,23 @@
 <div class="relative space-y-1">
     <div class="grid grid-cols-6">
         @for (person of (crew.slice(0, limit));track person.name) {
-            <div class="flex transform items-center justify-center p-0.5 transition-transform">
+        <div class="flex transform items-center justify-center p-0.5 transition-transform">
             <span [attr.data-tooltip]="person.job" class="tooltip tooltip-top w-full">
-                <p class="text-sm bg-greyRipple text-center rounded-sm truncate px-1 hover:text-primary cursor-pointer transition-all">{{person.name}}</p>
+                <p class="cursor-pointer truncate rounded-sm bg-greyRipple px-1 text-center text-sm transition-all hover:text-primary">{{person.name}}</p>
             </span>
-            </div>
+        </div>
         }
     </div>
 
     <!-- "Voir plus" -->
     <div class="flex w-full items-center justify-center pt-1.5">
         @if (!showAll) {
-            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/5 hover:bg-primary transition-all" (click)="showAllCrew()">Voir plus...</button>
+        <button class="whitespace-no-wrap btn btn-xs w-1/5 text-ellipsis text-xs transition-all hover:bg-primary" (click)="showAllCrew()">Voir plus...</button>
         } @else if (showAll) {
-            <button class="whitespace-no-wrap btn btn-xs text-ellipsis text-xs w-1/5 hover:bg-primary transition-all" (click)="showLessCrew()">Voir moins</button>
+        <button class="whitespace-no-wrap btn btn-xs w-1/5 text-ellipsis text-xs transition-all hover:bg-primary" (click)="showLessCrew()">Voir moins</button>
 
         } @else {
-            <button></button>
+        <button></button>
         }
     </div>
 </div>

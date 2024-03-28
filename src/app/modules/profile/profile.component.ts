@@ -28,20 +28,20 @@ export class ProfileComponent implements OnInit {
 
     public async ngOnInit(): Promise<void> {
         this.movie = (await this.tmdbService.getTopMovies())[0];
-        await this.fetchReviews()
+        await this.fetchReviews();
     }
 
     selectTab(tab: string) {
         this.activeTab = tab;
     }
 
-    public async fetchReviews(){
+    public async fetchReviews() {
         this.reviews = (await this.user.getReviews()).data;
-        this.reviews.forEach(review => {
+        this.reviews.forEach((review) => {
             this.tmdbService.getMovieDetails(review.movieId).then((movie) => {
                 review.movie = movie.data;
             });
-        })
+        });
         console.log(this.reviews);
     }
 }

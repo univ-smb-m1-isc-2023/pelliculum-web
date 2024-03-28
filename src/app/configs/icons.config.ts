@@ -39,7 +39,13 @@ import {
     IconArticle,
     IconList,
     IconHeart,
-    IconClockPlus, IconTrash, IconAlertTriangle, IconTriangleInverted, IconTriangle, IconTextPlus, IconEyePlus,
+    IconClockPlus,
+    IconTrash,
+    IconAlertTriangle,
+    IconTriangleInverted,
+    IconTriangle,
+    IconTextPlus,
+    IconEyePlus
 } from 'angular-tabler-icons/icons';
 
 export const icons = {

@@ -35,5 +35,4 @@ export class UsersService {
     public async update(username: string, data: Partial<IUser>): Promise<Response<IUser>> {
         return this.axiosService.put(`/users/${username}`, data);
     }
-
 }

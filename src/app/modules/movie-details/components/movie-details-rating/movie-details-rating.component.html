@@ -1,9 +1,6 @@
 <div class="flex flex-col space-y-1">
-
     <!-- Critic number -->
-    <p class="text-2xl font-normal">
-        {{ reviews.length }} critique{{ reviews.length > 1 ? 's' : '' }}
-    </p>
+    <p class="text-2xl font-normal">{{ reviews.length }} critique{{ reviews.length > 1 ? 's' : '' }}</p>
 
     <div class="relative flex space-x-16 border-t border-custom-border pb-2"></div>
 
@@ -13,147 +10,120 @@
             <div class="avatar">
                 <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
             </div>
-            <div class="flex flex-col flex-grow pr-4 space-y-1.5">
+            <div class="flex flex-grow flex-col space-y-1.5 pr-4">
                 <div class="relative">
                     @if (!reviewed) {
-                        <input class="effect-3 text-xs" type="text" [(ngModel)]="comment"
-                               placeholder="Ajoutez un commentaire !">
+                    <input class="effect-3 text-xs" type="text" [(ngModel)]="comment" placeholder="Ajoutez un commentaire !" />
                     } @else {
-                        <input class="effect-3 text-xs" type="text"
-                               placeholder="{{userReview.comment === '' ? 'Rajoutez un commentaire !' : userReview.comment}}"
-                               [(ngModel)]="comment">
+                    <input class="effect-3 text-xs" type="text" placeholder="{{userReview.comment === '' ? 'Rajoutez un commentaire !' : userReview.comment}}" [(ngModel)]="comment" />
 
                     }
                     <span class="focus-border"></span>
                     <div class="absolute -top-2 right-0">
                         @if (this.spoiler) {
-                            <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique spoil"
-                                  (click)="toggleSpoiler()">
-                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
-                            </span>
+                        <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique spoil" (click)="toggleSpoiler()">
+                            <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
+                        </span>
                         } @else {
-                            <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique ne spoil pas"
-                                  (click)="toggleSpoiler()">
-                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
-                            </span>
+                        <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique ne spoil pas" (click)="toggleSpoiler()">
+                            <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
+                        </span>
                         }
                     </div>
                 </div>
 
                 <div class="flex flex-row items-center justify-end">
                     @if (!reviewed) {
-                        <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="postReview()">
-                            Publier
-                        </button>
+                    <button class="btn btn-primary btn-sm bg-primary hover:bg-red-900" (click)="postReview()">Publier</button>
                     } @else {
-                        <div class="items-center flex space-x-2">
-                            <span class="tooltip tooltip-top flex items-center"
-                                  data-tooltip="Supprimer ma critique">
-                                <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer"
-                                             (click)="deleteReview()"></tabler-icon>
-                            </span>
+                    <div class="flex items-center space-x-2">
+                        <span class="tooltip tooltip-top flex items-center" data-tooltip="Supprimer ma critique">
+                            <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer" (click)="deleteReview()"></tabler-icon>
+                        </span>
 
-                            <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="updateReview()">
-                                Modifier
-                            </button>
-                        </div>
+                        <button class="btn btn-primary btn-sm bg-primary hover:bg-red-900" (click)="updateReview()">Modifier</button>
+                    </div>
                     }
                 </div>
             </div>
         </div>
     </div>
 
-
     <!-- Others Reviews -->
     <div class="flex flex-col space-x-0">
-
         <!-- No review -->
         @if (reviews.length === 0) {
-            <p class="text-center font-normal pt-2">Aucune critique pour le moment. Soyez le premier a en poster une
-                pour ce
-                film.</p>
-        }
+        <p class="pt-2 text-center font-normal">Aucune critique pour le moment. Soyez le premier a en poster une pour ce film.</p>
+        } @for (review of reviews; track review; let last = $last; let first = $first) {
 
-        @for (review of reviews; track review; let last = $last; let first = $first) {
-
-            <!-- Rating part -->
-            <div class="flex flex-col space-y-2 py-1">
-                <!-- Avatar and user name -->
-                <div class="flex flex-row items-center space-x-3 truncate">
-                    <div class="avatar avatar-sm">
-                        <img src="https://i.pravatar.cc/150" alt="avatar" />
-                    </div>
-                    <p class="text-md">Critique de {{ review.user.username }}</p>
-                    <!-- Rating -->
-                    <div class="flex flex-row items-baseline space-x-1.5">
-                        <app-stars size="w-5" [stars]="5" [value]="review.rating" />
-                        <!-- Time elapsed -->
-                        <p class="text-xs font-normal italic text-gray-500">{{ review.timeElapsed }}</p>
-                    </div>
+        <!-- Rating part -->
+        <div class="flex flex-col space-y-2 py-1">
+            <!-- Avatar and user name -->
+            <div class="flex flex-row items-center space-x-3 truncate">
+                <div class="avatar avatar-sm">
+                    <img src="https://i.pravatar.cc/150" alt="avatar" />
                 </div>
+                <p class="text-md">Critique de {{ review.user.username }}</p>
+                <!-- Rating -->
+                <div class="flex flex-row items-baseline space-x-1.5">
+                    <app-stars size="w-5" [stars]="5" [value]="review.rating" />
+                    <!-- Time elapsed -->
+                    <p class="text-xs font-normal italic text-gray-500">{{ review.timeElapsed }}</p>
+                </div>
+            </div>
 
-                <!-- User comment -->
-                @if (review.spoiler) {
-                    <div class="flex items-center space-x-3 text-primary justify-center">
-                        <!-- Spoiler alert -->
-                        <tabler-icon name="alert-triangle"></tabler-icon>
-                        <p class="line-clamp line-clamp-3">SPOILER ALERT</p>
-                        <tabler-icon name="alert-triangle"></tabler-icon>
+            <!-- User comment -->
+            @if (review.spoiler) {
+            <div class="flex items-center justify-center space-x-3 text-primary">
+                <!-- Spoiler alert -->
+                <tabler-icon name="alert-triangle"></tabler-icon>
+                <p class="line-clamp line-clamp-3">SPOILER ALERT</p>
+                <tabler-icon name="alert-triangle"></tabler-icon>
 
-                        <!-- Show spoiler -->
-                        @if (!review.showSpoiler) {
-                            <span class="tooltip tooltip-top" data-tooltip="Voir quand même">
-                            <tabler-icon name="triangle-inverted"
-                                         style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
-                                         (click)="toggleShowSpoiler(review)"></tabler-icon>
-                            </span>
-                        } @else {
-                            <span class="tooltip tooltip-top" data-tooltip="Cacher le spoiler">
-                            <tabler-icon name="triangle"
-                                         style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
-                                         (click)="toggleShowSpoiler(review)"></tabler-icon>
-                            </span>
+                <!-- Show spoiler -->
+                @if (!review.showSpoiler) {
+                <span class="tooltip tooltip-top" data-tooltip="Voir quand même">
+                    <tabler-icon name="triangle-inverted" style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white" (click)="toggleShowSpoiler(review)"></tabler-icon>
+                </span>
+                } @else {
+                <span class="tooltip tooltip-top" data-tooltip="Cacher le spoiler">
+                    <tabler-icon name="triangle" style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white" (click)="toggleShowSpoiler(review)"></tabler-icon>
+                </span>
 
-                        }
+                }
+            </div>
+
+            <!-- Comment -->
+            @if (review.showSpoiler) {
+            <p class="line-clamp-3">{{ review.comment }}</p>
+            } } @else {
+            <p class="line-clamp-3">{{ review.comment }}</p>
+            }
+
+            <!-- Likes and comments -->
+            <div class="flex flex-grow items-end">
+                <div class="flex flex-row space-x-6">
+                    <!-- Likes -->
+                    <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                        </svg>
+                        <p>{{ review.likes }}</p>
                     </div>
 
-                    <!-- Comment -->
-                    @if (review.showSpoiler) {
-                        <p class="line-clamp-3">{{ review.comment }}</p>
-                    }
-                } @else {
-                    <p class="line-clamp-3">{{ review.comment }}</p>
-                }
-
-                <!-- Likes and comments -->
-                <div class="flex flex-grow items-end">
-                    <div class="flex flex-row space-x-6">
-                        <!-- Likes -->
-                        <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up"
-                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
-                            </svg>
-                            <p>{{ review.likes }}</p>
-                        </div>
-
-                        <!-- Comments -->
-                        <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages"
-                                 width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
-                                <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
-                            </svg>
-                        </div>
+                    <!-- Comments -->
+                    <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+                            <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+                        </svg>
                     </div>
                 </div>
             </div>
-            <div class="relative flex space-x-16 border-b border-custom-light-border pb-1.5"></div>
+        </div>
+        <div class="relative flex space-x-16 border-b border-custom-light-border pb-1.5"></div>
         }
     </div>
 </div>

@@ -1,14 +1,13 @@
 <div class="relative flex flex-col space-y-2">
-
     <!-- Image of the "famous" movie of the genre -->
     <div class="relative">
-        <img class="w-full opacity-75 object-cover object-center h-96" [ngSrc]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movies[0].backdrop_path" alt="Poster" [width]="1920" [height]="800" priority/>
+        <img class="h-96 w-full object-cover object-center opacity-75" [ngSrc]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movies[0].backdrop_path" alt="Poster" [width]="1920" [height]="800" priority />
         <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
         <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
         <div class="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-b from-transparent to-[#100F10]"></div>
 
         <!-- Genre name and description -->
-        <div class="absolute flex flex-col justify-center w-full h-full top-0 px-12">
+        <div class="absolute top-0 flex h-full w-full flex-col justify-center px-12">
             <h2 class="text-4xl font-semibold">{{genre?.name ?? 'Tous les films'}}</h2>
             <p>{{genre?.text}}</p>
         </div>
@@ -16,5 +15,4 @@
 
     <!-- List with movies -->
     <app-search-list-movies [genreSelected]="genre" [movies]="movies"></app-search-list-movies>
-
 </div>

@@ -8,42 +8,34 @@ import { SharedReviewService } from '../../../../core/services/shared-review.ser
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-movie-details-interactions',
-  standalone: true,
-  imports: [
-    StarsComponent,
-    TablerIconsModule,
-    RatingsGraphComponent,
-    StarsHoverableComponent,
-  ],
-  templateUrl: './movie-details-interactions.component.html'
+    selector: 'app-movie-details-interactions',
+    standalone: true,
+    imports: [StarsComponent, TablerIconsModule, RatingsGraphComponent, StarsHoverableComponent],
+    templateUrl: './movie-details-interactions.component.html'
 })
-export class MovieDetailsInteractionsComponent implements OnInit, OnDestroy{
-  @Input() reviews: any[] = [];
+export class MovieDetailsInteractionsComponent implements OnInit, OnDestroy {
+    @Input() reviews: any[] = [];
 
-  protected selectedRating: number = 0;
-  private subscription: Subscription = new Subscription();
+    protected selectedRating: number = 0;
+    private subscription: Subscription = new Subscription();
 
+    constructor(
+        protected userService: UserService,
+        protected reviewService: SharedReviewService
+    ) {}
 
+    handleRatingChange(newRating: number) {
+        this.reviewService.selectedRating.next(newRating);
+    }
 
-  constructor(
-    protected userService : UserService,
-    protected reviewService : SharedReviewService
-  ) { }
+    ngOnInit(): void {
+        this.subscription = this.reviewService.selectedRating$.subscribe((rating) => {
+            console.log(rating);
+            this.selectedRating = rating;
+        });
+    }
 
-  handleRatingChange(newRating: number) {
-    this.reviewService.selectedRating.next(newRating);
-  }
-
-  ngOnInit(): void {
-    this.subscription = this.reviewService.selectedRating$.subscribe(rating => {
-      console.log(rating)
-      this.selectedRating = rating;
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 }
