@@ -91,8 +91,10 @@ export class SharedReviewService {
    * @param answer {string} - The answer
    * @returns {Promise<any>} - The response from the server
    */
-  public async postAnswerToReview(reviewId: number, username: String | null, answer: string): Promise<Response<any>> {
-    return this.axiosService.post(`/reviews/${username}/answer/${reviewId}`, answer);
+  public async postAnswerToReview(reviewId: number, username: String | null, answer: String | null): Promise<Response<any>> {
+    return this.axiosService.post(`/reviews/${username}/answer/${reviewId}`,  {
+      answer
+    });
   }
 
 }

@@ -133,13 +133,11 @@ export class MovieDetailsRatingComponent implements OnInit {
 
   }
 
-  protected postAnswerToReview(reviewId: number, answer: string): void {
+  protected postAnswerToReview(reviewId: number): void {
     const username = this.user.getUsername();
-
     this.reviewService.answer = this.answer;
-    console.log(this.answer);
 
-    this.reviewService.postAnswerToReview(reviewId, username, answer).then(r => {
+    this.reviewService.postAnswerToReview(reviewId, username, this.answer).then(r => {
       const review = this.reviews.find(review => review.id === reviewId);
       review.answers.push(r.data);
     });
