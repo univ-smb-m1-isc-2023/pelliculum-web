@@ -7,11 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { SharedReviewService } from '../../../../core/services/shared-review.service';
 import { Notyf } from 'notyf';
+import {
+  MovieDetailsRatingAnswersComponent
+} from '../movie-details-rating-answers/movie-details-rating-answers.component';
 
 @Component({
   selector: 'app-movie-details-rating',
   standalone: true,
-  imports: [StarsComponent, StarsHoverableComponent, FormsModule, TablerIconsModule],
+  imports: [StarsComponent, StarsHoverableComponent, FormsModule, TablerIconsModule, MovieDetailsRatingAnswersComponent],
   templateUrl: './movie-details-rating.component.html',
   styleUrls: ['./movie-details-rating.sass'],
 })
@@ -27,7 +30,6 @@ export class MovieDetailsRatingComponent implements OnInit {
   protected comment: string = '';
   protected spoiler: boolean = false;
   protected liked: boolean = false;
-  protected answer: string = '';
 
   profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -131,16 +133,6 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.notyf.error('Erreur lors de l\'ajout du like');
     });
 
-  }
-
-  protected postAnswerToReview(reviewId: number): void {
-    const username = this.user.getUsername();
-    this.reviewService.answer = this.answer;
-
-    this.reviewService.postAnswerToReview(reviewId, username, this.answer).then(r => {
-      const review = this.reviews.find(review => review.id === reviewId);
-      review.answers.push(r.data);
-    });
   }
 
   protected viewAnswers(review: any): void {
