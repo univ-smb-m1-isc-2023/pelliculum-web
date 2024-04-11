@@ -35,7 +35,15 @@ export class UserService {
      * @returns {string | null} - The username
      */
     public getUsername(): string | null {
-        return localStorage.getItem('username');
+        return sessionStorage.getItem('username');
+    }
+
+    /**
+     * Get the email from local storage
+     * If the email is not found, return null
+     */
+    public getEmail(): string | null {
+        return sessionStorage.getItem('email');
     }
 
     /**

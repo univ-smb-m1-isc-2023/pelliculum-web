@@ -3,23 +3,47 @@ import { MovieListCardComponent } from '../../../../shared/components/movie-list
 import { ListsService } from '../../../../core/services/lists.service';
 import { IList } from '../../../../shared/models/list.model';
 import { UserService } from '../../../../core/services/user.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { notyf } from '../../../../core/utils/notyf.utils';
 
 @Component({
-  selector: 'app-profile-lists',
-  standalone: true,
-  imports: [
-    MovieListCardComponent,
-  ],
-  templateUrl: './profile-lists.component.html'
+    selector: 'app-profile-lists',
+    standalone: true,
+    imports: [MovieListCardComponent, ReactiveFormsModule],
+    templateUrl: './profile-lists.component.html'
 })
 export class ProfileListsComponent implements OnInit {
 
-  protected userLists: IList[] = [];
+    protected userLists: IList[] = [];
 
-  constructor(private listService: ListsService, private user: UserService) {}
+    protected listForm = new FormGroup({
+        name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+        description: new FormControl('', [Validators.required, Validators.minLength(20)])
+    });
 
-  public async ngOnInit(): Promise<void> {
-    this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
-  }
+    constructor(
+        private listService: ListsService,
+        private user: UserService
+    ) {}
 
+    public async ngOnInit(): Promise<void> {
+        this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
+    }
+
+    public async createList(): Promise<void> {
+        if (this.listForm.valid) {
+            await this.listService.create({
+                name: this.listForm.value.name!,
+                description: this.listForm.value.description!,
+                email: this.user.getEmail()!,
+                isPublic: false
+            }).then(async () => {
+                this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
+                this.listForm.reset();
+                notyf.success("La liste a été créée avec succès !")
+            }).catch(async () => {
+                notyf.error("Une erreur s'est produite lors de la création de la liste.")
+            })
+        }
+    }
 }

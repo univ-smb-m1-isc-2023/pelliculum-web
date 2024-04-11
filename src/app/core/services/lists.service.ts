@@ -48,7 +48,7 @@ export class ListsService {
     name: string,
     description: string,
     isPublic: boolean,
-    userId: number,
+    email: string,
   }): Promise<Response<IList>> {
     return this.axiosService.post('/lists', data);
   }

@@ -1,7 +1,7 @@
 <div class="relative">
     <!-- App-backdrop with gradient -->
     <div class="opacity-75">
-        <img [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movie.backdrop_path" alt="Poster" class="h-80 w-full object-cover" />
+        <img *ngIf="movie" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/' + movie.backdrop_path" alt="Poster" class="h-80 w-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
         <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
     </div>
