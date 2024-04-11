@@ -8,10 +8,8 @@ import { PosterComponent } from '../../../shared/components/poster/poster.compon
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import {
-    GoogleLoginProvider,
     GoogleSigninButtonModule,
     SocialAuthService,
-    SocialUser,
 } from '@abacritt/angularx-social-login';
 
 @Component({
