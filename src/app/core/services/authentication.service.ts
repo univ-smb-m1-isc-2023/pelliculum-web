@@ -66,4 +66,15 @@ export class AuthenticationService {
         this.setAuthToken(response.data.token);
         this.setUsername(response.data.username);
     }
+
+    /**
+     * Check if the user exist
+     * @param email {string} - The user's email
+     * @returns {boolean} - True if the user exist, false otherwise
+     */
+
+    public async checkUser(email: string): Promise<boolean> {
+        const response: Response<boolean> = await this.axiosService.get(`/auth/exist/${email}`);
+        return response.data;
+    }
 }

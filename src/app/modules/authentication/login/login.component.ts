@@ -29,19 +29,39 @@ export class LoginComponent {
 
     ngOnInit(): void {
         this.socialAuthService.authState.subscribe((user) => {
-            console.log(user)
-            const userRegister = {
-                username: this.generateRidiculousName(),
-                password: user.id,
-                email: user.email,
-                firstname: user.firstName,
-                lastname: user.lastName,
-            }
-            this.authService.register(userRegister).then(r => {
+
+            this.authService.checkUser(user.email).then(r => {
                 console.log(r);
-            });
+                if (!r) {
+
+                    this.authService.register({
+                        username: this.generateRidiculousName(),
+                        password: user.id,
+                        email: user.email,
+                        firstname: user.firstName,
+                        lastname: user.lastName
+                    }).then(r => {
+                        console.log(r);
+                    });
+                }
+                else {
+                    this.authService.login(
+                        {
+                            email: user.email,
+                            password: user.id
+                        }
+                    ).then(r => {
+                        console.log(r);
+                    }
+                    )
+                }
+            })
+
+
+
         });
     }
+
 
     async login(): Promise<void> {
         await this.authentication.login(this.loginForm.value);
