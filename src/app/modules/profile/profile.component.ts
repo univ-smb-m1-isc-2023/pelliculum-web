@@ -11,11 +11,12 @@ import { ProfileFriendsComponent } from './components/profile-friends/profile-fr
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
 import { ProfileWatchlistComponent } from './components/profile-watchlist/profile-watchlist.component';
+import { ProfileListsComponent } from './components/profile-lists/profile-lists.component';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
-    imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent],
+  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent, ProfileListsComponent],
     templateUrl: './profile.component.html',
     styles: ``
 })

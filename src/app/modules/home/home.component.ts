@@ -10,7 +10,7 @@ import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { HomeMovieRatingComponent } from './components/home-movie-rating/home-movie-rating.component';
 import { setTitle } from '../../core/utils/utilities.utils';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MovieListComponent } from '../../shared/components/movie-list/movie-list.component';
+import { MovieListCardComponent } from '../../shared/components/movie-list-card/movie-list-card.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 import { HomeDiscoverComponent } from './components/home-discover/home-discover.component';
 import { Movie } from '../../shared/models/movie.model';
@@ -33,7 +33,7 @@ import { notyf } from '../../core/utils/notyf.utils';
         NgIf,
         StarsComponent,
         HomeMovieRatingComponent,
-        MovieListComponent,
+        MovieListCardComponent,
         HomeCarouselComponent,
         HomeDiscoverComponent,
         TabsComponent,

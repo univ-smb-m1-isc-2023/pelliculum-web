@@ -3,12 +3,12 @@ import { BackdropComponent } from '../backdrop/backdrop.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-movie-list',
+    selector: 'app-movie-list-card',
     standalone: true,
     imports: [BackdropComponent, RouterLink],
-    templateUrl: './movie-list.component.html'
+    templateUrl: './movie-list-card.component.html'
 })
-export class MovieListComponent {
+export class MovieListCardComponent {
     @Input() list: any;
 
     /**

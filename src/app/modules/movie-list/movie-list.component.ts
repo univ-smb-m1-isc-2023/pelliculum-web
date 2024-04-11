@@ -9,7 +9,7 @@ import { SearchListMoviesComponent } from '../../shared/components/search-list-m
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-movie-list',
+    selector: 'app-movie-list-card',
     standalone: true,
     imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule, SearchListMoviesComponent, NgIf],
     templateUrl: './movie-list.component.html'
