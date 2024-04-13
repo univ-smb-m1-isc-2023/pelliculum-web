@@ -2,13 +2,12 @@
 
     <div class="relative flex space-x-16 border-t border-custom-border pb-2"></div>
 
-
-
+    @if (answers.length === 0) {
+        <p class="text-center font-normal pt-2">Aucune réponse pour le moment.</p>
+    }
 
     <!-- Others Answers -->
-    <div class="flex flex-col space-x-0">
-
-
+    <div class="flex flex-col">
         @for (answer of answers;track answer;let last = $last;let first = $first) {
 
             <!-- Profil part -->
@@ -25,149 +24,20 @@
                     </div>
                 </div>
 
-                <!-- User comment -->
-                @if (answer.spoiler) {
-                    <div class="flex items-center space-x-3 text-primary justify-center">
-                        <!-- Spoiler alert -->
-                        <tabler-icon name="alert-triangle"></tabler-icon>
-                        <p class="line-clamp line-clamp-3">SPOILER ALERT</p>
-                        <tabler-icon name="alert-triangle"></tabler-icon>
-
-                        <!-- Show spoiler -->
-                        @if (!answer.showSpoiler) {
-                            <span class="tooltip tooltip-top" data-tooltip="Voir quand même">
-                            <tabler-icon name="triangle-inverted"
-                                         style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
-                                         (click)="toggleShowSpoiler(answer)"></tabler-icon>
-                            </span>
-                        } @else {
-                            <span class="tooltip tooltip-top" data-tooltip="Cacher le spoiler">
-                            <tabler-icon name="triangle"
-                                         style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
-                                         (click)="toggleShowSpoiler(answer)"></tabler-icon>
-                            </span>
-
-                        }
-                    </div>
-
-                    <!-- Comment -->
-                    @if (answer.showSpoiler) {
-                        <!-- Post an Answer -->
-                        <div class="pb-2">
-                            <div class="flex space-x-2">
-                                <div class="avatar">
-                                    <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
-                                </div>
-                                <div class="flex flex-col flex-grow pr-4 space-y-1.5">
-                                    <div class="relative">
-                                        @if (!answered) {
-                                            <input class="effect-3 text-xs" type="text" [(ngModel)]="comment"
-                                                   placeholder="Ajoutez une réponse !">
-                                        } @else {
-                                            <input class="effect-3 text-xs" type="text"
-                                                   placeholder="{{userAnswer.comment === '' ? 'Rajoutez une réponse !' : userAnswer.comment}}"
-                                                   [(ngModel)]="comment">
-
-                                        }
-                                        <span class="focus-border"></span>
-                                        <div class="absolute -top-2 right-0">
-                                            @if (this.spoiler) {
-                                                <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique spoil"
-                                                      (click)="toggleSpoiler()">
-                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
-                            </span>
-                                            } @else {
-                                                <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique ne spoil pas"
-                                                      (click)="toggleSpoiler()">
-                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
-                            </span>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-row items-center justify-end">
-                                        @if (!answered) {
-                                            <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="postAnswer()">
-                                                Publier
-                                            </button>
-                                        } @else {
-                                            <div class="items-center flex space-x-2">
-                            <span class="tooltip tooltip-top flex items-center"
-                                  data-tooltip="Supprimer ma réponse">
-                                <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer"
-                                             (click)="deleteAnswer()"></tabler-icon>
-                            </span>
-
-                                                <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="updateAnswer()">
-                                                    Modifier
-                                                </button>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- User answer -->
+                <div class="flex flex-row space-y-2">
+                    @if (editingAnswerId === answer.id){
+                        <input class="effect-3 text-xs" type="text" [(ngModel)]="userAnswer.comment">
+                    } @else {
+                        <p class="text-sm">{{ answer.comment }}</p>
                     }
-                } @else {
-                    <!-- Post an Answer -->
-                    <div class="pb-2">
-                        <div class="flex space-x-2">
-                            <div class="avatar">
-                                <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
-                            </div>
-                            <div class="flex flex-col flex-grow pr-4 space-y-1.5">
-                                <div class="relative">
-                                    @if (!answered) {
-                                        <input class="effect-3 text-xs" type="text" [(ngModel)]="comment"
-                                               placeholder="Ajoutez une réponse !">
-                                    } @else {
-                                        <input class="effect-3 text-xs" type="text"
-                                               placeholder="{{userAnswer.comment === '' ? 'Rajoutez une réponse !' : userAnswer.comment}}"
-                                               [(ngModel)]="comment">
+                </div>
 
-                                    }
-                                    <span class="focus-border"></span>
-                                    <div class="absolute -top-2 right-0">
-                                        @if (this.spoiler) {
-                                            <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique spoil"
-                                                  (click)="toggleSpoiler()">
-                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
-                            </span>
-                                        } @else {
-                                            <span class="tooltip tooltip-left cursor-pointer" data-tooltip="Ma critique ne spoil pas"
-                                                  (click)="toggleSpoiler()">
-                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
-                            </span>
-                                        }
-                                    </div>
-                                </div>
 
-                                <div class="flex flex-row items-center justify-end">
-                                    @if (!answered) {
-                                        <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="postAnswer()">
-                                            Publier
-                                        </button>
-                                    } @else {
-                                        <div class="items-center flex space-x-2">
-                            <span class="tooltip tooltip-top flex items-center"
-                                  data-tooltip="Supprimer ma réponse">
-                                <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer"
-                                             (click)="deleteAnswer()"></tabler-icon>
-                            </span>
 
-                                            <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900" (click)="updateAnswer()">
-                                                Modifier
-                                            </button>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
 
-                <!-- Likes -->
-                <div class="flex flex-grow items-end">
+                <!-- Likes and answer button -->
+                <div class="flex flex-grow justify-between items-end">
                     <div class="flex flex-row space-x-6">
                         <!-- Likes -->
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
@@ -181,18 +51,79 @@
                         </div>
                         <div>
                             <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                    (click)="toggleAnswer(answer.id)"
                             >
                                 Répondre
                             </button>
                         </div>
-
-
                     </div>
+                    @if (answer.user.username === this.user.getUsername()){
+                        <div class="items-center flex space-x-2">
+                                <span class="tooltip tooltip-top flex items-center"
+                                      data-tooltip="Supprimer ma réponse">
+                                    <tabler-icon name="trash" style="width: 20px; color: #c8291e; cursor: pointer"
+                                                 (click)="deleteAnswer()"></tabler-icon>
+                                </span>
+
+                            @if (editingAnswerId === answer.id){
+                                <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                        (click)="updateAnswer()">
+                                    Valider
+                                </button>
+                            } @else {
+                                <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                        (click)="toggleEdit(answer.id)">
+                                    Modifier
+                                </button>
+                            }
+                        </div>
+                    }
                 </div>
 
 
+
+
             </div>
-            <div class="relative flex space-x-16 border-b border-custom-light-border pb-1.5"></div>
+
+            <div class="relative flex space-x-16 border-b border-custom-light-border pb-2 "></div>
+            <!-- Post an Answer -->
+            @if (selectedAnswerId === answer.id) {
+                <div class="p-1">
+                    <div class="flex space-x-2">
+                        <div class="avatar">
+                            <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
+                        </div>
+                        <div class="flex flex-col flex-grow pr-4 space-y-1.5">
+                            <div class="relative">
+                                <input class="effect-3 text-xs" type="text" [(ngModel)]="comment">
+                                <span class="focus-border"></span>
+                                <div class="absolute -top-0 right-0">
+                                    @if (this.spoiler) {
+                                        <span class="tooltip tooltip-left cursor-pointer"
+                                              data-tooltip="Ma critique spoil"
+                                              (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
+                            </span>
+                                    } @else {
+                                        <span class="tooltip tooltip-left cursor-pointer"
+                                              data-tooltip="Ma critique ne spoil pas"
+                                              (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
+                            </span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="flex flex-row items-center justify-end">
+                                <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                        (click)="postAnswer()">
+                                    Publier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         }
     </div>
 

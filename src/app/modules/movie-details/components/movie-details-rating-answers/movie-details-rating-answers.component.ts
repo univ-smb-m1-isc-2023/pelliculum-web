@@ -30,11 +30,14 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   private notyf = new Notyf();
 
 
-  protected answered: boolean = false;
   protected userAnswer: any = {};
   protected comment: string = '';
   protected spoiler: boolean = false;
   protected liked: boolean = false;
+  protected selectedAnswerId: number | null = null;
+  protected editingAnswerId: number | null = null;
+
+
 
   profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -76,7 +79,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
     this.answerService.postAnswer(this.id).then(r => {
       this.answers.push(r.data);
       this.answerService.answerId = r.data.id;
-      this.answered = true;
     });
 
   }
@@ -86,6 +88,7 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
     this.answerService.spoiler = this.spoiler;
 
     this.answerService.updateAnswer().then(r => {
+      console.log(r.data);
       const index = this.answers.findIndex(answer => answer.id === this.answerService.answerId);
       this.answers[index].comment = r.data.comment;
       this.answers[index].rating = r.data.rating;
@@ -93,25 +96,23 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
     });
   }
 
+
   protected deleteAnswer(): void {
     this.answerService.deleteAnswer(this.answerService.answerId).then(() => {
-      const index = this.answers.findIndex(review => review.id === this.answerService.answerId);
+      const index = this.answers.findIndex(answer => answer.id === this.answerService.answerId);
       this.answers.splice(index, 1);
       this.answerService.answerId = 0;
-      this.answered = false;
     });
   }
 
   protected getCurrentUserAnswer(): void {
     const username = this.user.getUsername();
-    const userReviewFound = this.answers.find(answer => answer.user.username === username);
-    if (userReviewFound) { // si trouvé on update les variables lié a l'input
-      this.answered = true;
-      this.userAnswer = userReviewFound;
+    const userAnswerFound = this.answers.find(answer => answer.user.username === username);
+    if (userAnswerFound) { // si trouvé on update les variables lié a l'input
+      this.userAnswer = userAnswerFound;
       this.spoiler = this.userAnswer.spoiler;
-      this.answerService.answerId = userReviewFound.id;
+      this.answerService.answerId = userAnswerFound.id;
     } else {
-      this.answered = false;
       this.userAnswer.comment = '';
     }
   }
@@ -119,14 +120,14 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   protected addLikeToAnswer(answerId: number): void {
     const username = this.user.getUsername();
     this.answerService.addLikeToAnswers(answerId, username).then(() => {
-      const review = this.answers.find(answer => answer.id === answerId);
+      const answer = this.answers.find(answer => answer.id === answerId);
       if (!this.liked) {
-        review.likes.push(this.user.getUsername());
-        review.isLiked = true;
+        answer.likes.push(this.user.getUsername());
+        answer.isLiked = true;
         this.liked = true;
       }else{
-        review.likes = review.likes.filter((like: any) => like !== this.user.getUsername());
-        review.isLiked = false;
+        answer.likes = answer.likes.filter((like: any) => like !== this.user.getUsername());
+        answer.isLiked = false;
         this.liked = false;
       }
     }).catch(() => {
@@ -139,9 +140,27 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
     this.spoiler = !this.spoiler;
   }
 
-  protected toggleShowSpoiler(review: any): void {
-    review.showSpoiler = !review.showSpoiler;
+  protected toggleShowSpoiler(answer: any): void {
+    answer.showSpoiler = !answer.showSpoiler;
   }
+
+  protected toggleAnswer(answerId: number): void {
+    this.selectedAnswerId = this.selectedAnswerId === answerId ? null : answerId;
+    if (this.selectedAnswerId !== null) {
+      const selectedAnswer = this.answers.find(answer => answer.id === answerId);
+      if (selectedAnswer) {
+        this.comment = `@${selectedAnswer.user.username}`;
+      }
+    } else {
+      this.comment = '';
+    }
+  }
+
+  protected toggleEdit(answerId: number): void {
+    this.editingAnswerId = this.editingAnswerId === answerId ? null : answerId;
+  }
+
+
 
   private getTimeElapsed(dateString: string): string {
     const previousDate = new Date(dateString);

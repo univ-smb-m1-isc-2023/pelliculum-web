@@ -143,9 +143,53 @@
                             <tabler-icon (click)="viewAnswers(review)" name="message" style="width: 20px"></tabler-icon>
                         </div>
 
+                        <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                (click)="toggleAnswer(review.id)"
+                        >
+                            Répondre
+                        </button>
+
 
                     </div>
                 </div>
+
+            @if (selectedReviewId === review.id) {
+                <div class="p-1">
+                    <div class="flex space-x-2">
+                        <div class="avatar">
+                            <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
+                        </div>
+                        <div class="flex flex-col flex-grow pr-4 space-y-1.5">
+                            <div class="relative">
+                                <input class="effect-3 text-xs" type="text" [ngModel]="answerComment">
+                                <span class="focus-border"></span>
+                                <div class="absolute -top-0 right-0">
+                                    @if (this.spoiler) {
+                                        <span class="tooltip tooltip-left cursor-pointer"
+                                              data-tooltip="Ma critique spoil"
+                                              (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
+                            </span>
+                                    } @else {
+                                        <span class="tooltip tooltip-left cursor-pointer"
+                                              data-tooltip="Ma critique ne spoil pas"
+                                              (click)="toggleSpoiler()">
+                                <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
+                            </span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="flex flex-row items-center justify-end">
+                                <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                        (click)="postAnswer()">
+                                    Publier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
             <div class="px-8">
                 @if (review.showAnswers) {
                     <app-movie-details-rating-answers [id]="review.id"></app-movie-details-rating-answers>

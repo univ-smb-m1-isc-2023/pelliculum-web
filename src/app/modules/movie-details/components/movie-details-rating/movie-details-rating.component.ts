@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
 import { StarsHoverableComponent } from '../../../../shared/components/stars-hoverable/stars-hoverable.component';
 import { UserService } from '../../../../core/services/user.service';
@@ -8,8 +8,9 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { SharedReviewService } from '../../../../core/services/shared-review.service';
 import { Notyf } from 'notyf';
 import {
-  MovieDetailsRatingAnswersComponent
+  MovieDetailsRatingAnswersComponent,
 } from '../movie-details-rating-answers/movie-details-rating-answers.component';
+import { AnswerService } from '../../../../core/services/answer.service';
 
 @Component({
   selector: 'app-movie-details-rating',
@@ -30,12 +31,16 @@ export class MovieDetailsRatingComponent implements OnInit {
   protected comment: string = '';
   protected spoiler: boolean = false;
   protected liked: boolean = false;
+  protected selectedReviewId: number | null = null;
+  protected answers: any[] = [];
+  protected answerComment: string = '';
 
   profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
   constructor(protected user: UserService,
               protected tmdbService: TmdbService,
-              protected reviewService: SharedReviewService) {
+              protected reviewService: SharedReviewService,
+              protected answerService: AnswerService) {
   }
 
   ngOnInit(): void {
@@ -124,7 +129,7 @@ export class MovieDetailsRatingComponent implements OnInit {
         review.likes.push(this.user.getUsername());
         review.isLiked = true;
         this.liked = true;
-      }else{
+      } else {
         review.likes = review.likes.filter((like: any) => like !== this.user.getUsername());
         review.isLiked = false;
         this.liked = false;
@@ -133,6 +138,24 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.notyf.error('Erreur lors de l\'ajout du like');
     });
 
+  }
+
+  protected postAnswer(): void {
+    this.answerService.comment = this.answerComment;
+    this.answerService.spoiler = this.spoiler;
+
+    this.answerService.postAnswer(this.id).then(r => {
+      this.answers.push(r.data);
+      this.answerService.answerId = r.data.id;
+    });
+  }
+
+  protected toggleAnswer(reviewId: number): void {
+    this.selectedReviewId = this.selectedReviewId === reviewId ? null : reviewId;
+    if (this.selectedReviewId !== null) {
+      const selectedReview = this.reviews.find(review => review.id === reviewId);
+      this.answerComment = `@${selectedReview.user.username}`;
+    }
   }
 
   protected viewAnswers(review: any): void {
