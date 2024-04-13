@@ -140,11 +140,12 @@ export class MovieDetailsRatingComponent implements OnInit {
 
   }
 
-  protected postAnswer(): void {
+  protected postAnswer(reviewId: number): void {
     this.answerService.comment = this.answerComment;
     this.answerService.spoiler = this.spoiler;
 
-    this.answerService.postAnswer(this.id).then(r => {
+    this.answerService.postAnswer(reviewId).then(r => {
+      console.log(r.data);
       this.answers.push(r.data);
       this.answerService.answerId = r.data.id;
     });

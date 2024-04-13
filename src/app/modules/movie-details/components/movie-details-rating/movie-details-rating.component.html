@@ -143,6 +143,7 @@
                             <tabler-icon (click)="viewAnswers(review)" name="message" style="width: 20px"></tabler-icon>
                         </div>
 
+
                         <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
                                 (click)="toggleAnswer(review.id)"
                         >
@@ -161,7 +162,7 @@
                         </div>
                         <div class="flex flex-col flex-grow pr-4 space-y-1.5">
                             <div class="relative">
-                                <input class="effect-3 text-xs" type="text" [ngModel]="answerComment">
+                                <input class="effect-3 text-xs" type="text" [(ngModel)]="answerComment">
                                 <span class="focus-border"></span>
                                 <div class="absolute -top-0 right-0">
                                     @if (this.spoiler) {
@@ -182,7 +183,7 @@
 
                             <div class="flex flex-row items-center justify-end">
                                 <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
-                                        (click)="postAnswer()">
+                                        (click)="postAnswer(review.id)">
                                     Publier
                                 </button>
                             </div>
