@@ -49,7 +49,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   ngOnInit(): void {
     if (!this.user.isLoggedIn()) return;
     this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
-
     this.getAnswers();
   }
 
@@ -91,9 +90,9 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
       console.log(r.data);
       const index = this.answers.findIndex(answer => answer.id === this.answerService.answerId);
       this.answers[index].comment = r.data.comment;
-      this.answers[index].rating = r.data.rating;
       this.answers[index].spoiler = r.data.spoiler;
     });
+    this.editingAnswerId = null;
   }
 
 

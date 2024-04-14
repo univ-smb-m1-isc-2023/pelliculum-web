@@ -2,10 +2,6 @@
 
     <div class="relative flex space-x-16 border-t border-custom-border pb-2"></div>
 
-    @if (answers.length === 0) {
-        <p class="text-center font-normal pt-2">Aucune réponse pour le moment.</p>
-    }
-
     <!-- Others Answers -->
     <div class="flex flex-col">
         @for (answer of answers;track answer;let last = $last;let first = $first) {
@@ -26,21 +22,21 @@
 
                 <!-- User answer -->
                 <div class="flex flex-row space-y-2">
-                    @if (editingAnswerId === answer.id){
-                        <input class="effect-3 text-xs" type="text" [(ngModel)]="userAnswer.comment">
+                    @if (editingAnswerId === answer.id) {
+                        <input class="effect-3 text-xs" type="text"
+                               placeholder="{{userAnswer.comment === '' ? 'Rajoutez une réponse !' : userAnswer.comment}}"
+                               [(ngModel)]="comment">
                     } @else {
                         <p class="text-sm">{{ answer.comment }}</p>
                     }
                 </div>
 
 
-
-
                 <!-- Likes and answer button -->
-                <div class="flex flex-grow justify-between items-end">
+                <div class="flex justify-between items-end">
                     <div class="flex flex-row space-x-6">
                         <!-- Likes -->
-                        <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                        <div class="flex cursor-pointer flex-row items-center space-x-1">
                             <tabler-icon (click)="addLikeToAnswer(answer.id)"
                                          name="thumb-up"
                                          [style.color]="answer.isLiked ? 'green' : ''"
@@ -49,7 +45,7 @@
                             <p>{{ answer.likes.length }}</p>
 
                         </div>
-                        <div>
+                        <div class="">
                             <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
                                     (click)="toggleAnswer(answer.id)"
                             >
@@ -57,7 +53,7 @@
                             </button>
                         </div>
                     </div>
-                    @if (answer.user.username === this.user.getUsername()){
+                    @if (answer.user.username === this.user.getUsername()) {
                         <div class="items-center flex space-x-2">
                                 <span class="tooltip tooltip-top flex items-center"
                                       data-tooltip="Supprimer ma réponse">
@@ -65,7 +61,7 @@
                                                  (click)="deleteAnswer()"></tabler-icon>
                                 </span>
 
-                            @if (editingAnswerId === answer.id){
+                            @if (editingAnswerId === answer.id) {
                                 <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
                                         (click)="updateAnswer()">
                                     Valider
@@ -79,8 +75,6 @@
                         </div>
                     }
                 </div>
-
-
 
 
             </div>

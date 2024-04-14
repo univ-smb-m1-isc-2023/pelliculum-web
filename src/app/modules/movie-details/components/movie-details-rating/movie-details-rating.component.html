@@ -141,7 +141,11 @@
                         <!-- Comments -->
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
                             <tabler-icon (click)="viewAnswers(review)" name="message" style="width: 20px"></tabler-icon>
+
+                            <p>{{ review.answers.length }}</p>
                         </div>
+
+
 
 
                         <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
@@ -192,7 +196,7 @@
                 </div>
             }
             <div class="px-8">
-                @if (review.showAnswers) {
+                @if (review.showAnswers && review.answers.length > 0) {
                     <app-movie-details-rating-answers [id]="review.id"></app-movie-details-rating-answers>
                 }
             </div>

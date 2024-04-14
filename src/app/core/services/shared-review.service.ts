@@ -84,19 +84,4 @@ export class SharedReviewService {
     return this.axiosService.put(`/reviews/${username}/like/${reviewId}`);
   }
 
-  /**
-   * Add a answer to a review
-   * @param reviewId {number} - The review id
-   * @param username {string} - The username
-   * @param answer {string} - The answer
-   * @returns {Promise<any>} - The response from the server
-   */
-  public async postAnswerToReview(reviewId: number, username: String | null, answer: String | null): Promise<Response<any>> {
-    return this.axiosService.post(`/reviews/${username}/answer/${reviewId}`,  {
-      comment: answer,
-      spoiler: this.spoiler,
-      reviewId: reviewId,
-    });
-  }
-
 }
