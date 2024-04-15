@@ -36,6 +36,9 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   protected liked: boolean = false;
   protected selectedAnswerId: number | null = null;
   protected editingAnswerId: number | null = null;
+  protected editedComments: { [key: number]: string } = {};
+
+
 
 
 
@@ -83,17 +86,21 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   }
 
   protected updateAnswer(): void {
-    this.answerService.comment = this.comment;
+    this.answerService.comment = this.editingAnswerId !== null ? this.editedComments[this.editingAnswerId] : '';
     this.answerService.spoiler = this.spoiler;
+    const id = this.editingAnswerId;
 
     this.answerService.updateAnswer().then(r => {
-      console.log(r.data);
-      const index = this.answers.findIndex(answer => answer.id === this.answerService.answerId);
+      console.log(this.editingAnswerId);
+      const index = this.answers.findIndex(answer => answer.id === id);
+      console.log(index);
       this.answers[index].comment = r.data.comment;
       this.answers[index].spoiler = r.data.spoiler;
     });
     this.editingAnswerId = null;
   }
+
+
 
 
   protected deleteAnswer(): void {
@@ -157,7 +164,13 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
 
   protected toggleEdit(answerId: number): void {
     this.editingAnswerId = this.editingAnswerId === answerId ? null : answerId;
+    console.log(answerId);
+    if (this.editingAnswerId !== null) {
+      console.log(this.editedComments);
+      this.editedComments[answerId] = this.answers.find(answer => answer.id === answerId)?.comment || '';
+    }
   }
+
 
 
 

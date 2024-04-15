@@ -24,11 +24,13 @@
                 <div class="flex flex-row space-y-2">
                     @if (editingAnswerId === answer.id) {
                         <input class="effect-3 text-xs" type="text"
-                               placeholder="{{userAnswer.comment === '' ? 'Rajoutez une réponse !' : userAnswer.comment}}"
-                               [(ngModel)]="comment">
+                               placeholder="{{ editedComments[answer.id] === '' ? 'Rajoutez une réponse !' : editedComments[answer.id] }}"
+                               [(ngModel)]="editedComments[answer.id]">
+
                     } @else {
                         <p class="text-sm">{{ answer.comment }}</p>
                     }
+
                 </div>
 
 
