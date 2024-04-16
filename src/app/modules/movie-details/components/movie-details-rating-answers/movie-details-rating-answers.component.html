@@ -20,8 +20,31 @@
                     </div>
                 </div>
 
-                <!-- User answer -->
-                <div class="flex flex-row space-y-2">
+
+            @if (editedSpoilers[answer.id] !== undefined ? editedSpoilers[answer.id] : answer.spoiler) {
+                <div class="flex items-center space-x-3 text-primary justify-center">
+                    <!-- Spoiler alert -->
+                    <tabler-icon name="alert-triangle"></tabler-icon>
+                    <p class="line-clamp line-clamp-3">SPOILER ALERT</p>
+                    <tabler-icon name="alert-triangle"></tabler-icon>
+
+                    <!-- Show spoiler -->
+                    @if (!answer.showSpoiler) {
+                        <span class="tooltip tooltip-top" data-tooltip="Voir quand même">
+                <tabler-icon name="triangle-inverted"
+                             style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
+                             (click)="toggleShowSpoiler(answer)"></tabler-icon>
+            </span>
+                    } @else {
+                        <span class="tooltip tooltip-top" data-tooltip="Cacher le spoiler">
+                <tabler-icon name="triangle"
+                             style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white"
+                             (click)="toggleShowSpoiler(answer)"></tabler-icon>
+            </span>
+                    }
+                </div>
+            }
+            @else {
                     @if (editingAnswerId === answer.id) {
                         <input class="effect-3 text-xs" type="text"
                                placeholder="{{ editedComments[answer.id] === '' ? 'Rajoutez une réponse !' : editedComments[answer.id] }}"
@@ -30,8 +53,7 @@
                     } @else {
                         <p class="text-sm">{{ answer.comment }}</p>
                     }
-
-                </div>
+                }
 
 
                 <!-- Likes and answer button -->
@@ -97,13 +119,13 @@
                                     @if (this.spoiler) {
                                         <span class="tooltip tooltip-left cursor-pointer"
                                               data-tooltip="Ma critique spoil"
-                                              (click)="toggleSpoiler()">
+                                              (click)="toggleSpoiler(answer.id)">
                                 <tabler-icon name="alert-triangle" style="width: 15px; color: #c8291e"></tabler-icon>
                             </span>
                                     } @else {
                                         <span class="tooltip tooltip-left cursor-pointer"
                                               data-tooltip="Ma critique ne spoil pas"
-                                              (click)="toggleSpoiler()">
+                                              (click)="toggleSpoiler(answer.id)">
                                 <tabler-icon name="alert-triangle" style="width: 15px"></tabler-icon>
                             </span>
                                     }

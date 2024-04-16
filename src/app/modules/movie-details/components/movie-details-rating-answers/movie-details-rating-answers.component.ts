@@ -37,6 +37,8 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   protected selectedAnswerId: number | null = null;
   protected editingAnswerId: number | null = null;
   protected editedComments: { [key: number]: string } = {};
+  protected editedSpoilers: { [key: number]: boolean } = {};
+
 
 
 
@@ -142,12 +144,13 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
 
   }
 
-  protected toggleSpoiler(): void {
-    this.spoiler = !this.spoiler;
+  protected toggleSpoiler(answerId: number): void {
+    this.editedSpoilers[answerId] = this.editedSpoilers[answerId] !== undefined ? !this.editedSpoilers[answerId] : !this.spoiler;
   }
 
+
   protected toggleShowSpoiler(answer: any): void {
-    answer.showSpoiler = !answer.showSpoiler;
+    this.editedSpoilers[answer.id] = !this.editedSpoilers[answer.id];
   }
 
   protected toggleAnswer(answerId: number): void {
