@@ -35,6 +35,10 @@ export class AuthenticationService {
         }
     }
 
+    private setUser(user: any): void {
+        sessionStorage.setItem('user', JSON.stringify(user));
+    }
+
     /**
      * Send a request to the server to log in a user
      * If the request is successful, set the user's authentication token and username
@@ -42,9 +46,9 @@ export class AuthenticationService {
      */
     public async login(values: any): Promise<any> {
         localStorage.clear();
-        const response: Response<{ token: string; username: string }> = await this.axiosService.post('/auth/login', values);
+        const response: Response<{ token: string; user: any }> = await this.axiosService.post('/auth/login', values);
         this.setAuthToken(response.data.token);
-        this.setUsername(response.data.username);
+        this.setUser(response.data.user);
     }
 
     /**

@@ -8,6 +8,8 @@ import { IUser } from '../../shared/models/user.model';
 import { TmdbService } from './tmdb.service';
 import { IMovie } from '../../shared/models/movie.model';
 import { success_watchlist } from '../utils/notyf.utils';
+import { ListsService } from './lists.service';
+import { IList } from '../../shared/models/list.model';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +19,8 @@ export class UserService {
         private router: Router,
         private axiosService: AxiosService,
         private authenticationService: AuthenticationService,
-        private tmdbService: TmdbService
+        private tmdbService: TmdbService,
+        private listService: ListsService
     ) {}
 
     /**
@@ -35,7 +38,7 @@ export class UserService {
      * @returns {string | null} - The username
      */
     public getUsername(): string | null {
-        return sessionStorage.getItem('username');
+        return this.get().username;
     }
 
     /**
@@ -43,7 +46,7 @@ export class UserService {
      * If the email is not found, return null
      */
     public getEmail(): string | null {
-        return sessionStorage.getItem('email');
+        return this.get().email;
     }
 
     /**
@@ -53,6 +56,10 @@ export class UserService {
      */
     public isLoggedIn(): boolean {
         return !!this.getAuthToken();
+    }
+
+    public async getLists(): Promise<Response<IList[]>> {
+        return await this.listService.getUserLists(this.getUsername()!);
     }
 
     /**
@@ -69,14 +76,9 @@ export class UserService {
      * If the user's profile information is not found in local storage, retrieve it from the server
      * and store it in local storage
      */
-    public async get(): Promise<IUser> {
+    public get(): IUser {
         let user: string | null = sessionStorage.getItem('user');
-        if (!user) {
-            const userData: IUser = (await this.axiosService.get<IUser>(`/users/${this.getUsername()}`)).data;
-            user = JSON.stringify(userData);
-            sessionStorage.setItem('user', user);
-        }
-        return JSON.parse(user);
+        return JSON.parse(user!);
     }
 
     /**

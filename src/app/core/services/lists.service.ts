@@ -34,7 +34,7 @@ export class ListsService {
    * @param username {string} - The user's username
    * @param isPublic
    */
-  public async getUserLists(username: string, isPublic: boolean): Promise<Response<IList[]>> {
+  public async getUserLists(username: string, isPublic?: boolean): Promise<Response<IList[]>> {
     return this.axiosService.get(`/lists/user/${username}`, {
       params: { isPublic },
     });
@@ -48,9 +48,9 @@ export class ListsService {
     name: string,
     description: string,
     isPublic: boolean,
-    email: string,
+    username: string,
   }): Promise<Response<IList>> {
-    return this.axiosService.post('/lists', data);
+    return this.axiosService.post('/lists/', data);
   }
 
   /**

@@ -10,6 +10,8 @@ import { StarsComponent } from '../stars/stars.component';
 import { UserService } from '../../../core/services/user.service';
 import { IGenre } from '../../models/genre.model';
 import { IMovie } from '../../models/movie.model';
+import { ListsService } from '../../../core/services/lists.service';
+import { notyf } from '../../../core/utils/notyf.utils';
 
 @Component({
     selector: 'app-search-list-movies',
@@ -21,6 +23,8 @@ export class SearchListMoviesComponent {
     @Input() public style?: string;
     @Input() public movies: any[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
+
+    public userLists: any[] = [];
 
     public list: any;
     public moviesCopy: any[] = [];
@@ -42,12 +46,15 @@ export class SearchListMoviesComponent {
     constructor(
         private tmdbService: TmdbService,
         private activatedRoute: ActivatedRoute,
-        protected userService: UserService
+        protected userService: UserService,
+        protected listsService: ListsService
     ) {}
 
     async ngOnInit(): Promise<void> {
         const result: IMovie[] = await this.tmdbService.getTopMovies();
-        this.watchlist = (await this.userService.get()).watchlist;
+        this.userLists = (await this.userService.getLists()).data;
+        console.log("User lists: ", this.userLists)
+        this.watchlist = (this.userService.get()).watchlist;
         console.log(this.watchlist);
         this.list = {
             likes: this.randomLikes(),
@@ -75,6 +82,24 @@ export class SearchListMoviesComponent {
             this.watchlist = [...this.watchlist, movie?.id];
             await this.userService.addWatchlist(movie);
         }
+    }
+
+
+    protected async updateList(movie: IMovie): Promise<void> {
+        const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(`[id^="lists-movie-${movie.id}"]`);
+        checkboxes.forEach((checkbox) => {
+            const listId: string = checkbox.id.split('-')[checkbox.id.split('-').length - 1]
+            const isChecked: boolean = checkbox.checked;
+            if (isChecked) {
+                this.listsService.addMovie(Number(listId), movie.id).then(() => {
+                    notyf.success(`Listes modifiées avec succès !`);
+                });
+            } else {
+                this.listsService.removeMovie(Number(listId), movie.id).then(() => {
+                    notyf.success(`Listes modifiées avec succès !`);
+                });
+            }
+        })
     }
 
     protected isWatchlisted(movieId: number): boolean {

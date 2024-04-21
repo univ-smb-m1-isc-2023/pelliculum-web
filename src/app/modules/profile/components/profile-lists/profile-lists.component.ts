@@ -27,15 +27,21 @@ export class ProfileListsComponent implements OnInit {
     ) {}
 
     public async ngOnInit(): Promise<void> {
-        this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
+        this.userLists = (await this.listService.getUserLists(this.user.getUsername()!)).data;
     }
 
     public async createList(): Promise<void> {
         if (this.listForm.valid) {
+            console.log({
+                name: this.listForm.value.name!,
+                description: this.listForm.value.description!,
+                username: this.user.getUsername()!,
+                isPublic: false
+            })
             await this.listService.create({
                 name: this.listForm.value.name!,
                 description: this.listForm.value.description!,
-                email: this.user.getEmail()!,
+                username: this.user.getUsername()!,
                 isPublic: false
             }).then(async () => {
                 this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
