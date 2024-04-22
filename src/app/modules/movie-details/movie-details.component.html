@@ -1,13 +1,13 @@
 <div *ngIf="currentMovie" class="flex flex-col space-y-32">
     <div class="relative">
         <!-- Backdrop with gradients -->
-        <app-backdrop class="opacity-75" [backdropPath]="currentMovie.backdrop_path" />
+        <app-backdrop [backdropPath]="currentMovie.backdrop_path" class="opacity-75" />
         <div class="absolute inset-0 bottom-0 bg-gradient-to-t from-[#100F10] to-transparent to-100%"></div>
 
         <!-- Poster and movie details -->
         <div class="absolute -bottom-20 flex w-full flex-row space-x-4 xs:px-1 sm:px-1 md:px-8 lg:px-14 xl:px-40">
             <!-- Poster -->
-            <img class="h-fit w-2/12 rounded-lg" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path" alt="poster du film" />
+            <img [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + currentMovie.poster_path" alt="poster du film" class="h-fit w-2/12 rounded-lg" />
             <!-- Movie details -->
             <div class="flex w-7/12 flex-col space-y-1.5">
                 <!-- Title -->
@@ -18,7 +18,7 @@
 
                 <div class="flex flex-col space-y-1.5">
                     <!-- Rating -->
-                    <app-stars size="w-5" [stars]="5" [value]="currentMovie.vote_average/2" />
+                    <app-stars [stars]="5" [value]="currentMovie.vote_average/2" size="w-5" />
 
                     <!-- Date and duration -->
                     <div class="flex flex-row space-x-4">
@@ -67,9 +67,6 @@
             </app-tabs>
         </div>
 
-        <!-- Reviews -->
-        @if (reviews !== []) {
         <app-movie-details-rating [id]="currentMovie.id" [reviews]="reviews"></app-movie-details-rating>
-        }
     </div>
 </div>
