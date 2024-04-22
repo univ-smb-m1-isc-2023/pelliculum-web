@@ -53,8 +53,9 @@
     <div class="flex flex-col space-x-0">
         <!-- No review -->
         @if (reviews.length === 0) {
-        <p class="pt-2 text-center font-normal">Aucune critique pour le moment. Soyez le premier a en poster une pour ce film.</p>
-        } @for (review of reviews;track review;let last = $last;let first = $first) {
+            <p class="pt-2 text-center font-normal">Aucune critique pour le moment. Soyez le premier a en poster une pour ce film.</p>
+        }
+        @for (review of reviews;track review;let last = $last;let first = $first) {
 
         <!-- Rating part -->
         <div class="flex flex-col space-y-2 py-1">
