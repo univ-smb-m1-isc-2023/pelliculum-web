@@ -26,4 +26,8 @@ export class HomeCarouselBackdropComponent implements OnChanges {
     }
 
     protected readonly Movie = Movie;
+
+    protected getGenreUrl(genre: IGenre): string {
+        return `/films/${Genre.slug(genre)}`;
+    }
 }

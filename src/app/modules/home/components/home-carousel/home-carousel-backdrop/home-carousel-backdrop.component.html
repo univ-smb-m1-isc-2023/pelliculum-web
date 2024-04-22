@@ -7,13 +7,17 @@
     </div>
 
     <!-- Presentation -->
-    <section class="absolute inset-x-0 flex flex-col space-y-3 p-14 transition-all xs:top-[3%] sm:top-[8%] sm:w-11/12 md:top-[8%] md:w-8/12 lg:top-[12%] xl:top-[15%] xl:w-6/12">
+    <section
+        class="absolute inset-x-0 flex flex-col space-y-3 p-14 transition-all xs:top-[3%] sm:top-[8%] sm:w-11/12 md:top-[8%] md:w-8/12 lg:top-[12%] xl:top-[15%] xl:w-6/12">
         <!-- Title and genres -->
         <div class="flex flex-col sm:space-y-0 md:space-y-1 lg:space-y-2 xl:space-y-2">
             <h1 class="sm:text-md font-bold text-white md:text-xl lg:text-2xl xl:text-3xl">{{ movie?.title }}</h1>
             <div>
                 @for (genre of genres; track genre.id; let first = $first; let last = $last) {
-                <span [class]="'text-white xl:text-sm lg:text-sm md:text-xs text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')">{{ genre.name }}</span>
+                    <a [routerLink]="getGenreUrl(genre)">
+                        <span
+                            [class]="'hover:text-primary hover:underline text-white xl:text-sm lg:text-sm md:text-xs text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')">{{ genre.name }}</span>
+                    </a>
                 }
             </div>
         </div>
@@ -24,7 +28,7 @@
             *ngIf="movie"
             [routerLink]="Movie.getDetailsPageUrl(movie)"
             class="w-fit rounded-lg border border-[#E62C1D] bg-[#C8291E] text-white shadow-xl transition hover:bg-[#E62C1D] sm:px-2 sm:py-1 sm:text-xs md:px-2 md:py-1 md:text-xs lg:px-3 lg:py-1.5 lg:text-sm xl:px-4 xl:py-2 xl:text-base"
-            >Voir plus</a
+        >Voir plus</a
         >
     </section>
 
