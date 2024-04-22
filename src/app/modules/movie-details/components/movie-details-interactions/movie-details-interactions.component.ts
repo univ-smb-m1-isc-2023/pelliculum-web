@@ -7,11 +7,12 @@ import { UserService } from '../../../../core/services/user.service';
 import { IList } from '../../../../shared/models/list.model';
 import { notyf } from '../../../../core/utils/notyf.utils';
 import { ListsService } from '../../../../core/services/lists.service';
+import { StarsHoverableComponent } from '../../../../shared/components/stars-hoverable/stars-hoverable.component';
 
 @Component({
     selector: 'app-movie-details-interactions',
     standalone: true,
-    imports: [StarsComponent, TablerIconsModule, RatingsGraphComponent],
+    imports: [StarsComponent, TablerIconsModule, RatingsGraphComponent, StarsHoverableComponent],
     templateUrl: './movie-details-interactions.component.html'
 })
 export class MovieDetailsInteractionsComponent implements OnInit {
@@ -23,7 +24,7 @@ export class MovieDetailsInteractionsComponent implements OnInit {
 
     constructor(
         private userService: UserService,
-        private listsService: ListsService
+        private listsService: ListsService,
     ) {}
 
     public async ngOnInit(): Promise<void> {

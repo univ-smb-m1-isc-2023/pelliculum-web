@@ -8,7 +8,7 @@
             }
         </span>
         <div class="popover">
-            <i-tabler [name]="'text-plus'" class="tooltip popover-trigger cursor-pointer" tabindex="0" style="width: 60px" data-tooltip="Ajouter à une liste" />
+            <i-tabler [name]="'text-plus'" class="tooltip popover-trigger cursor-pointer" data-tooltip="Ajouter à une liste" style="width: 60px" tabindex="0" />
             <div class="popover-content popover-bottom-center mt-8" tabindex="0">
                 <div class="popover-arrow"></div>
                 <div class="flex flex-col">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="flex items-center justify-evenly">
-        <app-stars [stars]="5" [value]="1" size="w-9"></app-stars>
+        <app-stars-hoverable [rating]="5" [starSize]="2"></app-stars-hoverable>
     </div>
 
     <div class="flex items-center justify-evenly">

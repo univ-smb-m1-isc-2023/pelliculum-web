@@ -22,7 +22,7 @@ export class StarsHoverableComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.starWidth = 1.39306640625
+        this.starWidth = 1.39306640625 * this.starSize
     }
 
     // Méthodes pour gérer les événements de survol
