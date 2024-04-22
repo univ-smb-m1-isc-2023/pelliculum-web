@@ -1,14 +1,40 @@
 <div class="flex h-full flex-col justify-between">
     <div class="flex items-center justify-evenly pt-4">
-        <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a ma watchlist">
-            <tabler-icon name="eye-plus" style="width: 60px"></tabler-icon>
+        <span>
+            @if (isWatchlisted(movie.id)) {
+                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 60px;" data-tooltip="J'ai vu ce film" />
+            } @else {
+                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip" style="width: 60px;" data-tooltip="Voir plus tard" />
+            }
         </span>
-        <span class="tooltip tooltip-top cursor-pointer" data-tooltip="Ajouter a une liste">
-            <tabler-icon name="text-plus" style="width: 60px"></tabler-icon>
-        </span>
+        <div class="popover">
+            <i-tabler [name]="'text-plus'" class="tooltip popover-trigger cursor-pointer" tabindex="0" style="width: 60px;" data-tooltip="Ajouter à une liste" />
+            <div class="popover-content popover-bottom-center mt-8" tabindex="0">
+                <div class="popover-arrow"></div>
+                <div class="flex flex-col">
+                    <div class="flex flex-col -space-y-1">
+                        <p class="text-sm">Mes listes</p>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        @for (list of userLists; track list.id) {
+                            <label class="flex flex-row items-center cursor-pointer space-x-2">
+                                <div class="flex justify-center items-center">
+                                    <input [id]="'lists-movie-' + movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(movie.id)"/>
+                                </div>
+                                <span class="truncate text-sm">{{list.name}}</span>
+                            </label>
+                        }
+                        <button (click)="updateList(movie)" class="btn btn-primary btn-xs">
+                            Modifier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="flex items-center justify-evenly">
-        <app-stars [value]="1" [stars]="5" size="w-9"></app-stars>
+        <app-stars [stars]="5" [value]="1" size="w-9"></app-stars>
     </div>
 
     <div class="flex items-center justify-evenly">

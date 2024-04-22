@@ -6,6 +6,7 @@ import { genres } from '../../configs/genres.config';
 import axios from 'axios';
 import { IMovie, Movie } from '../../shared/models/movie.model';
 import { AxiosService } from './axios.service';
+import { Response } from '../../shared/models/response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -42,7 +43,7 @@ export class TmdbService {
         );
     }
 
-    async getMovieDetails(movieId: number): Promise<any> {
+    async getMovieDetails(movieId: number): Promise<Response<IMovie>> {
         return await axios.get(`${this.baseUrl}/movie/${movieId}?api_key=${this.apiKey}&language=fr`);
     }
 

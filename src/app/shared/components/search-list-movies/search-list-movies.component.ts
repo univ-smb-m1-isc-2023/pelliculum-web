@@ -10,6 +10,9 @@ import { StarsComponent } from '../stars/stars.component';
 import { UserService } from '../../../core/services/user.service';
 import { IGenre } from '../../models/genre.model';
 import { IMovie } from '../../models/movie.model';
+import { ListsService } from '../../../core/services/lists.service';
+import { notyf } from '../../../core/utils/notyf.utils';
+import { IList } from '../../models/list.model';
 
 @Component({
     selector: 'app-search-list-movies',
@@ -18,11 +21,13 @@ import { IMovie } from '../../models/movie.model';
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
+
     @Input() public style?: string;
-    @Input() public movies: any[] = [];
+    @Input() public movies: IMovie[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
 
-    public list: any;
+    public userLists: IList[] = [];
+
     public moviesCopy: any[] = [];
     public searchTerm: string = '';
 
@@ -42,25 +47,17 @@ export class SearchListMoviesComponent {
     constructor(
         private tmdbService: TmdbService,
         private activatedRoute: ActivatedRoute,
-        protected userService: UserService
+        protected userService: UserService,
+        protected listsService: ListsService
     ) {}
 
     async ngOnInit(): Promise<void> {
-        const result: IMovie[] = await this.tmdbService.getTopMovies();
-        this.watchlist = (await this.userService.get()).watchlist;
-        console.log(this.watchlist);
-        this.list = {
-            likes: this.randomLikes(),
-            movies: result
-        };
-        if (this.movies.length === 0) {
-            this.movies = this.list.movies;
-        }
+        this.userLists = (await this.userService.getLists()).data;
+        this.watchlist = (this.userService.get()).watchlist;
         this.movies.map((movie) => {
-            movie.vote_average = (movie.vote_average / 2).toFixed(1);
+            movie.vote_average = Number((movie.vote_average / 2).toFixed(1));
         });
         this.moviesCopy = [...this.movies];
-        console.log(this.movies);
     }
 
     /**
@@ -75,6 +72,24 @@ export class SearchListMoviesComponent {
             this.watchlist = [...this.watchlist, movie?.id];
             await this.userService.addWatchlist(movie);
         }
+    }
+
+
+    protected async updateList(movie: IMovie): Promise<void> {
+        const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(`[id^="lists-movie-${movie.id}"]`);
+        checkboxes.forEach((checkbox) => {
+            const listId: string = checkbox.id.split('-')[checkbox.id.split('-').length - 1]
+            const isChecked: boolean = checkbox.checked;
+            if (isChecked) {
+                this.listsService.addMovie(Number(listId), movie.id).then(() => {
+                    notyf.success(`Listes modifiées avec succès !`);
+                });
+            } else {
+                this.listsService.removeMovie(Number(listId), movie.id).then(() => {
+                    notyf.success(`Listes modifiées avec succès !`);
+                });
+            }
+        })
     }
 
     protected isWatchlisted(movieId: number): boolean {
@@ -118,10 +133,6 @@ export class SearchListMoviesComponent {
         this.isSortingByDate = !this.isSortingByDate;
         this.isSortingByLikes = this.isSortingByDate ? false : this.isSortingByLikes;
         this.sortAndFilterMovies();
-    }
-
-    protected randomLikes(): number {
-        return Math.floor(Math.random() * 1000);
     }
 
     private sortByDate(movies: any[]): any[] {
