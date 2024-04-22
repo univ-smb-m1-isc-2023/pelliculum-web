@@ -31,6 +31,7 @@ export class MovieDetailsRatingComponent implements OnInit {
     protected selectedReviewId: number | null = null;
     protected answers: any[] = [];
     protected answerComment: string = '';
+    protected note : number = 0.1;
 
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -46,6 +47,9 @@ export class MovieDetailsRatingComponent implements OnInit {
         this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
 
         this.getReviews();
+        this.reviewService.selectedRating.subscribe((rating) => {
+            this.note = rating;
+        });
     }
 
     protected changeRating(rating: number): void {
@@ -119,6 +123,7 @@ export class MovieDetailsRatingComponent implements OnInit {
         } else {
             this.reviewed = false;
             this.userReview.comment = '';
+            this.reviewService.selectedRating.next(0.1);
         }
     }
 

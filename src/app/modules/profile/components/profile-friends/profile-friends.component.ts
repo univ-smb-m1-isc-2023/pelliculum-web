@@ -28,8 +28,9 @@ export class ProfileFriendsComponent implements OnInit {
     constructor(private userService: UserService) {}
 
     public async ngOnInit(): Promise<void> {
+        console.log('ProfileFriendsComponent');
         this.initMarker();
-        await this.getNetwork();
+        this.getNetwork();
     }
 
     public async getNetwork(): Promise<void> {
@@ -39,6 +40,7 @@ export class ProfileFriendsComponent implements OnInit {
         this.followers = followers;
         this.contacts = follows;
         this.shownContacts = this.contacts;
+        console.log(this.contacts);
     }
 
     public selectTab(tabName: 'followers' | 'follows'): void {

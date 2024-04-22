@@ -22,6 +22,7 @@ export class MovieDetailsInteractionsComponent implements OnInit {
 
     protected watchlist: number[] = [];
     protected userLists: IList[] = [];
+    protected note : number = 0.1;
 
     constructor(
         private userService: UserService,
@@ -32,6 +33,9 @@ export class MovieDetailsInteractionsComponent implements OnInit {
     public async ngOnInit(): Promise<void> {
         this.watchlist = this.userService.get().watchlist;
         this.userLists = (await this.userService.getLists()).data;
+        this.reviewService.selectedRating.subscribe((rating) => {
+            this.note = rating;
+        });
     }
 
     protected changeRating(rating: number): void {
