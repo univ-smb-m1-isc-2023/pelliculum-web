@@ -4,8 +4,9 @@ export interface IList {
   id: number;
   name: string;
   description: string;
-  author: IUser;
+  user: IUser | any;
   isPublic: boolean;
   likes: number;
+  comments: number;
   movies: number[]
 }

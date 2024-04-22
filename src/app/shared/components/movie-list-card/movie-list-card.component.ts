@@ -1,24 +1,44 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BackdropComponent } from '../backdrop/backdrop.component';
 import { RouterLink } from '@angular/router';
+import { IList } from '../../models/list.model';
+import { NgIf } from '@angular/common';
+import { IMovie } from '../../models/movie.model';
+import { TmdbService } from '../../../core/services/tmdb.service';
+import { UserService } from '../../../core/services/user.service';
+import { UsersService } from '../../../core/services/users.service';
 
 @Component({
     selector: 'app-movie-list-card',
     standalone: true,
-    imports: [BackdropComponent, RouterLink],
+    imports: [BackdropComponent, RouterLink, NgIf],
     templateUrl: './movie-list-card.component.html'
 })
-export class MovieListCardComponent {
-    @Input() list: any;
+export class MovieListCardComponent implements OnInit{
+
+    @Input() list?: IList;
+    protected randomBackdropURL?: string;
+
+    constructor(protected tmdbService: TmdbService, protected usersService: UsersService) {
+    }
+
+    public async ngOnInit(): Promise<void> {
+        await this.randomMovieBackdropURL();
+        console.log(this.list);
+    }
 
     /**
      * Return the name of the list with no accents and space replaced by hyphens
      */
-    getListUrl() {
-        return this.list.name
+    protected getListUrl(): string {
+        return this.list?.name ?? ""
             .toLowerCase()
             .replace(/ /g, '-')
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    protected async randomMovieBackdropURL(): Promise<void> {
+        this.randomBackdropURL = (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * this.list.movies.length)]!)).data.backdrop_path
     }
 }

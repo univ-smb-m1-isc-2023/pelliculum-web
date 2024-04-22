@@ -1,8 +1,8 @@
-<div class="group flex flex-col shadow-lg">
+<div *ngIf="list" class="group flex flex-col shadow-lg">
     <!-- Poster -->
     <a [routerLink]="['list',getListUrl()]">
         <div class="relative flex cursor-pointer flex-row">
-            <img alt="de" class="rounded-t-xl" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+list.movies[0].backdrop_path" />
+            <img *ngIf="randomBackdropURL" alt="de" class="rounded-t-xl" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+randomBackdropURL" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
             <div class="absolute h-full w-full rounded-t-xl bg-[#161616] opacity-0 transition group-hover:opacity-55"></div>
         </div>
@@ -11,7 +11,7 @@
     <div class="flex w-full items-center justify-between space-x-2 rounded-b-xl bg-[#161616] px-2 py-1">
         <div class="flex flex-row items-center space-x-2">
             <div class="avatar avatar-sm">
-                <img src="https://i.pravatar.cc/150" alt="avatar" />
+                <img [src]="usersService.getProfilePicture(list.user.username)" alt="Profile Picture" />
             </div>
             <p class="truncate text-sm">{{list.name}}</p>
         </div>
