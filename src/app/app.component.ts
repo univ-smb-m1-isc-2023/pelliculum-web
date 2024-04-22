@@ -4,6 +4,7 @@ import { HeaderComponent } from './modules/header/header.component';
 import { FooterComponent } from './modules/footer/footer.component';
 import { StarRatingComponent } from 'angular-star-rating';
 
+
 @Component({
     selector: 'app-root',
     standalone: true,

@@ -8,6 +8,7 @@ import { IList } from '../../../../shared/models/list.model';
 import { notyf } from '../../../../core/utils/notyf.utils';
 import { ListsService } from '../../../../core/services/lists.service';
 import { StarsHoverableComponent } from '../../../../shared/components/stars-hoverable/stars-hoverable.component';
+import { SharedReviewService } from '../../../../core/services/shared-review.service';
 
 @Component({
     selector: 'app-movie-details-interactions',
@@ -25,11 +26,16 @@ export class MovieDetailsInteractionsComponent implements OnInit {
     constructor(
         private userService: UserService,
         private listsService: ListsService,
+        private reviewService: SharedReviewService
     ) {}
 
     public async ngOnInit(): Promise<void> {
         this.watchlist = this.userService.get().watchlist;
         this.userLists = (await this.userService.getLists()).data;
+    }
+
+    protected changeRating(rating: number): void {
+        this.reviewService.selectedRating.next(rating);
     }
 
     protected isWatchlisted(movieId: number): boolean {

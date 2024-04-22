@@ -48,6 +48,10 @@ export class MovieDetailsRatingComponent implements OnInit {
         this.getReviews();
     }
 
+    protected changeRating(rating: number): void {
+        this.reviewService.selectedRating.next(rating);
+    }
+
     protected getReviews(): void {
         this.tmdbService.getReviews(this.id).then((r) => {
             this.reviews = r.data.map((review: any) => {
@@ -199,4 +203,6 @@ export class MovieDetailsRatingComponent implements OnInit {
             return `il y a ${years} an${years > 1 ? 's' : ''}`;
         }
     }
+
+    protected readonly event = event;
 }
