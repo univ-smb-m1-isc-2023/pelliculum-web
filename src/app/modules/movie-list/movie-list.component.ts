@@ -19,7 +19,6 @@ import { UsersService } from '../../core/services/users.service';
     templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
-
     protected list?: IList;
     protected movies: IMovie[] = [];
     protected moviesCopy: IMovie[] = [];
@@ -29,20 +28,20 @@ export class MovieListComponent implements OnInit {
     private isSortingByDate: boolean = false;
 
     constructor(
-      private tmdbService: TmdbService,
-      private activatedRoute: ActivatedRoute,
-      private listsService: ListsService,
-      protected usersService: UsersService
+        private tmdbService: TmdbService,
+        private activatedRoute: ActivatedRoute,
+        private listsService: ListsService,
+        protected usersService: UsersService
     ) {}
 
     async ngOnInit(): Promise<void> {
         const listID: string | null = this.activatedRoute.snapshot.paramMap.get('id');
-        if(!listID) return;
+        if (!listID) return;
         this.list = (await this.listsService.get(parseInt(listID))).data;
-        console.log("List: ", this.list)
+        console.log('List: ', this.list);
         this.list.movies.map(async (movieID: number) => {
             this.movies.push((await this.tmdbService.getMovieDetails(movieID)).data);
-        })
+        });
         this.moviesCopy = this.movies;
     }
 

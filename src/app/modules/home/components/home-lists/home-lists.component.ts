@@ -11,11 +11,9 @@ import { IList } from '../../../../shared/models/list.model';
     templateUrl: './home-lists.component.html'
 })
 export class HomeListsComponent implements OnInit {
-
     protected lists: IList[] = [];
 
-    constructor(private listsService: ListsService) {
-    }
+    constructor(private listsService: ListsService) {}
 
     public async ngOnInit(): Promise<void> {
         this.lists = (await this.listsService.getAll(false)).data.slice(0, 3);

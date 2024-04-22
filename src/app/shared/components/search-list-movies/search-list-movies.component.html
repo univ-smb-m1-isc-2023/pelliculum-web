@@ -55,7 +55,7 @@
                 <app-poster [style]="'border-custom-border group-hover:opacity-55 transition'" [posterPath]="movie.poster_path" />
                 <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                     <div class="flex h-full flex-col rounded-lg">
-                        <div class="flex flex-col justify-center items-center m-auto">
+                        <div class="m-auto flex flex-col items-center justify-center">
                             @if (isWatchlisted(movie.id)) {
                             <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
                             } @else {
@@ -72,16 +72,14 @@
                                         </div>
                                         <div class="flex flex-col space-y-2">
                                             @for (list of userLists; track list.id) {
-                                                <label class="flex flex-row items-center cursor-pointer space-x-2">
-                                                    <div class="flex justify-center items-center">
-                                                        <input [id]="'lists-movie-' + movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(movie.id)"/>
-                                                    </div>
-                                                    <span class="truncate text-sm">{{list.name}}</span>
-                                                </label>
+                                            <label class="flex cursor-pointer flex-row items-center space-x-2">
+                                                <div class="flex items-center justify-center">
+                                                    <input [id]="'lists-movie-' + movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(movie.id)" />
+                                                </div>
+                                                <span class="truncate text-sm">{{list.name}}</span>
+                                            </label>
                                             }
-                                            <button (click)="updateList(movie)" class="btn btn-primary btn-xs">
-                                                Modifier
-                                            </button>
+                                            <button (click)="updateList(movie)" class="btn btn-primary btn-xs">Modifier</button>
                                         </div>
                                     </div>
                                 </div>

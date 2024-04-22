@@ -47,7 +47,8 @@ import {
     IconTriangle,
     IconTextPlus,
     IconEyePlus,
-    IconEyeMinus, IconPlaylistAdd,
+    IconEyeMinus,
+    IconPlaylistAdd
 } from 'angular-tabler-icons/icons';
 
 export const icons = {

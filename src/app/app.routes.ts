@@ -27,5 +27,4 @@ export const routes: Routes = [
     { path: 'actor/:id', component: ActorPageComponent },
     { path: 'confidentiality', component: ConfidentialityComponent },
     { path: 'conditions', component: UseConditionComponent }
-
 ];

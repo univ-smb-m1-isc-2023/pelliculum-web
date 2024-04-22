@@ -13,7 +13,6 @@ import { notyf } from '../../../../core/utils/notyf.utils';
     templateUrl: './profile-lists.component.html'
 })
 export class ProfileListsComponent implements OnInit {
-
     protected userLists: IList[] = [];
 
     protected listForm = new FormGroup({
@@ -37,19 +36,22 @@ export class ProfileListsComponent implements OnInit {
                 description: this.listForm.value.description!,
                 username: this.user.getUsername()!,
                 isPublic: false
-            })
-            await this.listService.create({
-                name: this.listForm.value.name!,
-                description: this.listForm.value.description!,
-                username: this.user.getUsername()!,
-                isPublic: false
-            }).then(async () => {
-                this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
-                this.listForm.reset();
-                notyf.success("La liste a été créée avec succès !")
-            }).catch(async () => {
-                notyf.error("Une erreur s'est produite lors de la création de la liste.")
-            })
+            });
+            await this.listService
+                .create({
+                    name: this.listForm.value.name!,
+                    description: this.listForm.value.description!,
+                    username: this.user.getUsername()!,
+                    isPublic: false
+                })
+                .then(async () => {
+                    this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
+                    this.listForm.reset();
+                    notyf.success('La liste a été créée avec succès !');
+                })
+                .catch(async () => {
+                    notyf.error("Une erreur s'est produite lors de la création de la liste.");
+                });
         }
     }
 }

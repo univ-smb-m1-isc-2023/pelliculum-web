@@ -14,13 +14,14 @@ import { UsersService } from '../../../core/services/users.service';
     imports: [BackdropComponent, RouterLink, NgIf],
     templateUrl: './movie-list-card.component.html'
 })
-export class MovieListCardComponent implements OnInit{
-
+export class MovieListCardComponent implements OnInit {
     @Input() list?: IList;
     protected randomBackdropURL?: string;
 
-    constructor(protected tmdbService: TmdbService, protected usersService: UsersService) {
-    }
+    constructor(
+        protected tmdbService: TmdbService,
+        protected usersService: UsersService
+    ) {}
 
     public async ngOnInit(): Promise<void> {
         await this.randomMovieBackdropURL();
@@ -30,7 +31,7 @@ export class MovieListCardComponent implements OnInit{
      * Return the name of the list with no accents and space replaced by hyphens
      */
     protected getListUrl(): string {
-        return (this.list?.name ?? "")
+        return (this.list?.name ?? '')
             .toLowerCase()
             .replace(/ /g, '-')
             .normalize('NFD')
@@ -38,10 +39,10 @@ export class MovieListCardComponent implements OnInit{
     }
 
     protected getListID(): string {
-        return this.list?.id.toString() ?? "1";
+        return this.list?.id.toString() ?? '1';
     }
 
     protected async randomMovieBackdropURL(): Promise<void> {
-        this.randomBackdropURL = (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * this.list.movies.length)]!)).data.backdrop_path
+        this.randomBackdropURL = (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * this.list.movies.length)]!)).data.backdrop_path;
     }
 }

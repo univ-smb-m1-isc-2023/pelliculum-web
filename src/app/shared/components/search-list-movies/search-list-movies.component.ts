@@ -21,7 +21,6 @@ import { IList } from '../../models/list.model';
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
-
     @Input() public style?: string;
     @Input() public movies: IMovie[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
@@ -53,7 +52,7 @@ export class SearchListMoviesComponent {
 
     async ngOnInit(): Promise<void> {
         this.userLists = (await this.userService.getLists()).data;
-        this.watchlist = (this.userService.get()).watchlist;
+        this.watchlist = this.userService.get().watchlist;
         this.movies.map((movie) => {
             movie.vote_average = Number((movie.vote_average / 2).toFixed(1));
         });
@@ -74,11 +73,10 @@ export class SearchListMoviesComponent {
         }
     }
 
-
     protected async updateList(movie: IMovie): Promise<void> {
         const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(`[id^="lists-movie-${movie.id}"]`);
         checkboxes.forEach((checkbox) => {
-            const listId: string = checkbox.id.split('-')[checkbox.id.split('-').length - 1]
+            const listId: string = checkbox.id.split('-')[checkbox.id.split('-').length - 1];
             const isChecked: boolean = checkbox.checked;
             if (isChecked) {
                 this.listsService.addMovie(Number(listId), movie.id).then(() => {
@@ -89,7 +87,7 @@ export class SearchListMoviesComponent {
                     notyf.success(`Listes modifiées avec succès !`);
                 });
             }
-        })
+        });
     }
 
     protected isWatchlisted(movieId: number): boolean {

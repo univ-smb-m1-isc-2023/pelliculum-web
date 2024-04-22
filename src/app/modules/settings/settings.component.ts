@@ -9,7 +9,7 @@ import { StarsHoverableComponent } from '../../shared/components/stars-hoverable
 @Component({
     selector: 'app-settings',
     standalone: true,
-  imports: [ReactiveFormsModule, StarsHoverableComponent],
+    imports: [ReactiveFormsModule, StarsHoverableComponent],
     templateUrl: './settings.component.html'
 })
 export class SettingsComponent {

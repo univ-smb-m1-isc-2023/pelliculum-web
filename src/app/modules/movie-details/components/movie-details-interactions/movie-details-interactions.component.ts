@@ -21,10 +21,13 @@ export class MovieDetailsInteractionsComponent implements OnInit {
     protected watchlist: number[] = [];
     protected userLists: IList[] = [];
 
-    constructor(private userService: UserService, private listsService: ListsService) {}
+    constructor(
+        private userService: UserService,
+        private listsService: ListsService
+    ) {}
 
     public async ngOnInit(): Promise<void> {
-        this.watchlist = (this.userService.get()).watchlist;
+        this.watchlist = this.userService.get().watchlist;
         this.userLists = (await this.userService.getLists()).data;
     }
 
@@ -46,7 +49,6 @@ export class MovieDetailsInteractionsComponent implements OnInit {
         }
     }
 
-
     /**
      * Update the lists of a movie
      * @param movie {IMovie} The movie to update
@@ -55,7 +57,7 @@ export class MovieDetailsInteractionsComponent implements OnInit {
     protected async updateList(movie: IMovie): Promise<void> {
         const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(`[id^="lists-movie-${movie.id}"]`);
         checkboxes.forEach((checkbox) => {
-            const listId: string = checkbox.id.split('-')[checkbox.id.split('-').length - 1]
+            const listId: string = checkbox.id.split('-')[checkbox.id.split('-').length - 1];
             const isChecked: boolean = checkbox.checked;
             if (isChecked) {
                 this.listsService.addMovie(Number(listId), movie.id).then(() => {
@@ -66,6 +68,6 @@ export class MovieDetailsInteractionsComponent implements OnInit {
                     notyf.success(`Listes modifiées avec succès !`);
                 });
             }
-        })
+        });
     }
 }

@@ -146,7 +146,6 @@ export class UserService {
         return this.axiosService.get(`/users/${this.getUsername()}/followers-details`);
     }
 
-
     /**
      * Post a review
      * @param comment {string} - The review comment
@@ -159,10 +158,9 @@ export class UserService {
         return this.axiosService.post(`/users/${this.getUsername()}/reviews`, { comment, movieId, rating, spoiler });
     }
 
-  public async getReviews(): Promise<Response<any>> {
-    return this.axiosService.get(`/reviews/user/${this.getUsername()}`);
-  }
-
+    public async getReviews(): Promise<Response<any>> {
+        return this.axiosService.get(`/reviews/user/${this.getUsername()}`);
+    }
 
     /**
      * Update a review
@@ -197,7 +195,6 @@ export class UserService {
             return response;
         });
     }
-
 
     /**
      * Remove a follow
@@ -258,7 +255,4 @@ export class UserService {
             return response;
         });
     }
-
-
-
 }

@@ -3,15 +3,11 @@ import { PosterComponent } from '../../../../shared/components/poster/poster.com
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
 
 @Component({
-  selector: 'app-profiles-films',
-  standalone: true,
-  imports: [
-    PosterComponent,
-    StarsComponent,
-  ],
-  templateUrl: './profiles-films.component.html'
+    selector: 'app-profiles-films',
+    standalone: true,
+    imports: [PosterComponent, StarsComponent],
+    templateUrl: './profiles-films.component.html'
 })
 export class ProfilesFilmsComponent {
-  @Input() reviews: any[] = [];
-
+    @Input() reviews: any[] = [];
 }

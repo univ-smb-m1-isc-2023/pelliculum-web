@@ -14,13 +14,13 @@ export class ProfileClassicComponent implements OnInit {
     protected follows: any[] = [];
     @Input() reviews: any[] = [];
 
-    constructor(private userService: UserService,
-                private tmdbService: TmdbService) {}
+    constructor(
+        private userService: UserService,
+        private tmdbService: TmdbService
+    ) {}
 
     public async ngOnInit(): Promise<void> {
         this.follows = (await this.userService.getFollows()).data;
         this.reviews = (await this.userService.getReviews()).data;
     }
-
-
 }
