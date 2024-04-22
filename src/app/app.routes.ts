@@ -10,6 +10,8 @@ import { MovieDetailsComponent } from './modules/movie-details/movie-details.com
 import { SettingsComponent } from './modules/settings/settings.component';
 import { MoviesSearchComponent } from './modules/movies-search/movies-search.component';
 import { ActorPageComponent } from './modules/actor-page/actor-page.component';
+import { ConfidentialityComponent } from './modules/confidentiality/confidentiality.component';
+import { UseConditionComponent } from './modules/utilisation-condition/use-condition.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -22,5 +24,8 @@ export const routes: Routes = [
     { path: 'films/:genre', component: MoviesSearchComponent },
     { path: 'film/:id', component: MovieDetailsComponent },
     { path: 'settings', component: SettingsComponent },
-    { path: 'actor/:id', component: ActorPageComponent }
+    { path: 'actor/:id', component: ActorPageComponent },
+    { path: 'confidentiality', component: ConfidentialityComponent },
+    { path: 'conditions', component: UseConditionComponent }
+
 ];
