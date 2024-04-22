@@ -17,7 +17,9 @@ module.exports = {
                 greyRipple: '#222223',
                 'custom-border': 'rgba(255, 255, 255, 0.3)',
                 'custom-light-border': 'rgba(255, 255, 255, 0.1)',
-                'custom-border-search': 'rgba(255, 255, 255, 0.8)'
+                'custom-border-search': 'rgba(255, 255, 255, 0.8)',
+                gold: '#ffc41f',
+                'gold-light': '#ffd560',
             },
             width: {
                 '1/48': '2.083333%',
