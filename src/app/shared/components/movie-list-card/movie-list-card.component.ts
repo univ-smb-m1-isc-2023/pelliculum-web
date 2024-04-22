@@ -30,7 +30,7 @@ export class MovieListCardComponent implements OnInit{
      * Return the name of the list with no accents and space replaced by hyphens
      */
     protected getListUrl(): string {
-        return this.list?.name ?? ""
+        return (this.list?.name ?? "")
             .toLowerCase()
             .replace(/ /g, '-')
             .normalize('NFD')

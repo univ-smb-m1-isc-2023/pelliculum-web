@@ -12,6 +12,7 @@ import { IGenre } from '../../models/genre.model';
 import { IMovie } from '../../models/movie.model';
 import { ListsService } from '../../../core/services/lists.service';
 import { notyf } from '../../../core/utils/notyf.utils';
+import { IList } from '../../models/list.model';
 
 @Component({
     selector: 'app-search-list-movies',
@@ -25,7 +26,7 @@ export class SearchListMoviesComponent {
     @Input() public movies: IMovie[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
 
-    public userLists: any[] = [];
+    public userLists: IList[] = [];
 
     public moviesCopy: any[] = [];
     public searchTerm: string = '';

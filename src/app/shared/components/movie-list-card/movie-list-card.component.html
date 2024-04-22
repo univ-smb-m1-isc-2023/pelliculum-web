@@ -1,6 +1,6 @@
 <div *ngIf="list" class="group flex flex-col shadow-lg">
     <!-- Poster -->
-    <a [routerLink]="['list',getListID(), getListUrl()]">
+    <a [routerLink]="['/', 'list',getListID(), getListUrl()]">
         <div class="relative flex cursor-pointer flex-row">
             <img *ngIf="randomBackdropURL" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+randomBackdropURL" alt="de" class="rounded-t-xl" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>

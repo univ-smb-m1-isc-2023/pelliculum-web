@@ -1,4 +1,4 @@
-<div class="flex flex-col -space-y-64">
+<div class="flex flex-col -space-y-96">
     <!-- App-backdrop with gradient -->
     <div class="relative flex flex-col">
         <!-- Famous movie backdrop with gradient -->
@@ -10,7 +10,7 @@
         </div>
 
         <!-- List description -->
-        <div class="absolute top-24 flex w-full flex-row space-x-4 px-12">
+        <div class="absolute top-24 flex w-full flex-row space-x-48 px-12">
             <!-- Posters -->
             <div *ngIf="list" class="flex h-56 w-fit flex-row -space-x-28">
                 @for (movie of movies.slice(0, 5); track movie.id; let i = $index) {
@@ -24,7 +24,7 @@
 
                 <div class="flex flex-row items-center space-x-3">
                     <div class="avatar avatar-sm">
-                        <img alt="avatar" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+                        <img [src]="usersService.getProfilePicture(list?.user.username)" alt="Profile Picture" />
                     </div>
                     <div class="flex flex-col">
                         <p class="text-sm">Une liste de {{list?.user?.username}}</p>
@@ -37,7 +37,7 @@
                     <p>{{movies.length}} {{movies.length < 2 ? 'film' : 'films'}}</p>
                 </div>
 
-                <p class="line-clamp-3">{{list?.description}}</p>
+                <p class="line-clamp-4 w-7/12">{{list?.description}}</p>
 
                 <!-- Likes and comments -->
                 <div class="flex flex-grow items-end">

@@ -10,6 +10,7 @@ import { NgIf } from '@angular/common';
 import { ListsService } from '../../core/services/lists.service';
 import { IList } from '../../shared/models/list.model';
 import { IMovie } from '../../shared/models/movie.model';
+import { UsersService } from '../../core/services/users.service';
 
 @Component({
     selector: 'app-movie-list-card',
@@ -28,9 +29,10 @@ export class MovieListComponent implements OnInit {
     private isSortingByDate: boolean = false;
 
     constructor(
-        private tmdbService: TmdbService,
-        private activatedRoute: ActivatedRoute,
-        private listsService: ListsService
+      private tmdbService: TmdbService,
+      private activatedRoute: ActivatedRoute,
+      private listsService: ListsService,
+      protected usersService: UsersService
     ) {}
 
     async ngOnInit(): Promise<void> {
