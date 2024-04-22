@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileTabsComponent } from './components/profile-tabs/profile-tabs.component';
-import { ProfileSecurityTabComponent } from './components/profile-security-tab/profile-security-tab.component';
-import { ProfileCustomizationTabComponent } from './components/profile-customization-tab/profile-customization-tab.component';
+import {
+  ProfileCustomizationTabComponent,
+} from './components/profile-customization-tab/profile-customization-tab.component';
 import { NgIf } from '@angular/common';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { BackdropComponent } from '../../shared/components/backdrop/backdrop.component';
@@ -14,26 +15,37 @@ import { ProfileWatchlistComponent } from './components/profile-watchlist/profil
 import { ProfileListsComponent } from './components/profile-lists/profile-lists.component';
 
 @Component({
-    selector: 'app-profile',
-    standalone: true,
-  imports: [ProfileTabsComponent, ProfileSecurityTabComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent, ProfileListsComponent],
-    templateUrl: './profile.component.html',
-    styles: ``
+  selector: 'app-profile',
+  standalone: true,
+
+  imports: [ProfileTabsComponent, ProfileCustomizationTabComponent, NgIf, BackdropComponent, ProfileClassicComponent, ProfileFriendsComponent, TabsComponent, TabComponent, ProfileWatchlistComponent, ProfileListsComponent],
+
+  templateUrl: './profile.component.html',
+  styles: ``,
 })
 export class ProfileComponent implements OnInit {
-    activeTab: string = '';
-    movie: any;
+  activeTab: string = '';
+  movie: any;
+  reviews: any[] = [];
 
-    constructor(
-        private tmdbService: TmdbService,
-        protected user: UserService
-    ) {}
+  constructor(
+    private tmdbService: TmdbService,
+    protected user: UserService,
+  ) {
+  }
 
-    public async ngOnInit(): Promise<void> {
-        this.movie = (await this.tmdbService.getTopMovies())[0];
-    }
+  public async ngOnInit(): Promise<void> {
+    this.movie = (await this.tmdbService.getTopMovies())[0];
+    await this.fetchReviews();
+  }
 
-    selectTab(tab: string) {
-        this.activeTab = tab;
-    }
+  public async fetchReviews() {
+    this.reviews = (await this.user.getReviews()).data;
+    this.reviews.forEach(review => {
+      this.tmdbService.getMovieDetails(review.movieId).then((movie) => {
+        review.movie = movie.data;
+      });
+    });
+    console.log(this.reviews);
+  }
 }

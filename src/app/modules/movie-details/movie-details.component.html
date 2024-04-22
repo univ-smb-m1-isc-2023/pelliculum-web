@@ -35,6 +35,7 @@
                         </div>
                     </div>
 
+
                     <!-- Genres -->
                     <div class="flex flex-row items-center space-x-2">
                         <p class="text-sm font-bold">Genres:</p>
@@ -44,13 +45,13 @@
                     </div>
                     <!-- Overview -->
                     <p class="line-clamp-4 text-lg">{{ currentMovie.overview }}</p>
+
+                <div class="w-3/12 rounded border border-custom-border bg-transparent">
+                    <app-movie-details-interactions *ngIf="currentMovie" [movie]="currentMovie" [reviews]="reviews" class="w-full"></app-movie-details-interactions>
                 </div>
             </div>
 
             <!-- Right Part -->
-            <div class="w-3/12 rounded border border-custom-border bg-transparent">
-                <app-movie-details-interactions *ngIf="currentMovie" [movie]="currentMovie" [reviews]="reviews" class="w-full"></app-movie-details-interactions>
-            </div>
         </div>
     </div>
 
@@ -71,7 +72,7 @@
 
         <!-- Reviews -->
         @if (reviews !== []) {
-        <app-movie-details-rating [id]="currentMovie.id" [reviews]="reviews"></app-movie-details-rating>
+            <app-movie-details-rating [id]="currentMovie.id" [reviews]="reviews"></app-movie-details-rating>
         }
     </div>
 </div>
