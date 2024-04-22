@@ -15,8 +15,8 @@ export class ListsService {
    * @param isPublic {boolean} - Whether to get public or private lists
    * @returns {Promise<Response<IUser[]>>} - The users
    */
-  public async getAll(isPublic: boolean): Promise<Response<IList[]>> {
-    return await this.axiosService.get('/lists', {
+  public async getAll(isPublic?: boolean): Promise<Response<IList[]>> {
+    return await this.axiosService.get('/lists/', {
       params: { isPublic },
     });
   }

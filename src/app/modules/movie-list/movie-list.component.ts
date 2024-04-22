@@ -7,6 +7,9 @@ import { PosterComponent } from '../../shared/components/poster/poster.component
 import { FormsModule } from '@angular/forms';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
 import { NgIf } from '@angular/common';
+import { ListsService } from '../../core/services/lists.service';
+import { IList } from '../../shared/models/list.model';
+import { IMovie } from '../../shared/models/movie.model';
 
 @Component({
     selector: 'app-movie-list-card',
@@ -15,29 +18,29 @@ import { NgIf } from '@angular/common';
     templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
-    list: any;
-    movies: any[] = [];
-    moviesCopy: any[] = [];
-    searchTerm: string = '';
 
-    isSortingByLikes: boolean = false;
-    isSortingByDate: boolean = false;
+    protected list?: IList;
+    protected movies: IMovie[] = [];
+    protected moviesCopy: IMovie[] = [];
+    protected searchTerm: string = '';
+
+    private isSortingByLikes: boolean = false;
+    private isSortingByDate: boolean = false;
 
     constructor(
         private tmdbService: TmdbService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private listsService: ListsService
     ) {}
 
     async ngOnInit(): Promise<void> {
-        //this.list = this.activatedRoute.snapshot.paramMap.get('id');
-        const results = await this.tmdbService.getTopMovies();
-        this.list = {
-            name: this.randomWatchlistName(),
-            comments: this.randomComments(),
-            likes: this.randomLikes(),
-            movies: results
-        };
-        this.movies = this.list.movies;
+        const listID: string | null = this.activatedRoute.snapshot.paramMap.get('id');
+        if(!listID) return;
+        this.list = (await this.listsService.get(parseInt(listID))).data;
+        console.log("List: ", this.list)
+        this.list.movies.map(async (movieID: number) => {
+            this.movies.push((await this.tmdbService.getMovieDetails(movieID)).data);
+        })
         this.moviesCopy = this.movies;
     }
 

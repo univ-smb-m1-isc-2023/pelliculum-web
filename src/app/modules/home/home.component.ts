@@ -18,6 +18,7 @@ import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { TabComponent } from '../../shared/components/tabs/components/tab/tab.component';
 import { StarHoverableComponent } from '../../shared/components/star-hoverable/star-hoverable.component';
 import { notyf } from '../../core/utils/notyf.utils';
+import { HomeListsComponent } from './components/home-lists/home-lists.component';
 
 @Component({
     selector: 'app-home',
@@ -38,7 +39,8 @@ import { notyf } from '../../core/utils/notyf.utils';
         HomeDiscoverComponent,
         TabsComponent,
         TabComponent,
-        StarHoverableComponent
+        StarHoverableComponent,
+        HomeListsComponent
     ],
     templateUrl: './home.component.html',
     styles: ``

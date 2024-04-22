@@ -20,13 +20,13 @@ import { notyf } from '../../../core/utils/notyf.utils';
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
+
     @Input() public style?: string;
-    @Input() public movies: any[] = [];
+    @Input() public movies: IMovie[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
 
     public userLists: any[] = [];
 
-    public list: any;
     public moviesCopy: any[] = [];
     public searchTerm: string = '';
 
@@ -51,23 +51,12 @@ export class SearchListMoviesComponent {
     ) {}
 
     async ngOnInit(): Promise<void> {
-        const result: IMovie[] = await this.tmdbService.getTopMovies();
         this.userLists = (await this.userService.getLists()).data;
-        console.log("User lists: ", this.userLists)
         this.watchlist = (this.userService.get()).watchlist;
-        console.log(this.watchlist);
-        this.list = {
-            likes: this.randomLikes(),
-            movies: result
-        };
-        if (this.movies.length === 0) {
-            this.movies = this.list.movies;
-        }
         this.movies.map((movie) => {
-            movie.vote_average = (movie.vote_average / 2).toFixed(1);
+            movie.vote_average = Number((movie.vote_average / 2).toFixed(1));
         });
         this.moviesCopy = [...this.movies];
-        console.log(this.movies);
     }
 
     /**
@@ -143,10 +132,6 @@ export class SearchListMoviesComponent {
         this.isSortingByDate = !this.isSortingByDate;
         this.isSortingByLikes = this.isSortingByDate ? false : this.isSortingByLikes;
         this.sortAndFilterMovies();
-    }
-
-    protected randomLikes(): number {
-        return Math.floor(Math.random() * 1000);
     }
 
     private sortByDate(movies: any[]): any[] {

@@ -24,7 +24,6 @@ export class MovieListCardComponent implements OnInit{
 
     public async ngOnInit(): Promise<void> {
         await this.randomMovieBackdropURL();
-        console.log(this.list);
     }
 
     /**
@@ -36,6 +35,10 @@ export class MovieListCardComponent implements OnInit{
             .replace(/ /g, '-')
             .normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    protected getListID(): string {
+        return this.list?.id.toString() ?? "1";
     }
 
     protected async randomMovieBackdropURL(): Promise<void> {

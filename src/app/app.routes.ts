@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'game/classic', component: GameClassicComponent },
     { path: 'watchlist', component: WatchlistComponent },
-    { path: 'list/:id', component: MovieListComponent },
+    { path: 'list/:id/:title', component: MovieListComponent },
     { path: 'films/:genre', component: MoviesSearchComponent },
     { path: 'film/:id', component: MovieDetailsComponent },
     { path: 'settings', component: SettingsComponent },
