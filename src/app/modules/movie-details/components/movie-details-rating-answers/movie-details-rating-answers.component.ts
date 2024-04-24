@@ -59,7 +59,7 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
           showSpoiler: false,
           isLiked: answer.likes.includes(this.user.getUsername()),
           showAnswers: false,
-          profilePicture: `http://localhost:8080/profilePictures/${answer.author}.jpeg`,
+          profilePicture: `http://localhost:8080/profilePictures/${answer.user}.jpeg`,
           timeElapsed: this.getTimeElapsed(answer.createdAt),
         };
       });
