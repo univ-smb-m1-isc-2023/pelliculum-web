@@ -44,6 +44,5 @@ export class ProfileComponent implements OnInit {
                 review.movie = movie.data;
             });
         });
-        console.log(this.reviews);
     }
 }

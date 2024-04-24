@@ -50,7 +50,7 @@ export class ProfileFriendsComponent implements OnInit {
     public initMarker(): void {
         this.marker = document.getElementById('markerNetwork') as HTMLDivElement;
         const privateTab: HTMLDialogElement | null = document.getElementById('follows') as HTMLDialogElement;
-        privateTab.click();
+        privateTab?.click();
     }
 
     public switchFollowers(): void {

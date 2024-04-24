@@ -3,11 +3,12 @@ import { PosterComponent } from '../../../../shared/components/poster/poster.com
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
 import { UserService } from '../../../../core/services/user.service';
 import { TmdbService } from '../../../../core/services/tmdb.service';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-profile-classic',
     standalone: true,
-    imports: [PosterComponent, StarsComponent],
+  imports: [PosterComponent, StarsComponent, NgIf],
     templateUrl: './profile-classic.component.html'
 })
 export class ProfileClassicComponent implements OnInit {
@@ -22,5 +23,8 @@ export class ProfileClassicComponent implements OnInit {
     public async ngOnInit(): Promise<void> {
         this.follows = (await this.userService.getFollows()).data;
         this.reviews = (await this.userService.getReviews()).data;
+        this.reviews.map(async (review: any) => {
+            review.movie = (await this.tmdbService.getMovieDetails(review.movieId)).data;
+        })
     }
 }

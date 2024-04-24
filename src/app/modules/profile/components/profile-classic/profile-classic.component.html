@@ -5,8 +5,8 @@
         <div class="flex space-x-1.5 border-t border-custom-border pt-1">
             @for (review of reviews; track review) {
             <div class="relative flex justify-center">
-                <app-poster posterPath="{{review.movie.backdrop_path}}" [style]="'rounded-lg border border-custom-border h-40 hover:brightness-125 transition cursor-pointer'" />
-                <app-stars class="absolute bottom-2" [stars]="5" [value]="review.rating" size="w-3"></app-stars>
+                <app-poster *ngIf="review && review.movie" posterPath="{{review.movie.backdrop_path}}" [style]="'rounded-lg border border-custom-border h-40 hover:brightness-125 transition cursor-pointer'" />
+                <app-stars *ngIf="review && review.movie" class="absolute bottom-2" [stars]="5" [value]="review.rating" size="w-3"></app-stars>
             </div>
             }
         </div>

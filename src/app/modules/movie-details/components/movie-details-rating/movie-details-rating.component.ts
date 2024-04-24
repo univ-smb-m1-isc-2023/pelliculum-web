@@ -69,7 +69,6 @@ export class MovieDetailsRatingComponent implements OnInit {
                 };
             });
             this.getCurrentUserReview();
-            console.log(this.reviews);
         });
     }
 

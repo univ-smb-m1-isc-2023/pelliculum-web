@@ -36,7 +36,7 @@
             <app-profile-lists></app-profile-lists>
         </app-tab>
         <app-tab name="Films">
-            <app-profiles-films [reviews]="reviews"></app-profiles-films>
+            <app-profiles-films *ngIf="reviews" [reviews]="reviews"></app-profiles-films>
         </app-tab>
     </app-tabs>
 </div>
