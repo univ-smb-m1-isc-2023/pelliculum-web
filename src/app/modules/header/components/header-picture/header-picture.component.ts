@@ -11,7 +11,5 @@ import { UserService } from '../../../../core/services/user.service';
     templateUrl: './header-picture.component.html'
 })
 export class HeaderPictureComponent {
-
     constructor(protected user: UserService) {}
-
 }

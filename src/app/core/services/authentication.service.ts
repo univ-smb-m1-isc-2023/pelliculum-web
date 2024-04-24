@@ -47,7 +47,7 @@ export class AuthenticationService {
     public async login(values: any): Promise<any> {
         localStorage.clear();
         const response: Response<{ token: string; user: any }> = await this.axiosService.post('/auth/login', values);
-        console.log(response.data)
+        console.log(response.data);
         this.setAuthToken(response.data.token);
         this.setUser(response.data.user);
     }

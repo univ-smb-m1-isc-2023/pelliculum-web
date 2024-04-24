@@ -1,9 +1,8 @@
 import {
     IconAdjustmentsAlt,
     IconAlertTriangle,
-  IconEyeMinus,
-  IconPlaylistAdd,
-
+    IconEyeMinus,
+    IconPlaylistAdd,
     IconArrowNarrowRight,
     IconArticle,
     IconBaselineDensityMedium,
@@ -102,5 +101,5 @@ export const icons = {
     IconAlertTriangle,
     IconTriangleInverted,
     IconTriangle,
-    IconTextPlus,
+    IconTextPlus
 };

@@ -31,7 +31,7 @@ export class MovieDetailsRatingComponent implements OnInit {
     protected selectedReviewId: number | null = null;
     protected answers: any[] = [];
     protected answerComment: string = '';
-    protected note : number = 0.1;
+    protected note: number = 0.1;
 
     profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 

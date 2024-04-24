@@ -43,5 +43,4 @@ export class MovieListComponent implements OnInit {
         });
         this.moviesCopy = this.movies;
     }
-
 }

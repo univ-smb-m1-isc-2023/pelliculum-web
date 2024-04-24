@@ -10,7 +10,6 @@ import { NgClass, NgForOf, NgIf, NgStyle } from '@angular/common';
     imports: [FormsModule, NgForOf, NgStyle, NgClass, NgIf] // Assurez-vous que FormsModule et NgForOf sont importés si nécessaire
 })
 export class StarsHoverableComponent implements OnInit {
-
     @Input() starSize = 1;
     @Input() rating: number | null = 0;
     @Output() ratingChange = new EventEmitter<number>();
@@ -19,10 +18,8 @@ export class StarsHoverableComponent implements OnInit {
     starWidth?: number;
     hoveredRating: number | null = null;
 
-
-
     ngOnInit(): void {
-        this.starWidth = 1.39306640625 * this.starSize
+        this.starWidth = 1.39306640625 * this.starSize;
     }
 
     // Méthodes pour gérer les événements de survol

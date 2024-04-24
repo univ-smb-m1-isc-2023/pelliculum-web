@@ -37,6 +37,6 @@ export class UsersService {
     }
 
     public getProfilePicture(user: IUser): string {
-        return`data:image/jpeg;charset=utf-8;base64,${user.profilePicture}`;
+        return `data:image/jpeg;charset=utf-8;base64,${user.profilePicture}`;
     }
 }

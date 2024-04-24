@@ -22,7 +22,7 @@ export class MovieDetailsInteractionsComponent implements OnInit {
 
     protected watchlist: number[] = [];
     protected userLists: IList[] = [];
-    protected note : number = 0.1;
+    protected note: number = 0.1;
 
     constructor(
         private userService: UserService,
