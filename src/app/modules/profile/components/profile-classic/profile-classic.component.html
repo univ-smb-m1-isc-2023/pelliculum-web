@@ -3,12 +3,13 @@
     <div class="space-y-0.5">
         <p class="text-sm">Derniers films notés</p>
         <div class="flex space-x-1.5 border-t border-custom-border pt-1">
-            @for (review of reviews; track review) {
-            <div class="relative flex justify-center">
-                <app-poster *ngIf="review && review.movie" posterPath="{{review.movie.backdrop_path}}" [style]="'rounded-lg border border-custom-border h-40 hover:brightness-125 transition cursor-pointer'" />
-                <app-stars *ngIf="review && review.movie" class="absolute bottom-2" [stars]="5" [value]="review.rating" size="w-3"></app-stars>
-            </div>
-            }
+            <ng-container *ngFor="let review of reviews.slice(0, 8)">
+                <div class="relative flex justify-center">
+                    <app-poster *ngIf="review && review.movie" [posterPath]="review.movie.backdrop_path" [style]="'rounded-lg border border-custom-border h-40 hover:brightness-125 transition cursor-pointer'"></app-poster>
+                    <app-stars *ngIf="review && review.movie" class="absolute bottom-2" [stars]="5" [value]="review.rating" size="w-3"></app-stars>
+                </div>
+            </ng-container>
+
         </div>
     </div>
 
