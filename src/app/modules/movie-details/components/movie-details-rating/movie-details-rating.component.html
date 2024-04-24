@@ -91,6 +91,64 @@
                     <tabler-icon name="triangle" style="width: 10px; color: white; cursor: pointer; align-content: center; fill: white" (click)="toggleShowSpoiler(review)"></tabler-icon>
                 </span>
 
+                <!-- Likes and comments -->
+                <div class="flex flex-grow items-end">
+                    <div class="flex flex-row space-x-6">
+                        <!-- Likes -->
+                        <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                            <tabler-icon (click)="addLikeToReview(review.id)"
+                                         name="thumb-up"
+                                         [style.color]="review.isLiked ? 'green' : ''"
+                                         style="width: 20px"></tabler-icon>
+
+                            <p>{{ review.likes.length }}</p>
+                        </div>
+
+                        <!-- Comments -->
+                        <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                            <tabler-icon (click)="viewAnswers(review)" name="message" style="width: 20px"></tabler-icon>
+
+                            <p>{{ review.answers.length }}</p>
+                        </div>
+
+
+
+
+                        <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                (click)="toggleAnswer(review.id)"
+                        >
+                            Répondre
+                        </button>
+
+
+                    </div>
+                </div>
+
+            @if (selectedReviewId === review.id) {
+                <div class="p-1">
+                    <div class="flex space-x-2">
+                        <div class="avatar">
+                            <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
+                        </div>
+                        <div class="flex flex-col flex-grow pr-4 space-y-1.5">
+                            <div class="relative">
+                                <input class="effect-3 text-xs" type="text" [(ngModel)]="answerComment">
+                                <span class="focus-border"></span>
+                            </div>
+
+                            <div class="flex flex-row items-center justify-end">
+                                <button class="btn btn-sm btn-primary bg-primary hover:bg-red-900"
+                                        (click)="postAnswer(review)">
+                                    Publier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="px-8">
+                @if (review.showAnswers && review.answers.length > 0) {
+                    <app-movie-details-rating-answers [id]="review.id"></app-movie-details-rating-answers>
                 }
             </div>
 
