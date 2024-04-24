@@ -25,7 +25,7 @@ export class MovieDetailsRatingComponent implements OnInit {
 
   private notyf = new Notyf();
 
-
+  protected note : number = 0.1;
   protected reviewed: boolean = false;
   protected userReview: any = {};
   protected comment: string = '';
@@ -48,6 +48,9 @@ export class MovieDetailsRatingComponent implements OnInit {
     this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
 
     this.getReviews();
+    this.reviewService.selectedRating.subscribe((rating) => {
+      this.note = rating;
+    });
   }
 
 
@@ -82,7 +85,10 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.reviewService.reviewId = r.data.id;
       this.reviewed = true;
     });
+  }
 
+  protected changeRating(rating: number): void {
+    this.reviewService.selectedRating.next(rating);
   }
 
   protected updateReview(): void {
@@ -118,6 +124,7 @@ export class MovieDetailsRatingComponent implements OnInit {
     } else {
       this.reviewed = false;
       this.userReview.comment = '';
+      this.reviewService.selectedRating.next(0.1);
     }
   }
 
