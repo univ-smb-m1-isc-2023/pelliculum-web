@@ -36,7 +36,7 @@ export class UsersService {
         return this.axiosService.put(`/users/${username}`, data);
     }
 
-    public getProfilePicture(username: string): string {
-        return `http://localhost:8080/profilePictures/${username}.jpeg`;
+    public getProfilePicture(user: IUser): string {
+        return`data:image/jpeg;charset=utf-8;base64,${user.profilePicture}`;
     }
 }

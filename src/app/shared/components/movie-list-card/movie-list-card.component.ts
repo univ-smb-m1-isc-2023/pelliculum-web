@@ -25,6 +25,7 @@ export class MovieListCardComponent implements OnInit {
 
     public async ngOnInit(): Promise<void> {
         await this.randomMovieBackdropURL();
+        console.log(this.list);
     }
 
     /**

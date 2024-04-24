@@ -11,7 +11,7 @@
     <div class="flex w-full items-center justify-between space-x-2 rounded-b-xl bg-[#161616] px-2 py-1">
         <div class="flex flex-row items-center space-x-2">
             <div class="avatar avatar-sm">
-                <img [src]="usersService.getProfilePicture(list.user.username)" alt="Profile Picture" />
+                <img [src]="usersService.getProfilePicture(list.user)" alt="Profile Picture" />
             </div>
             <p class="truncate text-sm">{{list.name}}</p>
         </div>

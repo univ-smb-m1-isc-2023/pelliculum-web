@@ -7,7 +7,7 @@ import { AuthenticationService } from './authentication.service';
 import { IUser } from '../../shared/models/user.model';
 import { TmdbService } from './tmdb.service';
 import { IMovie } from '../../shared/models/movie.model';
-import { success_watchlist } from '../utils/notyf.utils';
+import { notyf, success_watchlist } from '../utils/notyf.utils';
 import { ListsService } from './lists.service';
 import { IList } from '../../shared/models/list.model';
 
@@ -67,7 +67,7 @@ export class UserService {
      * @returns {string} - The user's profile image url
      */
     public getProfileImage(): string {
-        return `${axios.defaults.baseURL}/profilePictures/${this.getUsername()}.jpeg`;
+        return `data:image/jpeg;charset=utf-8;base64,${this.get().profilePicture}`;
     }
 
     /**
@@ -89,6 +89,7 @@ export class UserService {
     public async update(data: any): Promise<Response<IUser>> {
         return this.axiosService.put<IUser>(`/users/${this.getUsername()}`, data).then((response: Response<IUser>) => {
             sessionStorage.setItem('user', JSON.stringify(response.data));
+            notyf.success('Profil mis à jour');
             return response;
         });
     }
@@ -99,6 +100,8 @@ export class UserService {
      * @returns {Promise<any>} - The response from the server
      */
     public async updateProfilePicture(file: File): Promise<Response<IUser>> {
+        console.log(sessionStorage.getItem('user'));
+        console.log(this.getUsername());
         const formData: FormData = new FormData();
         formData.append('file', file);
         return this.axiosService.post(`/users/${this.getUsername()}/profile-picture`, formData);

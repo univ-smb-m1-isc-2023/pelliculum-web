@@ -33,9 +33,8 @@ export class SettingsComponent {
     ) {}
 
     public async ngOnInit(): Promise<void> {
-        this.user = await this.userService.get();
+        this.user = this.userService.get();
         this.profileForm.patchValue(this.user);
-        this.photo = this.user.getProfileImage();
     }
 
     public async save(): Promise<void> {

@@ -10,7 +10,7 @@
     <section class="absolute inset-x-0 flex flex-col space-y-3 p-14 transition-all xs:top-[3%] sm:top-[8%] sm:w-11/12 md:top-[8%] md:w-8/12 lg:top-[12%] xl:top-[15%] xl:w-6/12">
         <!-- Title and genres -->
         <div class="flex flex-row space-x-4">
-            <img [alt]="user.getUsername()" [src]="'http://localhost:8080/profilePictures/' + user.getUsername() + '.jpeg'" class="h-fit w-28 rounded-full" />
+            <img [alt]="user.getUsername()" [src]="user.getProfileImage()" class="h-fit w-28 rounded-full" />
             <div class="flex flex-col">
                 <h1 class="sm:text-md font-bold text-white md:text-xl lg:text-2xl xl:text-3xl">{{ user.getUsername() }}</h1>
                 <p>150 films | 12 likes | 541 revues</p>

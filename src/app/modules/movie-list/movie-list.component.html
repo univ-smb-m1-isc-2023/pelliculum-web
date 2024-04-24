@@ -24,7 +24,7 @@
 
                 <div class="flex flex-row items-center space-x-3">
                     <div class="avatar avatar-sm">
-                        <img [src]="usersService.getProfilePicture(list?.user.username)" alt="Profile Picture" />
+                        <img *ngIf="list" [src]="usersService.getProfilePicture(list.user)" alt="Profile Picture" />
                     </div>
                     <div class="flex flex-col">
                         <p class="text-sm">Une liste de {{list?.user?.username}}</p>
