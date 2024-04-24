@@ -140,16 +140,19 @@ export class MovieDetailsRatingComponent implements OnInit {
 
   }
 
-  protected postAnswer(reviewId: number): void {
+  protected postAnswer(review: any): void {
     this.answerService.comment = this.answerComment;
     this.answerService.spoiler = this.spoiler;
 
-    this.answerService.postAnswer(reviewId).then(r => {
-      console.log(r.data);
-      this.answers.push(r.data);
-      this.answerService.answerId = r.data.id;
+    this.answerService.postAnswer(review.id).then(r => {
+      const newAnswer = r.data;
+      review.answers.push(newAnswer);
+      this.answerComment = '';
+      this.selectedReviewId = null;
+      this.getReviews();
     });
   }
+
 
   protected toggleAnswer(reviewId: number): void {
     this.selectedReviewId = this.selectedReviewId === reviewId ? null : reviewId;

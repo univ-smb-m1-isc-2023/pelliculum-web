@@ -22,7 +22,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
   styleUrls: ['./movie-details-rating-answers.sass'],
 
 })
-export class MovieDetailsRatingAnswersComponent implements OnInit{
+export class MovieDetailsRatingAnswersComponent implements OnInit {
 
   @Input() id: number = 0;
   @Input() answers: any[] = [];
@@ -35,13 +35,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   protected spoiler: boolean = false;
   protected liked: boolean = false;
   protected selectedAnswerId: number | null = null;
-  protected editingAnswerId: number | null = null;
-  protected editedComments: { [key: number]: string } = {};
-  protected editedSpoilers: { [key: number]: boolean } = {};
-
-
-
-
 
 
   profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
@@ -76,42 +69,21 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
   }
 
   protected postAnswer(): void {
-
     this.answerService.comment = this.comment;
     this.answerService.spoiler = this.spoiler;
 
+
     this.answerService.postAnswer(this.id).then(r => {
-      this.answers.push(r.data);
-      this.answerService.answerId = r.data.id;
-    });
-
-  }
-
-  protected updateAnswer(): void {
-    this.answerService.comment = this.editingAnswerId !== null ? this.editedComments[this.editingAnswerId] : '';
-    this.answerService.spoiler = this.spoiler;
-    const id = this.editingAnswerId;
-
-    this.answerService.updateAnswer().then(r => {
-      console.log(this.editingAnswerId);
-      const index = this.answers.findIndex(answer => answer.id === id);
-      console.log(index);
-      this.answers[index].comment = r.data.comment;
-      this.answers[index].spoiler = r.data.spoiler;
-    });
-    this.editingAnswerId = null;
-  }
-
-
-
-
-  protected deleteAnswer(): void {
-    this.answerService.deleteAnswer(this.answerService.answerId).then(() => {
-      const index = this.answers.findIndex(answer => answer.id === this.answerService.answerId);
-      this.answers.splice(index, 1);
-      this.answerService.answerId = 0;
+      const newAnswer = r.data;
+      this.answers.push(newAnswer);
+      this.answerService.answerId = newAnswer.id;
+      this.comment = '';
+      this.spoiler = false;
+      this.selectedAnswerId = null;
     });
   }
+
+
 
   protected getCurrentUserAnswer(): void {
     const username = this.user.getUsername();
@@ -133,7 +105,7 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
         answer.likes.push(this.user.getUsername());
         answer.isLiked = true;
         this.liked = true;
-      }else{
+      } else {
         answer.likes = answer.likes.filter((like: any) => like !== this.user.getUsername());
         answer.isLiked = false;
         this.liked = false;
@@ -142,15 +114,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
       this.notyf.error('Erreur lors de l\'ajout du like');
     });
 
-  }
-
-  protected toggleSpoiler(answerId: number): void {
-    this.editedSpoilers[answerId] = this.editedSpoilers[answerId] !== undefined ? !this.editedSpoilers[answerId] : !this.spoiler;
-  }
-
-
-  protected toggleShowSpoiler(answer: any): void {
-    this.editedSpoilers[answer.id] = !this.editedSpoilers[answer.id];
   }
 
   protected toggleAnswer(answerId: number): void {
@@ -164,17 +127,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit{
       this.comment = '';
     }
   }
-
-  protected toggleEdit(answerId: number): void {
-    this.editingAnswerId = this.editingAnswerId === answerId ? null : answerId;
-    console.log(answerId);
-    if (this.editingAnswerId !== null) {
-      console.log(this.editedComments);
-      this.editedComments[answerId] = this.answers.find(answer => answer.id === answerId)?.comment || '';
-    }
-  }
-
-
 
 
   private getTimeElapsed(dateString: string): string {
