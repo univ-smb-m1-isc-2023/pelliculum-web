@@ -58,7 +58,7 @@
         } @for (review of reviews;track review;let last = $last;let first = $first) {
 
         <!-- Rating part -->
-        <div class="flex flex-col space-y-2 py-1">
+        <div *ngIf="review" class="flex flex-col space-y-2 py-1">
             <!-- Avatar and user name -->
             <div class="flex flex-row items-center space-x-3 truncate">
                 <div class="avatar avatar-sm">

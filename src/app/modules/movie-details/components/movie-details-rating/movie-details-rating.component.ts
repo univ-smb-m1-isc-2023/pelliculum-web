@@ -10,11 +10,12 @@ import { Notyf } from 'notyf';
 import { MovieDetailsRatingAnswersComponent } from '../movie-details-rating-answers/movie-details-rating-answers.component';
 import { AnswerService } from '../../../../core/services/answer.service';
 import { UsersService } from '../../../../core/services/users.service';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-movie-details-rating',
     standalone: true,
-    imports: [StarsComponent, StarsHoverableComponent, FormsModule, TablerIconsModule, MovieDetailsRatingAnswersComponent],
+    imports: [StarsComponent, StarsHoverableComponent, FormsModule, TablerIconsModule, MovieDetailsRatingAnswersComponent, NgIf],
     templateUrl: './movie-details-rating.component.html',
     styleUrls: ['./movie-details-rating.sass']
 })
@@ -63,7 +64,7 @@ export class MovieDetailsRatingComponent implements OnInit {
                     showSpoiler: false,
                     isLiked: review.likes.includes(this.user.getUsername()),
                     showAnswers: false,
-                    profilePicture: this.usersService.getProfilePicture(review.author),
+                    profilePicture: this.usersService.getProfilePicture(review.user),
                     timeElapsed: this.getTimeElapsed(review.createdAt)
                 };
             });
