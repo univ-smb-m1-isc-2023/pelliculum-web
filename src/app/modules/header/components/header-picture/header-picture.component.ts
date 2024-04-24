@@ -10,13 +10,6 @@ import { UserService } from '../../../../core/services/user.service';
     imports: [RouterLink, TablerIconsModule, IconsModule],
     templateUrl: './header-picture.component.html'
 })
-export class HeaderPictureComponent implements OnInit {
-    profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
-
+export class HeaderPictureComponent {
     constructor(protected user: UserService) {}
-
-    ngOnInit(): void {
-        if (!this.user.isLoggedIn()) return;
-        this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
-    }
 }

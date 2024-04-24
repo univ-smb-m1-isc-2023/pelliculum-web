@@ -13,7 +13,9 @@
             <h1 class="sm:text-md font-bold text-white md:text-xl lg:text-2xl xl:text-3xl">{{ movie?.title }}</h1>
             <div>
                 @for (genre of genres; track genre.id; let first = $first; let last = $last) {
-                <span [class]="'text-white xl:text-sm lg:text-sm md:text-xs text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')">{{ genre.name }}</span>
+                <a [routerLink]="getGenreUrl(genre)">
+                    <span [class]="'hover:text-primary hover:underline text-white xl:text-sm lg:text-sm md:text-xs text-xs ' + (first ? 'pr-4' : 'px-4') + ' ' + (last ? '' : 'border-r border-gray-700')">{{ genre.name }}</span>
+                </a>
                 }
             </div>
         </div>

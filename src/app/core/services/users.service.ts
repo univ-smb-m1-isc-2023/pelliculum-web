@@ -35,4 +35,11 @@ export class UsersService {
     public async update(username: string, data: Partial<IUser>): Promise<Response<IUser>> {
         return this.axiosService.put(`/users/${username}`, data);
     }
+
+    public getProfilePicture(user: IUser): string {
+        if (!user.profilePicture || user.profilePicture === '') {
+            return 'https://www.w3schools.com/howto/img_avatar.png';
+        }
+        return `data:image/jpeg;charset=utf-8;base64,${user.profilePicture}`;
+    }
 }

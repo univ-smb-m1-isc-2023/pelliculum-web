@@ -1,3 +1,4 @@
+<script src="https://accounts.google.com/gsi/client" async></script>
 <div class="h-screen">
     <div class="flex flex-row">
         <!-- Image et Logo-->
@@ -46,18 +47,13 @@
                 </div>
 
                 <!-- Google connect button -->
-                <div class="flex w-3/4 flex-col items-center space-y-1.5">
-                    <button class="btn btn-rounded flex w-5/6 items-center justify-center gap-2 bg-gray-200 px-4 py-2 text-black hover:bg-white">
-                        <img ngSrc="assets/google.png" alt="Google Icon" class="w-5" height="512" width="512" />
-                        Se connecter avec Google
-                    </button>
-                </div>
-            </div>
+                <asl-google-signin-button shape="pill" theme="outline" type="standard" size="medium"></asl-google-signin-button>
 
-            <!-- Not registered yet -->
-            <div class="flex justify-center space-x-2">
-                <p class="text-xs opacity-70">Pas encore inscrit ?</p>
-                <p class="cursor-pointer text-xs opacity-70 hover:opacity-100" [routerLink]="'/register'">Créer un compte</p>
+                <!-- Not registered yet -->
+                <div class="flex justify-center space-x-2">
+                    <p class="text-xs opacity-70">Pas encore inscrit ?</p>
+                    <p class="cursor-pointer text-xs opacity-70 hover:opacity-100" [routerLink]="'/register'">Créer un compte</p>
+                </div>
             </div>
         </form>
     </div>

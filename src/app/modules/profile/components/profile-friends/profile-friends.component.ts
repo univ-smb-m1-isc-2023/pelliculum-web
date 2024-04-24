@@ -4,6 +4,7 @@ import { UserService } from '../../../../core/services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Notyf } from 'notyf';
 import { NgClass, NgIf } from '@angular/common';
+import { UsersService } from '../../../../core/services/users.service';
 
 @Component({
     selector: 'app-profile-friends',
@@ -25,7 +26,7 @@ export class ProfileFriendsComponent implements OnInit {
     public activeTab: 'follows' | 'followers' = 'follows';
     public marker: HTMLDivElement | undefined;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, protected usersService: UsersService) {}
 
     public async ngOnInit(): Promise<void> {
         this.initMarker();
@@ -48,7 +49,7 @@ export class ProfileFriendsComponent implements OnInit {
     public initMarker(): void {
         this.marker = document.getElementById('markerNetwork') as HTMLDivElement;
         const privateTab: HTMLDialogElement | null = document.getElementById('follows') as HTMLDialogElement;
-        privateTab.click();
+        privateTab?.click();
     }
 
     public switchFollowers(): void {

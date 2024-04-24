@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StarsHoverableComponent } from './stars-hoverable.component';
+import { UseConditionComponent } from './use-condition.component';
 
-describe('StarsHoverableComponent', () => {
-    let component: StarsHoverableComponent;
-    let fixture: ComponentFixture<StarsHoverableComponent>;
+describe('UtilisationConditionComponent', () => {
+    let component: UseConditionComponent;
+    let fixture: ComponentFixture<UseConditionComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [StarsHoverableComponent]
+            imports: [UseConditionComponent]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(StarsHoverableComponent);
+        fixture = TestBed.createComponent(UseConditionComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

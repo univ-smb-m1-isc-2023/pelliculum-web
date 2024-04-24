@@ -12,7 +12,6 @@ export const notyf = new Notyf({
     types: [
         {
             type: 'success',
-            background: 'url("https://batiment.imag.fr/img/imag.png")',
             icon: {
                 className: 'notyf__icon--success',
                 tagName: 'i'

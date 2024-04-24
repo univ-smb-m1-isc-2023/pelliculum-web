@@ -7,7 +7,9 @@ import { AuthenticationService } from './authentication.service';
 import { IUser } from '../../shared/models/user.model';
 import { TmdbService } from './tmdb.service';
 import { IMovie } from '../../shared/models/movie.model';
-import { success_watchlist } from '../utils/notyf.utils';
+import { notyf, success_watchlist } from '../utils/notyf.utils';
+import { ListsService } from './lists.service';
+import { IList } from '../../shared/models/list.model';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +19,8 @@ export class UserService {
         private router: Router,
         private axiosService: AxiosService,
         private authenticationService: AuthenticationService,
-        private tmdbService: TmdbService
+        private tmdbService: TmdbService,
+        private listService: ListsService
     ) {}
 
     /**
@@ -35,7 +38,15 @@ export class UserService {
      * @returns {string | null} - The username
      */
     public getUsername(): string | null {
-        return localStorage.getItem('username');
+        return this.get().username;
+    }
+
+    /**
+     * Get the email from local storage
+     * If the email is not found, return null
+     */
+    public getEmail(): string | null {
+        return this.get().email;
     }
 
     /**
@@ -47,12 +58,19 @@ export class UserService {
         return !!this.getAuthToken();
     }
 
+    public async getLists(): Promise<Response<IList[]>> {
+        return await this.listService.getUserLists(this.getUsername()!);
+    }
+
     /**
      * Retrieve the user's profile image url
      * @returns {string} - The user's profile image url
      */
     public getProfileImage(): string {
-        return `${axios.defaults.baseURL}/profilePictures/${this.getUsername()}.jpeg`;
+        if (!this.get().profilePicture || this.get().profilePicture === '') {
+            return 'https://www.w3schools.com/howto/img_avatar.png';
+        }
+        return `data:image/jpeg;charset=utf-8;base64,${this.get().profilePicture}`;
     }
 
     /**
@@ -61,14 +79,9 @@ export class UserService {
      * If the user's profile information is not found in local storage, retrieve it from the server
      * and store it in local storage
      */
-    public async get(): Promise<IUser> {
+    public get(): IUser {
         let user: string | null = sessionStorage.getItem('user');
-        if (!user) {
-            const userData: IUser = (await this.axiosService.get<IUser>(`/users/${this.getUsername()}`)).data;
-            user = JSON.stringify(userData);
-            sessionStorage.setItem('user', user);
-        }
-        return JSON.parse(user);
+        return JSON.parse(user!);
     }
 
     /**
@@ -79,6 +92,7 @@ export class UserService {
     public async update(data: any): Promise<Response<IUser>> {
         return this.axiosService.put<IUser>(`/users/${this.getUsername()}`, data).then((response: Response<IUser>) => {
             sessionStorage.setItem('user', JSON.stringify(response.data));
+            notyf.success('Profil mis à jour');
             return response;
         });
     }
@@ -89,6 +103,8 @@ export class UserService {
      * @returns {Promise<any>} - The response from the server
      */
     public async updateProfilePicture(file: File): Promise<Response<IUser>> {
+        console.log(sessionStorage.getItem('user'));
+        console.log(this.getUsername());
         const formData: FormData = new FormData();
         formData.append('file', file);
         return this.axiosService.post(`/users/${this.getUsername()}/profile-picture`, formData);
@@ -137,15 +153,6 @@ export class UserService {
     }
 
     /**
-     * Get the user's reviews
-     * @returns {Promise<any>} - The user's reviews
-     */
-
-    public async getReviews(): Promise<Response<any>> {
-        return this.axiosService.get(`/users/${this.getUsername()}/reviews`);
-    }
-
-    /**
      * Post a review
      * @param comment {string} - The review comment
      * @param movieId {number} - The movie id
@@ -155,6 +162,10 @@ export class UserService {
      */
     public async postReview(comment: string, movieId: number, rating: number, spoiler: boolean): Promise<Response<any>> {
         return this.axiosService.post(`/users/${this.getUsername()}/reviews`, { comment, movieId, rating, spoiler });
+    }
+
+    public async getReviews(): Promise<Response<any>> {
+        return this.axiosService.get(`/reviews/user/${this.getUsername()}`);
     }
 
     /**

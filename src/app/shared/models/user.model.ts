@@ -24,4 +24,5 @@ export interface IUser {
     avatar: string;
     watchlist: number[];
     follows: number[];
+    profilePicture: string;
 }

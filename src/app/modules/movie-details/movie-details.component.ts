@@ -6,8 +6,8 @@ import { BackdropComponent } from '../../shared/components/backdrop/backdrop.com
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { StarsComponent } from '../../shared/components/stars/stars.component';
 import { NgClass, NgIf } from '@angular/common';
+
 import { ProfileCustomizationTabComponent } from '../profile/components/profile-customization-tab/profile-customization-tab.component';
-import { ProfileSecurityTabComponent } from '../profile/components/profile-security-tab/profile-security-tab.component';
 import { ProfileTabsComponent } from '../profile/components/profile-tabs/profile-tabs.component';
 import { MovieDetailsCastTabsComponent } from './components/movie-details-cast-tabs/movie-details-cast-tabs.component';
 import { MovieDetailsCrewTabsComponent } from './components/movie-details-crew-tabs/movie-details-crew-tabs.component';
@@ -20,6 +20,7 @@ import { UserService } from '../../core/services/user.service';
 
 @Component({
     selector: 'app-movie-details',
+
     standalone: true,
     imports: [
         BackdropComponent,
@@ -28,7 +29,6 @@ import { UserService } from '../../core/services/user.service';
         NgIf,
         NgClass,
         ProfileCustomizationTabComponent,
-        ProfileSecurityTabComponent,
         ProfileTabsComponent,
         MovieDetailsCastTabsComponent,
         MovieDetailsCrewTabsComponent,
@@ -40,11 +40,7 @@ import { UserService } from '../../core/services/user.service';
         RouterLink
     ],
     templateUrl: './movie-details.component.html',
-    styles: [
-        `
-            /* Vos styles ici */
-        `
-    ]
+    styles: ``
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy {
     @Input() currentMovie: any;
@@ -159,4 +155,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             return `il y a ${years} ans`;
         }
     }
+
+    protected readonly Number = Number;
 }

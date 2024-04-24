@@ -35,6 +35,10 @@ export class AuthenticationService {
         }
     }
 
+    private setUser(user: any): void {
+        sessionStorage.setItem('user', JSON.stringify(user));
+    }
+
     /**
      * Send a request to the server to log in a user
      * If the request is successful, set the user's authentication token and username
@@ -42,9 +46,10 @@ export class AuthenticationService {
      */
     public async login(values: any): Promise<any> {
         localStorage.clear();
-        const response: Response<{ token: string; username: string }> = await this.axiosService.post('/auth/login', values);
+        const response: Response<{ token: string; user: any }> = await this.axiosService.post('/auth/login', values);
+        console.log(response.data);
         this.setAuthToken(response.data.token);
-        this.setUsername(response.data.username);
+        this.setUser(response.data.user);
     }
 
     /**
@@ -65,5 +70,16 @@ export class AuthenticationService {
         const response: Response<{ token: string; username: string }> = await this.axiosService.post('/auth/register', values);
         this.setAuthToken(response.data.token);
         this.setUsername(response.data.username);
+    }
+
+    /**
+     * Check if the user exist
+     * @param email {string} - The user's email
+     * @returns {boolean} - True if the user exist, false otherwise
+     */
+
+    public async checkUser(email: string): Promise<boolean> {
+        const response: Response<boolean> = await this.axiosService.get(`/auth/exist/${email}`);
+        return response.data;
     }
 }
