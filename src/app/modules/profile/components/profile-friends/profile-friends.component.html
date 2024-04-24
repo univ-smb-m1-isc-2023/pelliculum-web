@@ -41,7 +41,7 @@
                     <!-- Name - Profile Picture -->
                     <th class="flex space-x-2">
                         <div class="avatar avatar-md cursor-pointer">
-                            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="border-2 border-transparent" />
+                            <img [src]="usersService.getProfilePicture(user)" alt="photo" class="border-2 border-transparent" />
                         </div>
                         <div>
                             <p class="cursor-pointer text-white transition-all hover:text-primary">{{ user.username }}</p>

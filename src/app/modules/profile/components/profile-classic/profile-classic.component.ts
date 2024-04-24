@@ -4,6 +4,7 @@ import { StarsComponent } from '../../../../shared/components/stars/stars.compon
 import { UserService } from '../../../../core/services/user.service';
 import { TmdbService } from '../../../../core/services/tmdb.service';
 import { NgIf } from '@angular/common';
+import { UsersService } from '../../../../core/services/users.service';
 
 @Component({
     selector: 'app-profile-classic',
@@ -17,7 +18,8 @@ export class ProfileClassicComponent implements OnInit {
 
     constructor(
         private userService: UserService,
-        private tmdbService: TmdbService
+        private tmdbService: TmdbService,
+        protected usersService: UsersService,
     ) {}
 
     public async ngOnInit(): Promise<void> {

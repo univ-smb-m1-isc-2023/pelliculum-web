@@ -20,7 +20,7 @@
             <div class="popover popover-hover">
                 <label class="popover-trigger">
                     <div class="avatar avatar-md cursor-pointer">
-                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="photo" class="border-2 border-transparent" />
+                        <img [src]="usersService.getProfilePicture(user)" alt="photo" class="border-2 border-transparent" />
                     </div>
                 </label>
                 <div class="popover-content popover-top-center w-min">
