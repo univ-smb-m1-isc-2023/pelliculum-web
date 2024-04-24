@@ -1,6 +1,6 @@
 <div class="flex h-full flex-col justify-between">
     <div class="flex items-center justify-evenly pt-4">
-        <span>
+        <span class="cursor-pointer">
             @if (isWatchlisted(movie.id)) {
             <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 60px" data-tooltip="J'ai vu ce film" />
             } @else {
