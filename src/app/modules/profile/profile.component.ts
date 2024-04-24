@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
     public async ngOnInit(): Promise<void> {
         const u = await this.user.get();
         console.log(u);
-        this.reviewNumber = u.likedReviews.length;
         this.movie = (await this.tmdbService.getTopMovies())[0];
         await this.fetchReviews();
     }

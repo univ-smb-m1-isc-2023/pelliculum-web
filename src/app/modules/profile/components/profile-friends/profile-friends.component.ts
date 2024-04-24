@@ -40,7 +40,8 @@ export class ProfileFriendsComponent implements OnInit {
         this.followers = followers;
         this.contacts = follows;
         this.shownContacts = this.contacts;
-        console.log(this.contacts);
+        console.log(this.followers);
+        console.log(this.follows);
     }
 
     public selectTab(tabName: 'followers' | 'follows'): void {
