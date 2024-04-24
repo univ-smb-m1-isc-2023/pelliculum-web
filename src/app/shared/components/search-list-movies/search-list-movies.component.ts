@@ -13,11 +13,12 @@ import { IMovie } from '../../models/movie.model';
 import { ListsService } from '../../../core/services/lists.service';
 import { notyf } from '../../../core/utils/notyf.utils';
 import { IList } from '../../models/list.model';
+import { StarsHoverableComponent } from '../stars-hoverable/stars-hoverable.component';
 
 @Component({
     selector: 'app-search-list-movies',
     standalone: true,
-    imports: [FormsModule, PosterComponent, TablerIconsModule, NgClass, StarsComponent, RouterLink, AsyncPipe],
+    imports: [FormsModule, PosterComponent, TablerIconsModule, NgClass, StarsComponent, RouterLink, AsyncPipe, StarsHoverableComponent],
     templateUrl: './search-list-movies.component.html'
 })
 export class SearchListMoviesComponent {
@@ -144,4 +145,6 @@ export class SearchListMoviesComponent {
     private sortByGenre(movies: any[]): any[] {
         return movies.filter((movie) => this.sortingGenres.every((genre) => movie.genre_ids.includes(genre)));
     }
+
+    protected readonly Number = Number;
 }

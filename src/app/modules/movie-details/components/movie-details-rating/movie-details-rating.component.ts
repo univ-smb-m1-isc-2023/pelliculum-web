@@ -9,6 +9,7 @@ import { SharedReviewService } from '../../../../core/services/shared-review.ser
 import { Notyf } from 'notyf';
 import { MovieDetailsRatingAnswersComponent } from '../movie-details-rating-answers/movie-details-rating-answers.component';
 import { AnswerService } from '../../../../core/services/answer.service';
+import { UsersService } from '../../../../core/services/users.service';
 
 @Component({
     selector: 'app-movie-details-rating',
@@ -33,18 +34,16 @@ export class MovieDetailsRatingComponent implements OnInit {
     protected answerComment: string = '';
     protected note: number = 0.1;
 
-    profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
-
     constructor(
         protected user: UserService,
         protected tmdbService: TmdbService,
         protected reviewService: SharedReviewService,
+        protected usersService: UsersService,
         protected answerService: AnswerService
     ) {}
 
     ngOnInit(): void {
         if (!this.user.isLoggedIn()) return;
-        this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
 
         this.getReviews();
         this.reviewService.selectedRating.subscribe((rating) => {
@@ -64,7 +63,7 @@ export class MovieDetailsRatingComponent implements OnInit {
                     showSpoiler: false,
                     isLiked: review.likes.includes(this.user.getUsername()),
                     showAnswers: false,
-                    profilePicture: `http://localhost:8080/profilePictures/${review.author}.jpeg`,
+                    profilePicture: this.usersService.getProfilePicture(review.author),
                     timeElapsed: this.getTimeElapsed(review.createdAt)
                 };
             });

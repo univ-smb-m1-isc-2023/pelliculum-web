@@ -37,6 +37,9 @@ export class UsersService {
     }
 
     public getProfilePicture(user: IUser): string {
+        if (!user.profilePicture || user.profilePicture === '') {
+            return 'https://www.w3schools.com/howto/img_avatar.png';
+        }
         return `data:image/jpeg;charset=utf-8;base64,${user.profilePicture}`;
     }
 }

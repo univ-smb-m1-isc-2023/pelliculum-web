@@ -155,4 +155,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             return `il y a ${years} ans`;
         }
     }
+
+    protected readonly Number = Number;
 }

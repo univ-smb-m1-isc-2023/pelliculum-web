@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="flex items-center justify-center pb-2">
-                            <app-stars [stars]="5" [value]="3.7" />
+                            <app-stars-hoverable [rating]="5" />
                         </div>
                     </div>
                 </div>
@@ -108,15 +108,15 @@
                                 rgba(200, 200, 200, 0.05) 0px 30px 60px -30px;
                         "
                         [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + movie.poster_path"
-                        alt="e" />
+                        [alt]="movie.title" />
 
                     <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                         <div class="flex h-full flex-col rounded-lg">
                             <div class="m-auto flex flex-col items-center justify-center">
                                 @if (isWatchlisted(movie.id)) {
-                                    <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
                                 } @else {
-                                    <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
                                 }
                                 <div class="popover">
                                     <i-tabler [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
@@ -129,12 +129,12 @@
                                             </div>
                                             <div class="flex flex-col space-y-2">
                                                 @for (list of userLists; track list.id) {
-                                                    <label class="flex cursor-pointer flex-row items-center space-x-2">
-                                                        <div class="flex items-center justify-center">
-                                                            <input [id]="'lists-movie-' + movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(movie.id)" />
-                                                        </div>
-                                                        <span class="truncate text-sm">{{list.name}}</span>
-                                                    </label>
+                                                <label class="flex cursor-pointer flex-row items-center space-x-2">
+                                                    <div class="flex items-center justify-center">
+                                                        <input [id]="'lists-movie-' + movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(movie.id)" />
+                                                    </div>
+                                                    <span class="truncate text-sm">{{list.name}}</span>
+                                                </label>
                                                 }
                                                 <button (click)="updateList(movie)" class="btn btn-primary btn-xs">Modifier</button>
                                             </div>
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-center pb-2">
-                                <app-stars [stars]="5" [value]="3.7" />
+                                <app-stars-hoverable [rating]="5" />
                             </div>
                         </div>
                     </div>
@@ -161,8 +161,8 @@
 
                         <!-- Rating -->
                         <div class="flex flex-row items-center space-x-1.5">
-                            <app-stars size="w-4" [stars]="5" [value]="movie.vote_average" />
-                            <p class="text-xs">{{ movie.vote_average }}</p>
+                            <app-stars size="w-4" [stars]="5" [value]="movie.vote_average > 5 ? Number((movie.vote_average / 2).toFixed(1)) : Number(movie.vote_average.toFixed(1))" />
+                            <p class="text-xs">{{ movie.vote_average > 5 ? Number((movie.vote_average / 2).toFixed(1)) : Number(movie.vote_average.toFixed(1)) }}</p>
                         </div>
                     </div>
 

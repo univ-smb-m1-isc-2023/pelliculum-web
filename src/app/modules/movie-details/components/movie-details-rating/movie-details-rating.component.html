@@ -8,7 +8,7 @@
     <div class="pb-2">
         <div class="flex space-x-2">
             <div class="avatar">
-                <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
+                <img [src]="user.getProfileImage()" alt="photo" class="border-2 border-transparent" />
             </div>
             <div class="flex flex-grow flex-col space-y-1.5 pr-4">
                 <div class="relative">
@@ -62,7 +62,7 @@
             <!-- Avatar and user name -->
             <div class="flex flex-row items-center space-x-3 truncate">
                 <div class="avatar avatar-sm">
-                    <img src="https://i.pravatar.cc/150" alt="avatar" />
+                    <img [src]="usersService.getProfilePicture(review.user)" alt="avatar" />
                 </div>
                 <p class="text-md">Critique de {{ review.user.username }}</p>
                 <!-- Rating -->
@@ -126,7 +126,7 @@
             <div class="p-1">
                 <div class="flex space-x-2">
                     <div class="avatar">
-                        <img [src]="profilePicture" alt="photo" class="border-2 border-transparent" />
+                        <img [src]="user.getProfileImage()" alt="photo" class="border-2 border-transparent" />
                     </div>
                     <div class="flex flex-grow flex-col space-y-1.5 pr-4">
                         <div class="relative">
