@@ -142,7 +142,9 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.answerComment = '';
       this.selectedReviewId = null;
       this.getReviews();
-    });
+    }).then(() => {
+        this.notyf.success('Réponse postée');
+    })
   }
   protected toggleAnswer(reviewId: number): void {
     this.selectedReviewId = this.selectedReviewId === reviewId ? null : reviewId;

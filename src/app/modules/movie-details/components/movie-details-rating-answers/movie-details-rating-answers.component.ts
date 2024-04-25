@@ -80,7 +80,9 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
       this.comment = '';
       this.spoiler = false;
       this.selectedAnswerId = null;
-    });
+    }).then(() => {
+        this.notyf.success('Réponse postée');
+    })
   }
 
 
