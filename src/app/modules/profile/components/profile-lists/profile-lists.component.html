@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-5">
+    <div class="grid grid-cols-5 gap-4">
         @for (list of userLists; track list.id){
         <app-movie-list-card [list]="list"></app-movie-list-card>
         } @empty {
