@@ -3,11 +3,12 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './modules/header/header.component';
 import { FooterComponent } from './modules/footer/footer.component';
 import { StarRatingComponent } from 'angular-star-rating';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent, FooterComponent],
+    imports: [RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent, FooterComponent, NgIf],
     templateUrl: './app.component.html',
     styles: ``
 })
