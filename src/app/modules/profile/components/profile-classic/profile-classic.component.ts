@@ -5,11 +5,13 @@ import { UserService } from '../../../../core/services/user.service';
 import { TmdbService } from '../../../../core/services/tmdb.service';
 import { NgForOf, NgIf } from '@angular/common';
 import { UsersService } from '../../../../core/services/users.service';
+import { Movie } from '../../../../shared/models/movie.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-profile-classic',
     standalone: true,
-  imports: [PosterComponent, StarsComponent, NgIf, NgForOf],
+    imports: [PosterComponent, StarsComponent, NgIf, NgForOf, RouterLink],
     templateUrl: './profile-classic.component.html'
 })
 export class ProfileClassicComponent implements OnInit {
@@ -28,4 +30,6 @@ export class ProfileClassicComponent implements OnInit {
             review.movie = (await this.tmdbService.getMovieDetails(review.movieId)).data;
         })
     }
+
+    protected readonly Movie = Movie;
 }
