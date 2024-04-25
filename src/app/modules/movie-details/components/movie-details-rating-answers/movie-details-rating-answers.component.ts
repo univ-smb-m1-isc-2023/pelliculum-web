@@ -33,7 +33,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
   protected userAnswer: any = {};
   protected comment: string = '';
   protected spoiler: boolean = false;
-  protected liked: boolean = false;
   protected selectedAnswerId: number | null = null;
 
 
@@ -103,14 +102,12 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
     const username = this.user.getUsername();
     this.answerService.addLikeToAnswers(answerId, username).then(() => {
       const answer = this.answers.find(answer => answer.id === answerId);
-      if (!this.liked) {
+      if (!answer.isLiked) {
         answer.likes.push(this.user.getUsername());
         answer.isLiked = true;
-        this.liked = true;
       } else {
         answer.likes = answer.likes.filter((like: any) => like !== this.user.getUsername());
         answer.isLiked = false;
-        this.liked = false;
       }
     }).catch(() => {
       this.notyf.error('Erreur lors de l\'ajout du like');

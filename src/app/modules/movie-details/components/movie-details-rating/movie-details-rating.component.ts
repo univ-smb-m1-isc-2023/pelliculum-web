@@ -27,7 +27,6 @@ export class MovieDetailsRatingComponent implements OnInit {
   protected userReview: any = {};
   protected comment: string = '';
   protected spoiler: boolean = false;
-  protected liked: boolean = false;
   protected selectedReviewId: number | null = null;
   protected answers: any[] = [];
   protected answerComment: string = '';
@@ -117,23 +116,19 @@ export class MovieDetailsRatingComponent implements OnInit {
   }
   protected addLikeToReview(reviewId: number): void {
     const username = this.user.getUsername();
-    this.reviewService
-      .addLikeToReview(reviewId, username)
-      .then(() => {
-        const review = this.reviews.find((review) => review.id === reviewId);
-        if (!this.liked) {
-          review.likes.push(this.user.getUsername());
-          review.isLiked = true;
-          this.liked = true;
-        } else {
-          review.likes = review.likes.filter((like: any) => like !== this.user.getUsername());
-          review.isLiked = false;
-          this.liked = false;
-        }
-      })
-      .catch(() => {
-        this.notyf.error("Erreur lors de l'ajout du like");
-      });
+    this.reviewService.addLikeToReview(reviewId, username).then(() => {
+      const review = this.reviews.find(review => review.id === reviewId);
+      if (!review.isLiked) {
+        review.likes.push(this.user.getUsername());
+        review.isLiked = true;
+      } else {
+        review.likes = review.likes.filter((like: any) => like !== this.user.getUsername());
+        review.isLiked = false;
+      }
+    }).catch(() => {
+      this.notyf.error('Erreur lors de l\'ajout du like');
+    });
+
   }
   protected postAnswer(review: any): void {
     this.answerService.comment = this.answerComment;
