@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import { RatingsGraphComponent } from '../../../../shared/components/ratings-graph/ratings-graph.component';
@@ -16,13 +16,14 @@ import { SharedReviewService } from '../../../../core/services/shared-review.ser
     imports: [StarsComponent, TablerIconsModule, RatingsGraphComponent, StarsHoverableComponent],
     templateUrl: './movie-details-interactions.component.html'
 })
-export class MovieDetailsInteractionsComponent implements OnInit {
+export class MovieDetailsInteractionsComponent implements OnInit, OnChanges {
     @Input() public reviews: any[] = [];
     @Input() public movie: IMovie = {} as IMovie;
 
     protected watchlist: number[] = [];
     protected userLists: IList[] = [];
     protected note: number = 0.1;
+    protected userReview: any;
 
     constructor(
         private userService: UserService,
@@ -38,8 +39,25 @@ export class MovieDetailsInteractionsComponent implements OnInit {
         });
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['reviews']) {
+            this.userReview = this.reviews.find((review) => review.user.username === this.userService.getUsername());
+        }
+    }
+
     protected changeRating(rating: number): void {
         this.reviewService.selectedRating.next(rating);
+        if (this.userReview){
+            this.reviewService.updateReview().then(r =>{
+                notyf.success('Note mise à jour avec succès');
+            })
+        }
+        else{
+            this.reviewService.postReview(this.movie.id).then(r =>{
+                notyf.success('Note ajoutée avec succès');
+            })
+        }
+
     }
 
     protected isWatchlisted(movieId: number): boolean {

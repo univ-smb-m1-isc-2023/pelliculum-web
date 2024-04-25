@@ -76,6 +76,7 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.reviews.push(r.data);
       this.reviewService.reviewId = r.data.id;
       this.reviewed = true;
+      this.notyf.success('Avis posté');
     });
   }
   protected updateReview(): void {
@@ -86,6 +87,7 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.reviews[index].comment = r.data.comment;
       this.reviews[index].rating = r.data.rating;
       this.reviews[index].spoiler = r.data.spoiler;
+      this.notyf.success('Avis mis à jour');
     });
   }
   protected deleteReview(): void {
@@ -94,6 +96,7 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.reviews.splice(index, 1);
       this.reviewService.reviewId = 0;
       this.reviewed = false;
+      this.notyf.success('Avis supprimé');
     });
   }
   protected getCurrentUserReview(): void {
