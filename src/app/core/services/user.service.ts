@@ -55,7 +55,7 @@ export class UserService {
      * @returns {boolean} - True if the user is logged in, false otherwise
      */
     public isLoggedIn(): boolean {
-        return !!this.getAuthToken();
+        return !!this.getAuthToken() && !!this.get();
     }
 
     public async getLists(): Promise<Response<IList[]>> {
