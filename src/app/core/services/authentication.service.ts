@@ -67,9 +67,9 @@ export class AuthenticationService {
      */
     public async register(values: any): Promise<any> {
         localStorage.clear();
-        const response: Response<{ token: string; username: string }> = await this.axiosService.post('/auth/register', values);
+        const response: Response<{ token: string; user: any }> = await this.axiosService.post('/auth/register', values);
         this.setAuthToken(response.data.token);
-        this.setUsername(response.data.username);
+        this.setUser(response.data.user);
     }
 
     /**
