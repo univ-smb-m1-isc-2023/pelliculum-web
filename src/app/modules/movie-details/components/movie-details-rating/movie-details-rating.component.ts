@@ -31,6 +31,7 @@ export class MovieDetailsRatingComponent implements OnInit {
   protected answers: any[] = [];
   protected answerComment: string = '';
   protected note: number = 0.1;
+  protected userName : string | null = this.user.getUsername();
   constructor(
     protected user: UserService,
     protected tmdbService: TmdbService,
@@ -151,6 +152,7 @@ export class MovieDetailsRatingComponent implements OnInit {
       this.answerComment = `@${selectedReview.user.username}`;
     }
   }
+  
   protected viewAnswers(review: any): void {
     review.showAnswers = !review.showAnswers;
   }

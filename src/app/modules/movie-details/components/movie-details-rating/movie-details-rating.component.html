@@ -113,7 +113,7 @@
                         <!-- Likes -->
                         <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
                             <tabler-icon (click)="addLikeToReview(review.id)" name="thumb-up"
-                                         [style.color]="review.isLiked ? 'green' : ''"
+                                         [style.color]="review.likes.includes(userName) ? 'green' : ''"
                                          style="width: 20px"></tabler-icon>
                             <p>{{ review.likes.length }}</p>
                         </div>
@@ -161,6 +161,7 @@
                         </div>
                     </div>
                 }
+
                 <div class="px-8">
                     @if (review.showAnswers && review.answers.length > 0) {
                         <app-movie-details-rating-answers [id]="review.id"></app-movie-details-rating-answers>
