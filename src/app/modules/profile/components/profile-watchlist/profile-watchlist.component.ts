@@ -16,13 +16,9 @@ export class ProfileWatchlistComponent implements OnInit {
 
     constructor(
         private user: UserService,
-        private tmdbService: TmdbService
     ) {}
 
     public async ngOnInit(): Promise<void> {
         this.watchlist = await this.user.getWatchlistDetails();
-        const u = await this.user.get();
-        console.log(u);
-        console.log(this.watchlist);
     }
 }

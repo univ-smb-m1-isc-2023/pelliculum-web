@@ -25,4 +25,5 @@ export interface IUser {
     watchlist: number[];
     follows: number[];
     profilePicture: string;
+    likedReviews: number[];
 }
