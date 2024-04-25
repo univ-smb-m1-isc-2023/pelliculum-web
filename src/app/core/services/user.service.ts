@@ -55,7 +55,7 @@ export class UserService {
      * @returns {boolean} - True if the user is logged in, false otherwise
      */
     public isLoggedIn(): boolean {
-        return !!this.getAuthToken();
+        return !!this.getAuthToken() && !!this.get();
     }
 
     public async getLists(): Promise<Response<IList[]>> {
@@ -67,7 +67,7 @@ export class UserService {
      * @returns {string} - The user's profile image url
      */
     public getProfileImage(): string {
-        if (!this.get().profilePicture || this.get().profilePicture === '') {
+        if (!this.get()?.profilePicture || this.get()?.profilePicture === '') {
             return 'https://www.w3schools.com/howto/img_avatar.png';
         }
         return `data:image/jpeg;charset=utf-8;base64,${this.get().profilePicture}`;
@@ -82,6 +82,14 @@ export class UserService {
     public get(): IUser {
         let user: string | null = sessionStorage.getItem('user');
         return JSON.parse(user!);
+    }
+
+    /**
+     * Set the user's profile information in local storage
+     * @param user {IUser} - The user's profile information
+     */
+    public set(user: IUser): void {
+        sessionStorage.setItem('user', JSON.stringify(user));
     }
 
     /**

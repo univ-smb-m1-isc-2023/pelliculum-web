@@ -9,7 +9,7 @@ import { genres } from '../../../configs/genres.config';
 import { StarsComponent } from '../stars/stars.component';
 import { UserService } from '../../../core/services/user.service';
 import { IGenre } from '../../models/genre.model';
-import { IMovie } from '../../models/movie.model';
+import { IMovie, Movie } from '../../models/movie.model';
 import { ListsService } from '../../../core/services/lists.service';
 import { notyf } from '../../../core/utils/notyf.utils';
 import { IList } from '../../models/list.model';
@@ -60,11 +60,18 @@ export class SearchListMoviesComponent {
         this.moviesCopy = [...this.movies];
     }
 
+    protected preventRouterLink(event: MouseEvent): void {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
     /**
      * Add a movie to the watchlist if it's not already there, remove it if it is
      * @param movie {IMovie} - The movie id
+     * @param event {MouseEvent} - The click event
      */
-    protected async toggleWatchlist(movie: IMovie): Promise<void> {
+    protected async toggleWatchlist(movie: IMovie, event: MouseEvent): Promise<void> {
+        event.preventDefault();
         if (this.isWatchlisted(movie?.id)) {
             this.watchlist = this.watchlist.filter((id) => id !== movie?.id);
             await this.userService.removeWatchlist(movie);
@@ -147,4 +154,5 @@ export class SearchListMoviesComponent {
     }
 
     protected readonly Number = Number;
+    protected readonly Movie = Movie;
 }

@@ -13,7 +13,6 @@ import { UserService } from '../../../../core/services/user.service';
     styleUrls: ['./profile-customization-tab.component.sass']
 })
 export class ProfileCustomizationTabComponent implements OnInit {
-    imageUrl: string | undefined;
 
     profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
@@ -28,18 +27,18 @@ export class ProfileCustomizationTabComponent implements OnInit {
 
     constructor(
         private sanitizer: DomSanitizer,
-        private userService: UserService
+        protected userService: UserService
     ) {}
 
     async ngOnInit() {
-        this.user = await this.userService.get();
+        this.user = this.userService.get();
         this.profileForm.patchValue({
             firstname: this.user.firstname,
             lastname: this.user.lastname,
             email: this.user.email,
             username: this.user.username
         });
-        this.getUserProfilePicture();
+        this.photo = this.user.profilePicture
     }
 
     async save() {
@@ -67,8 +66,4 @@ export class ProfileCustomizationTabComponent implements OnInit {
         }
     }
 
-    getUserProfilePicture() {
-        const username = this.user.getUsername();
-        this.imageUrl = `http://localhost:8080/profilePictures/${username}.jpeg`;
-    }
 }

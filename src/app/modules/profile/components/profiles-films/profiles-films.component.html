@@ -1,13 +1,20 @@
-<div class="flex space-x-1.5 border-t border-custom-border pt-1">
-    @for (review of reviews; track review) {
-        <a *ngIf="review.movie" [routerLink]="Movie.getDetailsPageUrl(review.movie)"
-        >
-            <div class="relative flex justify-center cursor-pointer">
-                <app-poster *ngIf="review && review.movie" posterPath="{{review.movie.backdrop_path}}"
-                            [style]="'rounded-lg border border-custom-border h-40 hover:brightness-125 transition'" />
-                <app-stars *ngIf="review && review.movie" class="absolute bottom-2" [stars]="5" [value]="review.rating"
-                           size="w-3"></app-stars>
-            </div>
-        </a>
-    }
+<div class="accordion flex flex-col space-y-0 h-full">
+    <div class="flex flex-row items-center justify-between h-full">
+        <h3 class="text-lg">Les films que j'ai noté !</h3>
+    </div>
+
+    <div class="flex space-x-1.5 border-t border-custom-light-border pt-2">
+        @for (review of reviews;track review) {
+            <a *ngIf="review.movie" [routerLink]="Movie.getDetailsPageUrl(review.movie)"
+            >
+                <div class="relative flex justify-center cursor-pointer">
+                    <app-poster *ngIf="review && review.movie" posterPath="{{review.movie.backdrop_path}}"
+                                [style]="'rounded-lg border border-custom-border h-40 hover:brightness-125 transition'" />
+                    <app-stars *ngIf="review && review.movie" class="absolute bottom-2" [stars]="5"
+                               [value]="review.rating"
+                               size="w-3"></app-stars>
+                </div>
+            </a>
+        }
+    </div>
 </div>

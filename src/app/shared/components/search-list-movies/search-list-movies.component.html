@@ -51,18 +51,18 @@
         <!-- Grid -->
         <div class="grid gap-x-4 gap-y-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10">
             @for (movie of movies; track movie.id) {
-            <a class="group relative cursor-pointer">
+            <a [routerLink]="Movie.getDetailsPageUrl(movie)" class="group relative cursor-pointer">
                 <app-poster [style]="'border-custom-border group-hover:opacity-55 transition'" [posterPath]="movie.poster_path" />
                 <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
                     <div class="flex h-full flex-col rounded-lg">
-                        <div class="m-auto flex flex-col items-center justify-center">
+                        <div class="m-auto flex flex-col items-center justify-center" (click)="preventRouterLink($event)">
                             @if (isWatchlisted(movie.id)) {
-                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                            <i-tabler tabindex="0" (click)="toggleWatchlist(movie, $event)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
                             } @else {
-                            <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                            <i-tabler tabindex="0" (click)="toggleWatchlist(movie, $event)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
                             }
-                            <div class="popover">
-                                <i-tabler [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
+                            <div class="popover" (click)="preventRouterLink($event)">
+                                <i-tabler  (click)="preventRouterLink($event)" [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
                                 <div class="popover-content" tabindex="0">
                                     <div class="popover-arrow"></div>
                                     <div class="flex flex-col">
@@ -114,9 +114,9 @@
                         <div class="flex h-full flex-col rounded-lg">
                             <div class="m-auto flex flex-col items-center justify-center">
                                 @if (isWatchlisted(movie.id)) {
-                                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                                <i-tabler (click)="toggleWatchlist(movie, $event)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
                                 } @else {
-                                <i-tabler (click)="toggleWatchlist(movie)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                                <i-tabler (click)="toggleWatchlist(movie, $event)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
                                 }
                                 <div class="popover">
                                     <i-tabler [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
