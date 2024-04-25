@@ -41,10 +41,10 @@
                     <!-- Name - Profile Picture -->
                     <th class="flex space-x-2">
                         <div class="avatar avatar-md cursor-pointer">
-                            <img [src]="usersService.getProfilePicture(user)" alt="photo" class="border-2 border-transparent" />
+                            <img [src]="usersService.getProfilePicture(user.user)" alt="photo" class="border-2 border-transparent" />
                         </div>
                         <div>
-                            <p class="cursor-pointer text-white transition-all hover:text-primary">{{ user.username }}</p>
+                            <p class="cursor-pointer text-white transition-all hover:text-primary">{{ user.user.username }}</p>
                             <p class="text-xs font-normal">{{ user.followsCount }} abonnement{{ user.followsCount > 1 ? 's' : '' }}, {{ user.followersCount }} abonné{{ user.followersCount > 1 ? 's' : '' }}</p>
                         </div>
                     </th>
@@ -79,24 +79,24 @@
                             <!-- Followed logic -->
                             <span class="tooltip tooltip-left" data-tooltip="Se désabonner" *ngIf="user.isFollowed">
                                 <tabler-icon
-                                    [name]="hoverState[user.username] ? 'circle-x-filled' : 'circle-check-filled'"
+                                    [name]="hoverState[user.user.username] ? 'circle-x-filled' : 'circle-check-filled'"
                                     class="cursor-pointer transition-all"
-                                    [ngClass]="{'text-red-500' : hoverState[user.username], 'text-green-500' : !hoverState[user.username]}"
-                                    (mouseenter)="hoverState[user.username] = true"
-                                    (mouseleave)="hoverState[user.username] = false"
-                                    (click)="user.isFollowed = false; removeFollow(user.username)">
+                                    [ngClass]="{'text-red-500' : hoverState[user.user.username], 'text-green-500' : !hoverState[user.user.username]}"
+                                    (mouseenter)="hoverState[user.user.username] = true"
+                                    (mouseleave)="hoverState[user.user.username] = false"
+                                    (click)="user.isFollowed = false; removeFollow(user.user.username)">
                                 </tabler-icon>
                             </span>
 
                             <!-- Not Followed logic -->
                             <span class="tooltip tooltip-left" data-tooltip="S'abonner" *ngIf="!user.isFollowed">
                                 <tabler-icon
-                                    [name]="hoverState[user.username] ? 'circle-check-filled' : 'circle-x-filled'"
+                                    [name]="hoverState[user.user.username] ? 'circle-check-filled' : 'circle-x-filled'"
                                     class="cursor-pointer transition-all"
-                                    [ngClass]="{'text-red-500' : !hoverState[user.username], 'text-green-500' : hoverState[user.username]}"
-                                    (mouseenter)="hoverState[user.username] = true"
-                                    (mouseleave)="hoverState[user.username] = false"
-                                    (click)="user.isFollowed = true; addFollow(user.username)">
+                                    [ngClass]="{'text-red-500' : !hoverState[user.user.username], 'text-green-500' : hoverState[user.user.username]}"
+                                    (mouseenter)="hoverState[user.user.username] = true"
+                                    (mouseleave)="hoverState[user.user.username] = false"
+                                    (click)="user.isFollowed = true; addFollow(user.user.username)">
                                 </tabler-icon>
                             </span>
                         </div>
