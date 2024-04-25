@@ -4,11 +4,14 @@ import { StarsComponent } from '../../../../shared/components/stars/stars.compon
 import { NgIf } from '@angular/common';
 import { Movie } from '../../../../shared/models/movie.model';
 import { RouterLink } from '@angular/router';
+import {
+    SearchListReviewsComponent
+} from '../../../../shared/components/search-list-reviews/search-list-reviews.component';
 
 @Component({
     selector: 'app-profiles-films',
     standalone: true,
-    imports: [PosterComponent, StarsComponent, NgIf, RouterLink],
+    imports: [PosterComponent, StarsComponent, NgIf, RouterLink, SearchListReviewsComponent],
     templateUrl: './profiles-films.component.html'
 })
 export class ProfilesFilmsComponent {

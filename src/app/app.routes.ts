@@ -12,6 +12,7 @@ import { MoviesSearchComponent } from './modules/movies-search/movies-search.com
 import { ActorPageComponent } from './modules/actor-page/actor-page.component';
 import { ConfidentialityComponent } from './modules/confidentiality/confidentiality.component';
 import { UseConditionComponent } from './modules/utilisation-condition/use-condition.component';
+import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -26,5 +27,6 @@ export const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'actor/:id', component: ActorPageComponent },
     { path: 'confidentiality', component: ConfidentialityComponent },
-    { path: 'conditions', component: UseConditionComponent }
+    { path: 'conditions', component: UseConditionComponent },
+    { path: 'profile/:username', component: UserProfileComponent },
 ];

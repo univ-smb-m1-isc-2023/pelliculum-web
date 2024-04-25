@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { Notyf } from 'notyf';
 import { NgClass, NgIf } from '@angular/common';
 import { UsersService } from '../../../../core/services/users.service';
+import { User } from '../../../../shared/models/user.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-profile-friends',
     standalone: true,
-    imports: [TablerIconsModule, FormsModule, NgClass, NgIf],
+    imports: [TablerIconsModule, FormsModule, NgClass, NgIf, RouterLink],
     templateUrl: './profile-friends.component.html'
 })
 export class ProfileFriendsComponent implements OnInit {
@@ -95,4 +97,6 @@ export class ProfileFriendsComponent implements OnInit {
         this.marker.style.left = e.target.offsetLeft + 10 + 'px';
         this.marker.style.width = e.target.offsetWidth - 18 + 'px';
     }
+
+    protected readonly User = User;
 }

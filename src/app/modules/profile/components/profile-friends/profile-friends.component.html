@@ -40,11 +40,11 @@
                 <tr>
                     <!-- Name - Profile Picture -->
                     <th class="flex space-x-2">
-                        <div class="avatar avatar-md cursor-pointer">
+                        <a [routerLink]="'/'+User.getProfileUrl(user.user)" class="avatar avatar-md cursor-pointer">
                             <img [src]="usersService.getProfilePicture(user.user)" alt="photo" class="border-2 border-transparent" />
-                        </div>
+                        </a>
                         <div>
-                            <p class="cursor-pointer text-white transition-all hover:text-primary">{{ user.user.username }}</p>
+                            <a [routerLink]="'/'+User.getProfileUrl(user.user)" class="cursor-pointer text-white transition-all hover:text-primary">{{ user.user.username }}</a>
                             <p class="text-xs font-normal">{{ user.followsCount }} abonnement{{ user.followsCount > 1 ? 's' : '' }}, {{ user.followersCount }} abonné{{ user.followersCount > 1 ? 's' : '' }}</p>
                         </div>
                     </th>

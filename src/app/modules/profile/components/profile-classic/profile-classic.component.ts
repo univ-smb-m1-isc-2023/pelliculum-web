@@ -7,6 +7,7 @@ import { NgForOf, NgIf } from '@angular/common';
 import { UsersService } from '../../../../core/services/users.service';
 import { Movie } from '../../../../shared/models/movie.model';
 import { RouterLink } from '@angular/router';
+import { User } from '../../../../shared/models/user.model';
 
 @Component({
     selector: 'app-profile-classic',
@@ -32,4 +33,5 @@ export class ProfileClassicComponent implements OnInit {
     }
 
     protected readonly Movie = Movie;
+    protected readonly User = User;
 }

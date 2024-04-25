@@ -12,6 +12,10 @@ export class User {
     public static getProfileImage(user: IUser): string {
         return `${axios.defaults.baseURL}/profilePictures/${user.username}.jpeg`;
     }
+
+    public static getProfileUrl(user: IUser): string {
+        return `profile/${user.username}`;
+    }
 }
 
 export interface IUser {

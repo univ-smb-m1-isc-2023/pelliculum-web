@@ -42,4 +42,11 @@ export class UsersService {
         }
         return `data:image/jpeg;charset=utf-8;base64,${user.profilePicture}`;
     }
+
+    public async getReviews(user: IUser): Promise<Response<any>> {
+        return this.axiosService.get(`/reviews/user/${user.username}`);
+    }
+
+
+
 }
