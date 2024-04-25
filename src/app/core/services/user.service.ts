@@ -85,6 +85,14 @@ export class UserService {
     }
 
     /**
+     * Set the user's profile information in local storage
+     * @param user {IUser} - The user's profile information
+     */
+    public set(user: IUser): void {
+        sessionStorage.setItem('user', JSON.stringify(user));
+    }
+
+    /**
      * Update the user's profile information
      * @param data {any} - The user's updated profile information
      * @returns {Promise<any>} - The user's updated profile information

@@ -23,18 +23,19 @@ export class SettingsComponent {
         email: new FormControl({ value: 'john.doe@gmail.com', disabled: true }, [Validators.required, Validators.email]),
         username: new FormControl('JohnnyDowy', [Validators.required])
     });
-    protected imageUrl: string | undefined;
+
     protected photo: SafeUrl = 'https://www.w3schools.com/howto/img_avatar.png';
     protected selectedFile: File | null = null;
 
     constructor(
         private sanitizer: DomSanitizer,
-        private userService: UserService
+        protected userService: UserService
     ) {}
 
     public async ngOnInit(): Promise<void> {
         this.user = this.userService.get();
         this.profileForm.patchValue(this.user);
+        this.photo = this.userService.getProfileImage();
     }
 
     public async save(): Promise<void> {
@@ -46,6 +47,7 @@ export class SettingsComponent {
         });
         if (!this.selectedFile) return;
         const responseProfile: Response<IUser> = await this.userService.updateProfilePicture(this.selectedFile);
+        this.userService.set(responseProfile.data)
     }
 
     public onFileSelected(event: any): void {
