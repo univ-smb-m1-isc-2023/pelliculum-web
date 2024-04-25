@@ -1,7 +1,9 @@
-@if (!isInLoginOrRegisterPage()) {
-<app-header></app-header>
-}
-<router-outlet></router-outlet>
-@if (!isInLoginOrRegisterPage()) {
-<app-footer></app-footer>
-}
+<div class="h-full">
+    <div class="flex min-h-screen flex-col">
+        <app-header *ngIf="!isInLoginOrRegisterPage()"></app-header>
+        <div class="grow h-full">
+            <router-outlet class="h-full"></router-outlet>
+        </div>
+        <app-footer *ngIf="!isInLoginOrRegisterPage()"></app-footer>
+    </div>
+</div>
