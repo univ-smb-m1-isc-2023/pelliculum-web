@@ -7,7 +7,8 @@ import { Response } from '../../shared/models/response.model';
 })
 export class AxiosService {
     constructor() {
-        axios.defaults.baseURL = 'http://localhost:8080';
+        //axios.defaults.baseURL = 'http://localhost:8080';
+        axios.defaults.baseURL = 'https://rapi.pelliculum.oups.net/';
     }
 
     /**
@@ -15,6 +16,7 @@ export class AxiosService {
      * @param method {string} - The HTTP method (GET, POST, PUT, DELETE)
      * @param url {string} - The URL to send the request to
      * @param data {any} - The data to send with the request
+     * // Test push
      */
     public request<T>(method: string, url: string, data: any): Promise<Response<T>> {
         return axios.request({ method, url, data });

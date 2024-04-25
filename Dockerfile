@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 # Copier les fichiers de l'application construite à partir de l'étape précédente dans le répertoire de contenu de Nginx
-COPY --from=builder /app/dist/cloudflare/browser /app
+COPY --from=builder /app/dist/Pelliculum-web/browser /app
 COPY nginx.conf /etc/nginx/nginx.conf
 USER nginx
 
