@@ -205,7 +205,6 @@ export class UserService {
      */
     public async addFollow(username: string): Promise<Response<IUser>> {
         return this.axiosService.post<IUser>(`/users/${this.getUsername()}/follows/${username}`).then((response: Response<IUser>) => {
-            sessionStorage.setItem('user', JSON.stringify(response.data));
             return response;
         });
     }
@@ -217,7 +216,6 @@ export class UserService {
      */
     public async removeFollow(username: string): Promise<Response<IUser>> {
         return this.axiosService.delete<IUser>(`/users/${this.getUsername()}/unfollows/${username}`).then((response: Response<IUser>) => {
-            sessionStorage.setItem('user', JSON.stringify(response.data));
             return response;
         });
     }
