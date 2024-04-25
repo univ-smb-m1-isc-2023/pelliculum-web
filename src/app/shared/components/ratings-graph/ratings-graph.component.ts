@@ -14,27 +14,24 @@ export class RatingsGraphComponent implements OnChanges {
     @Input() reviews: any[] = [];
     @Input() movie?: IMovie;
 
-    protected ratings: number[] = [];
+    protected ratings: number[] = [0,0,0,0,0,0,0,0,0,0,0];
     protected highestRating: number = 0;
     protected height = 50;
     protected sumRating: number = 0;
-    protected averageRating: number = 0;
+    protected averageRating: string = "";
 
     constructor() {}
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['reviews']) {
-            this.ratings = new Array(11).fill(0);
-
+            console.log('here')
             for (let rating of this.reviews) {
                 let index = rating.rating * 2;
                 this.ratings[index] = this.ratings[index] ? this.ratings[index] + 1 : 1;
             }
-            this.ratings = [16, 71, 88, 70, 13, 8, 53, 71, 22, 75];
-
             this.highestRating = Math.max(...this.ratings);
-            this.sumRating = this.ratings.reduce((a, b) => a + b, 0);
-            this.averageRating = this.sumRating / this.reviews.length;
+            this.sumRating = this.reviews.reduce((acc, review) => acc + review.rating, 0);
+            this.averageRating = (this.sumRating / this.reviews.length).toPrecision(2);
         }
     }
 
@@ -44,7 +41,7 @@ export class RatingsGraphComponent implements OnChanges {
     }
 
     getPercentage(nombre: number): string {
-        return '(' + ((nombre / this.sumRating) * 100).toFixed(1) + '%)';
+        return '(' + ((this.ratings[nombre] / this.reviews.length) * 100).toFixed(1) + '%)';
     }
 
     protected readonly Number = Number;

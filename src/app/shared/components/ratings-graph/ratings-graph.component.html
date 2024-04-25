@@ -19,7 +19,7 @@
                     <div class="flex items-center justify-center space-x-1 text-sm">
                         <p>{{ rating }} note{{ rating > 1 ? 's' : '' }}</p>
                         <app-stars [value]="$index/2" [stars]="5" size="w-2"></app-stars>
-                        <p>{{ getPercentage(rating) }}</p>
+                        <p>{{ getPercentage($index) }}</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         <div class="mb-2 flex flex-col items-center justify-center space-y-1">
             <div class="popover popover-hover">
                 <label class="popover-trigger cursor-pointer">
-                    <p *ngIf="movie" class="text-xl text-primary">{{movie.vote_average > 5 ? Number((movie.vote_average / 2).toFixed(1)) : Number(movie.vote_average.toFixed(1))}}</p>
+                    <p *ngIf="averageRating != ''" class="text-xl text-primary">{{averageRating}}</p>
                 </label>
                 <div class="popover-content popover-top-center w-56">
                     <div class="popover-arrow"></div>
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <app-stars *ngIf="movie" [stars]="5" [value]="movie.vote_average > 5 ? Number((movie.vote_average / 2).toFixed(1)) : Number(movie.vote_average.toFixed(1))" size="w-2"></app-stars>
+            <app-stars *ngIf="movie" [stars]="5" [value]="5" size="w-2"></app-stars>
         </div>
     </div>
 </div>

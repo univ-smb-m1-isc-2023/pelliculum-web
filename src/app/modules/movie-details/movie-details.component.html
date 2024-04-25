@@ -20,7 +20,7 @@
                     <!-- Rating -->
                     <div class="flex flex-row items-center space-x-1.5">
                         <app-stars size="w-4" [stars]="5" [value]="currentMovie.vote_average > 5 ? Number((currentMovie.vote_average / 2).toFixed(1)) : Number(currentMovie.vote_average.toFixed(1))" />
-                        <p class="text-xs">{{ currentMovie.vote_average > 5 ? Number((currentMovie.vote_average / 2).toFixed(1)) : Number(currentMovie.vote_average.toFixed(1)) }}</p>
+                        <p class="text-xs">{{ currentMovie.vote_average > 5 ? Number((currentMovie.vote_average / 2).toFixed(1)) : Number(currentMovie.vote_average.toFixed(1)) }} sur TMDB</p>
                     </div>
                     <!-- Date and duration -->
                     <div class="flex flex-row space-x-4">
