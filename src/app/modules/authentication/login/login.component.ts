@@ -31,7 +31,6 @@ export class LoginComponent {
     ngOnInit(): void {
         this.socialAuthService.authState.subscribe((user) => {
             this.authService.checkUser(user.email).then((r) => {
-                console.log(r);
                 if (!r) {
                     this.authService
                         .register({

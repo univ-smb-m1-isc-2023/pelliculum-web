@@ -20,15 +20,15 @@
         <p class="text-sm">Abonnements</p>
         <div class="flex space-x-1 border-t border-custom-border pt-1">
             @for (follow of follows; track follow) {
-            <a [routerLink]="'/'+User.getProfileUrl(follow)" class="popover popover-hover">
+            <a [routerLink]="'/'+User.getProfileUrl(follow.user)" class="popover popover-hover">
                 <label class="popover-trigger">
                     <div class="avatar avatar-md cursor-pointer">
-                        <img [src]="usersService.getProfilePicture(follow)" alt="photo" class="border-2 border-transparent" />
+                        <img [src]="usersService.getProfilePicture(follow.user)" alt="photo" class="border-2 border-transparent" />
                     </div>
                 </label>
                 <div class="popover-content popover-top-center w-min">
                     <div class="popover-arrow"></div>
-                    <div class="flex justify-center text-sm">{{follow.username}}</div>
+                    <div class="flex justify-center text-sm">{{follow.user.username}}</div>
                 </div>
             </a>
 

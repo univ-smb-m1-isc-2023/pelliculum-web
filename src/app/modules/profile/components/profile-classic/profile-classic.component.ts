@@ -26,7 +26,8 @@ export class ProfileClassicComponent implements OnInit {
     ) {}
 
     public async ngOnInit(): Promise<void> {
-        this.follows = (await this.userService.getFollows()).data;
+        this.follows = (await this.userService.getFollowsDetails()).data;
+        console.log(this.follows)
         this.reviews.map(async (review: any) => {
             review.movie = (await this.tmdbService.getMovieDetails(review.movieId)).data;
         })
