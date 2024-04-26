@@ -70,6 +70,7 @@ export class UserService {
         if (!this.get()?.profilePicture || this.get()?.profilePicture === '') {
             return 'https://www.w3schools.com/howto/img_avatar.png';
         }
+        return 'https://www.w3schools.com/howto/img_avatar.png';
         return `${this.get().profilePicture}`;
     }
 

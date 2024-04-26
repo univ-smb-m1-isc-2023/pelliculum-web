@@ -40,6 +40,7 @@ export class UsersService {
         if (!user.profilePicture || user.profilePicture === '') {
             return 'https://www.w3schools.com/howto/img_avatar.png';
         }
+        return 'https://www.w3schools.com/howto/img_avatar.png';
         return `${user.profilePicture}`;
     }
 
