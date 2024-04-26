@@ -57,6 +57,7 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
 
   protected getAnswers(): void {
     this.answerService.getAnswers(this.id).then(r => {
+      console.log(r.data)
       this.answers = r.data.map((answer: any) => {
         return {
           ...answer,
@@ -105,7 +106,8 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
 
   protected addLikeToAnswer(answerId: number): void {
     const username = this.user.getUsername();
-    this.answerService.addLikeToAnswers(answerId, username).then(() => {
+    this.answerService.addLikeToAnswers(answerId, username).then(r => {
+      console.log(r)
       const answer = this.answers.find(answer => answer.id === answerId);
       if (!answer.isLiked) {
         answer.likes.push(this.user.getUsername());
