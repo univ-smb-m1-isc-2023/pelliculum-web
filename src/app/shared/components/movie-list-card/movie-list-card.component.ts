@@ -44,6 +44,10 @@ export class MovieListCardComponent implements OnInit {
     }
 
     protected async randomMovieBackdropURL(): Promise<void> {
-        this.randomBackdropURL = (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * this.list.movies.length)]!)).data.backdrop_path;
+        if (this.list?.movies?.length === 0) {
+            this.randomBackdropURL = "https://dummyimage.com/270x115/eee/aaa.png&text=No+Image"
+            return;
+        }
+        this.randomBackdropURL = 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+ (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * (this.list?.movies?.length ?? 0))]!)).data.backdrop_path;
     }
 }
