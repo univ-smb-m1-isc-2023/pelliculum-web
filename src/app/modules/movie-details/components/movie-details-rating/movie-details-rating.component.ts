@@ -119,14 +119,18 @@ export class MovieDetailsRatingComponent implements OnInit {
   }
   protected addLikeToReview(reviewId: number): void {
     const username = this.user.getUsername();
-    this.reviewService.addLikeToReview(reviewId, username).then(() => {
+    this.reviewService.addLikeToReview(reviewId, username).then(r => {
       const review = this.reviews.find(review => review.id === reviewId);
-      if (!review.isLiked) {
-        review.likes.push(this.user.getUsername());
+      if (r.message === 'Review successfully liked !'){
+        this.notyf.success('Like ajouté');
         review.isLiked = true;
-      } else {
-        review.likes = review.likes.filter((like: any) => like !== this.user.getUsername());
+        review.likes.push(this.user.getUsername());
+      }
+      if (r.message === 'Review successfully unliked !'){
+        this.notyf.success('Like retiré');
         review.isLiked = false;
+        const index = review.likes.indexOf(this.user.getUsername());
+        review.likes.splice(index, 1);
       }
     }).catch(() => {
       this.notyf.error('Erreur lors de l\'ajout du like');
