@@ -26,6 +26,10 @@ export class RatingsGraphComponent implements OnChanges {
         if (changes['reviews']) {
             for (let rating of this.reviews) {
                 let index = rating.rating * 2;
+                if (index == 0.2){
+                    index = 0;
+                }
+                console.log(index)
                 this.ratings[index] = this.ratings[index] ? this.ratings[index] + 1 : 1;
             }
             this.highestRating = Math.max(...this.ratings);

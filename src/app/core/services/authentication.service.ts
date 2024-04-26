@@ -57,6 +57,7 @@ export class AuthenticationService {
      */
     public async logout(): Promise<any> {
         localStorage.clear();
+        sessionStorage.clear();
     }
 
     /**
