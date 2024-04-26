@@ -1,8 +1,14 @@
-<div *ngIf="list" class="group flex flex-col shadow-lg">
+<div *ngIf="list" class="group flex flex-col shadow-lg h-full">
     <!-- Poster -->
-    <a [routerLink]="['/', 'list',getListID(), getListUrl()]">
-        <div class="relative flex cursor-pointer flex-row">
-            <img *ngIf="randomBackdropURL" [src]="randomBackdropURL" alt="de" class="rounded-t-xl bg-contain" />
+    <a [routerLink]="['/', 'list',getListID(), getListUrl()]" class="h-full">
+        <div class="relative flex cursor-pointer flex-row h-full">
+            @if(randomBackdropURL === ""){
+                <div class="h-full justify-center items-center flex flex-col w-full px-4">
+                    <p>Il n'y a pas de films dans cette liste ;(</p>
+                </div>
+            }@else{
+                <img *ngIf="randomBackdropURL" [src]="randomBackdropURL" alt="de" class="rounded-t-xl" />
+            }
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
             <div class="absolute h-full w-full rounded-t-xl bg-[#161616] opacity-0 transition group-hover:opacity-55"></div>
         </div>
@@ -10,8 +16,10 @@
     <!-- Details -->
     <div class="flex w-full items-center justify-between space-x-2 rounded-b-xl bg-[#161616] px-2 py-1">
         <div class="flex flex-row items-center space-x-2">
-            <a [routerLink]="'/'+User.getProfileUrl(list.user)" class="avatar avatar-md cursor-pointer">
-                <img [src]="usersService.getProfilePicture(list.user)" alt="photo" class="border-2 border-transparent" />
+            <a [routerLink]="'/'+User.getProfileUrl(list.user)">
+                <div class="avatar avatar-md cursor-pointer">
+                    <img [src]="usersService.getProfilePicture(list.user)" alt="photo" class="border-2 border-transparent" />
+                </div>
             </a>
             <p class="truncate text-sm w-5/6">{{list.name}}</p>
         </div>

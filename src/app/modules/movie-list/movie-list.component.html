@@ -1,20 +1,17 @@
-<div class="flex flex-col">
-    <!-- App-backdrop with gradient -->
-    <div class="relative flex flex-col">
-        <!-- Famous movie backdrop with gradient -->
-        <div class="opacity-75">
-            <app-backdrop *ngIf="list && movies.length != 0" [backdropPath]="movies[0].backdrop_path" />
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
-            <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#100F10] from-0% to-transparent to-80%"></div>
-        </div>
+<div class="relative flex flex-col">
+    <app-backdrop *ngIf="list && movies.length != 0" [backdropPath]="movies[0].backdrop_path" />
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#100F10] from-0% to-transparent to-100%"></div>
+    <div class="absolute inset-0 bg-gradient-to-tl from-[#100F10] from-0% to-transparent to-80%"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#100F10] from-0% to-transparent to-80%"></div>
+
+    <div class="flex flex-col absolute top-24 space-y-4">
 
         <!-- List description -->
-        <div class="absolute top-24 flex w-full flex-row space-x-48 px-12">
+        <div class="flex w-full flex-row space-x-4 px-12">
             <!-- Posters -->
-            <div *ngIf="list" class="flex h-56 w-fit flex-row -space-x-28">
+            <div *ngIf="list" class="flex w-fit flex-row -space-x-28">
                 @for (movie of movies.slice(0, 5); track movie.id; let i = $index) {
-                <img [alt]="movie.title" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path" [class]="'rounded-lg w-44 h-fit'" />
+                    <img [alt]="movie.title" [src]="'https://image.tmdb.org/t/p/w220_and_h330_face'+movie.poster_path" [class]="'rounded-lg w-44 h-fit'" />
                 }
             </div>
 
@@ -64,8 +61,9 @@
                 </div>
             </div>
         </div>
+        <!-- List content -->
+        <app-search-list-movies *ngIf="movies" [movies]="movies" class="z-0 px-12" />
     </div>
-
-    <!-- List content -->
-    <app-search-list-movies *ngIf="movies" [movies]="movies" class="z-0 px-12" />
 </div>
+
+

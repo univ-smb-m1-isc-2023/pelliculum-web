@@ -6,7 +6,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { PosterComponent } from '../../shared/components/poster/poster.component';
 import { FormsModule } from '@angular/forms';
 import { SearchListMoviesComponent } from '../../shared/components/search-list-movies/search-list-movies.component';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ListsService } from '../../core/services/lists.service';
 import { IList } from '../../shared/models/list.model';
 import { IMovie } from '../../shared/models/movie.model';
@@ -15,7 +15,7 @@ import { UsersService } from '../../core/services/users.service';
 @Component({
     selector: 'app-movie-list-card',
     standalone: true,
-    imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule, SearchListMoviesComponent, NgIf],
+    imports: [BackdropComponent, TablerIconsModule, PosterComponent, FormsModule, SearchListMoviesComponent, NgIf, NgOptimizedImage],
     templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
