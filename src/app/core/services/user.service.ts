@@ -38,7 +38,7 @@ export class UserService {
      * @returns {string | null} - The username
      */
     public getUsername(): string | null {
-        return this.get().username;
+        return this.get()?.username;
     }
 
     /**
