@@ -8,6 +8,9 @@ import { AnswerService } from '../../../../core/services/answer.service';
 import { FormsModule } from '@angular/forms';
 import { StarsComponent } from '../../../../shared/components/stars/stars.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
+import { User } from '../../../../shared/models/user.model';
+import { RouterLink } from '@angular/router';
+import { UsersService } from '../../../../core/services/users.service';
 
 
 @Component({
@@ -17,6 +20,7 @@ import { TablerIconsModule } from 'angular-tabler-icons';
     FormsModule,
     StarsComponent,
     TablerIconsModule,
+    RouterLink
   ],
   templateUrl: './movie-details-rating-answers.component.html',
   styleUrls: ['./movie-details-rating-answers.sass'],
@@ -40,7 +44,8 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
 
   constructor(protected user: UserService,
               protected tmdbService: TmdbService,
-              protected answerService: AnswerService) {
+              protected answerService: AnswerService,
+              protected usersService : UsersService) {
   }
 
   ngOnInit(): void {
@@ -159,6 +164,7 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
   }
 
 
+    protected readonly User = User;
 }
 
 
