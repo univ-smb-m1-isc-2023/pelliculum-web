@@ -32,7 +32,7 @@
         </div>
         @if(note != 0.1){
             <a class="twitter-share-button"
-                target="_blank" href="https://twitter.com/intent/tweet?text=Je%20viens%20de%20regarder%20{{movie.title}}%20et%20je%20l'ai%20noté%20{{note}}%20étoiles%20sur%205%20sur%20Pelliculum%20!%20Viens%20sur%20Pelliculum%20et%20ajoute%20moi%20en%20ami%20!%20pelliculum.fr">
+                target="_blank" href="https://twitter.com/intent/tweet?text=Je%20viens%20de%20regarder%20{{movie.title}}%20et%20je%20l'ai%20noté%20{{note}}%20étoiles%20sur%205%20sur%20Pelliculum%20!%20Viens%20sur%20Pelliculum%20et%20ajoute%20moi%20en%20ami%20!%20pelliculum.fr/profile/{{userService.getUsername()}}">
                 <i-tabler name="brand-x" style="width: 52px" data-tooltip="Tweeter mon avis !" class="tooltip"></i-tabler>
             </a>
         }

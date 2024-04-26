@@ -26,7 +26,7 @@ export class MovieDetailsInteractionsComponent implements OnInit, OnChanges {
     protected userReview: any;
 
     constructor(
-        private userService: UserService,
+        protected userService: UserService,
         private listsService: ListsService,
         private reviewService: SharedReviewService
     ) {}
