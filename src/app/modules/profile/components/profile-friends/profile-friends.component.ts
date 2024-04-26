@@ -38,6 +38,9 @@ export class ProfileFriendsComponent implements OnInit {
     public async getNetwork(): Promise<void> {
         const follows = (await this.userService.getFollowsDetails()).data;
         const followers = (await this.userService.getFollowersDetails()).data;
+        for (const follow of follows) {
+            follow.isFollowed = true;
+        }
         this.follows = follows;
         this.followers = followers;
         this.contacts = follows;
@@ -64,6 +67,7 @@ export class ProfileFriendsComponent implements OnInit {
         this.contacts = this.follows;
         this.shownContacts = this.contacts;
         this.selectTab('follows');
+        console.log(this.follows);
     }
 
     public search(): void {
@@ -74,9 +78,12 @@ export class ProfileFriendsComponent implements OnInit {
         this.userService
             .addFollow(username)
             .then((r) => {
-                if (this.follows.filter((f): boolean => f.username === r.data.username).length === 0) {
+                console.log(r)
+                if (!this.follows.find((f): boolean => f.username === username)){
+                    r.data.isFollowed = true;
                     this.follows.push(r.data);
                 }
+                console.log(this.follows)
                 this.notyf.success(r);
             })
             .catch((r) => this.notyf.error(r.response.data));
@@ -85,7 +92,10 @@ export class ProfileFriendsComponent implements OnInit {
     protected removeFollow(username: string): void {
         this.userService
             .removeFollow(username)
-            .then((r) => this.notyf.success(r))
+            .then((r) => {
+                this.notyf.success(r)
+                this.follows = this.follows.filter((f): boolean => f.username !== username);
+            })
             .catch((r) => this.notyf.error(r.response.data));
     }
 

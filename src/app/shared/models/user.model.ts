@@ -19,6 +19,7 @@ export class User {
 }
 
 export interface IUser {
+    isFollowed: boolean;
     id: number;
     firstname: string;
     lastname: string;
