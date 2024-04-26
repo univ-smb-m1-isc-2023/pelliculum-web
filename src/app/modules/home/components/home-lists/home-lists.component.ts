@@ -16,6 +16,6 @@ export class HomeListsComponent implements OnInit {
     constructor(private listsService: ListsService) {}
 
     public async ngOnInit(): Promise<void> {
-        this.lists = (await this.listsService.getAll(false)).data.slice(0, 3);
+        this.lists = (await this.listsService.getAll(false)).data.slice(0, 4);
     }
 }
