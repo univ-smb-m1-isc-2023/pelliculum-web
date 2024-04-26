@@ -32,8 +32,10 @@ export class MovieDetailsInteractionsComponent implements OnInit, OnChanges {
     ) {}
 
     public async ngOnInit(): Promise<void> {
-        this.watchlist = this.userService.get().watchlist;
-        this.userLists = (await this.userService.getLists()).data;
+        if(this.userService.isLoggedIn()){
+            this.watchlist = this.userService.get().watchlist;
+            this.userLists = (await this.userService.getLists()).data;
+        }
         this.reviewService.selectedRating.subscribe((rating) => {
             this.note = rating;
         });
