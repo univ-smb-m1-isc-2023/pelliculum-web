@@ -38,8 +38,6 @@ export class ProfileFriendsComponent implements OnInit {
     public async getNetwork(): Promise<void> {
         const follows = (await this.userService.getFollowsDetails()).data;
         const followers = (await this.userService.getFollowersDetails()).data;
-        console.log('follows ',follows);
-        console.log('followers ', followers);
         for (const follow of follows) {
             follow.isFollowed = true;
         }
