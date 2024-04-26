@@ -11,11 +11,13 @@ import { MovieDetailsRatingAnswersComponent } from '../movie-details-rating-answ
 import { AnswerService } from '../../../../core/services/answer.service';
 import { UsersService } from '../../../../core/services/users.service';
 import { NgIf } from '@angular/common';
+import { User } from '../../../../shared/models/user.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movie-details-rating',
   standalone: true,
-  imports: [StarsComponent, StarsHoverableComponent, FormsModule, TablerIconsModule, MovieDetailsRatingAnswersComponent, NgIf],
+  imports: [StarsComponent, StarsHoverableComponent, FormsModule, TablerIconsModule, MovieDetailsRatingAnswersComponent, NgIf, RouterLink],
   templateUrl: './movie-details-rating.component.html',
   styleUrls: ['./movie-details-rating.sass']
 })
@@ -190,4 +192,5 @@ export class MovieDetailsRatingComponent implements OnInit {
     }
   }
   protected readonly event = event;
+  protected readonly User = User;
 }

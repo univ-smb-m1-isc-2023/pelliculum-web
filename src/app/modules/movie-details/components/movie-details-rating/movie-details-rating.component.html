@@ -67,9 +67,9 @@
             <div *ngIf="review" class="flex flex-col space-y-2 py-1">
                 <!-- Avatar and user name -->
                 <div class="flex flex-row items-center space-x-3 truncate">
-                    <div class="avatar avatar-sm">
-                        <img [src]="usersService.getProfilePicture(review.user)" alt="avatar" />
-                    </div>
+                    <a [routerLink]="'/'+User.getProfileUrl(review.user)" class="avatar avatar-md cursor-pointer">
+                        <img [src]="usersService.getProfilePicture(review.user)" alt="photo" class="border-2 border-transparent" />
+                    </a>
                     <p class="text-md">Critique de {{ review.user.username }}</p>
                     <!-- Rating -->
                     <div class="flex flex-row items-baseline space-x-1.5">
