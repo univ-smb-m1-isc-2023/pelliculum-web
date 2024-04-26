@@ -29,8 +29,8 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
     protected comment: string = '';
     protected spoiler: boolean = false;
     protected selectedAnswerId: number | null = null;
+    protected userName: string | null = this.user.getUsername();
 
-    profilePicture: string = 'https://www.w3schools.com/howto/img_avatar.png';
 
     constructor(
         protected user: UserService,
@@ -41,7 +41,6 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
 
     ngOnInit(): void {
         if (!this.user.isLoggedIn()) return;
-        this.profilePicture = `http://localhost:8080/profilePictures/${this.user.getUsername()}.jpeg`;
         this.getAnswers();
     }
 
@@ -53,7 +52,7 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
                     showSpoiler: false,
                     isLiked: answer.likes.includes(this.user.getUsername()),
                     showAnswers: false,
-                    profilePicture: `http://localhost:8080/profilePictures/${answer.user}.jpeg`,
+                    profilePicture: this.usersService.getProfilePicture(answer.user),
                     timeElapsed: this.getTimeElapsed(answer.createdAt)
                 };
             });
@@ -99,12 +98,16 @@ export class MovieDetailsRatingAnswersComponent implements OnInit {
             .addLikeToAnswers(answerId, username)
             .then((r) => {
                 const answer = this.answers.find((answer) => answer.id === answerId);
-                if (!answer.isLiked) {
-                    answer.likes.push(this.user.getUsername());
+                if (r.message === 'Answer successfully liked !') {
+                    this.notyf.success('Like ajouté');
                     answer.isLiked = true;
-                } else {
-                    answer.likes = answer.likes.filter((like: any) => like !== this.user.getUsername());
+                    answer.likes.push(this.user.getUsername());
+                }
+                if (r.message === 'Answer successfully unliked !') {
+                    this.notyf.success('Like retiré');
                     answer.isLiked = false;
+                    const index = answer.likes.indexOf(this.user.getUsername());
+                    answer.likes.splice(index, 1);
                 }
             })
             .catch(() => {
