@@ -16,7 +16,6 @@ export class GameActorsComponent implements OnInit {
     ngOnInit() {}
 
     ngOnChanges(changes: any) {
-        console.log(this.guessActors);
         if (changes.guessActors) {
             this.actorsDetail.forEach((actorDetail) => {
                 if (this.guessActors.some((guessActor) => guessActor.id === actorDetail.id)) {
@@ -24,6 +23,5 @@ export class GameActorsComponent implements OnInit {
                 }
             });
         }
-        console.log(this.actorsDetail);
     }
 }

@@ -42,8 +42,6 @@ export class ProfileFriendsComponent implements OnInit {
         this.followers = followers;
         this.contacts = follows;
         this.shownContacts = this.contacts;
-        console.log(this.followers);
-        console.log(this.follows);
     }
 
     public selectTab(tabName: 'followers' | 'follows'): void {
@@ -76,7 +74,6 @@ export class ProfileFriendsComponent implements OnInit {
         this.userService
             .addFollow(username)
             .then((r) => {
-                console.log(r);
                 if (this.follows.filter((f): boolean => f.username === r.data.username).length === 0) {
                     this.follows.push(r.data);
                 }

@@ -18,20 +18,24 @@ export class RatingsGraphComponent implements OnChanges {
     protected highestRating: number = 0;
     protected height = 50;
     protected sumRating: number = 0;
-    protected averageRating: string = "";
+    protected averageRating: string = '';
 
     constructor() {}
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['reviews']) {
-            console.log('here')
             for (let rating of this.reviews) {
                 let index = rating.rating * 2;
                 this.ratings[index] = this.ratings[index] ? this.ratings[index] + 1 : 1;
             }
             this.highestRating = Math.max(...this.ratings);
             this.sumRating = this.reviews.reduce((acc, review) => acc + review.rating, 0);
-            this.averageRating = (this.sumRating / this.reviews.length).toPrecision(2);
+            this.averageRating = (this.sumRating / this.reviews.length).toFixed(2);
+            if (this.averageRating === 'NaN') {
+                this.averageRating = '0.0';
+            }
+            console.log(this.averageRating)
+
         }
     }
 
@@ -41,7 +45,11 @@ export class RatingsGraphComponent implements OnChanges {
     }
 
     getPercentage(nombre: number): string {
-        return '(' + ((this.ratings[nombre] / this.reviews.length) * 100).toFixed(1) + '%)';
+        const res = '(' + ((this.ratings[nombre] / this.reviews.length) * 100).toFixed(1) + '%)';
+        if (res === '(NaN%)') {
+            return '(0.0%)';
+        }
+        return res;
     }
 
     protected readonly Number = Number;

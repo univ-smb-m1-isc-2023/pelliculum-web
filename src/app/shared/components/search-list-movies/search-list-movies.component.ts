@@ -99,7 +99,7 @@ export class SearchListMoviesComponent {
     }
 
     protected isWatchlisted(movieId: number): boolean {
-        return this.watchlist.includes(movieId);
+        return this.watchlist?.includes(movieId);
     }
 
     protected isGenreSelected(genre: any): boolean {

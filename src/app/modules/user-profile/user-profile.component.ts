@@ -13,6 +13,9 @@ import { TabsComponent } from '../../shared/components/tabs/tabs.component';
 import { IMovie } from '../../shared/models/movie.model';
 import { TmdbService } from '../../core/services/tmdb.service';
 import { SearchListReviewsComponent } from '../../shared/components/search-list-reviews/search-list-reviews.component';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import { UserService } from '../../core/services/user.service';
+import { Notyf } from 'notyf';
 
 @Component({
     selector: 'app-user-profile',
@@ -26,18 +29,24 @@ import { SearchListReviewsComponent } from '../../shared/components/search-list-
         ProfilesFilmsComponent,
         TabComponent,
         TabsComponent,
-        SearchListReviewsComponent
+        SearchListReviewsComponent,
+        TablerIconsModule
     ],
     templateUrl: './user-profile.component.html'
 })
 export class UserProfileComponent implements OnInit {
 
+    private notyf: Notyf = new Notyf();
+
     protected username?: string | null;
     protected reviews: any[] = [];
     protected movie?: IMovie;
-    protected user?: IUser
+    protected user?: IUser;
 
-    constructor(private activatedRoute: ActivatedRoute, protected usersService: UsersService, protected tmdbService: TmdbService) {
+    constructor(private activatedRoute: ActivatedRoute,
+                protected usersService: UsersService,
+                protected tmdbService: TmdbService,
+                protected userService: UserService) {
     }
 
     public async ngOnInit(): Promise<void> {
@@ -46,15 +55,31 @@ export class UserProfileComponent implements OnInit {
         this.user = (await this.usersService.get(this.username)).data;
         this.reviews = (await this.usersService.getReviews(this.user)).data;
         for (let review of this.reviews) {
-            try{
+            try {
                 review.movie = (await this.tmdbService.getMovieDetails(review.movieId)).data;
-            } catch (e){}
+            } catch (e) {
+            }
         }
-        if(this.reviews.length > 0){
+        if (this.reviews.length > 0) {
             this.movie = this.reviews[0].movie;
         } else {
             this.movie = (await this.tmdbService.getTopMovies())[0];
         }
+    }
+
+    protected addFollow(username: string): void {
+        this.userService
+            .addFollow(username)
+            .then((r) => {
+                console.log(r);
+                this.notyf.success('Followed successfully');
+
+            }).catch(
+                (e) => {
+                    console.error(e);
+                    this.notyf.error(e.response.data.message);
+                }
+        )
     }
 
 

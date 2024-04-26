@@ -7,6 +7,7 @@ import { IMovie } from '../../models/movie.model';
 import { TmdbService } from '../../../core/services/tmdb.service';
 import { UserService } from '../../../core/services/user.service';
 import { UsersService } from '../../../core/services/users.service';
+import { User } from '../../models/user.model';
 
 @Component({
     selector: 'app-movie-list-card',
@@ -50,4 +51,6 @@ export class MovieListCardComponent implements OnInit {
         }
         this.randomBackdropURL = 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+ (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * (this.list?.movies?.length ?? 0))]!)).data.backdrop_path;
     }
+
+    protected readonly User = User;
 }
