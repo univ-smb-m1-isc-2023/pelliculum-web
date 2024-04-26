@@ -35,10 +35,10 @@ export class ProfileComponent implements OnInit {
     ) {}
 
     public async ngOnInit(): Promise<void> {
+        await this.fetchReviews();
+        this.movie = (await this.tmdbService.getTopMovies())[0];
         const u = await this.user.get();
         console.log(u);
-        this.movie = (await this.tmdbService.getTopMovies())[0];
-        await this.fetchReviews();
     }
 
     public async fetchReviews() {
