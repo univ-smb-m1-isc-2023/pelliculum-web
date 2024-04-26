@@ -34,9 +34,7 @@ export class TmdbService {
         return this.http.get(url).pipe(
             tap((data) => {
                 if (data) {
-                    console.log(`Found movies matching "${term}"`, data);
                 } else {
-                    console.log(`No movies found matching "${term}"`);
                 }
             }),
             catchError(this.handleError('searchMovies', []))

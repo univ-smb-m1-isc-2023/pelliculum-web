@@ -14,7 +14,7 @@ export class RatingsGraphComponent implements OnChanges {
     @Input() reviews: any[] = [];
     @Input() movie?: IMovie;
 
-    protected ratings: number[] = [0,0,0,0,0,0,0,0,0,0,0];
+    protected ratings: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     protected highestRating: number = 0;
     protected height = 50;
     protected sumRating: number = 0;
@@ -26,10 +26,10 @@ export class RatingsGraphComponent implements OnChanges {
         if (changes['reviews']) {
             for (let rating of this.reviews) {
                 let index = rating.rating * 2;
-                if (index == 0.2){
+                if (index == 0.2) {
                     index = 0;
                 }
-                console.log(index)
+
                 this.ratings[index] = this.ratings[index] ? this.ratings[index] + 1 : 1;
             }
             this.highestRating = Math.max(...this.ratings);
@@ -38,8 +38,6 @@ export class RatingsGraphComponent implements OnChanges {
             if (this.averageRating === 'NaN') {
                 this.averageRating = '0.0';
             }
-            console.log(this.averageRating)
-
         }
     }
 

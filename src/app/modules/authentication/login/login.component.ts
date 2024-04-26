@@ -40,18 +40,14 @@ export class LoginComponent {
                             firstname: user.firstName,
                             lastname: user.lastName
                         })
-                        .then((r) => {
-                            console.log(r);
-                        });
+                        .then((r) => {});
                 } else {
                     this.authService
                         .login({
                             email: user.email,
                             password: user.id
                         })
-                        .then((r) => {
-                            console.log(r);
-                        });
+                        .then((r) => {});
                 }
             });
         });

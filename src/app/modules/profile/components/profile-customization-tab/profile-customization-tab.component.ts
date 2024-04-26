@@ -13,7 +13,6 @@ import { UserService } from '../../../../core/services/user.service';
     styleUrls: ['./profile-customization-tab.component.sass']
 })
 export class ProfileCustomizationTabComponent implements OnInit {
-
     profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
         lastname: new FormControl('Doe', [Validators.required]),
@@ -38,7 +37,7 @@ export class ProfileCustomizationTabComponent implements OnInit {
             email: this.user.email,
             username: this.user.username
         });
-        this.photo = this.user.profilePicture
+        this.photo = this.user.profilePicture;
     }
 
     async save() {
@@ -48,11 +47,9 @@ export class ProfileCustomizationTabComponent implements OnInit {
             username: this.profileForm.get('username')?.value,
             email: this.profileForm.get('email')?.value
         });
-        console.log(response);
 
         if (this.selectedFile) {
             const response = await this.userService.updateProfilePicture(this.selectedFile);
-            console.log(response);
         }
     }
 
@@ -65,5 +62,4 @@ export class ProfileCustomizationTabComponent implements OnInit {
             reader.readAsDataURL(this.selectedFile!);
         }
     }
-
 }

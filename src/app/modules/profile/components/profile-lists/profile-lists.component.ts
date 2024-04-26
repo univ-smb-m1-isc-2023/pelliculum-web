@@ -31,12 +31,6 @@ export class ProfileListsComponent implements OnInit {
 
     public async createList(): Promise<void> {
         if (this.listForm.valid) {
-            console.log({
-                name: this.listForm.value.name!,
-                description: this.listForm.value.description!,
-                username: this.user.getUsername()!,
-                isPublic: false
-            });
             await this.listService
                 .create({
                     name: this.listForm.value.name!,

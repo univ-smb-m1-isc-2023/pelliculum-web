@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit {
         await this.fetchReviews();
         this.movie = (await this.tmdbService.getTopMovies())[0];
         const u = await this.user.get();
-        console.log(u);
     }
 
     public async fetchReviews() {

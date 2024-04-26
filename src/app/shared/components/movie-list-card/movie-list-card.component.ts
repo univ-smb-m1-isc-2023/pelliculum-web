@@ -26,7 +26,6 @@ export class MovieListCardComponent implements OnInit {
 
     public async ngOnInit(): Promise<void> {
         await this.randomMovieBackdropURL();
-        console.log(this.list);
     }
 
     /**
@@ -46,10 +45,10 @@ export class MovieListCardComponent implements OnInit {
 
     protected async randomMovieBackdropURL(): Promise<void> {
         if (this.list?.movies?.length === 0) {
-            this.randomBackdropURL = ""
+            this.randomBackdropURL = '';
             return;
         }
-        this.randomBackdropURL = 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+ (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * (this.list?.movies?.length ?? 0))]!)).data.backdrop_path;
+        this.randomBackdropURL = 'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces' + (await this.tmdbService.getMovieDetails(this.list?.movies[Math.floor(Math.random() * (this.list?.movies?.length ?? 0))]!)).data.backdrop_path;
     }
 
     protected readonly User = User;

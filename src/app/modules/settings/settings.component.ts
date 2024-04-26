@@ -16,11 +16,10 @@ import { TmdbService } from '../../core/services/tmdb.service';
     templateUrl: './settings.component.html'
 })
 export class SettingsComponent {
-
     public static test = 'ok';
     public test: string = '';
     public user: any;
-    protected movie?: IMovie
+    protected movie?: IMovie;
 
     protected profileForm = new FormGroup({
         firstname: new FormControl('John', [Validators.required]),
@@ -42,11 +41,11 @@ export class SettingsComponent {
         this.user = this.userService.get();
         this.profileForm.patchValue(this.user);
         this.photo = this.userService.getProfileImage();
-        if(this.user.watchlist.length > 0) {
-            this.movie = (await this.tmdbService.getMovieDetails(this.user.watchlist[0])).data
+        if (this.user.watchlist.length > 0) {
+            this.movie = (await this.tmdbService.getMovieDetails(this.user.watchlist[0])).data;
         } else {
-            const randomMovies: IMovie[] = (await this.tmdbService.getTopMovies())
-            this.movie = randomMovies[Math.floor(Math.random() * randomMovies.length)]
+            const randomMovies: IMovie[] = await this.tmdbService.getTopMovies();
+            this.movie = randomMovies[Math.floor(Math.random() * randomMovies.length)];
         }
     }
 
@@ -59,7 +58,7 @@ export class SettingsComponent {
         });
         if (!this.selectedFile) return;
         const responseProfile: Response<IUser> = await this.userService.updateProfilePicture(this.selectedFile);
-        this.userService.set(responseProfile.data)
+        this.userService.set(responseProfile.data);
     }
 
     public onFileSelected(event: any): void {

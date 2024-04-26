@@ -37,7 +37,6 @@ export class StarsHoverableComponent implements OnInit {
     }
 
     onRatingChange(ratingValue: number): void {
-        console.log(ratingValue);
         this.rating = ratingValue;
         this.ratingChange.emit(ratingValue);
     }

@@ -33,7 +33,6 @@ export class HeaderSignComponent {
     }
 
     onItemSelect(item: any) {
-        console.log('Selected item:', item);
         this.dropdownVisible = false; // Close the dropdown
     }
 

@@ -111,8 +111,6 @@ export class UserService {
      * @returns {Promise<any>} - The response from the server
      */
     public async updateProfilePicture(file: File): Promise<Response<IUser>> {
-        console.log(sessionStorage.getItem('user'));
-        console.log(this.getUsername());
         const formData: FormData = new FormData();
         formData.append('file', file);
         return this.axiosService.post(`/users/${this.getUsername()}/profile-picture`, formData);

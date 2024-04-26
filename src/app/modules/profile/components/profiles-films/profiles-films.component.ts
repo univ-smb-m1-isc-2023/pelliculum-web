@@ -4,9 +4,7 @@ import { StarsComponent } from '../../../../shared/components/stars/stars.compon
 import { NgIf } from '@angular/common';
 import { Movie } from '../../../../shared/models/movie.model';
 import { RouterLink } from '@angular/router';
-import {
-    SearchListReviewsComponent
-} from '../../../../shared/components/search-list-reviews/search-list-reviews.component';
+import { SearchListReviewsComponent } from '../../../../shared/components/search-list-reviews/search-list-reviews.component';
 
 @Component({
     selector: 'app-profiles-films',
@@ -16,5 +14,5 @@ import {
 })
 export class ProfilesFilmsComponent {
     @Input() reviews: any[] = [];
-  protected readonly Movie = Movie;
+    protected readonly Movie = Movie;
 }

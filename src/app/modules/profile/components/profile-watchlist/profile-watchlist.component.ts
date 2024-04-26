@@ -14,9 +14,7 @@ import { IMovie } from '../../../../shared/models/movie.model';
 export class ProfileWatchlistComponent implements OnInit {
     protected watchlist: IMovie[] = [];
 
-    constructor(
-        private user: UserService,
-    ) {}
+    constructor(private user: UserService) {}
 
     public async ngOnInit(): Promise<void> {
         this.watchlist = await this.user.getWatchlistDetails();

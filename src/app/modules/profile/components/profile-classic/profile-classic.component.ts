@@ -22,15 +22,15 @@ export class ProfileClassicComponent implements OnInit {
     constructor(
         private userService: UserService,
         private tmdbService: TmdbService,
-        protected usersService: UsersService,
+        protected usersService: UsersService
     ) {}
 
     public async ngOnInit(): Promise<void> {
         this.follows = (await this.userService.getFollowsDetails()).data;
-        console.log(this.follows)
+
         this.reviews.map(async (review: any) => {
             review.movie = (await this.tmdbService.getMovieDetails(review.movieId)).data;
-        })
+        });
     }
 
     protected readonly Movie = Movie;

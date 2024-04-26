@@ -20,22 +20,10 @@ import { Notyf } from 'notyf';
 @Component({
     selector: 'app-user-profile',
     standalone: true,
-    imports: [
-        NgIf,
-        ProfileClassicComponent,
-        ProfileFriendsComponent,
-        ProfileListsComponent,
-        ProfileWatchlistComponent,
-        ProfilesFilmsComponent,
-        TabComponent,
-        TabsComponent,
-        SearchListReviewsComponent,
-        TablerIconsModule
-    ],
+    imports: [NgIf, ProfileClassicComponent, ProfileFriendsComponent, ProfileListsComponent, ProfileWatchlistComponent, ProfilesFilmsComponent, TabComponent, TabsComponent, SearchListReviewsComponent, TablerIconsModule],
     templateUrl: './user-profile.component.html'
 })
 export class UserProfileComponent implements OnInit {
-
     private notyf: Notyf = new Notyf();
 
     protected username?: string | null;
@@ -43,11 +31,12 @@ export class UserProfileComponent implements OnInit {
     protected movie?: IMovie;
     protected user?: IUser;
 
-    constructor(private activatedRoute: ActivatedRoute,
-                protected usersService: UsersService,
-                protected tmdbService: TmdbService,
-                protected userService: UserService) {
-    }
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        protected usersService: UsersService,
+        protected tmdbService: TmdbService,
+        protected userService: UserService
+    ) {}
 
     public async ngOnInit(): Promise<void> {
         this.username = this.activatedRoute.snapshot.paramMap.get('username');
@@ -57,8 +46,7 @@ export class UserProfileComponent implements OnInit {
         for (let review of this.reviews) {
             try {
                 review.movie = (await this.tmdbService.getMovieDetails(review.movieId)).data;
-            } catch (e) {
-            }
+            } catch (e) {}
         }
         if (this.reviews.length > 0) {
             this.movie = this.reviews[0].movie;
@@ -71,16 +59,11 @@ export class UserProfileComponent implements OnInit {
         this.userService
             .addFollow(username)
             .then((r) => {
-                console.log(r);
                 this.notyf.success('Followed successfully');
-
-            }).catch(
-                (e) => {
-                    console.error(e);
-                    this.notyf.error(e.response.data.message);
-                }
-        )
+            })
+            .catch((e) => {
+                console.error(e);
+                this.notyf.error(e.response.data.message);
+            });
     }
-
-
 }

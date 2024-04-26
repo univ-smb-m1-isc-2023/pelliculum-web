@@ -1,13 +1,13 @@
-<div *ngIf="list" class="group flex flex-col shadow-lg h-full">
+<div *ngIf="list" class="group flex h-full flex-col shadow-lg">
     <!-- Poster -->
     <a [routerLink]="['/', 'list',getListID(), getListUrl()]" class="h-full">
-        <div class="relative flex cursor-pointer flex-row h-full">
+        <div class="relative flex h-full cursor-pointer flex-row">
             @if(randomBackdropURL === ""){
-                <div class="h-full justify-center items-center flex flex-col w-full px-4">
-                    <p>Il n'y a pas de films dans cette liste ;(</p>
-                </div>
+            <div class="flex h-full w-full flex-col items-center justify-center px-4">
+                <p>Il n'y a pas de films dans cette liste ;(</p>
+            </div>
             }@else{
-                <img *ngIf="randomBackdropURL" [src]="randomBackdropURL" alt="de" class="rounded-t-xl" />
+            <img *ngIf="randomBackdropURL" [src]="randomBackdropURL" alt="de" class="rounded-t-xl" />
             }
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
             <div class="absolute h-full w-full rounded-t-xl bg-[#161616] opacity-0 transition group-hover:opacity-55"></div>
@@ -21,7 +21,7 @@
                     <img [src]="usersService.getProfilePicture(list.user)" alt="photo" class="border-2 border-transparent" />
                 </div>
             </a>
-            <p class="truncate text-sm w-5/6">{{list.name}}</p>
+            <p class="w-5/6 truncate text-sm">{{list.name}}</p>
         </div>
         <div class="flex flex-row space-x-2">
             <!-- Likes -->

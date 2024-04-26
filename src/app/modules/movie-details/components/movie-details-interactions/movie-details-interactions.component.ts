@@ -47,17 +47,15 @@ export class MovieDetailsInteractionsComponent implements OnInit, OnChanges {
 
     protected changeRating(rating: number): void {
         this.reviewService.selectedRating.next(rating);
-        if (this.userReview){
-            this.reviewService.updateReview().then(r =>{
+        if (this.userReview) {
+            this.reviewService.updateReview().then((r) => {
                 notyf.success('Note mise à jour avec succès');
-            })
-        }
-        else{
-            this.reviewService.postReview(this.movie.id).then(r =>{
+            });
+        } else {
+            this.reviewService.postReview(this.movie.id).then((r) => {
                 notyf.success('Note ajoutée avec succès');
-            })
+            });
         }
-
     }
 
     protected isWatchlisted(movieId: number): boolean {

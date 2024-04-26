@@ -83,9 +83,7 @@ export class HomeComponent implements OnInit {
         this.tmdbService.getUpcomingMovies().subscribe((data: any) => {
             this.upcomings = data.results.slice(0, 20);
         });
-        this.responsive.observe(Breakpoints.Small).subscribe((result) => {
-            console.log(result.matches);
-        });
+        this.responsive.observe(Breakpoints.Small).subscribe((result) => {});
     }
 
     randomMovie() {
@@ -233,7 +231,7 @@ export class HomeComponent implements OnInit {
     randomId() {
         // Random between 1054774000 and 1054774547
         const id = Math.floor(1054774547 + Math.random() * 100);
-        console.log(id);
+
         return id;
     }
 

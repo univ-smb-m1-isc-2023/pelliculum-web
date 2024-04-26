@@ -22,10 +22,10 @@
                         <div class="popover-arrow"></div>
                         <div class="grid grid-cols-3 gap-y-2 p-1 text-sm">
                             @for (genre of genres; track genre.id) {
-                                <label (change)="toggleSortByGenre(genre.id)" class="flex cursor-pointer items-center space-x-2">
-                                    <input type="checkbox" class="checkbox" [checked]="isGenreSelected(genre)" [disabled]="isGenreSelected(genre)" />
-                                    <span>{{ genre.name }}</span>
-                                </label>
+                            <label (change)="toggleSortByGenre(genre.id)" class="flex cursor-pointer items-center space-x-2">
+                                <input type="checkbox" class="checkbox" [checked]="isGenreSelected(genre)" [disabled]="isGenreSelected(genre)" />
+                                <span>{{ genre.name }}</span>
+                            </label>
                             }
                         </div>
                     </div>
@@ -48,155 +48,155 @@
     <!-- Movies -->
     <div class="flex flex-col items-center justify-center space-y-6">
         @if (isViewGrid) {
-            <!-- Grid -->
-            <div class="grid gap-x-4 gap-y-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10">
-                @for (review of reviews; track review) {
-                    <a *ngIf="review && review.rating && review.movie" [routerLink]="Movie.getDetailsPageUrl(review.movie)" class="group relative cursor-pointer">
-                        <app-poster [style]="'border-custom-border group-hover:opacity-55 transition'" [posterPath]="review.movie.poster_path" />
-                        <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
-                            <div class="flex h-full flex-col rounded-lg">
-                                <div class="m-auto flex flex-col items-center justify-center" (click)="preventRouterLink($event)">
-                                    @if (isWatchlisted(review.movie.id)) {
-                                        <i-tabler tabindex="0" (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
-                                    } @else {
-                                        <i-tabler tabindex="0" (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
-                                    }
-                                    <div class="popover" (click)="preventRouterLink($event)">
-                                        <i-tabler  (click)="preventRouterLink($event)" [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
-                                        <div class="popover-content" tabindex="0">
-                                            <div class="popover-arrow"></div>
-                                            <div class="flex flex-col">
-                                                <div class="flex flex-col -space-y-1">
-                                                    <p class="text-sm">Mes listes</p>
-                                                    <div class="divider"></div>
+        <!-- Grid -->
+        <div class="grid gap-x-4 gap-y-4 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 xl:grid-cols-10">
+            @for (review of reviews; track review) {
+            <a *ngIf="review && review.rating && review.movie" [routerLink]="Movie.getDetailsPageUrl(review.movie)" class="group relative cursor-pointer">
+                <app-poster [style]="'border-custom-border group-hover:opacity-55 transition'" [posterPath]="review.movie.poster_path" />
+                <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
+                    <div class="flex h-full flex-col rounded-lg">
+                        <div class="m-auto flex flex-col items-center justify-center" (click)="preventRouterLink($event)">
+                            @if (isWatchlisted(review.movie.id)) {
+                            <i-tabler tabindex="0" (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                            } @else {
+                            <i-tabler tabindex="0" (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                            }
+                            <div class="popover" (click)="preventRouterLink($event)">
+                                <i-tabler (click)="preventRouterLink($event)" [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
+                                <div class="popover-content" tabindex="0">
+                                    <div class="popover-arrow"></div>
+                                    <div class="flex flex-col">
+                                        <div class="flex flex-col -space-y-1">
+                                            <p class="text-sm">Mes listes</p>
+                                            <div class="divider"></div>
+                                        </div>
+                                        <div class="flex flex-col space-y-2">
+                                            @for (list of userLists; track list.id) {
+                                            <label class="flex cursor-pointer flex-row items-center space-x-2">
+                                                <div class="flex items-center justify-center">
+                                                    <input [id]="'lists-movie-' + review.movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(review.movie.id)" />
                                                 </div>
-                                                <div class="flex flex-col space-y-2">
-                                                    @for (list of userLists; track list.id) {
-                                                        <label class="flex cursor-pointer flex-row items-center space-x-2">
-                                                            <div class="flex items-center justify-center">
-                                                                <input [id]="'lists-movie-' + review.movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(review.movie.id)" />
-                                                            </div>
-                                                            <span class="truncate text-sm">{{list.name}}</span>
-                                                        </label>
-                                                    }
-                                                    <button (click)="updateList(review.movie)" class="btn btn-primary btn-xs">Modifier</button>
-                                                </div>
-                                            </div>
+                                                <span class="truncate text-sm">{{list.name}}</span>
+                                            </label>
+                                            }
+                                            <button (click)="updateList(review.movie)" class="btn btn-primary btn-xs">Modifier</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-center pb-2">
-                                    <app-stars [value]="review.rating" [stars]="5" size="w-4"/>
-                                </div>
                             </div>
                         </div>
-                    </a>
-                }
-            </div>
+                        <div class="flex items-center justify-center pb-2">
+                            <app-stars [value]="review.rating" [stars]="5" size="w-4" />
+                        </div>
+                    </div>
+                </div>
+            </a>
+            }
+        </div>
         } @else {
-            <!-- List -->
-            <div class="grid gap-8 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3">
-                @for (review of reviews; track review) {
-                    <div *ngIf="review && review.rating && review.movie" class="flex w-full space-x-4">
-                        <!-- Poster -->
-                        <a [routerLink]="Movie.getDetailsPageUrl(review.movie)" class="group relative cursor-pointer">
-                            <img
-                                class="min-w-44 max-w-fit rounded-lg border-custom-border transition group-hover:opacity-55"
-                                style="
+        <!-- List -->
+        <div class="grid gap-8 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3">
+            @for (review of reviews; track review) {
+            <div *ngIf="review && review.rating && review.movie" class="flex w-full space-x-4">
+                <!-- Poster -->
+                <a [routerLink]="Movie.getDetailsPageUrl(review.movie)" class="group relative cursor-pointer">
+                    <img
+                        class="min-w-44 max-w-fit rounded-lg border-custom-border transition group-hover:opacity-55"
+                        style="
                             box-shadow:
                                 rgba(150, 150, 150, 0.1) 0px 50px 100px -20px,
                                 rgba(200, 200, 200, 0.05) 0px 30px 60px -30px;
                         "
-                                [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + review?.movie?.poster_path"
-                                [alt]="review.movie.title" />
+                        [src]="'https://image.tmdb.org/t/p/w220_and_h330_face' + review?.movie?.poster_path"
+                        [alt]="review.movie.title" />
 
-                            <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
-                                <div class="flex h-full flex-col rounded-lg">
-                                    <div class="m-auto flex flex-col items-center justify-center">
-                                        @if (isWatchlisted(review.movie.id)) {
-                                            <i-tabler (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
-                                        } @else {
-                                            <i-tabler (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
-                                        }
-                                        <div class="popover">
-                                            <i-tabler [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
-                                            <div class="popover-content" tabindex="0">
-                                                <div class="popover-arrow"></div>
-                                                <div class="flex flex-col">
-                                                    <div class="flex flex-col -space-y-1">
-                                                        <p class="text-sm">Mes listes</p>
-                                                        <div class="divider"></div>
+                    <div class="invisible absolute top-0 flex h-full w-full flex-col rounded-lg border border-[#777777] group-hover:visible group-hover:border">
+                        <div class="flex h-full flex-col rounded-lg">
+                            <div class="m-auto flex flex-col items-center justify-center">
+                                @if (isWatchlisted(review.movie.id)) {
+                                <i-tabler (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-minus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="J'ai vu ce film" />
+                                } @else {
+                                <i-tabler (click)="toggleWatchlist(review.movie, $event)" [name]="'eye-plus'" class="tooltip" style="width: 42px; height: fit-content" data-tooltip="Voir plus tard" />
+                                }
+                                <div class="popover">
+                                    <i-tabler [name]="'playlist-add'" class="tooltip popover-trigger" tabindex="0" style="width: 42px; height: fit-content" data-tooltip="Ajouter à une liste" />
+                                    <div class="popover-content" tabindex="0">
+                                        <div class="popover-arrow"></div>
+                                        <div class="flex flex-col">
+                                            <div class="flex flex-col -space-y-1">
+                                                <p class="text-sm">Mes listes</p>
+                                                <div class="divider"></div>
+                                            </div>
+                                            <div class="flex flex-col space-y-2">
+                                                @for (list of userLists; track list.id) {
+                                                <label class="flex cursor-pointer flex-row items-center space-x-2">
+                                                    <div class="flex items-center justify-center">
+                                                        <input [id]="'lists-movie-' + review.movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(review.movie.id)" />
                                                     </div>
-                                                    <div class="flex flex-col space-y-2">
-                                                        @for (list of userLists; track list.id) {
-                                                            <label class="flex cursor-pointer flex-row items-center space-x-2">
-                                                                <div class="flex items-center justify-center">
-                                                                    <input [id]="'lists-movie-' + review.movie.id + '-' + list.id" type="checkbox" class="checkbox" [checked]="list.movies.includes(review.movie.id)" />
-                                                                </div>
-                                                                <span class="truncate text-sm">{{list.name}}</span>
-                                                            </label>
-                                                        }
-                                                        <button (click)="updateList(review.movie)" class="btn btn-primary btn-xs">Modifier</button>
-                                                    </div>
-                                                </div>
+                                                    <span class="truncate text-sm">{{list.name}}</span>
+                                                </label>
+                                                }
+                                                <button (click)="updateList(review.movie)" class="btn btn-primary btn-xs">Modifier</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex items-center justify-center pb-2">
-                                        <app-stars [value]="review.rating" [stars]="5" size="w-4"/>
-                                    </div>
                                 </div>
                             </div>
-                        </a>
-
-                        <!-- Rating part -->
-                        <div class="flex w-full flex-col space-y-1 py-1">
-                            <!-- Movie title and rating -->
-                            <div class="flex flex-col space-y-0.5">
-                                <!-- Movie title and release date -->
-                                <div class="flex select-text flex-col">
-                                    <p class="truncate text-lg font-semibold">{{ review.movie.title }}</p>
-                                    <span class="text-xs font-normal text-primary">{{ review.movie.release_date.slice(0, 4) }}</span>
-                                </div>
-
-                                <!-- Rating -->
-                                <div class="flex flex-row items-center space-x-1.5">
-                                    <app-stars size="w-4" [stars]="5" [value]="review.movie.vote_average > 5 ? Number((review.movie.vote_average / 2).toFixed(1)) : Number(review.movie.vote_average.toFixed(1))" />
-                                    <p class="text-xs">{{ review.movie.vote_average > 5 ? Number((review.movie.vote_average / 2).toFixed(1)) : Number(review.movie.vote_average.toFixed(1)) }}</p>
-                                </div>
-                            </div>
-
-                            <!-- User comment -->
-                            <p class="line-clamp-4">{{ review.movie.overview }}</p>
-
-                            <!-- Likes and comments -->
-                            <div class="flex flex-grow items-end">
-                                <div class="flex flex-row space-x-6">
-                                    <!-- Likes -->
-                                    <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
-                                        </svg>
-                                        <p>156</p>
-                                    </div>
-
-                                    <!-- Comments -->
-                                    <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
-                                            <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
-                                        </svg>
-                                        <p>78</p>
-                                    </div>
-                                </div>
+                            <div class="flex items-center justify-center pb-2">
+                                <app-stars [value]="review.rating" [stars]="5" size="w-4" />
                             </div>
                         </div>
                     </div>
+                </a>
 
-                }
+                <!-- Rating part -->
+                <div class="flex w-full flex-col space-y-1 py-1">
+                    <!-- Movie title and rating -->
+                    <div class="flex flex-col space-y-0.5">
+                        <!-- Movie title and release date -->
+                        <div class="flex select-text flex-col">
+                            <p class="truncate text-lg font-semibold">{{ review.movie.title }}</p>
+                            <span class="text-xs font-normal text-primary">{{ review.movie.release_date.slice(0, 4) }}</span>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="flex flex-row items-center space-x-1.5">
+                            <app-stars size="w-4" [stars]="5" [value]="review.movie.vote_average > 5 ? Number((review.movie.vote_average / 2).toFixed(1)) : Number(review.movie.vote_average.toFixed(1))" />
+                            <p class="text-xs">{{ review.movie.vote_average > 5 ? Number((review.movie.vote_average / 2).toFixed(1)) : Number(review.movie.vote_average.toFixed(1)) }}</p>
+                        </div>
+                    </div>
+
+                    <!-- User comment -->
+                    <p class="line-clamp-4">{{ review.movie.overview }}</p>
+
+                    <!-- Likes and comments -->
+                    <div class="flex flex-grow items-end">
+                        <div class="flex flex-row space-x-6">
+                            <!-- Likes -->
+                            <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                                </svg>
+                                <p>156</p>
+                            </div>
+
+                            <!-- Comments -->
+                            <div class="flex cursor-pointer select-none flex-row items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
+                                    <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
+                                </svg>
+                                <p>78</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            }
+        </div>
         }
 
         <!-- Pagination -->

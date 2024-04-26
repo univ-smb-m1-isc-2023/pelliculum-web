@@ -23,7 +23,7 @@ import { StarsHoverableComponent } from '../stars-hoverable/stars-hoverable.comp
 })
 export class SearchListReviewsComponent {
     @Input() public style?: string;
-    @Input() public reviews: {rating: number, movie: IMovie}[] = [];
+    @Input() public reviews: { rating: number; movie: IMovie }[] = [];
     @Input() public genreSelected?: { id: number; name: string; text: string } = undefined;
 
     public userLists: IList[] = [];
@@ -49,14 +49,12 @@ export class SearchListReviewsComponent {
         private activatedRoute: ActivatedRoute,
         protected userService: UserService,
         protected listsService: ListsService
-    ) {
-    }
+    ) {}
 
     async ngOnInit(): Promise<void> {
         this.userLists = (await this.userService.getLists()).data;
         this.watchlist = this.userService.get().watchlist;
         this.reviewsCopy = [...this.reviews];
-
     }
 
     protected preventRouterLink(event: MouseEvent): void {
@@ -140,15 +138,15 @@ export class SearchListReviewsComponent {
         this.sortAndFilterMovies();
     }
 
-    private sortByDate(reviews: {rating: number, movie: IMovie}[]): any[] {
+    private sortByDate(reviews: { rating: number; movie: IMovie }[]): any[] {
         return reviews.sort((a, b) => new Date(b.movie.release_date).getTime() - new Date(a.movie.release_date).getTime());
     }
 
-    private sortByLikes(reviews: {rating: number, movie: IMovie}[]): any[] {
+    private sortByLikes(reviews: { rating: number; movie: IMovie }[]): any[] {
         return reviews.sort((a, b) => b.rating - a.rating);
     }
 
-    private sortByGenre(reviews: {rating: number, movie: IMovie}[]): any[] {
+    private sortByGenre(reviews: { rating: number; movie: IMovie }[]): any[] {
         return reviews.filter((review) => this.sortingGenres.includes(review.movie.genre_ids[0]));
     }
 

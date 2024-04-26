@@ -1,38 +1,38 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  build:
-    name: build main branch
-    permissions: write-all
-    runs-on: ubuntu-22.04
+    build:
+        name: build main branch
+        permissions: write-all
+        runs-on: ubuntu-22.04
 
-    steps:
-      - uses: actions/checkout@v2
+        steps:
+            - uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 20
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm install
 
-      - name: Build
-        run: npm run build
+            - name: Build
+              run: npm run build
 
-      - name: Build Docker image
-        run: docker build -t pelliculum-docker .
+            - name: Build Docker image
+              run: docker build -t pelliculum-docker .
 
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: univ-smb-m1-isc-2023/pelliculum-web/main
-          tags: latest
+            - name: Push to GitHub Packages
+              uses: docker/build-push-action@v1
+              with:
+                  username: ${{ github.actor }}
+                  password: ${{ secrets.GITHUB_TOKEN }}
+                  registry: docker.pkg.github.com
+                  repository: univ-smb-m1-isc-2023/pelliculum-web/main
+                  tags: latest
