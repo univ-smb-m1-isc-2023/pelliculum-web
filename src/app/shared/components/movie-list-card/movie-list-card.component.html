@@ -2,7 +2,7 @@
     <!-- Poster -->
     <a [routerLink]="['/', 'list',getListID(), getListUrl()]">
         <div class="relative flex cursor-pointer flex-row">
-            <img *ngIf="randomBackdropURL" [src]="'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces'+randomBackdropURL" alt="de" class="rounded-t-xl" />
+            <img *ngIf="randomBackdropURL" [src]="randomBackdropURL" alt="de" class="rounded-t-xl bg-contain" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#161616] from-0% to-transparent to-70%"></div>
             <div class="absolute h-full w-full rounded-t-xl bg-[#161616] opacity-0 transition group-hover:opacity-55"></div>
         </div>

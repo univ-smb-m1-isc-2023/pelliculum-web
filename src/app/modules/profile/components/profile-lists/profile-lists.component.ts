@@ -44,8 +44,8 @@ export class ProfileListsComponent implements OnInit {
                     username: this.user.getUsername()!,
                     isPublic: false
                 })
-                .then(async () => {
-                    this.userLists = (await this.listService.getUserLists(this.user.getUsername()!, true)).data;
+                .then(async (response) => {
+                    this.userLists.push(response.data);
                     this.listForm.reset();
                     notyf.success('La liste a été créée avec succès !');
                 })
